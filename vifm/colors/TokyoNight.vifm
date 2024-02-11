@@ -1,0 +1,31 @@
+" TokyoNight Cyberpunk theme for VIFM
+
+" Reset all styles first
+highlight clear
+
+highlight Border	cterm=none	ctermfg=default	ctermbg=default
+
+highlight TopLine	cterm=none	ctermfg=002	ctermbg=020
+highlight TopLineSel	cterm=bold	ctermfg=002	ctermbg=default
+
+highlight TabLine cterm=none ctermfg=008 ctermbg=021
+highlight TabLineSel cterm=bold ctermfg=030 ctermbg=020
+
+highlight Win		cterm=none	ctermfg=007	ctermbg=default
+highlight Directory	cterm=none	ctermfg=005	ctermbg=default
+highlight CurrLine	cterm=bold,inverse	ctermfg=022	ctermbg=006
+highlight OtherLine cterm=bold ctermfg=003 ctermbg=000
+highlight Selected	cterm=none	ctermfg=003	ctermbg=008
+
+highlight JobLine	cterm=bold	ctermfg=251	ctermbg=008
+highlight StatusLine	cterm=none	ctermfg=008	ctermbg=default
+highlight ErrorMsg	cterm=bold	ctermfg=030	ctermbg=default
+highlight WildMenu	cterm=bold	ctermfg=015	ctermbg=008
+highlight CmdLine	cterm=none	ctermfg=011	ctermbg=021
+
+highlight Executable	cterm=bold	ctermfg=002	ctermbg=default
+highlight Link		cterm=bold	ctermfg=006	ctermbg=default
+highlight BrokenLink	cterm=bold	ctermfg=001	ctermbg=default
+highlight Device	cterm=bold,standout	ctermfg=000	ctermbg=011
+highlight Fifo		cterm=none	ctermfg=003	ctermbg=default
+highlight Socket	cterm=bold	ctermfg=005	ctermbg=default

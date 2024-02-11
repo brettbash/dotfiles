@@ -1,0 +1,692 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:6830:6018:b0:66e:1f42:8fe6 with SMTP id bx24csp4009840otb;
+        Wed, 21 Dec 2022 13:50:29 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXtqi07K/iEMIVmu1YoGCSnzV5FEEIHJpzZjJsEKdkXDYHOQHkXcc8kdr/GDE9YXTUakqhcr
+X-Received: by 2002:a0d:d942:0:b0:428:e499:a0a8 with SMTP id b63-20020a0dd942000000b00428e499a0a8mr2850942ywe.12.1671659429669;
+        Wed, 21 Dec 2022 13:50:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671659429; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Jdwt3k8lPkKXcu9vfvlOsFIJZW2dQM5tfE6dPAoM3JpqYpgzrczTiyWpU2n6IIW9f9
+         dHrRljm0WSKtyra/fSr6QCblbMAcC6LJbTZpfR963j2yfeJjJckyWWWSGAjx7ICbzZ44
+         EL+t9iKS3y+xnbRFhuOp/1bhB7oVlNxo4MuCxroBJZLElN6EwHVtsi+kKVwCnh+VxCZL
+         nfoF1ZCuGgl1A6O7k6KPeGFJRBASkElIBcM8m/o7unoKaobdAp32MaMy21E8YH4/ZwX2
+         F5KRUH/d1MTIHYlaKy6ccIxBAfw3HbbkMWwnLwg8rnddxb1HUXoML0hfR6MmIVmSNRFg
+         31HA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date:dkim-signature
+         :dkim-signature;
+        bh=EyG3HyN8hzK14NUIeKSJiTsUJW/3pAY4o4tIHuT4UqY=;
+        b=NgDqUFf4R5biW0rya0F/sNjOD18D8BpoI73d2q+j+P/blBkvyHTWd/CPzda+LN86xj
+         W0nuuHAgC2uV7Oksxy0brU5htdPQREZfYiV0pNtuwjabrcA3UvHRqMaEApIWoQL5dQPr
+         cJc/ZcarWwlYgMMJoAwJ2Znh2uXt2M9R6dZQLy8I3A0K9i+bx8MuLSzonJrfOOwqSxOG
+         DiowY8dVMyxcMoUiBc7XCHmGOZTQS7B2gJRkK7CDngVbGjlAv1hpdA3mwe+/G6fq9lpM
+         o+MxsOwi/edv38b25qY5UDbxuudx+5T+GkbZK5OGaFXnIcVscCMXcGZt6rFX62s+mm72
+         8FmQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@shopifyemail.com header.s=amp header.b="IaLIN/pv";
+       dkim=pass header.i=@shopify.com header.s=m1 header.b=MdmiBKrA;
+       spf=pass (google.com: domain of bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com designates 149.72.164.129 as permitted sender) smtp.mailfrom="bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=shopify.com
+Return-Path: <bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com>
+Received: from wrqvxqvk.outbound-mail.sendgrid.net (wrqvxqvk.outbound-mail.sendgrid.net. [149.72.164.129])
+        by mx.google.com with ESMTPS id x138-20020a0dd590000000b003b560f98400si16011399ywd.237.2022.12.21.13.50.29
+        for <brettbash@brettbash.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Dec 2022 13:50:29 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com designates 149.72.164.129 as permitted sender) client-ip=149.72.164.129;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@shopifyemail.com header.s=amp header.b="IaLIN/pv";
+       dkim=pass header.i=@shopify.com header.s=m1 header.b=MdmiBKrA;
+       spf=pass (google.com: domain of bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com designates 149.72.164.129 as permitted sender) smtp.mailfrom="bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=shopify.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shopifyemail.com;
+	h=content-type:from:mime-version:subject:to:cc:content-type:from:
+	subject:to;
+	s=amp; bh=EyG3HyN8hzK14NUIeKSJiTsUJW/3pAY4o4tIHuT4UqY=;
+	b=IaLIN/pvoTlI1WzT4YTiC+jBlkFmOppTFwpjrIUnzm1XLualVx+slkAUNNE3RcW05aK+
+	2AcLhv86Bh864gsk9UFyUgt4hytAEo0Qt08s7ef3vS2FS3krYks2/XRTp+H8oVuou9Y+DC
+	SZshRGK3TDPn2k2McFzIaBRtn0n8XohOSdliUoLuZdayFRpbu/hRAr04xbOLyKtZu3vTpq
+	uTvkV9Kk/3RBIuQJ/QLmJsMFiw1ZzgoHS31Klt6L8jJUmc4wncL/AvyQuFY3DdeMvKmUAs
+	PgXbvbwIjoSgpfTpe8u0elZ5YJPGkvXt2/fPUwyKnMZkls9o1nUW5SYn9NpFkrnQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shopify.com;
+	h=content-type:from:mime-version:subject:to:cc:content-type:from:
+	subject:to;
+	s=m1; bh=EyG3HyN8hzK14NUIeKSJiTsUJW/3pAY4o4tIHuT4UqY=;
+	b=MdmiBKrAvetjV43NJuvTxdLVCr5siBYKYkMd4LC8oaWRWei6kZGMDVeG5AjEkq9/tKWD
+	NjaMtucAur+1kAycNpxdIAFQVYjHZ1ivWaKyhA19Mf0e+s7ylBZy3ZJeg6c0ho3npxmr7O
+	mdXKa4jAjPrbmwmz8uZxJ8T8nfEDm1QKI=
+Received: by filterdrecv-75f4fdc576-j8xgl with SMTP id filterdrecv-75f4fdc576-j8xgl-1-63A37FA3-38
+        2022-12-21 21:50:28.012026959 +0000 UTC m=+2933014.755923310
+Received: from MTEyNTM3NDU (unknown)
+	by geopod-ismtpd-1-0 (SG) with HTTP
+	id qSRGbOBUR8CDm8ggnNzARA
+	Wed, 21 Dec 2022 21:50:27.942 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=853d88f9c52ce01e641f484698d181928ea8dafc101603f4a472ae80d166
+Date: Wed, 21 Dec 2022 21:50:28 +0000 (UTC)
+From: Shopify Billing <billing@shopify.com>
+Mime-Version: 1.0
+Message-ID: <E1030004-1732ED644FB6A037-828E5BC2@shopify.com>
+Subject: Bill for Theme (Showcase) ($319.80 USD)
+X-SG-EID: 
+ =?us-ascii?Q?kGTXYPhJpECQbya0ED2FCQSpSFW2+iW9T=2FBr4bigJnlRDIBoyVDWcS2AaWHTjK?=
+ =?us-ascii?Q?+qBA38r4BGAhYKs8J2iTmIqe3YD1goNPl33vQQO?=
+ =?us-ascii?Q?5WSlYLwfjZTiUXEWXW93sbbv0=2FEmjPkJuSRrcgv?=
+ =?us-ascii?Q?yJIe0r5rNw1AFrPmZdopEL5WCAn9GoKq0MFqsCq?=
+ =?us-ascii?Q?eLIa4ZkPuhy4Rr6QCFhURlDnxtb9+zNqf9PLVkG?=
+ =?us-ascii?Q?z8Qv6viu+OZEWw7jSl98kiE9wvPw8QMvu+51Ia?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FKOpeJUHWlRJMC+AMZBck?=
+ =?us-ascii?Q?1F5oqXs6pyftI0TMR785stoEDVcln1tWtZuHDvA?=
+ =?us-ascii?Q?ux0nTCzqbXyJWBgX5H6XwnsE5N3WBmK=2FnNWqFDL?=
+ =?us-ascii?Q?cuevKoc3wPDyxFZmExY1woPgbSNyc9EUfs75rOf?=
+ =?us-ascii?Q?eVvoHCOINGMkbv6+NjCDR8y+sJDqhlQL9bD8Fme?=
+ =?us-ascii?Q?Pk7Hk3RXqHZFxaVFQC0N8lnCCRl6INoQ2K8r8RX?=
+ =?us-ascii?Q?AIQVzfyCvbN5BD4O2yFY3Hdmlt1gqRdx37D91BP?=
+ =?us-ascii?Q?3tKrklusZSsYw1MH6lntvCzbFXEHz+tHm1fJ2=2F2?=
+ =?us-ascii?Q?y7q=2FxX6HGf7KN1gh+y9uuT1fuh=2FL6MQ=2FwIJkJNy?=
+ =?us-ascii?Q?e69e2DbHKnGcknZUyFAiUPJLPEkdE=2FDSdNfbx+O?=
+ =?us-ascii?Q?BTqGXY5r44hN38ZzgDvJuPteZGr82mi0fQnxrZV?=
+ =?us-ascii?Q?jeugzjjntPUdN4LtifEAWWONlTyHbbR45CWlrdp?=
+ =?us-ascii?Q?DTSIttUV+deyc6xz5Xmga8FkRYf1BvOktCmYs+G?=
+ =?us-ascii?Q?4AinCuq7IZ9QWT6K=2FJyFv4ShdBP8xWVHzeSx=2Fej?=
+ =?us-ascii?Q?SDhuCDQN=2FobPeuWGuKQDGndeQLYoKKrX14xP67V?=
+ =?us-ascii?Q?qyYZbEM1NmjilKHysy20lAxp04Mh4gXrslytJmj?=
+ =?us-ascii?Q?bMA9HfSoPgwB4DMLSNPWLw3WR07SjBwbliVDZek?=
+ =?us-ascii?Q?r1BiRaqbpteCNDSdYhwAp2vr=2Fz2BH482qDV9NtC?=
+ =?us-ascii?Q?uSpUGvtjIYPBSQNDx5HzsEbbXHhW9xHQdVP1OMb?=
+ =?us-ascii?Q?88VQBTfPJmBYbqEbTN=2FOCiZVi2BH3nVNtMjhlBO?=
+ =?us-ascii?Q?G+7RVtMR07vdPhD2FpnR4cjW1pOLg6HfXkjgeFC?=
+ =?us-ascii?Q?p8FK0OJw9MwMGelr=2FsdDkl6tuiGE5ONsZtu0sKf?=
+ =?us-ascii?Q?0Acjk0VYd9a0sAyW=2FJn3bs47SacH2id2=2FymA7ZA?=
+ =?us-ascii?Q?SJ0zYGzRJ=2FlvmOAK6efA0mTqKhjWtF0nKwcRVHO?= =?us-ascii?Q?M?=
+To: brettbash@brettbash.com
+X-Entity-ID: zu0bgA062pRICVhCkOOE/A==
+
+--853d88f9c52ce01e641f484698d181928ea8dafc101603f4a472ae80d166
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+You've been charged for your bill.
+
+You've been charged for your bill. $319.80 USD will appear
+on your credit card statement as Shopify * 203
+
+View bill=20
+( https://fore-gals-golf.myshopify.com/admin/settings/billing/invoice/16231=
+5730 )
+
+
+Charges
+
+Taxes
+$19.80 USD
+
+Themes
+$300.00 USD
+
+Subtotal
+$300.00 USD
+
+TX State Tax - TEXAS (6.25%) #32056287272
+$15.00 USD
+
+TX City Tax - AUSTIN (1.0%)
+$2.40 USD
+
+TX Special Tax - AUSTIN MTA TRANSIT (1.0%)
+$2.40 USD
+
+Total
+$319.80 USD
+
+Payment method
+
+=E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A2 =E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A2 =
+=E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A2 5163
+
+Timeline
+
+December 21, 2022, 12:00 am
+
+Payment successful
+
+Learn more about and get support for Shopify billing=20
+( https://help.shopify.com/support/billing-email ).
+
+151 O'Connor Street, Ground floor, Ottawa, ON, K2P
+2L8
+--853d88f9c52ce01e641f484698d181928ea8dafc101603f4a472ae80d166
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html><html lang=3D"en" style=3D"font-size: 14px; font-weight: 400=
+; line-height: 20px; text-transform: initial; letter-spacing: initial; colo=
+r: #202223; font-family: -apple-system, BlinkMacSystemFont, San Francisco, =
+Segoe UI, Roboto, Helvetica Neue, sans-serif; margin: 0; padding: 0;"><head=
+>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+"/>
+    <meta name=3D"viewport" content=3D"user-scalable=3Dno, width=3Ddevice-w=
+idth, initial-scale=3D1, maximum-scale=3D1"/>
+    <meta name=3D"referrer" content=3D"never"/>
+      <title>Bill for Theme (Showcase) ($319.80 USD)</title>
+   =20
+    <!-- Styles specific to Outlook 2007, 2010 and 2013 -->
+      <!--[if gte mso 9]>
+        <style>
+          ul,
+          ol {
+           margin: 0 0 0 24px;
+          }
+
+          dd {
+            text-indent: -3em;
+          }
+        </style>
+    <![endif]-->
+    <style data-premailer=3D"ignore">
+      .apple-link a {
+        color: inherit !important;
+        text-decoration: none !important;
+      }
+
+      @media screen and (max-width: 534px) {
+        .mail-body > tbody > tr > td {
+          padding-top: 0 !important;
+        }
+
+        .mail-body__content > tbody > tr > td {
+          border-radius: 0;
+          border-top: 0 !important;
+          border-right: 0 !important;
+          border-left: 0 !important;
+        }
+
+        .mail-sections > tbody > tr > td {
+          padding-right: 0 !important;
+          padding-left: 0 !important;
+        }
+
+        .mail-section > tbody > tr > td:first-child {
+          padding-left: 20px !important;
+        }
+
+        .mail-section > tbody > tr > td:last-child {
+          padding-right: 20px !important;
+        }
+
+        .mail-help-center > tbody > tr > td:first-child {
+          padding-left: 20px !important;
+        }
+
+        .mail-help-center > tbody > tr > td:last-child {
+          padding-right: 20px !important;
+        }
+      }
+    </style>
+  <style>body {
+margin: 0 !important; padding: 0;
+}
+body {
+height: 100%; width: 100%;
+}
+img {
+border: 0; height: auto; line-height: 0; outline: none; text-decoration: no=
+ne; vertical-align: top; -ms-interpolation-mode: bicubic;
+}
+.ReadMsgBody {
+width: 100%;
+}
+.ExternalClass {
+width: 100%;
+}
+.ExternalClass {
+line-height: 100%;
+}
+body {
+-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; text-size-adjust: 100%;
+}
+body {
+font-size: 14px; font-weight: 400; line-height: 20px; text-transform: initi=
+al; letter-spacing: initial; color: #202223; font-family: -apple-system, Bl=
+inkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-ser=
+if;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+.mail-button:hover {
+background-color: #007658; border-color: #007658;
+}
+@media (max-width: 534px) {
+  .mail-body__content {
+    padding: 0 !important; border-left: 0 !important; border-right: 0 !impo=
+rtant; border-top: none !important; border-radius: 0 !important; width: 100=
+% !important; max-width: none !important; margin-top: 0 !important;
+  }
+  .container.section {
+    margin-top: 16px !important;
+  }
+  .banner-container {
+    margin-top: 8px !important;
+  }
+  .main-action-cell {
+    float: none !important; margin-right: 0 !important;
+  }
+  .secondary-action-cell {
+    text-align: center; width: 100%;
+  }
+  .row.content {
+    width: 100% !important; padding: 20px !important;
+  }
+  .customer-info__item {
+    display: block; width: 100% !important;
+  }
+  .subtotal-spacer {
+    display: none;
+  }
+  .banner-alert__table {
+    margin-top: 16px !important; margin-bottom: 16px !important;
+  }
+}
+@media screen and (min-width: breakpoint(display-text)) {
+  .mail-button {
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+  <body style=3D"height: 100%; width: 100%; -webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; font-size: 14px; font-weight: 400; line-height: 20px; text-transform=
+: initial; letter-spacing: initial; color: #202223; font-family: -apple-sys=
+tem, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, s=
+ans-serif; margin: 0; padding: 0;">
+    <table class=3D"mail-body" style=3D"width: 100%; border-collapse: colla=
+pse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;" =
+cellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; marg=
+in-bottom: 0; padding: 0;">
+<td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso=
+-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;">=
+</td>
+<td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso=
+-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;">=
+<table class=3D"mail-body__content" align=3D"center" style=3D"width: 100%; =
+border-collapse: initial; border-spacing: 0; -webkit-text-size-adjust: 100%=
+; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0; mso-table-rspace: 0; max-width: 470px; text-al=
+ign: left; border-radius: 8px; overflow: hidden; margin: 32px auto 0; paddi=
+ng: 0; border: 1px solid #c9cccf;" cellpadding=3D"0" cellspacing=3D"0"><tbo=
+dy>
+<tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-we=
+bkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0=
+; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;"><table class=3D"=
+mail-sections" style=3D"width: 100%; border-collapse: collapse; border-spac=
+ing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-tabl=
+e-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;" cellpadding=3D"0=
+" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; margin-bottom: 0; pa=
+dding: 0;"><td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 20px=
+; border: 0;">
+<table class=3D"mail-section mail-section--type-primary" style=3D"width: 10=
+0%; border-collapse: collapse; border-spacing: 0; -webkit-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margi=
+n-bottom: 0; padding: 0;" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr st=
+yle=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-webkit-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; marg=
+in-top: 0; margin-bottom: 0; padding: 0 0 20px; border: 0;"><table style=3D=
+"width: 100%; border-collapse: collapse; border-spacing: 0; -webkit-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top=
+: 0; margin-bottom: 0; padding: 0;" cellpadding=3D"0" cellspacing=3D"0"><tb=
+ody>
+<tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-we=
+bkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0=
+; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;"><p class=3D"mail=
+-title" style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; color: #202223; line=
+-height: 24px; font-size: 16px; font-weight: 600; margin: 0 0 16px; padding=
+: 0;">
+    <strong style=3D"font-size: 16px; font-weight: 500; color: #202223;">
+      You&#39;ve been charged for your bill.
+    </strong>
+</p></td></tr>
+<tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-we=
+bkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0=
+; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;"><div class=3D"pr=
+imary-message">
+    <p style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; text-size-adjust: 100%; color: #202223; line-=
+height: 20px; margin: 0; padding: 0;">
+      You&#39;ve been charged for your bill. <b>$319.80 USD</b> will appear=
+ on your credit card statement as Shopify * 203
+    </p>
+   =20
+</div></td></tr>
+<tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-we=
+bkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0=
+; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;"><a class=3D"mail=
+-button" href=3D"https://fore-gals-golf.myshopify.com/admin/settings/billin=
+g/invoice/162315730" style=3D"-webkit-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; margin-=
+top: 16px; margin-bottom: 0; color: white; text-decoration: none; font-weig=
+ht: 400; text-transform: initial; letter-spacing: initial; display: inline-=
+block; font-size: 14px; line-height: 1.41; background-color: #008060; borde=
+r-radius: 4px; padding: 0; border-color: #008060; border-style: solid; bord=
+er-width: 8px 16px;">View bill</a></td></tr>
+</tbody></table></td></tr></tbody></table>
+     =20
+<table class=3D"mail-section" style=3D"width: 100%; border-collapse: collap=
+se; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;" c=
+ellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; margi=
+n-bottom: 0; border-top-width: 1px; border-top-color: #c9cccf; border-top-s=
+tyle: solid; padding: 0;"><td style=3D"-webkit-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%=
+; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0=
+; padding: 20px 0; border: 0;">
+    <table class=3D"mail-invoice" style=3D"width: 100%; border-collapse: co=
+llapse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-=
+lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0=
+;" cellpadding=3D"0" cellspacing=3D"0">
+<thead class=3D"mail-invoice__title"><tr style=3D"margin-top: 0; margin-bot=
+tom: 0; padding: 0;"><th colspan=3D"2" style=3D"font-weight: 600; word-wrap=
+: break-word; word-break: break-word; padding-bottom: 20px;" align=3D"left"=
+>Charges</th></tr></thead>
+<tbody class=3D"mail-invoice__items">
+        <tr class=3D"mail-invoice__item" style=3D"margin-top: 0; margin-bot=
+tom: 0; padding: 0;">
+<td class=3D"mail-invoice__name" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; word-wrap: break-word; word-break: break-word; padding: 0; border: 0;"=
+>Taxes</td>
+<td class=3D"mail-invoice__amount" style=3D"-webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; white-space: nowrap; padding: 0 0 0 8px; border: 0;" align=3D"right"=
+ valign=3D"top">$19.80 USD</td>
+</tr>
+        <tr class=3D"mail-invoice__item" style=3D"margin-top: 0; margin-bot=
+tom: 0; padding: 0;">
+<td class=3D"mail-invoice__name" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; word-wrap: break-word; word-break: break-word; padding: 4px 0 0; borde=
+r: 0;">Themes</td>
+<td class=3D"mail-invoice__amount" style=3D"-webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; white-space: nowrap; padding: 4px 0 0 8px; border: 0;" align=3D"righ=
+t" valign=3D"top">$300.00 USD</td>
+</tr>
+</tbody>
+</table>
+</td></tr></tbody></table>
+<table class=3D"mail-section" style=3D"width: 100%; border-collapse: collap=
+se; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;" c=
+ellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; margi=
+n-bottom: 0; border-top-width: 1px; border-top-color: #c9cccf; border-top-s=
+tyle: solid; padding: 0;"><td style=3D"-webkit-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%=
+; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0=
+; padding: 20px 0; border: 0;">
+  <table class=3D"mail-invoice" style=3D"width: 100%; border-collapse: coll=
+apse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;"=
+ cellpadding=3D"0" cellspacing=3D"0">
+<tbody class=3D"mail-invoice__items">
+    <tr class=3D"mail-invoice__item" style=3D"margin-top: 0; margin-bottom:=
+ 0; padding: 0;">
+<td class=3D"mail-invoice__name" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; word-wrap: break-word; word-break: break-word; padding: 0; border: 0;"=
+>Subtotal</td>
+<td class=3D"mail-invoice__amount" style=3D"-webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; white-space: nowrap; padding: 0 0 0 8px; border: 0;" align=3D"right"=
+ valign=3D"top">$300.00 USD</td>
+</tr>
+      <tr class=3D"mail-invoice__item" style=3D"margin-top: 0; margin-botto=
+m: 0; padding: 0;">
+<td class=3D"mail-invoice__name" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; word-wrap: break-word; word-break: break-word; padding: 4px 0 0; borde=
+r: 0;">TX State Tax - TEXAS (6.25%) #32056287272</td>
+<td class=3D"mail-invoice__amount" style=3D"-webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; white-space: nowrap; padding: 4px 0 0 8px; border: 0;" align=3D"righ=
+t" valign=3D"top">$15.00 USD</td>
+</tr>
+      <tr class=3D"mail-invoice__item" style=3D"margin-top: 0; margin-botto=
+m: 0; padding: 0;">
+<td class=3D"mail-invoice__name" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; word-wrap: break-word; word-break: break-word; padding: 4px 0 0; borde=
+r: 0;">TX City Tax - AUSTIN (1.0%)</td>
+<td class=3D"mail-invoice__amount" style=3D"-webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; white-space: nowrap; padding: 4px 0 0 8px; border: 0;" align=3D"righ=
+t" valign=3D"top">$2.40 USD</td>
+</tr>
+      <tr class=3D"mail-invoice__item" style=3D"margin-top: 0; margin-botto=
+m: 0; padding: 0;">
+<td class=3D"mail-invoice__name" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; word-wrap: break-word; word-break: break-word; padding: 4px 0 0; borde=
+r: 0;">TX Special Tax - AUSTIN MTA TRANSIT (1.0%)</td>
+<td class=3D"mail-invoice__amount" style=3D"-webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; white-space: nowrap; padding: 4px 0 0 8px; border: 0;" align=3D"righ=
+t" valign=3D"top">$2.40 USD</td>
+</tr>
+    </tbody>
+<tfoot class=3D"mail-invoice__summary">
+<tr class=3D"mail-invoice__item mail-invoice__item--type-total" style=3D"ma=
+rgin-top: 0; margin-bottom: 0; padding: 0;">
+<td class=3D"mail-invoice__name" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; font-weight: 600; word-wrap: break-word; word-break: break-word; paddi=
+ng: 20px 0 0; border: 0;">Total</td>
+<td class=3D"mail-invoice__amount" style=3D"-webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; font-weight: 600; white-space: nowrap; padding: 20px 0 0 8px; border=
+: 0;" align=3D"right" valign=3D"top">$319.80 USD</td>
+</tr>
+<tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+<td class=3D"mail-invoice__payment-method-name" style=3D"-webkit-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0=
+; margin-bottom: 0; padding: 8px 0 0; border: 0;" valign=3D"middle">Payment=
+ method</td>
+<td class=3D"mail-invoice__payment-method-details" style=3D"-webkit-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top=
+: 0; margin-bottom: 0; padding: 8px 0 0; border: 0;" align=3D"right" valign=
+=3D"middle">
+<img width=3D"40" class=3D"mail-invoice__payment-method-logo" src=3D"https:=
+//cdn.shopify.com/shopifycloud/shopify/assets/mailer/merchant/visa-0fe0412f=
+7bf71c22ad78af94b3d409423e19efa1f3c9477effcc42b23a72a7e7.png" style=3D"heig=
+ht: auto; line-height: 0; outline: none; text-decoration: none; vertical-al=
+ign: top; -ms-interpolation-mode: bicubic; display: inline; border: 0;"/><p=
+ class=3D"mail-invoice__payment-method-text" style=3D"-webkit-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; color: #202223; line-height: 20px; display: inline; vertic=
+al-align: middle; margin: 0; padding: 0 0 0 8px;">=E2=80=A2=E2=80=A2=E2=80=
+=A2=E2=80=A2 =E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A2 =E2=80=A2=E2=80=A2=E2=80=
+=A2=E2=80=A2 5163</p>
+</td>
+</tr>
+</tfoot>
+</table>
+</td></tr></tbody></table>
+  <table class=3D"mail-section" style=3D"width: 100%; border-collapse: coll=
+apse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;"=
+ cellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; mar=
+gin-bottom: 0; border-top-width: 1px; border-top-color: #c9cccf; border-top=
+-style: solid; padding: 0;"><td style=3D"-webkit-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom:=
+ 0; padding: 20px 0 0; border: 0;">
+  <table style=3D"width: 100%; border-collapse: collapse; border-spacing: 0=
+; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspa=
+ce: 0; margin-top: 0; margin-bottom: 0; padding: 0;" cellpadding=3D"0" cell=
+spacing=3D"0">
+    <thead>
+      <tr><th colspan=3D"2">
+        <p class=3D"billing-section-heading" style=3D"-webkit-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; color: #202223; line-height: 20px; font-size: 16px; font-w=
+eight: 500; margin: 0; padding: 0 0 16px;">Timeline</p>
+      </th>
+    </tr></thead>
+    <tbody>
+        <tr class=3D"row" style=3D"margin-top: 0; margin-bottom: 0; width: =
+100%; padding: 0;">
+          <td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; bo=
+rder: 0;">
+              <img width=3D"30" src=3D"https://cdn.shopify.com/shopifycloud=
+/shopify/assets/mailer/merchant/status-success-68329cea94846ab11125d0c73733=
+6f64a955741933d17126c8812bb41ad305c4.png" style=3D"height: auto; line-heigh=
+t: 0; outline: none; text-decoration: none; vertical-align: top; -ms-interp=
+olation-mode: bicubic; border: 0;"/>
+          </td>
+          <td class=3D"billing-timeline-item" style=3D"-webkit-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; =
+margin-bottom: 0; width: 100%; padding: 0 0 0 16px; border: 0;">
+            <p class=3D"billing-timeline-date" style=3D"-webkit-text-size-a=
+djust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-=
+size-adjust: 100%; color: #202223; line-height: 20px; font-weight: 600; tex=
+t-transform: uppercase; margin: 0; padding: 0;">December 21, 2022, 12:00 am=
+</p>
+            <p style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; color: #20222=
+3; line-height: 20px; margin: 0; padding: 0;">
+                Payment successful
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</td></tr></tbody></table>
+
+ =20
+</td></tr></tbody></table></td></tr>
+<tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-we=
+bkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0=
+; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;"><table class=3D"=
+mail-help-center" style=3D"width: 100%; border-collapse: collapse; border-s=
+pacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-t=
+able-rspace: 0; margin-top: 0; margin-bottom: 0; text-align: center; paddin=
+g: 0;" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: =
+0; margin-bottom: 0; padding: 0;">
+<td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso=
+-table-rspace: 0; margin-top: 0; margin-bottom: 0; border-radius: 8px; bord=
+er-top-color: #c9cccf; border-top-style: solid; padding: 20px 8px 20px 20px=
+; border-width: 1px 0 0;" align=3D"left" bgcolor=3D"#f9fafb"><img alt=3D"" =
+width=3D"20" src=3D"https://cdn.shopify.com/shopifycloud/shopify/assets/mai=
+ler/merchant/help_center-aa5be7c1c968a8e31fcc2b83d716478d5b9f04a8c0c8f76da4=
+50d382dcb41545.png" style=3D"height: 20px; line-height: 0; outline: none; t=
+ext-decoration: none; vertical-align: top; -ms-interpolation-mode: bicubic;=
+ width: 20px; border: 0;"/></td>
+<td class=3D"mail-help-center__message" style=3D"-webkit-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-ad=
+just: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin=
+-bottom: 0; border-radius: 8px; border-top-color: #c9cccf; border-top-style=
+: solid; width: 100%; padding: 20px 20px 20px 0; border-width: 1px 0 0;" al=
+ign=3D"left" bgcolor=3D"#f9fafb">Learn more about and get support for <a hr=
+ef=3D"https://help.shopify.com/support/billing-email" style=3D"-webkit-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%=
+; text-size-adjust: 100%; margin-top: 0; margin-bottom: 0; color: #2C6ECB; =
+text-decoration: none; padding: 0;">Shopify billing</a>.</td>
+</tr></tbody></table></td></tr>
+</tbody></table></td>
+<td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso=
+-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;">=
+</td>
+</tr></tbody></table>
+    <footer>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mail=
+-footer" style=3D"width: 100%; border-collapse: collapse; border-spacing: 0=
+; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspa=
+ce: 0; font-size: 12px; line-height: 20px; color: #6d7175; max-width: 470px=
+; margin: 32px auto 0; padding: 0;">
+        <tbody>
+          <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+            <td align=3D"center" valign=3D"bottom" style=3D"-webkit-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top=
+: 0; margin-bottom: 0; padding: 0 20px; border: 0;">
+              <img alt=3D"" width=3D"89" src=3D"https://cdn.shopify.com/sho=
+pifycloud/shopify/assets/mailer/merchant/shopify_logo-ab8bfbd03d685aa04a8db=
+0c119c5cbee279b5f9bd32a26f9ad3df0a96d9b7f83.png" style=3D"height: auto; lin=
+e-height: 0; outline: none; text-decoration: none; vertical-align: top; -ms=
+-interpolation-mode: bicubic; margin-bottom: 12px; border: 0;"/>
+            </td>
+          </tr>
+          <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+            <td align=3D"center" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; padding: 0 20px; border: 0;">
+              <p style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; color: #6d7=
+175; line-height: 20px; margin: 0; padding: 0;"><span class=3D"apple-link">=
+151 O&#39;Connor Street, Ground floor, Ottawa, ON, K2P 2L8</span></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </footer>
+ =20
+ =20
+
+</body></html>
+--853d88f9c52ce01e641f484698d181928ea8dafc101603f4a472ae80d166--

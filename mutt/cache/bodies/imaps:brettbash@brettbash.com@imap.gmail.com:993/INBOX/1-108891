@@ -1,0 +1,437 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:7208:148e:b0:5e:f86b:774a with SMTP id c14csp5275681rbf;
+        Sat, 31 Dec 2022 17:30:28 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXs3jQ3KPzmAoENXf3bqL+9TcWQt+a6B2UEf2wuPQ0CcqwstHLV8JBgr6Y740vtIO44MTcIv
+X-Received: by 2002:ac8:6057:0:b0:3a8:1291:a664 with SMTP id k23-20020ac86057000000b003a81291a664mr53147030qtm.54.1672536628171;
+        Sat, 31 Dec 2022 17:30:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1672536628; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fW+MHnCYw800vRGAkwzQDUfAqb7kp1bEEVtXNTx0eVIgVNNvLZCh75daiiG3sxdA3E
+         lW76naWoSatea6guz9/DMdxAf1AOHQW3UyeUU2WiBoEahkMFXQnG0uGcl7ne+xA7aw+j
+         12NzMJszyU1AuIxImSy/m5q2pFmXtSXI06QwbVocOf+6TP8bTRTuh/6/WnhY5gJ6dVa7
+         LPvspl6jiDAdZhMy/atoYMl0RTM4vPvtaOZaC07ETryIFtqIp8DlXWw+0foyhLSavc9Q
+         JcHra/SGjAZI84o4ywtaceF1HXyMdHURVVSNNjxJNzma4lsKPIYjohOxfShnwZcf45yE
+         jMZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date
+         :content-transfer-encoding:dkim-signature;
+        bh=q/uxfO+rgFpDoMJT9Da+rFq+dNfsrCcvUl1Q9Y9sbb8=;
+        b=jXFgl28qzUAWIAzMJ/vsWvYzR5TKi8a3zsAdDevzF2t57YuAv7o5OA+P0mQFa+3QCR
+         YSfKERtnyRb58BdWWNEegewFjY0g/d/D0OPslBO7LQE5Q1VEXi+9N39ulXWkCsgwr9rH
+         W0KWcknUorLFQcZkxujy21C5B8pZFei0E/4CAsr4H68FqMDNq25ylg0LVaESqOAFebMt
+         0VcZlWSpVrh2SrZzzI45q/TFc29TUa23urG7dOI74P1E8vabIpcrb+TpbObaydkkTISw
+         zJTloOHXcaqg8rI3/WD/d6H77X+vKi8sede38jiKDJRxH06OJpHyD21qiVU4W/yp383Z
+         Ixiw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@beyondmenu.com header.s=s1 header.b="QJ8/RCPr";
+       spf=pass (google.com: domain of bounces+15429267-8b68-brettbash=brettbash.com@em9205.beyondmenu.com designates 149.72.185.249 as permitted sender) smtp.mailfrom="bounces+15429267-8b68-brettbash=brettbash.com@em9205.beyondmenu.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=beyondmenu.com
+Return-Path: <bounces+15429267-8b68-brettbash=brettbash.com@em9205.beyondmenu.com>
+Received: from wrqvbwfw.outbound-mail.sendgrid.net (wrqvbwfw.outbound-mail.sendgrid.net. [149.72.185.249])
+        by mx.google.com with ESMTPS id x18-20020a05620a259200b006ff1117ecb6si12704334qko.56.2022.12.31.17.30.27
+        for <brettbash@brettbash.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 31 Dec 2022 17:30:28 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+15429267-8b68-brettbash=brettbash.com@em9205.beyondmenu.com designates 149.72.185.249 as permitted sender) client-ip=149.72.185.249;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@beyondmenu.com header.s=s1 header.b="QJ8/RCPr";
+       spf=pass (google.com: domain of bounces+15429267-8b68-brettbash=brettbash.com@em9205.beyondmenu.com designates 149.72.185.249 as permitted sender) smtp.mailfrom="bounces+15429267-8b68-brettbash=brettbash.com@em9205.beyondmenu.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=beyondmenu.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=beyondmenu.com;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:to:
+	cc:content-type:from:subject:to;
+	s=s1; bh=q/uxfO+rgFpDoMJT9Da+rFq+dNfsrCcvUl1Q9Y9sbb8=;
+	b=QJ8/RCPr5OuAgaF9PiTsCqE5qSmafyZk9YwcRrEDgyU2cEnSjWZP4EdQmHCCyyX7VimH
+	IBh0K0TNCItXC7Z7tKnGTd5eT1yhFqGHQtpYrIaU+8jirqIyhbHdDNuBx2dlSpKdUh/6Zj
+	YjgU1kR0Kaw1kq2jVcI8nJeekDvWEgxTY64mCICPntDL6lsWrt0d7wk5FZ1tC74Kz2TXNu
+	e3ov8Ylozuafcid2AP4qwiNUupe9A/cMDXBps6jk6cpgx1rCkr0r6yMRjiR0Of29nDeDc3
+	FNxg7fHMzS9DIWDoKzg72iMF/kdELPT7mSbDpw5R58O2E54/RyADIyFM2KjMwfFg==
+Received: by filterdrecv-54795b4476-sfvsn with SMTP id filterdrecv-54795b4476-sfvsn-1-63B0E232-12
+        2023-01-01 01:30:26.30573173 +0000 UTC m=+2873792.797743629
+Received: from MTU0MjkyNjc (unknown)
+	by geopod-ismtpd-4-6 (SG) with HTTP
+	id HbfXlo5CTQWKd2qCpBuU6w
+	Sun, 01 Jan 2023 01:30:26.303 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Date: Sun, 01 Jan 2023 01:30:26 +0000 (UTC)
+From: Beyond Menu <noreply@beyondmenu.com>
+Mime-Version: 1.0
+Message-ID: <HbfXlo5CTQWKd2qCpBuU6w@geopod-ismtpd-4-6>
+Subject: Your Beyond Menu Online Order
+X-SG-EID: 
+ =?us-ascii?Q?BvNt1GtHT8=2FO4K8iZRal6Ehgi3z0JJ+aV2cxHEQgT4BNBrfNc+NeqCEm690sYW?=
+ =?us-ascii?Q?gvjZ0r0771oQmxCavCkjGfoKfaFc3R3xWu=2FOv9V?=
+ =?us-ascii?Q?ICjrmTMQpz1xi0je=2FtU0SWiAJKotKqz48pNNO0t?=
+ =?us-ascii?Q?6gGEHGB65vulbemEYhUMo3bghmNIiYq4VMhXfzH?=
+ =?us-ascii?Q?TBc7vhMm=2FGztvynmxN3roNDYJ0WeX2X8daU2n=2FC?=
+ =?us-ascii?Q?7w0lvnUUcHpNXjvCJC09MQvgheKZBJ=2Fz957sAb?=
+To: brettbash@brettbash.com
+X-Entity-ID: paDFd8Wf3W6tjSq2x7eh3Q==
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style=3D"margin: 0; padding: 0;">
+    <div style=3D"background-color: #FAFAFA; font-family: Arial,Helvetica,s=
+ans-serif; color: #4a4a4a; font-size: 16px;">
+        <div style=3D"background-color: #D44000; box-shadow: 0 1px 3px rgba=
+(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);">
+            <div style=3D"max-width: 640px; margin: 0 auto; padding: 1em;">
+                <a href=3D"http://url496.beyondmenu.com/ls/click?upn=3DQ27x=
+mNAeTt2ah2OqMhYITN4JYZHzPhSg5hiNSnXTqy3nXRtCAWeN5SNfhBWqMSrmGOZa_iEB8Bz5U9-=
+2FYSVIS87NYPU5m7-2Bmk3HGepQJdPU6zFl4xrcZqPTR4dpXz4fNTXiCdUkSumh4VioiAF3MImq=
+KQH-2B1JX665vW8dmxncnEUqzoppW-2BQqTnN1XiH82pCJL1wGuJYlWPbVRwLycpoZmzoLQpFeB=
+q6v-2F1-2FQhlEsWHdl6f2ZAg-2BJ2dAZ8NmhZaVjfgTDYmfst5424zLT6KohrEPhGYNVq7Hy0M=
+sfJh0RbzYrakC8-3D" target=3D"_blank">
+                    <img alt=3D"Beyond Menu" src=3D"https://static.beyondme=
+nu.com/beyondmenu/images/NewBrand/bm_full_logo_white_512x78.png" border=3D"=
+0" height=3D"39" width=3D"256" />
+                </a>
+            </div>
+        </div>
+        <div style=3D"max-width: 640px; margin: 0 auto; padding: 1em;">
+            <div style=3D"border: 1px solid #d0d0d0; border-radius: 0.25em;=
+ background-color: #FFFFFF; padding: 0.25em 0;">
+                <div style=3D"padding: 1em; font-size: 1.25em; font-weight:=
+ bold;">
+                    Thanks for your order, Brett!
+                </div>
+                <div style=3D"padding: 1em; border-bottom: 1px solid #d0d0d=
+0;">
+                    <div style=3D"font-size: 1.1em; font-weight: bold; marg=
+in-bottom: 1em;">
+                        Order #91810802
+                    </div>
+                    <div style=3D"margin-bottom: 0.5em;">
+                        <div style=3D"color: #737373; font-size: 0.8em;">
+                            Order Type
+                        </div>
+                        <div style=3D"font-weight: bold; font-size: 1.1em;"=
+>
+                            Takeout
+                        </div>
+                    </div>
+                    <div style=3D"margin-bottom: 0.5em;">
+                        <div style=3D"color: #737373; font-size: 0.8em;">
+                            Placed Time
+                        </div>
+                        <div style=3D"font-weight: bold; font-size: 1.1em;"=
+>
+                            12/31 7:30 PM
+                        </div>
+                    </div>
+                    <div style=3D"margin-bottom: 0.5em;">
+                        <div style=3D"color: #737373; font-size: 0.8em;">
+                            Estimated Ready Time
+                        </div>
+                        <div style=3D"font-weight: bold; font-size: 1.1em;"=
+>
+                            12/31 7:51 PM (ASAP)
+                        </div>
+                    </div>
+                    <div style=3D"margin-bottom: 0.5em;">
+                        <div style=3D"color: #737373; font-size: 0.8em;">
+                            Payment Method
+                        </div>
+                        <div style=3D"font-weight: bold; font-size: 1.1em;"=
+>
+                            VISA Ending in 5163=20
+                        </div>
+                    </div>
+                    <div style=3D"font-size: 0.8em; color: #737373; margin-=
+top: 1em;">
+                        Your card/account has been charged by BeyondMenu.co=
+m, not by the restaurant. If you have any questions regarding your payment,=
+ please contact (630) 776-3590.
+                    </div>
+                </div>
+                <div style=3D"padding: 1em; border-bottom: 1px solid #d0d0d=
+0;">
+                    <div style=3D"font-size: 1.1em; font-weight: bold; colo=
+r: #D44000; margin-bottom: 1em;">
+                        Pickup from
+                    </div>
+                    <div style=3D"font-weight: bold; margin-bottom: 0.5em;"=
+>
+                        Twin Panda
+                    </div>
+                    <div style=3D"margin-bottom: 0.5em;">
+                        9231 W Parmer Ln Ste 101, Austin, TX 78717
+                    </div>
+                    <div style=3D"font-size: 0.8em; color: #737373;">
+                        (512) 992-2582
+                    </div>
+                </div>
+                <div style=3D"padding: 1em; border-bottom: 1px solid #d0d0d=
+0;">
+                    <div style=3D"font-size: 1.1em; font-weight: bold; colo=
+r: #D44000; margin-bottom: 1em;">
+                        Pickup by
+                    </div>
+                    <div style=3D"font-weight: bold; margin-bottom: 0.5em;"=
+>
+                        Brett Bash
+                    </div>
+                    <div style=3D"font-size: 0.8em; color: #737373;">
+                        (727) 808-5106
+                    </div>
+                </div>
+                <div style=3D"padding: 1em; border-bottom: 1px solid #d0d0d=
+0;">
+                    <div style=3D"font-size: 1.1em; font-weight: bold; colo=
+r: #D44000; margin-bottom: 1em;">
+                        Order Items
+                    </div>
+                    <div style=3D"border-bottom: 1px dotted #d0d0d0; paddin=
+g: 1em 0;">
+                        <table style=3D"width: 100%; border-spacing: 0; bor=
+der-collapse: collapse;">
+                            <tr>
+                                <td style=3D"width: 2em; vertical-align: to=
+p;">
+                                    1 &times;
+                                </td>
+                                <td style=3D"vertical-align: top;">
+                                    <b>General Tso's Chicken</b>
+                                </td>
+                                <td style=3D"text-align: right; width: 5em;=
+ vertical-align: top;">
+                                    $13.75
+                                </td>
+                            </tr>
+                        </table>
+                        <div style=3D"font-size: 0.8em; padding-top: 0.5em;=
+ padding-left: 2.25em;">
+                            <b>Spicy: </b>Spicy
+                        </div>
+                        <div style=3D"font-size: 0.8em; padding-top: 0.5em;=
+ padding-left: 2.25em;">
+                            <b>Choice of Rice: </b>Steamed White Rice
+                        </div>
+                    </div>
+                    <div style=3D"border-bottom: 1px dotted #d0d0d0; paddin=
+g: 1em 0;">
+                        <table style=3D"width: 100%; border-spacing: 0; bor=
+der-collapse: collapse;">
+                            <tr>
+                                <td style=3D"width: 2em; vertical-align: to=
+p;">
+                                    1 &times;
+                                </td>
+                                <td style=3D"vertical-align: top;">
+                                    <b>Orange Chicken</b>
+                                </td>
+                                <td style=3D"text-align: right; width: 5em;=
+ vertical-align: top;">
+                                    $13.75
+                                </td>
+                            </tr>
+                        </table>
+                        <div style=3D"font-size: 0.8em; padding-top: 0.5em;=
+ padding-left: 2.25em;">
+                            <b>Spicy: </b>Medium
+                        </div>
+                        <div style=3D"font-size: 0.8em; padding-top: 0.5em;=
+ padding-left: 2.25em;">
+                            <b>Choice of Rice: </b>Steamed White Rice
+                        </div>
+                    </div>
+                    <div style=3D"border-bottom: 1px dotted #d0d0d0; paddin=
+g: 1em 0;">
+                        <table style=3D"width: 100%; border-spacing: 0; bor=
+der-collapse: collapse;">
+                            <tr>
+                                <td style=3D"width: 2em; vertical-align: to=
+p;">
+                                    1 &times;
+                                </td>
+                                <td style=3D"vertical-align: top;">
+                                    <b>Lo Mein</b>
+                                </td>
+                                <td style=3D"text-align: right; width: 5em;=
+ vertical-align: top;">
+                                    $14.75
+                                </td>
+                            </tr>
+                        </table>
+                        <div style=3D"font-size: 0.8em; padding-top: 0.5em;=
+ padding-left: 2.25em;">
+                            <b>Make it with: </b>Shrimp [+$4.25]
+                        </div>
+                    </div>
+                    <div style=3D"border-bottom: 1px dotted #d0d0d0; paddin=
+g: 1em 0;">
+                        <table style=3D"width: 100%; border-spacing: 0; bor=
+der-collapse: collapse;">
+                            <tr>
+                                <td style=3D"width: 2em; vertical-align: to=
+p;">
+                                    1 &times;
+                                </td>
+                                <td style=3D"vertical-align: top;">
+                                    <b>Fried Wontons (6 Pcs)</b>
+                                </td>
+                                <td style=3D"text-align: right; width: 5em;=
+ vertical-align: top;">
+                                    $6.00
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style=3D"border-bottom: 1px dotted #d0d0d0; paddin=
+g: 1em 0;">
+                        <table style=3D"width: 100%; border-spacing: 0; bor=
+der-collapse: collapse;">
+                            <tr>
+                                <td style=3D"width: 2em; vertical-align: to=
+p;">
+                                    2 &times;
+                                </td>
+                                <td style=3D"vertical-align: top;">
+                                    <b>Crispy Egg Roll</b>
+                                </td>
+                                <td style=3D"text-align: right; width: 5em;=
+ vertical-align: top;">
+                                    $3.50
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <table style=3D"width: 100%; border-spacing: 0; border-=
+collapse: collapse; text-align: right; margin-top: 2em;">
+                        <tr>
+                            <td style=3D"padding: 0.25em 0; vertical-align:=
+ top; color: #737373;">
+                                Subtotal
+                            </td>
+                            <td style=3D"width: 5em; padding: 0.25em 0; ver=
+tical-align: top;">
+                                $51.75
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style=3D"padding: 0.25em 0; vertical-align:=
+ top; color: #737373;">
+                                Tax
+                            </td>
+                            <td style=3D"width: 5em; padding: 0.25em 0; ver=
+tical-align: top;">
+                                $4.27
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style=3D"padding: 0.25em 0; vertical-align:=
+ top; color: #737373;">
+                                Beyond Menu Convenience Fee
+                            </td>
+                            <td style=3D"width: 5em; padding: 0.25em 0; ver=
+tical-align: top;">
+                                $0.99
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style=3D"padding: 0.25em 0; vertical-align:=
+ top; color: #737373; font-weight: bold;">
+                                TOTAL
+                            </td>
+                            <td style=3D"width: 5em; padding: 0.25em 0; ver=
+tical-align: top; font-weight: bold;">
+                                $57.01
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div style=3D"border-bottom: 1px solid #d0d0d0;">
+                    <div style=3D"padding: 1em;">
+                        <div style=3D"color: #737373; margin-bottom: 1em;">
+                            Takeout issues?
+                        </div>
+                        <div style=3D"font-size: 0.9em; color: #737373;">
+                            Please call the restaurant at <a style=3D"color=
+: #D44000;" href=3D"tel:5129922582">(512) 992-2582</a>
+                        </div>
+                    </div>
+                    <div style=3D"padding: 1em; ">
+                        <div style=3D"color: #737373; margin-bottom: 1em;">
+                            Billing issues?
+                        </div>
+                        <div style=3D"font-size: 0.9em; color: #737373;">
+                            Please <a style=3D"color: #D44000;" href=3D"htt=
+p://url496.beyondmenu.com/ls/click?upn=3DQ27xmNAeTt2ah2OqMhYITN4JYZHzPhSg5h=
+iNSnXTqy2Bb8hZJlZv3o3oql-2BrT6AeDMZFZOekfQv80FiSwSZv3A-3D-3DHJpP_iEB8Bz5U9-=
+2FYSVIS87NYPU5m7-2Bmk3HGepQJdPU6zFl4xrcZqPTR4dpXz4fNTXiCdUkSumh4VioiAF3MImq=
+KQH-2B2bh8HQUnEMvIZ6UAM1k2SQyHHAOUgOVFvoeUsQkO-2FUq6qV966lktPQoQVHuHiQzydoV=
+BJCFVgl-2FlhcsmX3IfWPidigo5ynSGyVeZBzjJ1q2VTT0-2BQZZsGkXq-2F44e6N4S-2BR1d8X=
+6IKrJGS7cunzSg34-3D">contact us</a>
+                        </div>
+                    </div>
+                </div>
+                <div style=3D"padding: 1em;">
+                    <div style=3D"font-size: 1.1em; font-weight: bold; marg=
+in-bottom: 1em;">
+                        Get Beyond Menu app
+                    </div>
+                    <a href=3D"http://url496.beyondmenu.com/ls/click?upn=3D=
+Q27xmNAeTt2ah2OqMhYITLEgGN22nWZ3AGJZJ2iXfs1LRCymWjpLjDXBD6B589-2BD1JfTvP-2F=
+yGu4CyHcO9lIEkZcQ5lnPU9cVSlGAPF8fMqwlMF6CsiSVFAtW4kPG-2BK8tsJIMi5ZH7yrNX2gF=
+K08etOxKXLDW74Lc94wlurxPf1gtyQwsLkpuLyTwp30XDYCwNwjKBwAP2-2FQIXsFgxR8ZOw-2F=
+bVrlKZe1ceDZNZWIvGJrXnJe2GtxLMmDAK7WzZKdxgiu-2Bglh1bpHHAl-2FDGJBQE4CfSBP-2F=
+DfUUtx6uuP39MLg-3D-4q4_iEB8Bz5U9-2FYSVIS87NYPU5m7-2Bmk3HGepQJdPU6zFl4xrcZqP=
+TR4dpXz4fNTXiCdUkSumh4VioiAF3MImqKQH-2B0EO424Gc3f0FqW-2B1vFJwDypqfNBxWBnpPa=
+L8vTOeDQIHW8dRBeCF-2FWhpKOyOCrF50H6zYNfGwl2J-2BepNbcWDUerJN-2BI-2BhJAsnAyFs=
+SSH2oLvGQEn9AOh6YlGGL8R0AgAmtgjpLKRB8uaaQi74Ummc8-3D" style=3D"display: inl=
+ine-block;">
+                        <img src=3D"https://static.beyondmenu.com/beyondmen=
+u/images/Banner/appstore.png" style=3D"border: none;" alt=3D"Apple Store" /=
+>
+                    </a>
+                    <a href=3D"http://url496.beyondmenu.com/ls/click?upn=3D=
+Q27xmNAeTt2ah2OqMhYITLEgGN22nWZ3AGJZJ2iXfs1LRCymWjpLjDXBD6B589-2BD1JfTvP-2F=
+yGu4CyHcO9lIEkZcQ5lnPU9cVSlGAPF8fMqwlMF6CsiSVFAtW4kPG-2BK8tsJIMi5ZH7yrNX2gF=
+K08etOxKXLDW74Lc94wlurxPf1gtyQwsLkpuLyTwp30XDYCwNwjKBwAP2-2FQIXsFgxR8ZOw-2F=
+bVrlKZe1ceDZNZWIvGJrXnJe2GtxLMmDAK7WzZKdxgiu-2Bglh1bpHHAl-2FDGJBQE4CfSBP-2F=
+DfUUtx6uuP39MLg-3DU-PN_iEB8Bz5U9-2FYSVIS87NYPU5m7-2Bmk3HGepQJdPU6zFl4xrcZqP=
+TR4dpXz4fNTXiCdUkSumh4VioiAF3MImqKQH-2B8tcXDYrE0acRsdtffxjFBfLTVbKL5-2FW-2F=
+xOL6NVRL-2Bx2yk4Hm5jKQg0tfWTjMxgn6wKYuvuHa7by-2B6oeuFdxUpUEtvZQRhMwo7zNmJDA=
+n6-2BKGbxdCouhl8WzRgYcRWQq5TvhUgQ6OOE05C8b9MoIWYs-3D" style=3D"display: inl=
+ine-block;">
+                        <img src=3D"https://static.beyondmenu.com/beyondmen=
+u/images/Banner/playstore.png" style=3D"border: none;" alt=3D"Google Play" =
+/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div style=3D"max-width: 640px; margin: 0 auto; padding: 1em;">
+            <div style=3D"font-size: 0.9em; line-height: 1.25em; color: #73=
+7373; margin-bottom: 1em;">
+                If you have any questions about our privacy policy, you can=
+ contact our customer support via email at <a style=3D"color: #D44000;" hre=
+f=3D"mailto:info@beyondmenu.com">info@beyondmenu.com</a> or call us at <a s=
+tyle=3D"color: #D44000;" href=3D"tel:6307763590">(630) 776-3590</a>.
+            </div>
+            <div style=3D"font-size: 0.9em; line-height: 1.25em; color: #73=
+7373; margin-bottom: 1em;">
+                &copy; 2022 BeyondMenu LLC
+            </div>
+            <div style=3D"font-size: 0.8em; color: #737373;">
+                Apple, the Apple logo, iPhone, and iPad are trademarks of A=
+pple Inc., registered in the U.S. and other countries and regions. App Stor=
+e is a service mark of Apple Inc. Google Play and the Google Play logo are =
+trademarks of Google LLC. Android is a trademark of Google LLC.
+            </div>
+        </div>
+    </div>
+<img src=3D"http://url496.beyondmenu.com/wf/open?upn=3D8SrMi1sKvVS55LHDyLay=
+TPf43uRAAKdtxfHuL6UkK67wP4cQ8K1qvkZZ0l3LRucfw2pupmXtNmYgwbzy03CEy4nGBIvA9f9=
+0cAFLj6Q1Aj9cXA8YHEogkUFicjUPJ2oXYRQc1ZZ0AybuPullmiENf-2Bxllr6eECcYMWZxvlRI=
+jVqlwHPlcgmi7lZSXcsCnnCK10HHMediq2iERBTEyGWJq9U8TOPh4YyILXmllkC0uhs-3D" alt=
+=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !important;=
+width:1px !important;border-width:0 !important;margin-top:0 !important;marg=
+in-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;p=
+adding-top:0 !important;padding-bottom:0 !important;padding-right:0 !import=
+ant;padding-left:0 !important;"/></body>
+</html>

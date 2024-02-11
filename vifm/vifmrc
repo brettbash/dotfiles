@@ -1,0 +1,368 @@
+" General settings -------------------- {{{
+    set vicmd=$EDITOR
+    set syscalls
+    set trash
+    " set trashdir='~/.Trash'
+    set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+                \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+    set history=1000
+    set nofollowlinks
+    set number
+    set relativenumber
+    set sortnumbers
+    set undolevels=1000
+    set vimhelp
+    set norunexec
+    set wildmenu
+    set wildstyle=popup
+    set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+    set ignorecase
+    set smartcase
+    set nohlsearch
+    set incsearch
+    set scrolloff=4
+    set tabstop=2
+    set slowfs=curlftpfs
+    set timefmt='%m/%d/%Y %H:%M'
+    set statusline="💀 %10A %10u:%g %8s[%8E] %18d   %{&sort} %= %a free"
+    set rulerformat="%l/%S%[ +%x%]"
+    set grepprg='rg --line-number %i %a %s'
+    colorscheme TokyoNight
+    source $HOME/.config/vifm/icons
+" }}}
+
+" Bookmarks -------------------- {{{
+    mark h ~/
+    mark c ~/.config/
+    mark n ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ/
+    mark b ~/Dropbox/
+    mark B ~/Dropbox/_bin/
+    mark s ~/Dev/
+    mark p ~/Dropbox/Project\ Files/
+    mark P ~/Dropbox/PROJECTS/
+    mark r ~/Dropbox/::\ RESOURCES\ ::/
+    mark d ~/Documents/
+    mark D ~/Downloads/
+    mark t /Volumes/The\ Vault/Downloads/Torrents/
+    mark v /Volumes/The\ Vault/
+    mark m /Volumes/Music/Library/
+    mark M /Volumes/Movies/
+    mark T /Volumes/TV\ Shows/
+" }}}
+
+" Commands -------------------- {{{
+    command! df df -h %m 2> /dev/null
+    command! diff vim -d %f %F
+    command! zip zip -r %c.zip %f
+    command! run !! ./%f
+    command! make !!make %a
+    command! mkcd :mkdir %a | cd %a
+    command! reload :write | restart full
+
+    " Toggle detailed/brief information about files
+    command! togglefilesinfo
+        \ : if &viewcolumns == '*{name}..,6{}.'
+        \ |   set viewcolumns=*{name}.,10{size}.,12{perms},10{uname},-7{gname},18{mtime}
+        \ |   echo 'Files information: detailed'
+        \ | else
+        \ |   set viewcolumns=*{name}..,6{}.
+        \ |   echo 'Files information: brief'
+        \ | endif
+
+    " Diff for selections in the current pane if it contains more than one file, otherwise
+    " diff the file in the left (upper) pane with the file in the right (lower) pane
+    command! diff : if expand('%%c') == expand('%%f')
+        \ |   if paneisat('right') && paneisat('bottom')
+        \ |     execute '!$EDITOR -d %%C %%c'
+        \ |   else
+        \ |     execute '!$EDITOR -d %%c %%C'
+        \ |   endif
+        \ | else
+        \ |   execute '!$EDITOR -d %%f'
+        \ | endif
+
+    " Reset sort
+    command! resetsort
+        \ : if &sort != '+name'
+        \ |   set sort=+name
+        \ |   echo 'Reset sort to +name'
+        \ | endif
+
+    " FZF integration
+    command! FZFfind :set noquickview | :execute 'goto' fnameescape(term('fd -H | fzf --height 10 2>/dev/tty'))
+
+" }}}
+
+
+" Mappings -------------------- {{{
+    " NOTE: <space> performs like the leader key
+
+    " Restart vifm
+    nnoremap R :restart<cr>
+
+    " Open sort selection menu
+    nnoremap S :sort<cr>
+
+    " Exit vifm and cd to the dir
+    nnoremap s :shell<cr>
+
+    " Edit vifmrc
+    nnoremap <space>ev :write | edit $MYVIFMRC | restart<cr>
+
+    " Preview in another pane
+    nnoremap w :view<cr>
+    vnoremap w :view<cr>gv
+
+    " Copy the path of the dir of the current pane
+    nnoremap yd :!printf %d | pbcopy<cr>
+
+    " Copy the file name of the file under the cursor
+    nnoremap yn :!printf %c | pbcopy<cr>
+
+    " Copy the path of the dir/file under the cursor
+    nnoremap yc :!printf %c:p | pbcopy<cr>
+
+    " macOS builtin preview
+    nnoremap <space><space> :!qlmanage -p %f > /dev/null 2>&1<cr>
+
+    " Move focus between panes
+    noremap <C-k> <C-w>k
+    noremap <C-j> <C-w>j
+    noremap <C-h> <C-w>h
+    noremap <BS> <C-w>h
+    noremap <C-l> <C-w>l
+
+    " Adjust pane size (left for decreasing, right for increasing)
+    nnoremap <left> <C-w><
+    nnoremap <right> <C-w>>
+
+    " Moving cursor in another pane
+    nnoremap <silent> J <tab>j<tab>
+    nnoremap <silent> K <tab>k<tab>
+
+    " Toggle wrap in the preview
+    nnoremap <silent> <space>tw :set wrap!<cr>
+
+    " Toggle detailed/brief information about files
+    nnoremap <silent> <space>ti :togglefilesinfo<cr>
+
+    " Reset sort to +name
+    nnoremap <silent> <space>s :resetsort<cr>
+
+    " fzf
+    nnoremap <C-p> :FZFfind<cr>
+
+    " Open file in new Vim tab
+    nnoremap o :!mvim --remote-tab-silent %f<cr>
+    " Open file in new Vim window
+    nnoremap O :!mvim %f<cr>
+
+    " Open file in the background using its default program
+    nnoremap gb :!open -g %f<cr>
+
+    " Mappings for faster renaming
+    nnoremap I cw<c-a>
+    nnoremap cc cw<c-u>
+    nnoremap A cw
+
+    " As above, but without the file extension
+    nnoremap iE cW<c-a>
+    nnoremap cE cW<c-u>
+    nnoremap aE cW
+
+    "
+    " Toggle select and move down
+    " nnoremap <space> tj
+    " Move up and toggle select
+    " nnoremap T kt
+
+    " create new blank file
+    nnoremap T :touch<space>00_n3w_f1le.exe<cr>cc
+    nnoremap tf :touch<space>
+
+    " create new folder
+    nnoremap M :mkdir<space>
+    nnoremap md :mkdir<space>00_n3w_directory<cr>
+
+    " create new tab
+    nnoremap <c-t> :tabnew<cr>:view!<cr>
+
+    " create new tab
+    nnoremap <c-t> :tabnew<cr>:view!<cr>
+
+    " switch to tab to the left
+    nnoremap H :tabprevious<cr>:view!<cr>
+
+    " switch to tab to the left
+    nnoremap L :tabnext<cr>:view!<cr>
+" }}}
+
+" ------------------------------------------------------------------------------
+" File types association
+" ------------------------------------------------------------------------------
+" Opener and viewer -------------------- {{{
+    " Pdf
+    filetype {*.pdf},<application/pdf>
+        \ {Open in Preview}
+        \ open -a Preview.app,
+        \ {Open in Skim}
+        \ open -a Skim.app,
+    fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+
+    " PostScript
+    filetype {*.ps,*.eps,*.ps.gz},<application/postscript> open -a Preview.app
+
+    " Djvu
+    filetype {*.djvu},<image/vnd.djvu> open -a MacDjView.app
+
+    " Audio
+    filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
+            \*.aac,*.mpga},
+            \<audio/*>
+        \ {Open in Music}
+        \ open -a Music.app,
+        \ {Open in QuickTime Player}
+        \ open -a QuickTime\ Player.app,
+        \ {Open in IINA}
+        \ open -a IINA.app,
+    fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
+            \*.aac,*.mpga},
+            \<audio/*>
+            \ ffprobe -hide_banner -pretty %c 2>&1
+
+    " Video
+    filetype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+            \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+            \*.as[fx],*.unknown_video},
+            \<video/*>
+        \ {Open in QuickTime Player}
+        \ open -a QuickTime\ Player.app,
+        \ {Open in IINA}
+        \ open -a IINA.app,
+        \ {Open in VLC}
+        \ open -a VLC.app,
+    fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+            \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+            \*.as[fx],*.unknown_video},
+            \<video/*>
+            \ ffprobe -hide_banner -pretty %c 2>&1
+
+    " Web
+    filetype {*.xhtml,*.html,*.htm},<text/html>
+        \ {Open in Safari}
+        \ open -a Safari.app,
+        \ {Open in Firefox}
+        \ open -a Firefox.app,
+        \ {Open in Chrome}
+        \ open -a Google\ Chrome.app,
+        \ {Open in vim}
+        \ vim,
+    fileviewer {*.xhtml,*.html,*.htm},<text/html> w3m -dump -T text/html
+
+    " Object
+    filetype {*.o},<application/x-object> nm %f | less
+
+    " Man page
+    filetype {*.[1-8]},<text/troff> man ./%c
+    fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
+
+    " Image
+    filetype *.bmp,*.jpg,*.jpeg,*.png,*.xpm open -a Preview %f &
+    fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+        \ kitty +icat --silent --transfer-mode=stream --place=%pwx%ph@%pxx%py %c %N
+        \ %pc
+        \ kitty icat --clear --silent %pd
+
+    " MD5
+    filetype *.md5
+        \ {Check MD5 hash sum}
+        \ md5sum -c %f %S,
+
+    " SHA1
+    filetype *.sha1
+        \ {Check SHA1 hash sum}
+        \ shasum -c %f %S,
+
+    " SHA256
+    filetype *.sha256
+        \ {Check SHA256 hash sum}
+        \ shasum -a 256 -c %f %S,
+
+    " SHA512
+    filetype *.sha512
+        \ {Check SHA512 hash sum}
+        \ shasum -a 512 -c %f %S,
+
+    " Torrent
+    filetype {*.torrent},<application/x-bittorrent> open -a Transmission.app
+    fileviewer {*.torrent},<application/x-bittorrent>
+            \ dumptorrent -v %c,
+            \ transmission-show %c
+
+    " Extract zip files
+    filetype {*.zip},<application/zip,application/java-archive>
+        \ mkdir %f:r && tar -vxf %f --directory %f:r
+    fileviewer {*.zip,*.jar,*.war,*.ear},
+            \<application/zip,application/java-archive>
+            \ tar -tf %f
+
+    " Extract tar archives
+    filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,
+            \*.tzst},
+            \<application/x-tar>
+        \ tar -vxf %f
+    fileviewer {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,
+            \*.tzst},
+            \<application/x-tar>
+            \ tar -tf %f
+
+    " Extract .bz2 archives
+    filetype *.bz2 bzip2 -d %f
+
+    " Extract .gz files
+    filetype *.gz gunzip %f
+
+    " Extract rar files
+    filetype *.rar unrar x -y -c- -ad %f %s
+    fileviewer *.rar unrar lb %c
+
+    " Mount .dmg archives
+    filetype *.dmg open
+
+    " Mount disk .img
+    filetype *.img open
+
+    " Open .pkg binaries
+    filetype *.pkg open
+
+    " Office files
+    filetype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
+            \<application/vnd.openxmlformats-officedocument.*,
+            \application/msword,
+            \application/vnd.ms-excel>
+        \ open -a LibreOffice.app
+    fileviewer {*.doc},<application/msword> antiword -
+    fileviewer {*.docx},
+            \<application/
+            \vnd.openxmlformats-officedocument.wordprocessingml.document>
+            \ docx2txt.pl %f -
+
+    " Syntax highlighting in preview
+    "
+    " Explicitly set highlight type for some extensions
+    "
+    " 256-color terminal
+    fileviewer *.[ch],*.[ch]pp highlight -O xterm256 -s dante --syntax c %c
+    fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %c
+    "
+    " 16-color terminal
+    " fileviewer *.c,*.h highlight -O ansi -s dante %c
+    "
+    " Or leave it for automatic detection
+    " fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
+
+    " Displaying pictures in terminal
+    fileviewer *.jpg,*.png shellpic %c
+
+    filetype * open
+" }}}

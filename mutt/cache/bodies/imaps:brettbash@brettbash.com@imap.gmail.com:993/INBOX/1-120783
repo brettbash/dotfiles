@@ -1,0 +1,86 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:7208:72a7:b0:6f:2345:61a2 with SMTP id be39csp273360rbb;
+        Fri, 15 Sep 2023 07:26:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHwUe9bec7FhXWETaA0CanHkogx4PSXPeyizmzk8ky4qDAA9uVY2WWlzs5Vw3g1bg9R1lLr
+X-Received: by 2002:a81:d352:0:b0:59b:cfe1:bcf1 with SMTP id d18-20020a81d352000000b0059bcfe1bcf1mr1834845ywl.44.1694788013880;
+        Fri, 15 Sep 2023 07:26:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1694788013; cv=none;
+        d=google.com; s=arc-20160816;
+        b=D+2v0r1tIs0E0N1RnhoK7WWIjLH1WCZ8G6rUiYtZ0VLE4jeXVbiVMpwPOczaKYBXgO
+         mYobcb99ADCaCHo9LUJiAtmusr1O6GWKoPCyyiaZc2/kam0g01fGlucYdAszU+W0i/xK
+         GoFlOxtFJcB3TZXe/6xBZZDNA2Wlvcv1Lgy2KzSci7WbdOW00S4T0P3z2eQqajBScGMM
+         KkVO2OD+dj3np40+C3r1ePfd/abMGX/sh2oIlagxATLbpFYuTPtui+GtKqNJ3KC58Cwj
+         BvGQgaN53mIhzcLX5+pGTegt/OxzNKELNizJE1KoJFhq8Ta0kqNrl0lPCnB2atxzhhDz
+         kA3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:reply-to:message-id:content-transfer-encoding:subject:date:from
+         :mime-version:dkim-signature;
+        bh=HqqSl1yx7ODRfLRDW8x+oKl/HWZUw3Q5FuqBuWIIlc4=;
+        fh=prqmx0Mu/5YJCEvUqnMMgpudU05wUBkVNBxDXlhQ0Ck=;
+        b=Ki0L1NzJtbiuVJvcErqX7FmBYUu0itHobWXT/JjCntrzKTAC55PfMvhxg66G1J/CIb
+         I8vk5ech/PdASPEvrnaaier+lEdKVYlivFKDVwpraOMXZ9S7cTr8TkX9n+QzHSGwxh3/
+         khm76Y0tsAAH51xJaJ2sTmS71aEXGmxYJMsDtR9roWgppi3e5BmhIkCUMTjJlMXaX+Rx
+         9jBI41MWtaKMXWwM/tNU8DqMUIg4MyPrWM9kn/tjlQxu/oqdRVqhM70jKTLhfDbqLYJc
+         PQj7kZqWH7QgLZ3fnKNfTxfLpfSBrMveHs0iRYEe/7IgedNFGclUICMfCYgkKuvxy+gZ
+         kAqA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@sendgrid.me header.s=smtpapi header.b=YK6v3wn8;
+       spf=pass (google.com: domain of bounces+448495-416d-brettbash=brettbash.com@email.myresman.com designates 192.254.115.58 as permitted sender) smtp.mailfrom="bounces+448495-416d-brettbash=brettbash.com@email.myresman.com"
+Return-Path: <bounces+448495-416d-brettbash=brettbash.com@email.myresman.com>
+Received: from o1.email.myresman.com (o1.email.myresman.com. [192.254.115.58])
+        by mx.google.com with ESMTPS id k18-20020a81ac12000000b00589af3d27cesi2638792ywh.6.2023.09.15.07.26.53
+        for <brettbash@brettbash.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Sep 2023 07:26:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+448495-416d-brettbash=brettbash.com@email.myresman.com designates 192.254.115.58 as permitted sender) client-ip=192.254.115.58;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@sendgrid.me header.s=smtpapi header.b=YK6v3wn8;
+       spf=pass (google.com: domain of bounces+448495-416d-brettbash=brettbash.com@email.myresman.com designates 192.254.115.58 as permitted sender) smtp.mailfrom="bounces+448495-416d-brettbash=brettbash.com@email.myresman.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.me;
+	h=mime-version:from:subject:content-type:content-transfer-encoding:
+	reply-to:to:cc:content-type:from:subject:to;
+	s=smtpapi; bh=HqqSl1yx7ODRfLRDW8x+oKl/HWZUw3Q5FuqBuWIIlc4=;
+	b=YK6v3wn8drzuF2jaz7yrUwez1wtpPxeKyvgpFi+CsV63UWvUq5c093YfJijgF96l3q82
+	YkGeMzGsKfYi7P1mdhinnK3C5LFYBYwThwp6aG22HmuVHCDYXfbhZnuB3ytS1veNYcMG+x
+	iKtfFXia3Tx/Bg6pN6ptGZCpnXGiye+L4=
+Received: by filterdrecv-84854fb664-k6jhn with SMTP id filterdrecv-84854fb664-k6jhn-1-650469AC-85
+        2023-09-15 14:26:52.501781238 +0000 UTC m=+11026252.482918769
+Received: from RD501AC538D809 (unknown)
+	by geopod-ismtpd-17 (SG) with ESMTP
+	id iNA1oiPzTXG9hh1j1UoCqA
+	for <brettbash@brettbash.com>;
+	Fri, 15 Sep 2023 14:26:52.401 +0000 (UTC)
+MIME-Version: 1.0
+From: M at Lakeline <donotreply@myresman.com>
+Date: Fri, 15 Sep 2023 14:26:52 +0000 (UTC)
+Subject: M at Lakeline-Access Gate Code
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+Message-ID: <iNA1oiPzTXG9hh1j1UoCqA@geopod-ismtpd-17>
+Reply-To: M at Lakeline <matlakelinemgmt@bsrreit.com>
+X-SG-EID: 
+ =?us-ascii?Q?eF9GS9oze0oyvmpgpmxxUSqUZB7LhX4+gHvm46EROsi7aUF+SMeaqUS01p=2FsYx?=
+ =?us-ascii?Q?xDLHQZXAcbxUyBcNkPEWg3tO8q178XI3bp9foa0?=
+ =?us-ascii?Q?j4HdE5bn2vM01=2FGlUnJ3c5g7zbg3ah4TopUWcxl?=
+ =?us-ascii?Q?f4GGbqdNBVNHkYSF3KbQEu729lRb24kRrzc8GDv?=
+ =?us-ascii?Q?awKCIxO5au7tdqObyROAn1HPRkNgD48wzDAgya=2F?=
+ =?us-ascii?Q?tvQko1ZFfomEXOXAYisIsrROXletJUTPjaUT5N?=
+To: Brett Bash <brettbash@brettbash.com>
+X-Entity-ID: g1D4ra6cP4Jzl/XCH/a7iw==
+
+Dear Resident(s),<br /><br />We've made some temporary changes to our acces=
+s gate. For now, we've installed a small keep pad and you'll need to enter =
+the code 1229 to get onto the property. Your <strong>fob won't</strong> be =
+working while we work on a permanent solution, but we'll keep you all updat=
+ed on our progress.&nbsp;<br /><br />Thank for your understanding and patie=
+nce, and let us know if you have any questions.<br /><br />Thank you,<br />=
+<br />M at Lakeline Team<br /><br /><hr /><span style=3D"font-size:smaller;=
+">This message was sent to <a href=3D"mailto:brettbash@brettbash.com" targe=
+t=3D"_blank">brettbash@brettbash.com</a>. You may <a href=3D"https://bsr.my=
+resman.com/Portal/Notifications/Edit?proid=3D76fbfef5-07c8-4544-b704-3ac3e2=
+cd0275&aid=3D1070&pid=3Db42dd42f-df00-4aef-8c02-bba989a600c9" target=3D"_bl=
+ank">manage</a> your notifications or <a href=3D"https://bsr.myresman.com/P=
+ortal/Notifications/Edit?proid=3D76fbfef5-07c8-4544-b704-3ac3e2cd0275&aid=
+=3D1070&pid=3Db42dd42f-df00-4aef-8c02-bba989a600c9" target=3D"_blank">unsub=
+scribe</a> from future communications at any time.</span>
+

@@ -7,15 +7,23 @@
       quiet: true
 - clean: ["~"]
 - link:
-    # ~/.gitconfig: git/gitconfig
-    # ~/.gitignore_global: git/gitignore_global
-    # ~/.zshrc: zsh/zshrc
-    # ~/.config/nvim: nvim
-    # ~/.config/nvim/ultisnips: vim/snippets
-    # ~/.config/kitty/kitty.conf: kitty/kitty.conf
-    # ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yaml
-    # ~/.wezterm.lua: wezterm/wezterm.lua
-    # ~/.tmux.conf: tmux/tmux.conf
-    # ~/.hammerspoon: hammerspoon
-    # ~/.composer/composer.json: composer/composer.json
-    # ~/.qmk_firmware/keyboards/lily58/keymaps/jesseleite: qmk/lily58
+    ~/.composer/composer.json: composer/composer.json
+    ~/.config/btop/btop.conf: btop/btop.conf
+    ~/.config/btop/themes: btop/themes
+    ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/kitty/kitty.conf: kitty/kitty.conf
+    ~/.config/lazygit: lazygit
+    ~/.config/mutt: mutt
+    ~/.config/nvim: vim
+    ~/.config/timewarrior: timewarrior
+    ~/.config/vifm: vifm
+    ~/.gitconfig: git/gitconfig
+    ~/.gitignore_global: git/gitignore_global
+    ~/.hammerspoon: hammerspoon
+    ~/.newsboat/config: newsboat/config
+    ~/.newsboat/urls: newsboat/urls/
+    ~/.taskrc: taskwarrior/taskrc/
+    ~/.tmux.conf: tmux/tmux.conf
+    ~/.wezterm: wezterm
+    ~/.qmk/keyboards/planck/keymaps/acidwraith: qmk/planck
+    ~/.qmk/keyboards/1upkeyboards/super16v2/keymaps/atomic16: qmk/super16

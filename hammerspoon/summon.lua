@@ -1,0 +1,47 @@
+local apps = {
+	f2 = "WezTerm",
+	a = "Kitty",
+	r = "Arc",
+	s = "Plexamp",
+	t = "Plex",
+	g = "Preview",
+	m = "IINA",
+	n = "Figma",
+	e = "Photoshop",
+	i = "Illustrator",
+	o = "Blender",
+	z = "Ableton Live",
+	q = "Slack",
+	w = "Messages",
+	f = "Transmission",
+	p = "Postbox",
+	b = "Fantastical",
+	j = "Asana",
+	l = "Phoenix Slides",
+	u = "Deliveries",
+	y = "Weather",
+	h = "cool-retro-term",
+	f3 = "Anybox",
+	x = "Permute",
+	c = "Path Finder",
+	k = "Finder",
+	d = "Image Optimizer",
+	v = "Photos",
+	f14 = "PixelSnap",
+	f13 = "1Password",
+	f12 = "Audio Midi Setup",
+	f11 = "System Settings",
+	f10 = "XLD",
+	f9 = "After Effects",
+	f8 = "TablePlus",
+	f7 = "Transmit",
+	f6 = "QuickTime Player",
+	f5 = "Private Internet Access",
+	f4 = "Discord",
+}
+
+for appKey, appName in pairs(apps) do
+	hs.hotkey.bind(Hyper, appKey, function()
+		hs.application.launchOrFocus(appName)
+	end)
+end

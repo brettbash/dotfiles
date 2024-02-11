@@ -1,0 +1,622 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:6830:6018:b0:66e:1f42:8fe6 with SMTP id bx24csp1907104otb;
+        Sun, 18 Dec 2022 05:00:01 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXsW9FQJdXBjVSYFnYcWFczUIf8rJV85IAxxS3vb1A4gCU4Rm7WfTrSPqGbRtAmXd+YRz4dy
+X-Received: by 2002:a17:90b:46c6:b0:219:cc69:3055 with SMTP id jx6-20020a17090b46c600b00219cc693055mr5257218pjb.42.1671368401443;
+        Sun, 18 Dec 2022 05:00:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671368401; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CZxE9Q1IW6nRpcIa4QiSkWpfEEjecZHlEPvdnc7Y+dmiV+WwykPEzx2+06sLiOVnX0
+         wY/alACn1fxNKkzfjQSnudIaQSeXpufQCkNviSqNUU5mSh/d0rS3kPMB9lonAF8mvgPN
+         LyPpF56h27iGDABsxXjaVl3sX0XrF3jO9FlTygEn/U7uA1I23oFG/OiW146a2MVEhzD1
+         /z0Bp76zMzg62rsW6DH+/aM+rou3o62jUE9ZyrRsBuICeFxugutYumuws1URr0xoWsnH
+         kscCbr0HdPiI9dJWf9bbYx2MitRQgB/6oDo2mqXwC7Ueu81g7ZHYBLYHLejUcnMDcmWe
+         nDDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:to:reply-to:mime-version:subject
+         :message-id:from:date:dkim-signature;
+        bh=xRjeoZHLZ9thLt3b24FaleNcaSof9VCXAkD0ef7p+nQ=;
+        b=R3yXXpKwFoGGSbnOHY66uTO/75sHDkpnV0et+UGhvIDz8f8qcxydaF23I4nw0HnO8Z
+         v+N6fDKqzUoP8FV4irakyYpQkHRwNG74NWmKZJZ8D7oktXXnFFspRzSJbXnmqzx94xlz
+         djbgT0Nbp6p2O77vrIYfUJDzEK37K21FoOdRdfUEXTjrAsW6mqtaizPICRhJpx2a4/Q9
+         0ajgLqIEWV9R2DimsyGoZpdELUcPD7sv832yRr6/klwHLLyd/MPtM67xuBJa9kAKeImC
+         neK/aCPHR0Sn9LTuJfizvNtHY962iowbfPIZ6Djc23faeRL0ssnlliftL+glpVDGbiTn
+         XmMA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yotpo.com header.s=s1 header.b=jmpp8nk7;
+       spf=pass (google.com: domain of bounces+246613-6467-brettbash=brettbash.com@em7135.yotpo.com designates 149.72.28.88 as permitted sender) smtp.mailfrom="bounces+246613-6467-brettbash=brettbash.com@em7135.yotpo.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=yotpo.com
+Return-Path: <bounces+246613-6467-brettbash=brettbash.com@em7135.yotpo.com>
+Received: from o20.o888.yotpomail.com (o20.o888.yotpomail.com. [149.72.28.88])
+        by mx.google.com with ESMTPS id oj16-20020a17090b4d9000b0021a0b5c5f6asi8073331pjb.156.2022.12.18.05.00.01
+        for <brettbash@brettbash.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Dec 2022 05:00:01 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+246613-6467-brettbash=brettbash.com@em7135.yotpo.com designates 149.72.28.88 as permitted sender) client-ip=149.72.28.88;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yotpo.com header.s=s1 header.b=jmpp8nk7;
+       spf=pass (google.com: domain of bounces+246613-6467-brettbash=brettbash.com@em7135.yotpo.com designates 149.72.28.88 as permitted sender) smtp.mailfrom="bounces+246613-6467-brettbash=brettbash.com@em7135.yotpo.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=yotpo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yotpo.com;
+	h=from:subject:mime-version:reply-to:to:content-type:
+	content-transfer-encoding:cc:content-type:from:subject:to;
+	s=s1; bh=xRjeoZHLZ9thLt3b24FaleNcaSof9VCXAkD0ef7p+nQ=;
+	b=jmpp8nk7updvnbQgrcEg+nQ/cXkR06Fjz0e80f/gVmivdyqzQi1fO4eWWjgFkupLDfVg
+	I+0kfX4PtUscoVrOkTORKql9vZsxAGUmP/TLsCq97AN9owa/Ek7PaNUyqZnRpCn+flUCTp
+	lwCctDcB6dTnuYQGwzsot+fqkDwRZJqH3ZgXeuLgAKj+RvENXvbU6DSCuu3EmdrUeHVtoM
+	i4EivZiIDZnGzPViMfKzGdOAg7rX5w+ILBJH98Rt7R2xLfAZjid4jsK7eJvgRKH7vDYX/i
+	IWPSvtz5szXpmbR19/NmhIg1qM20bxHcPh+hokScGwRZES/s+sIxOR5qncvI+I5Q==
+Received: by filterdrecv-68b7b95b4b-98qsc with SMTP id filterdrecv-68b7b95b4b-98qsc-1-639E834A-B
+        2022-12-18 03:04:42.176342369 +0000 UTC m=+2606341.733793801
+Received: from yotpo.com (unknown)
+	by geopod-ismtpd-4-0 (SG) with ESMTP
+	id AQmC8F6nTKyMwA4ZHTJcIA
+	for <brettbash@brettbash.com>;
+	Sun, 18 Dec 2022 03:04:42.057 +0000 (UTC)
+Return-Path: <no-reply@yotpo.com>
+Date: Sun, 18 Dec 2022 13:00:00 +0000 (UTC)
+From: IL MAKIAGE <reviews@yotpo.com>
+Message-ID: <639e8349c670e_11134f74445047@ip-10-1-202-87-15.mail>
+Subject: Share your thoughts. Get $15. Boom.
+Mime-Version: 1.0
+Reply-To: customerservice@ilmakiage.com
+X-SG-EID: 
+ =?us-ascii?Q?Utx81lEGIfS1mgjWiGIEf=2FH9QLDzJDUMTWVjQ8oxT7L8Lo=2FAgkK1HsWAl+TOcc?=
+ =?us-ascii?Q?igSJhXMvpzcXMzwDWYvyKoFatlQkZFkhMy4Q=2FQg?=
+ =?us-ascii?Q?Ryxm9qna1siELfCdNSOcFEvhjyb8+U4m3QbdXSn?=
+ =?us-ascii?Q?Pks4qUhkiL1MrRR3OASPdhMK0Q1uZnonQu64qxA?=
+ =?us-ascii?Q?RI1bqgCrSkx9+Zru1PdiqeamBVrPhZSyYoOYsl6?=
+ =?us-ascii?Q?2EUynUbruDEDGLuD39z2Ys+DfivQwfSuLjDDaT?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb5PAwzc5ejzXUTd+iuHs6lnaBvuDDNs0cyIqzHGGRs?=
+ =?us-ascii?Q?TP=2F2QsvL=2FWTOShIiTk0ra6ofFBhfP2FlzJ7N=2F3K?=
+ =?us-ascii?Q?uOjLc76LAIt3CnU=2FCBERGZdYExgsOj1V9TsMLFg?=
+ =?us-ascii?Q?u=2FQTnhVt=2F84vOpj7vZJTyP0mwSDkfvUtUGZN8dI?=
+ =?us-ascii?Q?05WPAoqhTMekbUyMAzoDawIqsMYZp2J4lfeM6Fn?=
+ =?us-ascii?Q?rExNBVDu0lgm4FEFR7TL3P=2Fvx1evponU+Miu1f4?=
+ =?us-ascii?Q?WJehagw6I7vp+1oaRMKURe6LIjrOlSlfY6Ugn8H?=
+ =?us-ascii?Q?WEk6zMiuJJQi9OqLnso19fbo?=
+To: brettbash@brettbash.com
+X-Entity-ID: mV2Myz15j+f2odlGoj05vQ==
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_639e8349888a4_11134f7444499f";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_639e8349888a4_11134f7444499f
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Hello brett bash,
+You've recently bought a Power Rewind, what do you think about it?
+https://yotpo.com/go/w03HXbFn
+
+----==_mimepart_639e8349888a4_11134f7444499f
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+ =20
+  <style>
+    /* Your custom CSS media queries for emails  */
+
+@media only screen and (max-width: 480px) {=20
+  .prmtd-prod .affiliation-header {
+    font-size: 18px!important;
+  }
+  .affiliation-table-column p {
+    font-size: 11px!important;
+  }
+  .content-header {
+    padding: 40px 20px 20px!important;
+  }
+  .prmtd-prod  {
+    padding: 0 0 22px!important;
+  }
+}
+
+  </style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<style>@font-face{font-family:'MaisonNeue-Book';src:url('http://yotpo-stool=
+.s3.amazonaws.com/images/IL%20MAKIAGE/MaisonNeue-Book.otf')}
+@font-face{font-family:'MaisonNeue-Light';src:url('http://yotpo-stool.s3.am=
+azonaws.com/images/IL%20MAKIAGE/MaisonNeue-Light.otf')}
+@font-face{font-family:'MaisonNeue-Medium';src:url('http://yotpo-stool.s3.a=
+mazonaws.com/images/IL%20MAKIAGE/MaisonNeue-Medium.otf')}
+@font-face{font-family:'Noe-Display';src:url('http://yotpo-stool.s3.amazona=
+ws.com/images/IL%20MAKIAGE/Noe%20Display%20Bold.otf')}
+@font-face{font-family:'Noe-Display-medium';src:url('http://yotpo-stool.s3.=
+amazonaws.com/images/IL%20MAKIAGE/Noe%20Display%20Medium.woff')}</style>
+</head>
+<body style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-Ligh=
+t', sans-serif;color:#010101;font-size:15px">
+<div class=3D"main-div" style=3D"background-color:#eaeced;width:100%;margin=
+:0;padding:30px 0 30px 0;font-size:15px">
+  <table cellspacing=3D"0" class=3D"main-table" style=3D"background-color:#=
+ffffff;width:100%;max-width:600px;margin:0 auto;border:0.1em solid #c8c8c8;=
+border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;border:n=
+one;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0;background=
+-color:#f1f1f1">
+  <tr><td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-=
+Light', sans-serif;color:#010101;font-size:15px"><div class=3D"gray-text-ce=
+ntered" style=3D"text-align:center;color:#97a6b4;line-height:14px;font-size=
+:11px;letter-spacing:-0.22px">
+    <p class=3D"displaying-incorrectly" style=3D"font-size:11px;color:#000"=
+>
+      If this email is not displaying correctly, please <a href=3D"https://=
+em.yotpo.com/ss/c/Ei6G6XrSC8waUhmGmUci71zWkAwnC2AeEc2FZ5hE0HaDY_13ezY9o-l-i=
+mqxhah08bbdnhFLntV-TsuCtpqjhPgDXrF5r2q9ck73h3aMPnghWW8uaRf_xRFr-SMsduU4ScaO=
+ANt-gGhBt2IjgXJkYSAUF4ZSgQnzhlmFyx2eq2n38lpm_Av2sCszn7zx8UOjB2QFhKLRoZpsVas=
+KJpgX-RhSOmlLylO2ddAh_ADXb5jrtv_P-Q_9tJF9cb8SiTg-tb6kvyAz1gtkm85Wy0-bXY_hu6=
+1KZ8Sjt28WePAyEZCwF7jpumfzUxaDxAbR6OIw/3s3/gmNB6yz8RViK5jr8l8J0Lg/h0/BAaWuk=
+1CHW55ZKm2elgAESKGTbIW5-YvGtyNmD22r8c" target=3D"_blank" style=3D"text-deco=
+ration:none;color:#2f84ed;color:#ed4a79">
+      Click here </a> to fill out the form.
+    </p>
+  </div></td></tr>
+  <tr>
+    <td class=3D"main-td" style=3D"font-family:Arial;color:#676a6c;font-fam=
+ily:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px;padding:0">
+<div class=3D"header-logo" style=3D"width:100%;padding-top:40px;padding-bot=
+tom:40px;border-top-right-radius:5px;border-top-left-radius:5px;-moz-border=
+-radius-topright:5px;-moz-border-radius-topleft:5px;-webkit-border-top-righ=
+t-radius:5px;-webkit-border-top-left-radius:5px;text-align:center;padding-t=
+op:26px;padding-bottom:20px;background:#000;border-radius:0;-moz-border-rad=
+ius:0;-webkit-border-radius:0"><a href=3D"https://em.yotpo.com/ss/c/0sDU4qQ=
+afbMVNkRMJlQd3sYqlgNpDLSNYoIS-Q9e4W1M3qBeufNVeo4634qI0RPJ/3s3/gmNB6yz8RViK5=
+jr8l8J0Lg/h1/4MtaDhiQv1znO5xP6w6WEJ8M_708-rd2u7_p9xeIncU" style=3D"text-dec=
+oration:none;color:#2f84ed;color:#ed4a79;margin:0 15px">
+      <!--img class=3D"logo-img" src=3D"https://cdn-yotpo-images-production=
+.yotpo.com/Account/332115/51240952/big.png?1602759079"-->
+      <img class=3D"logo-img" src=3D"http://yotpo-stool.s3.amazonaws.com/im=
+ages/IL%20MAKIAGE/logo.png" style=3D"max-width:200px;max-height:200px;max-w=
+idth:150px;max-height:100px">
+    </a></div>
+
+<div class=3D"banner" style=3D"text-align:center">
+  <img src=3D"https://files.ilmakiage.com/email-assets/Yotpo%20Email/04.20.=
+21-Yotpo-Review/images/YOPTO-BANNER_collage2_02%20%282%29.png" alt=3D"banne=
+r image" style=3D"max-width:600px;width:100%;margin:0 auto">
+</div>
+<div class=3D"content-header" style=3D"padding:40px 15px 20px;letter-spacin=
+g:0.21px;line-height:21px;text-align:center;padding:40px 32px 20px">
+  <p style=3D"margin:0;margin-bottom:15px;font-size:17px;line-height:24px">
+    <span class=3D"hello-user" style=3D"font-weight:bold;font-weight:400">H=
+ey brett bash,</span>
+  </p>
+
+  <p style=3D"margin:0;margin-bottom:15px;font-size:17px;line-height:24px">=
+Today, we=E2=80=99re giving you full permission to judge us. Fill out the f=
+orm below and tell us what you think about your new <a href=3D"https://em.y=
+otpo.com/ss/c/0sDU4qQafbMVNkRMJlQd3taxPuTxn2Wce91Ql0px-GO43o2uvEh0l7AXGgvBz=
+gP6/3s3/gmNB6yz8RViK5jr8l8J0Lg/h2/xNLuuWZqbpi94G8bcHEV09vY8AnS-L4-Jf7wRKqCG=
+lg" style=3D"text-decoration:none;color:#2f84ed;color:#ed4a79;font-family:'=
+MaisonNeue-Medium', sans-serif;font-weight:600;color:#000">Power Rewind</a>=
+. We=E2=80=99re always trying to one-up ourselves, so your feedback means e=
+verything. Plus, we'll email you a $15 e-gift code...
+  </p>
+
+</div>
+
+<div class=3D"prod-img"><table width=3D"100%" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0">
+    <tr>
+      <td width=3D"6%" style=3D"font-family:Arial;color:#676a6c;font-family=
+:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px"></td>
+      <td width=3D"88%" align=3D"center" style=3D"font-family:Arial;color:#=
+676a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:1=
+5px">
+        <img src=3D"https://cdn-yotpo-images-production.yotpo.com/Product/4=
+36306425/366193776/big.png?1671300685" alt=3D"" class=3D"product-image" sty=
+le=3D"max-height:130px;max-width:130px;padding-bottom:20px;max-height:297px=
+;max-width:297px;border:2px solid #dbddde;padding-bottom:0;width:60%">
+        <hr style=3D"border-top:1px solid #dbddde;border-bottom:none;border=
+-top:2px solid #fff;margin-top:28px">
+      </td>
+      <td width=3D"6%" style=3D"font-family:Arial;color:#676a6c;font-family=
+:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px"></td>
+    </tr>
+  </table></div>
+
+<div class=3D"yotpo-readonly-start"></div>
+<div class=3D"desktop">
+<div class=3D"yotpo-readonly-start"></div>
+<div style=3D"text-align:center;font-family:Arial;">
+  <div style=3D"width:99%;max-width:600px;background:#fff;margin:20px auto"=
+>
+    <div style=3D"text-align:center;font-size:14px;padding-bottom:18px;marg=
+in-bottom:18px">
+      <table>
+        <tbody>
+        <tr>
+          <td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonN=
+eue-Light', sans-serif;color:#010101;font-size:15px"></td>
+          <td width=3D"100%" style=3D"font-family:Arial;color:#676a6c;font-=
+family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px">
+            <div style=3D"text-align:center;font-size:14px;">
+              <span class=3D"call-to-action-text yotpo-not-readonly" style=
+=3D"font-size:20px;color:#56575f">
+                Click below to rate (1-5):
+              </span>
+            </div>
+          </td>
+          <td width=3D"15%" style=3D"font-family:Arial;color:#676a6c;font-f=
+amily:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px"></td>
+        </tr>
+        </tbody>
+      </table>
+      <table width=3D"100%">
+        <tr>
+          <td width=3D"25%" style=3D"font-family:Arial;color:#676a6c;font-f=
+amily:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px"></td>
+<td width=3D"10%" style=3D"font-family:Arial;color:#676a6c;font-family:'Mai=
+sonNeue-Light', sans-serif;color:#010101;font-size:15px;text-align: center;=
+background:#fff">
+             <a href=3D"https://em.yotpo.com/ss/c/Ei6G6XrSC8waUhmGmUci71zWk=
+AwnC2AeEc2FZ5hE0HaDY_13ezY9o-l-imqxhah08bbdnhFLntV-TsuCtpqjhPgDXrF5r2q9ck73=
+h3aMPnghWW8uaRf_xRFr-SMsduU4Prs2a_SAEYSGPRVa7yq5r2zu2jeEKGxFb5jtpv0WlvVA_aV=
+e8MNb0hJdNyktS9MAlXPqFA0Zd5e9pexHRWu0JOFIkn4GRiQPAiZIZASbs3zdLMTVMMGjNI3Anc=
+BTpqPgxiIUnb0o2WDf4B70SrptrwuxDy6yJUN0mYMGuTug2ptXrh9ENJ0ef0cLfT1COvjIouZ9b=
+3H4Cfuj_a7B9AoN2w/3s3/gmNB6yz8RViK5jr8l8J0Lg/h3/L9rFsZvTT2rBQdY2rAk7s4X12bM=
+x2URF5pNq8REuQSQ" target=3D"_blank" style=3D"text-decoration:none;color:#2f=
+84ed;color:#ed4a79">
+                <div class=3D"stars-container formless-star yotpo-not-reado=
+nly" style=3D"color:#fdc705;font-size:50px;width:100%;height:100%;color:#ed=
+4a79">
+                  =E2=98=86
+                </div>
+                <div class=3D"formless-star-value" style=3D"color:black;fon=
+t-size:10px">1</div>
+              </a>
+            </td>
+<td width=3D"10%" style=3D"font-family:Arial;color:#676a6c;font-family:'Mai=
+sonNeue-Light', sans-serif;color:#010101;font-size:15px;text-align: center;=
+background:#fff">
+             <a href=3D"https://em.yotpo.com/ss/c/Ei6G6XrSC8waUhmGmUci71zWk=
+AwnC2AeEc2FZ5hE0HaDY_13ezY9o-l-imqxhah08bbdnhFLntV-TsuCtpqjhPgDXrF5r2q9ck73=
+h3aMPnghWW8uaRf_xRFr-SMsduU4Prs2a_SAEYSGPRVa7yq5r2zu2jeEKGxFb5jtpv0WlvVA_aV=
+e8MNb0hJdNyktS9MAlXPqFA0Zd5e9pexHRWu0JMopISkpbVnm-7mrE9P7wB43uZgd5YtGUWRZDj=
+20h5JbNWK28eSe1pH3gq4uR-kK0OWuSz2-lOutXIaPO8LiXP1OuFUfiwasaPvThXsfzykX6XFi6=
+iR4AF8Sm7a0jgGsmw/3s3/gmNB6yz8RViK5jr8l8J0Lg/h4/-s5y9VD5Vs0N31I8DYWZZB7QEma=
+Pgo62j-wtKHiH_lM" target=3D"_blank" style=3D"text-decoration:none;color:#2f=
+84ed;color:#ed4a79">
+                <div class=3D"stars-container formless-star yotpo-not-reado=
+nly" style=3D"color:#fdc705;font-size:50px;width:100%;height:100%;color:#ed=
+4a79">
+                  =E2=98=86
+                </div>
+                <div class=3D"formless-star-value" style=3D"color:black;fon=
+t-size:10px">2</div>
+              </a>
+            </td>
+<td width=3D"10%" style=3D"font-family:Arial;color:#676a6c;font-family:'Mai=
+sonNeue-Light', sans-serif;color:#010101;font-size:15px;text-align: center;=
+background:#fff">
+             <a href=3D"https://em.yotpo.com/ss/c/Ei6G6XrSC8waUhmGmUci71zWk=
+AwnC2AeEc2FZ5hE0HaDY_13ezY9o-l-imqxhah08bbdnhFLntV-TsuCtpqjhPgDXrF5r2q9ck73=
+h3aMPnghWW8uaRf_xRFr-SMsduU4Prs2a_SAEYSGPRVa7yq5r2zu2jeEKGxFb5jtpv0WlvVA_aV=
+e8MNb0hJdNyktS9MAlXPqFA0Zd5e9pexHRWu0JJ8wo4Yp6kIZlolu278ff95ZQ2NpPtJxBjaso0=
+TCh2UrmEpMyG9DC64O0Zi-64oebq0pND7zdQuxQ4IPjTlif7jDAVgwr5HoUjkJdlM0kj9pRche4=
+kjtM9FE2fn4Fxc44Q/3s3/gmNB6yz8RViK5jr8l8J0Lg/h5/3AGR8RHbx4DraMxYNaj0mWnXJl0=
+F9IHmMnetko0dCiw" target=3D"_blank" style=3D"text-decoration:none;color:#2f=
+84ed;color:#ed4a79">
+                <div class=3D"stars-container formless-star yotpo-not-reado=
+nly" style=3D"color:#fdc705;font-size:50px;width:100%;height:100%;color:#ed=
+4a79">
+                  =E2=98=86
+                </div>
+                <div class=3D"formless-star-value" style=3D"color:black;fon=
+t-size:10px">3</div>
+              </a>
+            </td>
+<td width=3D"10%" style=3D"font-family:Arial;color:#676a6c;font-family:'Mai=
+sonNeue-Light', sans-serif;color:#010101;font-size:15px;text-align: center;=
+background:#fff">
+             <a href=3D"https://em.yotpo.com/ss/c/Ei6G6XrSC8waUhmGmUci71zWk=
+AwnC2AeEc2FZ5hE0HaDY_13ezY9o-l-imqxhah08bbdnhFLntV-TsuCtpqjhPgDXrF5r2q9ck73=
+h3aMPnghWW8uaRf_xRFr-SMsduU4Prs2a_SAEYSGPRVa7yq5r2zu2jeEKGxFb5jtpv0WlvVA_aV=
+e8MNb0hJdNyktS9MAlXPqFA0Zd5e9pexHRWu0JEwdd7vkimKILwWnvAOyuA_FuYrPLcnWnUbLye=
+2wMW0D1WD1fY_J0nOFqqI5D3ig_oXpIMBW1DI7-0oneH9RthNozNkrfZ3HyDe9fTYE8ne7LdwT6=
+K8lI8Zo5j3R3cl20w/3s3/gmNB6yz8RViK5jr8l8J0Lg/h6/qUhCGSOvaS3m3Zzk9KUjXnnCVSq=
+pgXKaW-j4YSupv9A" target=3D"_blank" style=3D"text-decoration:none;color:#2f=
+84ed;color:#ed4a79">
+                <div class=3D"stars-container formless-star yotpo-not-reado=
+nly" style=3D"color:#fdc705;font-size:50px;width:100%;height:100%;color:#ed=
+4a79">
+                  =E2=98=86
+                </div>
+                <div class=3D"formless-star-value" style=3D"color:black;fon=
+t-size:10px">4</div>
+              </a>
+            </td>
+<td width=3D"10%" style=3D"font-family:Arial;color:#676a6c;font-family:'Mai=
+sonNeue-Light', sans-serif;color:#010101;font-size:15px;text-align: center;=
+background:#fff">
+             <a href=3D"https://em.yotpo.com/ss/c/Ei6G6XrSC8waUhmGmUci71zWk=
+AwnC2AeEc2FZ5hE0HaDY_13ezY9o-l-imqxhah08bbdnhFLntV-TsuCtpqjhPgDXrF5r2q9ck73=
+h3aMPnghWW8uaRf_xRFr-SMsduU4Prs2a_SAEYSGPRVa7yq5r2zu2jeEKGxFb5jtpv0WlvVA_aV=
+e8MNb0hJdNyktS9MAlXPqFA0Zd5e9pexHRWu0JPNdgMOHO5fGRSPBEAPfOxl7gYzFL2C9GsUBbL=
+TNqSiySsu0s6aYGXdGaOr0VL_OszzBCVBrMeKDsWfAkq5SWvcHb8VySAkW6mK9lak9PrRoi8Cr4=
+VrcKC_GrJUeERgwgg/3s3/gmNB6yz8RViK5jr8l8J0Lg/h7/QJRF3_EsP2aG4Rb0mKOwSmvMRhI=
+4p1UBkzUs0Qvva80" target=3D"_blank" style=3D"text-decoration:none;color:#2f=
+84ed;color:#ed4a79">
+                <div class=3D"stars-container formless-star yotpo-not-reado=
+nly" style=3D"color:#fdc705;font-size:50px;width:100%;height:100%;color:#ed=
+4a79">
+                  =E2=98=86
+                </div>
+                <div class=3D"formless-star-value" style=3D"color:black;fon=
+t-size:10px">5</div>
+              </a>
+            </td>
+<td width=3D"25%" style=3D"font-family:Arial;color:#676a6c;font-family:'Mai=
+sonNeue-Light', sans-serif;color:#010101;font-size:15px"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class=3D"yotpo-readonly-end"></div>
+</div>
+
+<!--[if !mso]><!--><!--<![endif]-->
+<div class=3D"yotpo-readonly-end"></div>
+
+<div class=3D"prmtd-prod" style=3D"padding:32px 0 22px">
+<div class=3D"yotpo-readonly-start"></div>
+  <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" class=3D"full-wid=
+th" style=3D"width:100%">
+    <tr>
+      <td width=3D"6%" style=3D"font-family:Arial;color:#676a6c;font-family=
+:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px"></td>
+      <td width=3D"88%" style=3D"font-family:Arial;color:#676a6c;font-famil=
+y:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px">
+        <table style=3D"border-top: 2px solid #fff;width:100%">
+          <tr>
+            <td width=3D"100%" class=3D"affiliation-header yotpo-not-readon=
+ly" style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-Light'=
+, sans-serif;color:#010101;font-size:15px;text-align:center;padding:20px 0;=
+font-size:17px;letter-spacing:0.34px;line-height:21px;color:#525252;font-fa=
+mily:'Noe-Display-medium', serif;color:#000;font-size:28px;padding:32px 0 2=
+2px;line-height:100%;text-align:left !important;text-align: center;">
+              Top-Selling Products:
+            </td>
+          </tr>
+          <tr>
+            <td class=3D"affiliation-table-wrapper" style=3D"font-family:Ar=
+ial;color:#676a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;=
+font-size:15px;width:100%;margin:0 auto">
+              <table class=3D"affiliation-table" style=3D"width:100%;margin=
+-left:auto;margin-right:auto;table-layout:fixed;margin-bottom:15px">
+                <tr class=3D"affiliation-product-row" style=3D"height:115px=
+">
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+                      <a href=3D"https://em.yotpo.com/ss/c/0sDU4qQafbMVNkRM=
+JlQd3r5n6t9q6r8JLpIB_paN4ySz0b3Y15NpmZYWNKEqq_Ng/3s3/gmNB6yz8RViK5jr8l8J0Lg=
+/h8/Y9lhpj0tKWJ0l4auGkijdKVHbQ8IgnpO6Cj3jlBUvNs" style=3D"text-decoration:n=
+one;color:#2f84ed;color:#ed4a79">
+                        <div class=3D"affiliation-product-image" style=3D"d=
+isplay:inline-block;max-width:100px;max-height:100px;border:solid 1px #dcdd=
+df;border-radius:5px;margin:0 auto;max-width:100%;max-height:100%;backgroun=
+d:#fff;border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;border-=
+width:2px;width:100%;overflow:visible !important">
+                          <img src=3D"https://cdn-yotpo-images-production.y=
+otpo.com/Product/82461702/277124319/square.jpg?1671302203" alt=3D"affiliati=
+on product image" data-name=3D"afimg" style=3D"width:auto;max-width:100%;ma=
+x-height:100%;margin:0 auto">
+                        </div>
+                      </a>
+                    </td>
+<td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-Light'=
+, sans-serif;color:#010101;font-size:15px;width: 3%;"></td>
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+                      <a href=3D"https://em.yotpo.com/ss/c/0sDU4qQafbMVNkRM=
+JlQd3kDREj0kHuhmsq-QLBLshu-crkdNWbGg7vY1elZhM6Ji/3s3/gmNB6yz8RViK5jr8l8J0Lg=
+/h9/IfNqC_0HPpayG6kXfESUYs8pZRstpdc7B17Ow1TTRVI" style=3D"text-decoration:n=
+one;color:#2f84ed;color:#ed4a79">
+                        <div class=3D"affiliation-product-image" style=3D"d=
+isplay:inline-block;max-width:100px;max-height:100px;border:solid 1px #dcdd=
+df;border-radius:5px;margin:0 auto;max-width:100%;max-height:100%;backgroun=
+d:#fff;border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;border-=
+width:2px;width:100%;overflow:visible !important">
+                          <img src=3D"https://cdn-yotpo-images-production.y=
+otpo.com/Product/148041314/277124842/square.png?1671331565" alt=3D"affiliat=
+ion product image" data-name=3D"afimg" style=3D"width:auto;max-width:100%;m=
+ax-height:100%;margin:0 auto">
+                        </div>
+                      </a>
+                    </td>
+<td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-Light'=
+, sans-serif;color:#010101;font-size:15px;width: 3%;"></td>
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+                      <a href=3D"https://em.yotpo.com/ss/c/0sDU4qQafbMVNkRM=
+JlQd3kjGYBb0-NozDtoPZJTVKKf9-4e-1071hVpN-x4KQGQI/3s3/gmNB6yz8RViK5jr8l8J0Lg=
+/h10/2esMV73_VXixR7CtcNbyaDSnnpib5cQGSqn9MhRiqqk" style=3D"text-decoration:=
+none;color:#2f84ed;color:#ed4a79">
+                        <div class=3D"affiliation-product-image" style=3D"d=
+isplay:inline-block;max-width:100px;max-height:100px;border:solid 1px #dcdd=
+df;border-radius:5px;margin:0 auto;max-width:100%;max-height:100%;backgroun=
+d:#fff;border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;border-=
+width:2px;width:100%;overflow:visible !important">
+                          <img src=3D"https://cdn-yotpo-images-production.y=
+otpo.com/Product/253244660/183236072/square.png?1638764295" alt=3D"affiliat=
+ion product image" data-name=3D"afimg" style=3D"width:auto;max-width:100%;m=
+ax-height:100%;margin:0 auto">
+                        </div>
+                      </a>
+                    </td>
+</tr>
+                <tr>
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+<span class=3D"stars-container affiliation-stars" style=3D"color:#fdc705;di=
+splay:inline-block;margin:0 auto;font-style:normal;font-size:0.95em;white-s=
+pace:nowrap;color:#ed4a79"><span>=E2=98=85</span><span>=E2=98=85</span><spa=
+n>=E2=98=85</span><span>=E2=98=85</span><span>=E2=98=85</span></span>
+                        <br>
+</td>
+<td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-Light'=
+, sans-serif;color:#010101;font-size:15px;width: 3%;"></td>
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+<span class=3D"stars-container affiliation-stars" style=3D"color:#fdc705;di=
+splay:inline-block;margin:0 auto;font-style:normal;font-size:0.95em;white-s=
+pace:nowrap;color:#ed4a79"><span>=E2=98=85</span><span>=E2=98=85</span><spa=
+n>=E2=98=85</span><span>=E2=98=85</span><span>=E2=98=85</span></span>
+                        <br>
+</td>
+<td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-Light'=
+, sans-serif;color:#010101;font-size:15px;width: 3%;"></td>
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+<span class=3D"stars-container affiliation-stars" style=3D"color:#fdc705;di=
+splay:inline-block;margin:0 auto;font-style:normal;font-size:0.95em;white-s=
+pace:nowrap;color:#ed4a79"><span>=E2=98=85</span><span>=E2=98=85</span><spa=
+n>=E2=98=85</span><span>=E2=98=85</span><span>=E2=98=85</span></span>
+                        <br>
+</td>
+</tr>
+                <tr>
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+                      <a href=3D"https://em.yotpo.com/ss/c/0sDU4qQafbMVNkRM=
+JlQd3r5n6t9q6r8JLpIB_paN4ySz0b3Y15NpmZYWNKEqq_Ng/3s3/gmNB6yz8RViK5jr8l8J0Lg=
+/h11/V4VA89dLs-IGoDN_vJxFyTiSP32Ub_Qawv6fPjee7m0" class=3D"affiliation-prod=
+uct-link" style=3D"color:#2f84ed;color:#ed4a79;text-decoration:none">
+                        <span class=3D"gray-text-centered affiliation-produ=
+ct-name" style=3D"color:#97a6b4;font-size:11px;color:#56555b;line-height:14=
+px;font-size:13px;letter-spacing:-0.22px;text-overflow:ellipsis;width:100%;=
+text-align:center;border-image-width:0">
+                          <p style=3D"margin:0;color:#000;text-decoration:u=
+nderline">NO FILTER</p>
+                        </span>
+                      </a>
+                    </td>
+<td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-Light'=
+, sans-serif;color:#010101;font-size:15px;width: 3%;"></td>
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+                      <a href=3D"https://em.yotpo.com/ss/c/0sDU4qQafbMVNkRM=
+JlQd3kDREj0kHuhmsq-QLBLshu-crkdNWbGg7vY1elZhM6Ji/3s3/gmNB6yz8RViK5jr8l8J0Lg=
+/h12/7RQQIahsKQc_1o-hxlnFXUtLFaT-sqzB8iybnRLM0Wc" class=3D"affiliation-prod=
+uct-link" style=3D"color:#2f84ed;color:#ed4a79;text-decoration:none">
+                        <span class=3D"gray-text-centered affiliation-produ=
+ct-name" style=3D"color:#97a6b4;font-size:11px;color:#56555b;line-height:14=
+px;font-size:13px;letter-spacing:-0.22px;text-overflow:ellipsis;width:100%;=
+text-align:center;border-image-width:0">
+                          <p style=3D"margin:0;color:#000;text-decoration:u=
+nderline">F*CK I'M FLAWLESS</p>
+                        </span>
+                      </a>
+                    </td>
+<td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-Light'=
+, sans-serif;color:#010101;font-size:15px;width: 3%;"></td>
+<td class=3D"affiliation-table-column" style=3D"font-family:Arial;color:#67=
+6a6c;font-family:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15p=
+x;width:32%;text-align:center">
+                      <a href=3D"https://em.yotpo.com/ss/c/0sDU4qQafbMVNkRM=
+JlQd3kjGYBb0-NozDtoPZJTVKKf9-4e-1071hVpN-x4KQGQI/3s3/gmNB6yz8RViK5jr8l8J0Lg=
+/h13/Y0HrXvvXC1U8PobuePjJJZ_TLPQMcxKVqZ8EyLgMA-s" class=3D"affiliation-prod=
+uct-link" style=3D"color:#2f84ed;color:#ed4a79;text-decoration:none">
+                        <span class=3D"gray-text-centered affiliation-produ=
+ct-name" style=3D"color:#97a6b4;font-size:11px;color:#56555b;line-height:14=
+px;font-size:13px;letter-spacing:-0.22px;text-overflow:ellipsis;width:100%;=
+text-align:center;border-image-width:0">
+                          <p style=3D"margin:0;color:#000;text-decoration:u=
+nderline">Power Repair</p>
+                        </span>
+                      </a>
+                    </td>
+</tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td width=3D"6%" style=3D"font-family:Arial;color:#676a6c;font-family=
+:'MaisonNeue-Light', sans-serif;color:#010101;font-size:15px"></td>
+    </tr>
+  </table>
+  <div class=3D"yotpo-readonly-end"></div>
+</div>
+ =20
+<!--div class=3D"content-bottom gray-text-centered">
+  <p>
+  We really appreciate your feedback and hope to see you again soon.
+  <br>
+  <br>
+  Thank you from <a href=3D"https://em.yotpo.com/ss/c/0sDU4qQafbMVNkRMJlQd3=
+kNobadYIg2fijYQtf5bQ_NaGCZu6F0S35f4wIPPlgfO/3s3/gmNB6yz8RViK5jr8l8J0Lg/h14/=
+wzsRQvyXMvAijxUI1MO2dJhydsDAlMaq9gJb9WZRxWo">IL MAKIAGE</a>
+</p>
+
+
+  <p>
+    Too soon? If you have not received the product yet
+    <a href=3D"https://em.yotpo.com/ss/c/GVJa8Y5i2Uu7K_RxiLSrALdiJTeTVuFTnA=
+zesPnHw9uc75mSCuDFFLYASZXbHw8dzc-oS5_F1gBmhFD0Qg1AL1w_JJjls417JlpyS1nL1YjrV=
+yognx6Z0mB83MC3VwIWvo7DG7aW3cApx-HfbP2qgSBBMPLheGqzAeoO_WyeXBcLogrISoHopfuq=
+_3w_7bt9/3s3/gmNB6yz8RViK5jr8l8J0Lg/h15/xhb0qjP0TZSewsi0Uef-pNqSGIBXSee5bgh=
+9w5Gnh5E">click here</a>
+  </p>
+</div-->
+
+    </td>
+  </tr>
+  <tr><td style=3D"font-family:Arial;color:#676a6c;font-family:'MaisonNeue-=
+Light', sans-serif;color:#010101;font-size:15px"><div class=3D"unsubscribe =
+gray-text-centered" style=3D"width:100%;margin:0 auto;text-align:center;col=
+or:#97a6b4;line-height:14px;font-size:11px;letter-spacing:-0.22px">
+    <p style=3D"margin-bottom:0;color:#000">
+      To unsubscribe click
+      <a href=3D"https://em.yotpo.com/ss/c/0sDU4qQafbMVNkRMJlQd3o2uvxeJGnlL=
+qTltgUDaX_sOw5Wd7U56CHoZnC9nkI5a/3s3/gmNB6yz8RViK5jr8l8J0Lg/h16/Z4M-ZSVWDjP=
+psi91tCm_GfycIuGhDviv4B1rtVtvUuo" style=3D"text-decoration:none;color:#2f84=
+ed;color:#ed4a79">here</a>
+    </p>
+  </div></td></tr>
+</table>
+<div class=3D"powered-by gray-text-centered" style=3D"width:100%;margin:0 a=
+uto;padding:0 0 10px 0;font-weight:bold;letter-spacing:0.5px;text-align:cen=
+ter;color:#97a6b4;line-height:14px;font-size:11px;letter-spacing:-0.22px">
+    <p>
+      <a href=3D"https://em.yotpo.com/ss/c/-HkC1HG3A53ue1RWqa51zldy0sVVhgHI=
+93LJ51rSFzRGWlSQ1rPESXG1EP6bFV4orlMJLgJ43FMQZsVbRnUxGw70VevmKXwTOFsWfZit3s9=
+wH5kbXH3l8RpsMfYqKaICMG1kFbCIySQzf_1XDDazPtt4wRBzdAeBHJHXwzZ4xfxtVFVT_jzdJP=
+O_avmnmLrLORNpXyRZ-4nsokcKNhEzfA/3s3/gmNB6yz8RViK5jr8l8J0Lg/h17/dY-R3vvWXUq=
+NbGo3czVrdluyMtQtzDCjVRV3b6mpCU4" style=3D"text-decoration:none;color:#2f84=
+ed;color:#ed4a79">Powered by Yotpo</a>
+    </p>
+  </div>
+</div>
+<img src=3D"https://p.yotpo.com/i?aid=3Dymail&amp;e=3Dse&amp;se_va=3D0OfgK1=
+pOJjTHvcKEGcS1Z95SpxKHxFwqDsRG2I5O&amp;se_ca=3Dmap&amp;se_ac=3Dopen&amp;se_=
+la=3Df17efd3c-5d5a-4464-8287-7327df2d777f" width=3D"1" height=3D"1" border=
+=3D"0" style=3D"height:1px!important;width:1px!important;border:0!important=
+;margin:0!important;padding:0!important;display:none;">
+<img src=3D"https://em.yotpo.com/ss/o/9rBH8u79ExBgD1Cl5jlQnQ/3s3/gmNB6yz8RV=
+iK5jr8l8J0Lg/ho.gif" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=
+=3D"height:1px !important;width:1px !important;border-width:0 !important;ma=
+rgin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;=
+margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !importa=
+nt;padding-right:0 !important;padding-left:0 !important;"/></body>
+</html>
+
+----==_mimepart_639e8349888a4_11134f7444499f--

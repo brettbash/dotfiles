@@ -1,0 +1,16 @@
+# vim: filetype=muttrc
+
+source ~/.config/mutt/settings
+source ~/.config/mutt/colors
+source ~/.config/mutt/mappings
+
+source ~/.config/mutt/accounts/brettbash
+# folder-hook $folder 'source ~/.config/mutt/accounts/brettbash@brettbash.com'
+folder-hook "Inbox Bash" "source ~/.config/mutt/accounts/brettbash@brettbash.com"
+
+# source ~/.config/mutt/accounts/whiteboard
+# folder-hook $folder 'source ~/.config/mutt/accounts/brett@whiteboard.is'
+# folder-hook "Inbox WB" "source ~/.config/mutt/accounts/brett@whiteboard.is"
+#
+# source ~/.config/mutt/accounts/gmail
+# folder-hook "Inbox GMAIL" "source ~/.config/mutt/accounts/brettbash@gmail.com"

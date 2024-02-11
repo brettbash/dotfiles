@@ -1,0 +1,958 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:7208:1590:b0:6f:2345:61a2 with SMTP id bv16csp2067368rbb;
+        Tue, 17 Oct 2023 17:24:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGopqCE1Ncb9RgUB60k0soQwmkccyUBKF76SjsKPuITC/mpKHKsbB6/0egVF/fBHhhNvKgU
+X-Received: by 2002:a05:620a:a18:b0:774:1c49:2d72 with SMTP id i24-20020a05620a0a1800b007741c492d72mr3599072qka.76.1697588696068;
+        Tue, 17 Oct 2023 17:24:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1697588696; cv=none;
+        d=google.com; s=arc-20160816;
+        b=lvbroyhIYuTk4vWGoGhZPwFG4vwSIbDVYxonOsyeLduECb0bnsAK4M6DA6fQAnOrjl
+         xyxGyrz3Rmkxw7u7Ks3UtzMTAjc8SYvx0Arje10KX4Tc3kPAr3TikmCoIpDKikerT3DM
+         vpiS0xjC4aTD1UjDmRTzF2AQlbkXRF3Kn7XlG5r4okaFVmM9duAL3pgvyXCW8GJXnj3b
+         xiyUiMJg/TfsPFoX4aXxjEaKcP8MR4nucBRG7kGnZuQaVAMc1VNBEn49dgto6XpeeVxV
+         /La6xvxIfUXrlo3E2go8JVFoNFJqid3K5/xgJn+Bz3f/8DUkScRE0FAvZpQkdSBr2ES6
+         qsPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:list-id:reply-to:mime-version:list-help:date:subject:to
+         :from:dkim-signature;
+        bh=SaEzGaisTSmL4Y0s6LgPbTvEShsCBjZoNAeRhexAJ3o=;
+        fh=1+FPsFG0XrT3gJW5hgYms/M1HSDjNcTf6lCMZCcYblU=;
+        b=ATdUZexQHE0xnDjt7c27pq1q8OmhbISjPp6odmzfdt8ZHkbRLMiqct3ZuSSs/T9km+
+         pBmLmiBCJBDhfP24UBEpZPfdZ/oGi8YP29um/yfjE2B6njAv2U0B1M9gr0HJ+ZlqbjJn
+         KaaMoEr9VVeYyG98KMSd4vAj6qtl36ER22KG/rCBX6sSMt2JsCfWU81gdbneCcew/6sj
+         93UmAkIYiov7j7+aHBwSyvF1bkaeoZ3SXtWaIC+56fuVNuyvwz07vlWmkQ62ChjL1KzR
+         dLTZT3ExveZu44GZqgxVokUjgUedXPP1Nb1Z6QeWFOqgQn3XCUTtOILZdN03ZIJSNAEu
+         IuVQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@policy.farmers.com header.s=200608 header.b=Az5J6rym;
+       spf=pass (google.com: domain of bounce-13_html-19757981-1060475-10969108-2006@bounce.policy.farmers.com designates 136.147.139.25 as permitted sender) smtp.mailfrom=bounce-13_HTML-19757981-1060475-10969108-2006@bounce.policy.farmers.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=policy.farmers.com
+Return-Path: <bounce-13_HTML-19757981-1060475-10969108-2006@bounce.policy.farmers.com>
+Received: from mta.policy.farmers.com (mta.policy.farmers.com. [136.147.139.25])
+        by mx.google.com with ESMTPS id bs31-20020a05620a471f00b007743391acf0si1923927qkb.324.2023.10.17.17.24.55
+        for <BRETTBASH@brettbash.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 17 Oct 2023 17:24:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-13_html-19757981-1060475-10969108-2006@bounce.policy.farmers.com designates 136.147.139.25 as permitted sender) client-ip=136.147.139.25;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@policy.farmers.com header.s=200608 header.b=Az5J6rym;
+       spf=pass (google.com: domain of bounce-13_html-19757981-1060475-10969108-2006@bounce.policy.farmers.com designates 136.147.139.25 as permitted sender) smtp.mailfrom=bounce-13_HTML-19757981-1060475-10969108-2006@bounce.policy.farmers.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=policy.farmers.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=policy.farmers.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:List-ID:
+ X-CSA-Complaints:Message-ID:Content-Type; i=billing@policy.farmers.com;
+ bh=SaEzGaisTSmL4Y0s6LgPbTvEShsCBjZoNAeRhexAJ3o=;
+ b=Az5J6rymSDrvoLTL2ECY2AzKilPalrys5BPTlpgjicMw4NY4PnOJIQHkd1iiCKgPpmMYGc50VCjd
+   LJV1+qDy28qOmHeWC4fuzL2zQHoV9E8AnS/ZzgCVR0FNLuOU/3hV2B6OZ9b1f5NLpEAf0cpgsCOc
+   zu7wHgTKacd4xq6zcSo=
+Received: by mta.policy.farmers.com id h5sitg2fmd45 for <BRETTBASH@BRETTBASH.COM>; Wed, 18 Oct 2023 00:24:55 +0000 (envelope-from <bounce-13_HTML-19757981-1060475-10969108-2006@bounce.policy.farmers.com>)
+From: "Farmers Insurance" <billing@policy.farmers.com>
+To: <BRETTBASH@BRETTBASH.COM>
+Subject: Confirmation from Farmers Insurance: Thank you for your payment
+Date: Tue, 17 Oct 2023 18:24:55 -0600
+List-Help: <https://click.policy.farmers.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiIxMDk2OTEwOCIsInMiOiIxOTc1Nzk4MSIsImxpZCI6IjEzIiwiaiI6IjEwNjA0NzUiLCJqYiI6IjIwMDYiLCJkIjoiMTAxODEifQ.axlmxnI_Lxq91Ea0myQ3CEu7zQvn1CehIc9VOuGdRUE>
+x-CSA-Compliance-Source: SFMC
+MIME-Version: 1.0
+Reply-To: "Farmers Insurance" <reply-1060475-13_HTML-19757981-10969108-2006@policy.farmers.com>
+List-ID: <10967003.xt.local>
+X-CSA-Complaints: csa-complaints@eco.de
+X-SFMC-Stack: 1
+x-job: 10969108_1060475
+Message-ID: <368dd96e-8ab1-4115-b89f-6b195e82d1fc@ind1s01mta1043.xt.local>
+Content-Type: multipart/alternative;
+	boundary="5AUaoXZegG7Z=_?:"
+
+This is a multi-part message in MIME format.
+
+--5AUaoXZegG7Z=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+
+ View in 
+https://view.policy.farmers.com/?qs=375d96a06a32cb8cb90eb93435034b5a97056b95a8bd4dc299f4312622d63fd6420154e0b31a54db60ca65e6ccb5739fa876e1f7b76ea69d67e115bd7b2bb89ce9000354ef572118e04ae018da713671 
+web browser .
+
+ Please add Farmers Insurance(R) to your list of email contacts.
+
+
+
+
+
+ 
+
+ 
+
+
+
+To view this email as a web page, go to the link below,  or copy and paste it into your browser's address window.    https://view.policy.farmers.com/?qs=375d96a06a32cb8cb90eb93435034b5a97056b95a8bd4dc299f4312622d63fd6420154e0b31a54db60ca65e6ccb5739fa876e1f7b76ea69d67e115bd7b2bb89ce9000354ef572118e04ae018da713671    
+
+https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c8d82d23ff9dd343dc3e09310bd668d9a3a778ec233549684db9281131dffe34989617345b56a4a48db6cd07ea761e69fb 
+
+Thank you for your payment
+
+Account number: P708855704
+Payment date:10/16/2023 
+
+Payment amount:
+$545.17
+
+https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c8168c0c2d0a645832c8bc39dcec78e98980b8bcd24ca4814f6c8fe145f0cc60cae06f6a42299a6c2f44d33325b184b416881e0b8d6eb8a1e7 
+View Payment History
+
+
+ Dear Brett,
+
+
+ Thank you for choosing Farmers(R).
+
+
+ This is a confirmation that your payment has been deducted from your bank account. 
+
+Payment method:Bank account xxxx1816
+Confirmation number:970025251269
+
+
+ To view your payment history, you can click on the button below to log on to your My Farmers account on farmers.com.
+
+
+
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+
+ 
+ 
+ 
+ 
+  
+ 
+
+ 
+ 
+  
+ 
+ 
+
+  
+ 
+  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+ <img title="Auto policy" alt="Auto policy" src="https://image.policy.farmers.com/lib/fe5d15707c620d7c751c/m/1/Auto+policy.png" border=0 thid="39fe20ba-2816-4955-a66e-5fce7510a920">
+ Auto Policy: XXXX6479 
+
+
+ 
+ 
+2012 NISSAN SENTRA 4DOOR
+
+
+ 
+2014 FORD FOCUS 5D ST
+
+
+ 
+2012 NISSAN SENTRA 4DOOR
+
+
+ 
+2014 FORD FOCUS 5D ST
+
+
+  
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ <img title="Home policy" alt="Home policy" src="https://image.policy.farmers.com/lib/fe5d15707c620d7c751c/m/1/Home+policy.png" border=0 thid="46c08a2d-a647-4dd4-b5ee-6eeef5f93fab">
+ Home Policy: XXXX3758 
+
+
+ 
+ 
+10500 Lakeline Mall Dr Apt 2401
+
+
+ 
+10500 Lakeline Mall Dr Apt 2401
+
+
+  
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c8168c0c2d0a645832c8bc39dcec78e98980b8bcd24ca4814f6c8fe145f0cc60cae06f6a42299a6c2f44d33325b184b416881e0b8d6eb8a1e7 
+VIEW PAYMENT HISTORY
+
+
+
+
+Your Farmers Agent:
+Constantin Ispas
+Farmers Insurance Agent
+
+ 715 Discovery Blvd Ste 305 
+
+ 
+ Cedar Park, TX 78613
+
+ 
+ mailto:cispas@farmersagent.com 
+cispas@farmersagent.com 
+
+ 
+ (512) 201-2924
+
+ 
+ 
+ 
+
+
+
+
+
+
+Everything you need, anywhere you are ...
+
+See your policy information, get auto insurance ID cards*, quickly pay bills 
+and connect with us – right from your phone. Download the Farmers(R) mobile 
+app today to get started. 
+
+
+https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c858dd400cd5ccc2cb5d8f5f80a936dd023a3e71164e3de2caba143c4767100adf980094ddab0591fa9b17e4199aedbe2b 
+
+https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c8a088000dbb1b298abba82d27e286af8ed5a006a68f2db6e9d81f486f0b033414b5811091dcd76f7c0385aee53bf1d9f6 
+
+ *Digital auto insurance ID cards aren't available in New York and New Jersey 
+due to state law.
+
+
+
+
+
+
+PCA2   08/16
+
+
+
+--5AUaoXZegG7Z=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <!--[if !mso]><!-->
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <!--<![endif]-->
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title></title>
+ <style type="text/css">
+ * {
+ -webkit-font-smoothing: antialiased;
+ }
+ body {
+ Margin: 0;
+ padding: 0;
+ min-width: 100%;
+ font-family: Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ mso-line-height-rule: exactly;
+ }
+ table {
+ border-spacing: 0;
+ color: #333333;
+ font-family: Arial, sans-serif;
+ }
+ img {
+ border: 0;
+ }
+ .wrapper {
+ width: 100%;
+ table-layout: fixed;
+ -webkit-text-size-adjust: 100%;
+ -ms-text-size-adjust: 100%;
+ }
+ .webkit {
+ max-width: 600px;
+ }
+ .outer {
+ Margin: 0 auto;
+ width: 100%;
+ max-width: 600px;
+ }
+ .full-width-image img {
+ width: 100%;
+ max-width: 600px;
+ height: auto;
+ }
+ .inner {
+ padding: 10px;
+ }
+ p {
+ Margin: 0;
+ padding-bottom: 10px;
+ }
+ .h1 {
+ font-size: 21px;
+ font-weight: bold;
+ Margin-top: 15px;
+ Margin-bottom: 5px;
+ font-family: Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ }
+ .h2 {
+ font-size: 18px;
+ font-weight: bold;
+ Margin-top: 10px;
+ Margin-bottom: 5px;
+ font-family: Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ }
+ .one-column .contents {
+ text-align: left;
+ font-family: Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ }
+ .one-column p {
+ font-size: 14px;
+ Margin-bottom: 0px;
+ font-family: Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ }
+ .two-column {
+ text-align: center;
+ font-size: 0;
+ }
+ .two-column .column {
+ width: 100%;
+ max-width: 300px;
+ display: inline-block;
+ vertical-align: top;
+ }
+ .contents {
+ width: 100%;
+ }
+ .two-column .contents {
+ font-size: 14px;
+ }
+ .two-column img {
+ width: 100%;
+ max-width: 280px;
+ height: auto;
+ }
+ .two-column .text {
+ padding-top: 0px;
+ }
+ .three-column {
+ text-align: center;
+ font-size: 0;
+ padding-top: 10px;
+ padding-bottom: 10px;
+ }
+ .three-column .column {
+ width: 100%;
+ max-width: 200px;
+ display: inline-block;
+ vertical-align: top;
+ }
+ .three-column .contents {
+ font-size: 14px;
+ text-align: center;
+ }
+ .three-column img {
+ width: 100%;
+ max-width: 180px;
+ height: auto;
+ }
+ .three-column .text {
+ padding-top: 10px;
+ }
+ .img-align-vertical img { 
+ display: inline-block; 
+ vertical-align: middle; 
+ }
+ .emailImage{ 
+ height:auto !important; 
+ max-width:600px !important; 
+ width: 100% !important; 
+ }
+ @-ms-viewport{ width: device-width;}
+ @media only screen and (max-width: 480px) {
+ body[yahoo] .container { width:100% !important; }
+ body[yahoo] .footer { width:auto !important; margin-left:0; }
+ body[yahoo] .widthMobile { width: 320px !important; }
+ body[yahoo] .content-padding{ padding:4px !important; }
+ body[yahoo] .mobile-hidden { display:none !important; }
+ body[yahoo] .hide { display : block !important; width : auto !important; max-height: inherit !important; overflow : visible !important; float : none !important; }
+ body[yahoo] .logo { display:block !important; padding:0 !important; }
+ body[yahoo] img { width:auto !important; max-width:308px !important; height:auto !important; max-height:auto !important;}
+ body[yahoo] .header img { width:auto !important; max-width:316px !important; height:auto !important; max-height:auto !important;}
+ body[yahoo] .agent-image { width:auto !important; max-width:125px !important; height:auto !important; max-height:auto !important;}
+ body[yahoo] .photo img { width:100% !important; max-width:100% !important; height:auto !important;}
+ body[yahoo] .drop { display:block !important; width: 100% !important; float:left; clear:both;}
+ body[yahoo] .footerlogo { display:block !important; width: 100% !important; padding-top:15px; float:left; clear:both;}
+ body[yahoo] .nav4, body[yahoo] .nav5, body[yahoo] .nav6 { display: none !important; }
+ body[yahoo] .emailImage{ height:auto !important; max-width:600px !important; width: 100% !important; }
+ }
+ @media only screen and (max-width: 640px) {
+ body[yahoo] .container { width:100% !important; }
+ body[yahoo] .mobile-hidden { display:none !important; }
+ body[yahoo] .hide { display : block !important; width : auto !important; max-height: inherit !important; overflow : visible !important; float : none !important; }
+ body[yahoo] .logo { display:block !important; padding:0 !important; }
+ body[yahoo] .photo img { width:100% !important; height:auto !important;}
+ body[yahoo] .nav5, body[yahoo] .nav6 { display: none !important;}
+ body[yahoo] .block { display:block !important; }
+ }
+ </style>
+ <!--[if (gte mso 9)|(IE)]>   <style type="text/css">   table {border-collapse: collapse !important;}   </style>   <![endif]-->
+</head>
+<body style="Margin:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;min-width:100%;background-color:#f1f1f1;">
+<!----><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+ 
+  <tr>
+   <td valign="top" align="center" style="padding-top: 15px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.3; color: #3d3d3d;">
+   View in <a style="color: #3d3d3d;" href="https://view.policy.farmers.com/?qs=375d96a06a32cb8cb90eb93435034b5a97056b95a8bd4dc299f4312622d63fd6420154e0b31a54db60ca65e6ccb5739fa876e1f7b76ea69d67e115bd7b2bb89ce9000354ef572118e04ae018da713671">web browser</a>.<br aria-hidden="true">
+   Please add Farmers Insurance<sup>&reg;</sup> to your list of email contacts.<br aria-hidden="true">
+   <br aria-hidden="true">
+   </td>
+  </tr>
+ 
+</table></td></tr></table>
+
+
+<table width="100%" bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0">
+ 
+  <tr>
+   <td style="font-family: Arial; font-size: 13px;">
+   </td>
+  </tr>
+ <table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+</td></tr></table>
+</table></td></tr></table><!----><center class="wrapper" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background-color:#f1f1f1;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f1f1f1;" bgcolor="#f1f1f1">
+ <tr>
+  <td bgcolor="#f1f1f1" align="center" valign="top" style="border-collapse:collapse;"></custom></td>
+ </tr>
+ <tr>
+  <td width="100%">
+  <div class="webkit" style="max-width:600px;Margin:0 auto;">
+  <!--[if (gte mso 9)|(IE)]>    <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0;font-family: Calibri, sans-serif;" >     <tr>      <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >      <![endif]-->
+    <!-- ======= start main body ======= -->
+    <table class="outer" align="center" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0;font-family: Arial, sans-serif;Margin:0 auto;width:100%;max-width:600px;" bgcolor="#fffff">
+     <tr>
+      <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+      <!-- ======= start header ======= -->
+      <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+       <tr>
+        <td>
+        <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
+         <tbody>
+          <tr>
+           <td align="center">
+           <center>
+           <table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" style="Margin: 0 auto;">
+            <tbody>
+             <tr>
+              <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-spacing:0;font-family: Arial, sans-serif;color:#333333;">
+               <tr>
+                <td class="contents" style="min-width:100% !important;">
+                <table border="0" cellpadding="0" cellspacing="0" align="center" style="Margin:0 auto;">
+                 <tbody>
+                  <tr>
+                   <td height="10"></td>
+                  </tr>
+                  <!-- ======= logo ======= -->
+                  <tr>
+                   <td>
+                   <table align="center">
+                    <tr>
+                     <td style="min-width:100% !important;"><center>
+                     <a href="https://click.policy.farmers.com/?qs=7b6d90bfebf11e7c9d83fb384a72f59f55e629581c3f461b40e5e18f717243ef4cb19766c527eff409d98fe94e8673bbb57f3188de7e452e" alt="Farmers Insurance" ><img src="https://image.policy.farmers.com/lib/fe5d15707c620d7c751c/m/2/1bd19dd8-bbbc-4da0-a156-eac302139c62.png" title="Farmers Insurance" alt="Farmers Insurance" border="0" hspace="0" vspace="0" mdid="e77e9351-f25a-44c9-9aca-48743675348f"></a>
+                     </center></td>
+                    </tr>
+                   </table>
+                   </td>
+                  </tr>
+                  <tr>
+                   <td height="15"></td>
+                  </tr>
+                 </tbody>
+                </table>
+                </td>
+               </tr>
+              </table>
+              </td>
+             </tr>
+            </tbody>
+           </table>
+           </center>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        </td>
+       </tr>
+      </table>
+      <table width="100%" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center" style="Margin:0 auto;">
+       <tr>
+        <td style="min-width:100% !important;"><img src="https://image.policy.farmers.com/lib/fe5d15707c620d7c751c/m/2/8fc3a69a-f707-4b13-80b3-ce293bbd123e.png" class="emailImage" width="100%" style="min-width:100% !important;" title="" alt="" border="0" hspace="0" vspace="0" mdid="f52a7f6b-15fe-45a4-af35-61e3847886d2"></td>
+       </tr>
+      </table>
+      <!-- ======= end header ======= -->
+      <!-- ======= start hero article ======= -->
+      <table class="one-column" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-spacing:0;font-family: Arial, sans-serif;color:#333333;max-width: 600px;background-color: #ffffff;" bgcolor="#ffffff">
+       <tr>
+        <td class="content-padding" style="padding:20px;">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%" style="min-width:100% !important;">
+         <tr>
+          <td align="left" bgcolor="#ffffff"><span style="font-family: Arial; color:  #003087; font-size: 32px;">Thank you for your payment</span>
+          </td>
+         </tr>
+        </table>
+        </td>
+       </tr>
+      </table>
+      <table class="one-column" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-spacing:0;font-family: Arial, sans-serif;color:#333333;max-width: 600px;background-color: #ffffff;" bgcolor="#ffffff">
+       <tr>
+        <td style="min-width:100% !important;" bgcolor="#002f86">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%" style="min-width:100% !important;">
+         <tr>
+          <td align="left" style="padding: 20px; min-width:100% !important;" bgcolor="#002f86">
+          <table bgcolor="#002f86" cellspacing="0" cellpadding="0" border="0" width="100%" style="min-width:100% !important;">
+           <tr>
+            <td align="left" bgcolor="#002f86"><span style="font-size: 14px; font-family: Arial; color: #FFFFFF;"><strong>Account number:</strong> P708855704</span>
+            <br>
+            <span style="font-size: 14px; font-family: Arial; color: #FFFFFF;"><strong>Payment date:</strong>
+            <a href="#paydate" id="paydate" style="text-decoration:none;border:none;color:#FFFFFF">10/16/2023</a></span></td>
+            <td bgcolor="#002f86" align="right" valign="top"><br>
+            <span style="font-size: 12px; font-family: Arial; color: #FFFFFF;">Payment amount:</span><br>
+            <span style="font-size: 22px; font-family: Arial; color: #FFFFFF;"><strong>$545.17</strong></span></td>
+           </tr>
+          </table>
+          </td>
+         </tr>
+        </table>
+        </td>
+       </tr>
+      </table>
+      <!-- ======= end hero article ======= -->
+      <!-- ======= start article1 ======= -->
+      <table class="one-column" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-spacing:0;background-color: #ffffff;" bgcolor="#ffffff">
+       <tr>
+        <td align="center" style="padding: 20px;">
+        <table cellspacing="0" cellpadding="" border="0" width="100%" style="min-width:100% !important;">
+         <tr bgcolor="#ffffff" align="right">
+          <td style="padding-right: 10px;" align="right" valign="middle">
+          <img src="https://image.policy.farmers.com/lib/fe5d15707c620d7c751c/m/2/7f1cefee-1452-4290-9041-54fd96dfea8d.png" title="" alt="" border="0" hspace="0" vspace="0" mdid="3053db9f-d299-4eb5-bba7-61e0a8d28630"> <a href="https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c809e0e4175a6f510593c10d441211f81fdc7721369e3ac12288cfece502004b1e2ed1c87e76d15ddc61db73db3aaa6b2f1a224e8f154268d4" alt="View Payment History"  style="text-decoration:none !important; text-decoration:none;"><font face="Arial" color="#0073cf"><span style="font-size: 14px;"><strong>View Payment History</strong></span></font></a>
+          </td>
+         </tr>
+         <tr>
+          <td height="15"></td>
+         </tr>
+         <tr>
+          <td align="left" bgcolor="#ffffff"><!----><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table width="100%" bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0">
+ 
+  <tr>
+   <td style="font-family: Arial; font-size: 13px;"><font color="#3f3f3f" face="Arial"><span style="font-size: 14px;">
+   Dear&nbsp;Brett,</span></font><br>
+   <br>
+   <font color="#3f3f3f" face="Arial"><span style="font-size: 14px;">
+   Thank you for choosing Farmers</span></font><sup style="color: #3f3f3f; font-family: Arial; font-size: 14px;">&reg;</sup><font color="#3f3f3f" face="Arial"><span style="font-size: 14px;">.</span></font><br>
+   <br>
+   <font color="#3f3f3f" face="Arial"><span style="font-size: 14px;">
+   This is a confirmation that your payment has been deducted from your bank account. </span></font><br>
+   <br>
+   <table style="color: #3f3f3f; font-family: Arial; font-size: 14px;">
+    
+     <tr>
+      <td><span style="font-family: Arial; font-size: 14px; color: #3f3f3f;">Payment method:</span></td>
+      <td cellpadding="5"><span style="font-family: Arial; font-size: 14px; color: #3f3f3f;">Bank account xxxx1816</span></td>
+     </tr>
+     <tr>
+      <td><span style="font-family: Arial; font-size: 14px; color: #3f3f3f;">Confirmation number:</span></td>
+      <td cellpadding="5"><span style="font-family: Arial; font-size: 14px; color: #3f3f3f;">970025251269</span></td>
+     </tr>
+    
+   </table>
+   <br>
+   <font color="#3f3f3f" face="Arial"><span style="font-size: 14px;">
+   To view your payment history, you can click on the button below to log on to your My Farmers account on farmers.&shy;com.</span></font></td>
+  </tr>
+ 
+</table></td></tr></table><!----></td>
+         </tr>
+         <tr>
+          <td bgcolor="#ffffff" height="15"></td>
+         </tr>
+         <tr>
+          <td bgcolor="#ffffff" align="left" valign="top" class="drop">
+          <!----><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+
+
+    
+              
+              
+     
+  
+           
+              
+     
+     
+    
+                 
+                       
+                   
+                
+ 
+                
+               
+    
+
+            
+   
+             
+              
+              
+     
+  
+           
+              
+     
+     
+              
+    
+                 
+                    
+
+                
+ 
+              
+    
+                 
+                    
+
+                
+ 
+                
+               
+    
+
+            
+   
+                
+
+  
+   
+              
+            
+                    
+                     
+                   
+                      
+<hr>
+                    <table style="width: 100%">
+                       
+    <tr>
+       
+      
+ 
+
+                      <td style="width: 20%;"> 
+                        <div>
+                          <img title="Auto policy" alt="Auto policy" src="https://image.policy.farmers.com/lib/fe5d15707c620d7c751c/m/1/Auto+policy.png" border=0 thid="39fe20ba-2816-4955-a66e-5fce7510a920">
+                        </div>
+                      </td>
+                      <td style="width: 80%;"><div>
+                      <table style="width: 100%">
+                              
+                         <tr>                         
+                         <td align="top"><span style="font-size: 14px; color: #3f3f3f;"><strong>Auto Policy: </strong></span></td>                        
+                          <td style="width: 18%;"><span style="font-size: 14px; color: #3f3f3f;">XXXX6479 </span></td>
+                        </tr>
+
+                        
+                           
+                              <tr>
+                        
+                         <td valign="top"><span style="font-size: 14px; color: #3f3f3f;"> 2012 NISSAN SENTRA 4DOOR</span></td>
+                          <td style="width: 18%;"><span style="font-size: 14px; color: #3f3f3f;"></span></td>
+                        </tr>
+
+                               
+                              <tr>
+                        
+                         <td valign="top"><span style="font-size: 14px; color: #3f3f3f;"> 2014 FORD FOCUS 5D ST</span></td>
+                          <td style="width: 18%;"><span style="font-size: 14px; color: #3f3f3f;"></span></td>
+                        </tr>
+
+                                              
+                     
+                      </table>
+                  
+   
+                      </div>
+                      </td>
+
+
+
+
+                      </tr>
+
+                     
+                      </table>
+      
+         
+                 
+                  
+                    
+     
+     <hr>
+                    <table style="width: 100%">
+                          
+    <tr>
+       
+      
+ 
+
+                      <td style="width: 20%;"> 
+                        <div>
+                         <img title="Home policy" alt="Home policy" src="https://image.policy.farmers.com/lib/fe5d15707c620d7c751c/m/1/Home+policy.png" border=0 thid="46c08a2d-a647-4dd4-b5ee-6eeef5f93fab">
+                        </div>
+                      </td>
+                      <td style="width: 80%;"><div>
+                      <table style="width: 100%">
+                              
+                         <tr>                         
+                         <td align="top"><span style="font-size: 14px; color: #3f3f3f;"><strong>Home Policy: </strong></span></td>                        
+                          <td style="width: 18%;"><span style="font-size: 14px; color: #3f3f3f;">XXXX3758 </span></td>
+                        </tr>
+
+                        
+                           
+                              <tr>
+                        
+                         <td valign="top"><span style="font-size: 14px; color: #3f3f3f;"> 10500 Lakeline Mall Dr Apt 2401</span></td>
+                          <td style="width: 18%;"><span style="font-size: 14px; color: #3f3f3f;"></span></td>
+                        </tr>
+
+                                              
+                     
+                      </table>
+                  
+   
+                      </div>
+                      </td>
+
+
+
+
+                      </tr>
+
+     </table>
+ 
+         
+                 
+                  
+                  
+                  
+                 <hr>
+            
+
+</td></tr></table></td></tr></table><!----></td>
+         </tr>
+        </table>
+        </td>
+       </tr>
+      </table>
+      <!-- ======= end article1 ======= -->
+      <!-- START BUTTON -->
+      <table width="100%">
+       <tr>
+        <td bgcolor="#ffffff">
+        <table border="0" align="right" cellpadding="0" cellspacing="0" style="padding-right: 25px; Margin:0 auto;">
+         <tbody>
+          <tr>
+           <td align="center" bgcolor="#ffffff">
+           <table border="0" cellpadding="0" cellspacing="0" style="Margin:0 auto;">
+            <tr>
+             <td align="center" bgcolor="#c41c22" width="225" style="background: linear-gradient(#c41c22 54%, #b01825 55%); background-color:#c41c22; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;">
+             <a href="https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c824f5c17f5870fece91b0c59cee14b25e5cecf2d29985496c875abffa7de8d079c635e38eef2e429e64b9922aa53a6881868a87e9a7910cb2" style="padding: 10px;width:225px;display: block;text-decoration: none;border:0;text-align: center;font-weight: bold;font-size: 14px;font-family: Arial, sans-serif;color: #ffffff;background: linear-gradient(#c41c22 54%, #b01825 55%);background-color:#c41c22;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;line-height:17px;text-transform:uppercase;letter-spacing: 1px;" class="button_link" ><font color="#ffffff" style="text-decoration:none;">VIEW PAYMENT HISTORY</font></a>
+             </td>
+            </tr>
+           </table>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        </td>
+       </tr>
+      </table>
+      <!-- END BUTTON -->
+      <!-- ======= start article2 ======= -->
+      <table class="one-column" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-spacing:0;background-color: #ffffff;" bgcolor="#ffffff">
+       <tr>
+        <td bgcolor="#ffffff" align="center" style="padding: 20px;">
+        <table cellspacing="0" cellpadding="" border="0" width="100%" style="min-width:100% !important;">
+         <tr>
+          <td bgcolor="#ffffff" align="left"><!----><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+
+
+<table width="100%" border="0" cellpadding="2" cellspacing="0" class="dashedBorder" style="font-family: Arial; font-size: 13px; width: 100%;" bgcolor="">
+ 
+  <tr>
+   <td style="font-family: helvetica; white-space: normal;" align="left" valign="top"><span style="font-size: 16px; color: #3f3f3f;">
+   <b>Your Farmers Agent:</b></span>
+   <p>
+   <span style="font-size: 16px; color: #3f3f3f;"><b>Constantin Ispas</b></span><br>
+   <span style="font-size: 14px; color: #3f3f3f;"><em>Farmers Insurance Agent</em>
+   <br>
+   715 Discovery Blvd Ste 305 <br>
+   
+   Cedar Park, TX 78613<br>
+   
+   <a href="mailto:cispas@farmersagent.com">cispas@farmersagent.com</a><br>
+   
+   (512) 201-2924<br>
+   
+   
+   </span>
+   </p>
+   </td>
+  </tr>
+ 
+</table>
+
+</td></tr></table>
+</td></tr></table><!----><!----><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><h3 style="color:#00008B; font-family: Arial;">Everything you need, anywhere you are ...
+</h3>
+<div style="font-family: Arial; font-size: 14px;">
+See your policy information, get auto insurance ID cards*, quickly pay bills 
+and connect with us – right from your phone. Download the Farmers<sup>&reg;</sup> mobile 
+app today to get started.  
+</div>
+  <meta charset="UTF-8">
+  <div style="text-align: left; font-size: 14px;">
+    <br>
+    <a href="https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c858dd400cd5ccc2cb5d8f5f80a936dd023a3e71164e3de2caba143c4767100adf980094ddab0591fa9b17e4199aedbe2b" style="text-decoration: none;">
+      <img src="https://image.policy.farmers.com/lib/fe5d15707c620c7f7316/m/2/5fae6d79-719d-49d2-9787-506af2ba98d5.png" alt="iOS App Store Download Badge" height="40">
+    </a>
+    <a href="https://click.policy.farmers.com/?qs=644c3cfdfdd0c1c8a088000dbb1b298abba82d27e286af8ed5a006a68f2db6e9d81f486f0b033414b5811091dcd76f7c0385aee53bf1d9f6" style="text-decoration: none;">
+      <img src="https://image.policy.farmers.com/lib/fe5d15707c620c7f7316/m/2/7ffd1067-c94a-4e93-8a0b-1e1dadca173c.png" alt="Google Play Store Download Badge" height="40">
+    </a>
+    
+  </div>
+     <br><div style="font-family: Arial; font-size: 14px;"> *Digital auto insurance ID cards aren't available in New York and New Jersey 
+due to state law.
+</div>
+</td></tr></table></td></tr></table><!----></td>
+         </tr>
+        </table>
+        </td>
+       </tr>
+      </table>
+      <!-- ======= end article2 ======= -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f1f1f1">
+       <tr>
+        <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+        <table bgcolor="#f1f1f1" border="0" cellpadding="5" cellspacing="0" width="100%">
+         <tbody>
+          <tr>
+           <td bgcolor="#f1f1f1" valign="top"><span style="font-family: Arial; font-size: 14px;"></span></td>
+          </tr>
+          <tr>
+           <td bgcolor="#f1f1f1" valign="top" align="left"></custom></td>
+          </tr>
+          <tr>
+           <td bgcolor="#f1f1f1" align="left"><font face="Arial" size="1" color="#959595"><b>PCA2 &nbsp;&nbsp;08/16</b></font></td>
+          </tr>
+         </tbody>
+        </table>
+        </td>
+       </tr>
+      </table>
+      <!-- ======= end footer ======= -->
+      </td>
+     </tr>
+    </table>
+    <!--[if (gte mso 9)|(IE)]>      </td>     </tr>    </table>    <![endif]-->
+  </div>
+  </td>
+ </tr>
+</table>
+</center>
+<img src="https://click.policy.farmers.com/open.aspx?ffcb10-fe9815707364007a70-fe6916717366057e7016-fe5d15707c620d7c751c-ff9b1573-fe501579726103747d15-ff3716707562&d=10181&bmt=0" width="1" height="1" alt="">
+</custom></body>
+</html>
+
+--5AUaoXZegG7Z=_?:--
+

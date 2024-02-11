@@ -1,0 +1,705 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:7208:18c7:b0:6f:2345:61a2 with SMTP id gn7csp1478584rbb;
+        Mon, 25 Sep 2023 11:04:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEtSJlfhWanyinl4TxM8772JKWPCNXeLyB1a0te64b52h3RIJcf0ZjRtMitF5BJ4gzVAafZ
+X-Received: by 2002:a9d:7f83:0:b0:6c4:a42b:9cd8 with SMTP id t3-20020a9d7f83000000b006c4a42b9cd8mr8051348otp.1.1695665042111;
+        Mon, 25 Sep 2023 11:04:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1695665042; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ONpb9BLFXHTYdqvbHIBNhj95sinoHsEr53mZCCKjtWkMjge6M2+zx9wygP3S0JwAve
+         zXhFH7ngFrqbEa53G0xzir3vBWBkL/wMWTjzHVmPHDGERJWC/MgzVskEXlCdzuIje4It
+         hSJzusbmJkXr4kOAf4c/J/UtvGcOzpc74RnZ9O5xZ6otIHynrVLmsr6KaozYXkid/05G
+         RaQdCtVHqf4HMTg7wrjgta19h1csaoMPv/s22Pqr+OLfPlJwdAJi5ggIDgMeBYPy1iMx
+         SfxDvG2F34xNdxRnYkhGvyGHgE8/xr0zzLGl7bPsZsIfLut+HtT1RwHxom+4c/mJ1REy
+         9k4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:list-id:reply-to:mime-version:date:subject:to:from
+         :dkim-signature;
+        bh=KgT0HIA8omrHih1A/pr8Mk0EQAl4tKBDJ5IuqkgFHkQ=;
+        fh=jAwxsR5/ZN++PcxuYCdnUPHbFM4NVHGDrGPkXWs0fag=;
+        b=uJ6MJeBmeQCk66IFjO/jrfkEwkSDu0zUQDWlJF2ET98wuZ4VCpdt5AYfZBs7wmAqx5
+         JDqWq+vbMRwFCwQmxCu1qpttp8DnDDuPYF1hk8wy++udJa9A7iWqPTdqn5kKpqK2sDlG
+         d6sL+fYCTpGRDj7Z+UycxTZAuKhyLeMLSyTpfJvhpq2LE0pK1eD8s93RZwcag2r2nUHD
+         gT+gM7h57lflJHnWpu7h3JR4Se3J0CYN7AIg/w+M1sg9fEqr9qG0lafUF0E05OrIrQlR
+         /3cH4MRwsbD1CAqsmGN04OtO18AnN5aS1oNCnEfbLZiliKcsE6pX1oOsNO9KAYvwQMU1
+         G3WQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@customerassist.bankofamerica.com header.s=200608 header.b=EcpLDzqV;
+       spf=pass (google.com: domain of bounce-145816_html-989934913-5859728-522000357-25005@bounce.customerassist.bankofamerica.com designates 68.232.194.31 as permitted sender) smtp.mailfrom=bounce-145816_HTML-989934913-5859728-522000357-25005@bounce.customerassist.bankofamerica.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=bankofamerica.com
+Return-Path: <bounce-145816_HTML-989934913-5859728-522000357-25005@bounce.customerassist.bankofamerica.com>
+Received: from mta.customerassist.bankofamerica.com (mta.customerassist.bankofamerica.com. [68.232.194.31])
+        by mx.google.com with ESMTPS id d12-20020a9d72cc000000b006bd063dc3c3si2706768otk.92.2023.09.25.11.04.01
+        for <brettbash@brettbash.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 25 Sep 2023 11:04:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-145816_html-989934913-5859728-522000357-25005@bounce.customerassist.bankofamerica.com designates 68.232.194.31 as permitted sender) client-ip=68.232.194.31;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@customerassist.bankofamerica.com header.s=200608 header.b=EcpLDzqV;
+       spf=pass (google.com: domain of bounce-145816_html-989934913-5859728-522000357-25005@bounce.customerassist.bankofamerica.com designates 68.232.194.31 as permitted sender) smtp.mailfrom=bounce-145816_HTML-989934913-5859728-522000357-25005@bounce.customerassist.bankofamerica.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=bankofamerica.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608;
+ d=customerassist.bankofamerica.com;
+ h=From:To:Subject:Date:MIME-Version:Reply-To:List-ID:X-CSA-Complaints:
+ Message-ID:Content-Type; i=assist@customerassist.bankofamerica.com;
+ bh=KgT0HIA8omrHih1A/pr8Mk0EQAl4tKBDJ5IuqkgFHkQ=;
+ b=EcpLDzqVdtrXnHbkUMuGsqGztJoi6k3SawSPOlSManHFUlPDc5jrTkDdR5QuG9KzkOXJe1OttdpE
+   NTL6srQAkwWTdTylMDe1l66/ABNsGBeAIwqOTjMmt0dNfZPxN+fz25qxDwJQTwwKjfI+ZbCT7i19
+   o023gb/Fi+Jcp5iE/c8=
+Received: by mta.customerassist.bankofamerica.com id h275p42fmd4u for <brettbash@brettbash.com>; Mon, 25 Sep 2023 18:04:01 +0000 (envelope-from <bounce-145816_HTML-989934913-5859728-522000357-25005@bounce.customerassist.bankofamerica.com>)
+From: "Bank of America" <assist@customerassist.bankofamerica.com>
+To: <brettbash@brettbash.com>
+Subject: Your payment is past due
+Date: Mon, 25 Sep 2023 12:03:59 -0600
+MIME-Version: 1.0
+Reply-To: "Bank of America" <reply-fe831178706d037f7d-145816_HTML-989934913-522000357-25005@customerassist.bankofamerica.com>
+List-ID: <522000104.xt.local>
+X-CSA-Complaints: csa-complaints@eco.de
+X-SFMC-Stack: 5
+x-job: 522000357_5859728
+Message-ID: <43507860-382d-4422-8828-302fe83d25db@las1s05mta2.xt.local>
+Content-Type: multipart/alternative;
+	boundary="HHJPHPFHnQVh=_?:"
+
+This is a multi-part message in MIME format.
+
+--HHJPHPFHnQVh=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+ &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;
+ &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; 
+ 
+
+ 
+
+
+
+
+ 
+ 
+
+ 
+
+
+Account(s) ending in 
+
+0350 
+
+
+ 
+
+
+ 
+Date 
+
+9/25/2023
+
+
+
+KRISTI WARNER:
+
+
+
+Your payment is past due as of 9/25/2023 – please make your $233.00 payment as soon as possible, if you haven’t already.
+
+
+
+We understand these things can happen. We appreciate you making last month’s payment using Online Banking – thank you.
+
+
+
+How to make your payment
+ 
+
+You have a few payment options: 
+ 
+
+	- Set up recurring payments or make a one-time payment:
+	- Online – use our Mobile Banking app or Online Banking at 
+http://click.customerassist.bankofamerica.com/u/?qs=9971ba65162b9d0c4c494f73e40e9eddca8b22c73560fede8ae886c27bb5039ce045b6d0e45f16d9346dbb7adf0349cb98ccd51b3c9bd095570750107b9a5492 
+bankofamerica.com 
+	- By phone – call 866-554-7016, Monday through Thursday from 8 a.m. to midnight, Friday from 8 a.m. to 11 p.m., Saturday from 8 a.m. to 7 p.m. and Sunday from noon to 9 p.m. Eastern 
+	Mail your payment to Bank of America, PO Box 15019, Wilmington, DE 19850-5019.
+We're here to help
+
+
+If you have any questions or are having trouble making your payments, please call us at 866-554-7016, Monday through Thursday from 8 a.m. to midnight, Friday from 8 a.m. to 11 p.m., Saturday from 8 a.m. to 7 p.m. and Sunday from noon to 9 p.m. Eastern.
+
+
+
+We look forward to receiving your payment.
+
+
+
+
+
+
+ 
+ 
+
+
+ 
+
+This is an attempt to collect a debt and any information obtained will be used for that purpose.
+
+
+This is a service email from Bank of America. Please note that you may receive service emails in accordance with your Bank of America service agreements, whether or not you elect to receive promotional email.
+
+
+Read our Privacy Notice:
+http://click.customerassist.bankofamerica.com/u/?qs=9971ba65162b9d0cd5b452f7923df5b8d21b04140ca11f0db6338990be53d63c9112157a3787f436866fafa5c972067e53739306d87e56b7d931355ac6f7e31c 
+ www.bankofamerica.com/privacy/consumer-privacy-notice.go 
+
+
+Please don’t reply directly to this automatically generated email message.
+
+
+Bank of America, PO Box 25118, Tampa, FL 33622
+
+
+Bank of America, N.A. Member FDIC. Equal Housing Lender:
+
+http://click.customerassist.bankofamerica.com/u/?qs=9971ba65162b9d0c89bc0b3a7774c6887222169a63b0378f7f0175849e689eaa2415577d9f674824af5d41fb3c9500b034319e9bb5caee30409278466ba3e949 
+www.bankofamerica.com/help/equalhousing.cfm 
+
+©2023 Bank of America Corporation. All rights reserved.
+
+This email was sent to: brettbash@brettbash.com
+
+
+
+
+
+
+ 
+ 
+
+
+
+--HHJPHPFHnQVh=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">  
+  <head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--[if (gte mso 9)|(IE)]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+    <!-- Make sure Arial is first in the font-family for Outlook & add Outlook-only classes -->
+    <!--[if mso]>  <style type="text/css">  body, table, td { font-family: Arial, Helvetica, sans-serif !important; }  .mso-no-border { border: none !important; } .mso-border { border: 2px solid #003a5d !important; } </style>  <![endif]-->
+    <style type="text/css">
+      #outlook a {
+        padding: 0;
+      }
+      .ReadMsgBody, .ExternalClass {
+        width: 100%;
+      }
+      .ExternalClass * {
+        line-height: 100%;
+      }
+      .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass p, .ExternalClass div {
+        line-height: 100%;
+        mso-line-height-rule: exactly;
+      }
+      body, table, td, a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        margin: 0 !important;
+      }
+      table, td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        border: 0;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+      }
+      table {
+        border-collapse: collapse !important;
+      }
+      body {
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+      a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
+      @-ms-viewport {
+        width: device-width;
+      }
+      /* div, button { display:block !important; } */
+      #MessageViewBody a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+      /* Samsung link fix */
+      #MessageViewBody, #MessageWebViewDiv {
+        width: 100% !important;
+      }
+      /* Samsung width fix - doesn't always work */
+    </style>
+    <style>
+      @media only screen and (max-device-width: 480px), screen and (max-width: 480px) {
+        .container {
+          width: 100% !important;
+          height: auto !important;
+        }
+        .show {
+          display: block !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow: visible !important;
+          width: auto !important;
+          max-height: inherit !important;
+        }
+        .hide {
+          display: none !important;
+        }
+        .stack {
+          display: block !important;
+          width: 100% !important;
+        }
+        .stack-auto {
+          display: block !important;
+          width: auto !important;
+        }
+        .stack-keepwidth {
+          display: block !important;
+        }
+        .display-header {
+          display: table-header-group !important;
+        }
+        .display-footer {
+          display: table-footer-group !important;
+        }
+        .center {
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        .align-center {
+          text-align: center !important;
+        }
+        .align-left {
+          text-align: left !important;
+        }
+        .align-right {
+          text-align: right !important;
+        }
+        .center-img img {
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        .center-table table {
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        .left-table table {
+          float: left !important;
+        }
+        .right-table table {
+          float: right !important;
+        }
+        .add-break {
+          display: block !important;
+          width: 100% !important;
+          height: 0 !important;
+          font-size: 0 !important;
+          line-height: 0 !important;
+        }
+        .width-full {
+          width: 100% !important;
+          height: auto !important;
+        }
+        .width-half {
+          width: 50% !important;
+          height: auto !important;
+        }
+        .width-third {
+          width: 33.33% !important;
+          height: auto !important;
+        }
+        .width-quarter {
+          width: 25% !important;
+          height: auto !important;
+        }
+        .width-auto {
+          width: auto !important;
+        }
+        .height-auto {
+          height: auto !important;
+        }
+        .width-full-img img {
+          width: 100% !important;
+          height: auto !important;
+        }
+        .width-max-full {
+          max-width: 100% !important;
+        }
+        .width-max-full-img img {
+          max-width: 100% !important;
+        }
+        .pad-0 {
+          padding: 0 !important;
+        }
+        .pad-0LR {
+          padding-right: 0 !important;
+          padding-left: 0 !important;
+        }
+        .pad-0T {
+          padding-top: 0 !important;
+        }
+        .pad-0B {
+          padding-bottom: 0 !important;
+        }
+        .pad-0L {
+          padding-left: 0 !important;
+        }
+        .pad-0R {
+          padding-right: 0 !important;
+        }
+        .pad-5T {
+          padding-top: 5px !important;
+        }
+        .pad-5B {
+          padding-bottom: 5px !important;
+        }
+        .pad-5L {
+          padding-left: 5px !important;
+        }
+        .pad-5R {
+          padding-right: 5px !important;
+        }
+        .pad-10T {
+          padding-top: 10px !important;
+        }
+        .pad-10B {
+          padding-bottom: 10px !important;
+        }
+        .pad-10L {
+          padding-left: 10px !important;
+        }
+        .pad-10R {
+          padding-right: 10px !important;
+        }
+        .pad-10LR {
+          padding-right: 10px !important;
+          padding-left: 10px !important;
+        }
+        .pad-15T {
+          padding-top: 15px !important;
+        }
+        .pad-15B {
+          padding-bottom: 15px !important;
+        }
+        .pad-15L {
+          padding-left: 15px !important;
+        }
+        .pad-15R {
+          padding-right: 15px !important;
+        }
+        .pad-20T {
+          padding-top: 20px !important;
+        }
+        .pad-20B {
+          padding-bottom: 20px !important;
+        }
+        .pad-20L {
+          padding-left: 20px !important;
+        }
+        .pad-20R {
+          padding-right: 20px !important;
+        }
+        .pad-20LR {
+          padding-right: 20px !important;
+          padding-left: 20px !important;
+        }
+        .pad-25T {
+          padding-top: 25px !important;
+        }
+        .pad-25B {
+          padding-bottom: 25px !important;
+        }
+        .pad-25L {
+          padding-left: 25px !important;
+        }
+        .pad-25R {
+          padding-right: 25px !important;
+        }
+        .pad-30LR {
+          padding-right: 30px !important;
+          padding-left: 30px !important;
+        }
+        .pad-30T {
+          padding-top: 30px !important;
+        }
+        .pad-30B {
+          padding-bottom: 30px !important;
+        }
+        .pad-30L {
+          padding-left: 30px !important;
+        }
+        .pad-30R {
+          padding-right: 30px !important;
+        }
+        .pad-40LR {
+          padding-right: 40px !important;
+          padding-left: 40px !important;
+        }
+        .pad-40T {
+          padding-top: 30px !important;
+        }
+        .pad-40B {
+          padding-bottom: 30px !important;
+        }
+        .pad-40L {
+          padding-left: 30px !important;
+        }
+        .pad-40R {
+          padding-right: 30px !important;
+        }
+        .fnt-10 {
+          font-size: 10px !important;
+          line-height: 14px !important;
+        }
+        .fnt-11 {
+          font-size: 11px !important;
+          line-height: 15px !important;
+        }
+        .fnt-12 {
+          font-size: 12px !important;
+          line-height: 16px !important;
+        }
+        .fnt-14 {
+          font-size: 14px !important;
+          line-height: 18px !important;
+        }
+        .fnt-16 {
+          font-size: 16px !important;
+          line-height: 20px !important;
+        }
+        .fnt-18 {
+          font-size: 18px !important;
+          line-height: 22px !important;
+        }
+        .fnt-20 {
+          font-size: 20px !important;
+          line-height: 24px !important;
+        }
+        .fnt-24 {
+          font-size: 24px !important;
+          line-height: 28px !important;
+        }
+        .fnt-30 {
+          font-size: 30px !important;
+          line-height: 34px !important;
+        }
+        .border-0 {
+          border: 0 !important;
+        }
+        .border-0T {
+          border-top: 0 !important;
+        }
+        .border-0B {
+          border-bottom: 0 !important;
+        }
+        .border-0L {
+          border-left: 0 !important;
+        }
+        .border-0R {
+          border-right: 0 !important;
+        }
+        .border-1T {
+          border-top: 1px #eeeeee solid !important;
+        }
+        .border-1B {
+          border-bottom: 1px #eeeeee solid !important;
+        }
+        .border-1L {
+          border-left: 1px #eeeeee solid !important;
+        }
+        .border-1R {
+          border-right: 1px #eeeeee solid !important;
+        }
+        .border-2T {
+          border-top: 2px #eeeeee solid !important;
+        }
+        .border-2B {
+          border-bottom: 2px #eeeeee solid !important;
+        }
+        .border-2L {
+          border-left: 2px #eeeeee solid !important;
+        }
+        .border-2R {
+          border-right: 2px #eeeeee solid !important;
+        }
+      }
+    </style>
+  </head>
+  <body style="margin: 0px; padding:0px; -webkit-text-size-adjust:none; -ms-text-size-adjust: none;">
+    <!--  -->
+    
+<div style="display: none; max-height: 0px; overflow:
+ hidden;">&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+    </div>
+    <div style="font-size:0; line-height:0;">
+      <img src="http://click.customerassist.bankofamerica.com/open.aspx?ffcb10-fe831178706d037f7d-fded15717366037a7d12747d-fe3711727764047d761177-fec61574706c057b-fe181d787c6d07797c1573-ff031675756401&bmt=0" width="1" height="1" alt=""></custom>
+        </div>
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 0 auto !important;">
+      <tr>
+        <td bgcolor="#FFFFFF">
+          <div align="center">
+            <table border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#ffffff" class="container">
+              <tr>
+                <td height="35" align="left" valign="top" >
+                  <img alt="Bank of America" src="http://image.customerassist.bankofamerica.com/lib/fe3711727764047d761177/m/1/c1409063-99e0-431c-9ada-30d9b4aec8ee.jpg" border="0" style="display:block" width="134" height="17" >
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#DE1934" height="50" valign="middle" align="center" style="font-family:Verdana, Arial, sans-serif; font-size:18px; color:#FFFFFF; font-weight:bold; text-align:center;" colspan="3" class="drop" >
+                  <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<p>
+
+</p>
+
+</td></tr></table>
+                  
+                </td>
+              </tr>
+              <tr>
+                <td align="left" valign="top" colspan="3" class="drop" style="padding-top:10px; font-family:Verdana, Arial, sans-serif;" >
+                  <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><p style="text-align: right; font-size: 10.5px;">
+Account(s) ending in <br>
+0350 <br>
+
+  
+<br>
+  
+Date <br>
+9/25/2023
+</p>
+
+<p>
+
+<span style="font-size: 14.5px;">
+KRISTI WARNER:
+</span>
+  
+<br><br>
+  
+<span style="font-size: 20px;">
+Your payment is past due as of 9/25/2023 – please make your $233.00 payment as soon as possible, if you haven’t already.
+</span>
+
+<br><br>
+
+<span style="font-size: 14.5px;">
+We understand these things can happen. We appreciate you making last month’s payment using Online Banking – thank you.
+</span>
+  
+<br><br>
+<span style="font-size: 17px;">
+How to make your payment
+     <br>
+<span style="font-size: 14.5px;">
+You have a few payment options: 
+  </span></span></p><ul style="font-size: 14.5px;"> 
+      <li>Set up recurring payments or make a one-time payment:</li>
+
+      <ul style="font-size: 14.5px;">
+          <li>Online – use our Mobile Banking app or Online Banking at <a style="color: rgb(0, 137, 196); text-decoration: underline;" href="http://click.customerassist.bankofamerica.com/u/?qs=9971ba65162b9d0c8caca92ae7cf52472a9685372b1319348213e0a41d202905107b132bf120081a6baa75b3e6b0a9d035df2793ed5037b3280ef8b094a043f1" target="_blank" >bankofamerica.com</a></li>
+          <li>By phone – call 866-554-7016, Monday through Thursday from 8 a.m. to midnight, Friday from 8 a.m. to 11 p.m., Saturday from 8 a.m. to 7 p.m. and Sunday from noon to 9 p.m. Eastern </li>
+      </ul>
+      <li>Mail your payment to Bank of America, PO Box 15019, Wilmington, DE 19850-5019.</li>
+  </ul>
+
+
+
+
+<span style="font-size: 17px;">
+We're here to help
+</span>
+
+<br>
+
+<span style="font-size: 14.5px;">
+If you have any questions or are having trouble making your payments, please call us at 866-554-7016, Monday through Thursday from 8 a.m. to midnight, Friday from 8 a.m. to 11 p.m., Saturday from 8 a.m. to 7 p.m. and Sunday from noon to 9 p.m. Eastern.
+</span>
+
+<br><br>
+  
+<span style="font-size: 17px;">
+We look forward to receiving your payment.
+</span>
+
+<p></p>
+
+</td></tr></table>
+
+</td></tr></table>
+                  
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <hr color="#DE1932" width="525">
+                </td>
+              </tr>
+              <tr>
+                <td align="right" valign="top" colspan="3" class="drop" style="padding-top:10px; font-family:Verdana, Arial, sans-serif;" >
+                  <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><p style="font-size:14.5px">
+  <strong>This is an attempt to collect a debt and any information obtained will be used for that purpose.</strong>
+  
+  <br>
+<br>
+This is a service email from Bank of America. Please note that you may receive service emails in accordance with your Bank of America service agreements, whether or not you elect to receive promotional email.<br>
+<br>
+Read our Privacy Notice:<a href="http://click.customerassist.bankofamerica.com/u/?qs=9971ba65162b9d0cd5b452f7923df5b8d21b04140ca11f0db6338990be53d63c9112157a3787f436866fafa5c972067e53739306d87e56b7d931355ac6f7e31c"> www.bankofamerica.com/privacy/consumer-privacy-notice.go</a><br>
+<br>
+Please don’t reply directly to this automatically generated email message.<br>
+<br>
+Bank of America, PO Box 25118, Tampa, FL 33622<br>
+<br>
+Bank of America, N.A. Member FDIC. Equal Housing Lender:<br>
+<a href="http://click.customerassist.bankofamerica.com/u/?qs=9971ba65162b9d0c89bc0b3a7774c6887222169a63b0378f7f0175849e689eaa2415577d9f674824af5d41fb3c9500b034319e9bb5caee30409278466ba3e949">www.bankofamerica.com/help/equalhousing.cfm</a><br>
+©2023 Bank of America Corporation. All rights reserved.<br>
+This email was sent to: brettbash@brettbash.com
+</p></td></tr></table>
+
+</td></tr></table>
+                  
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+      </body>
+    </html>
+
+--HHJPHPFHnQVh=_?:--
+

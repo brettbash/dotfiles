@@ -1,0 +1,422 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:6830:6018:b0:66e:1f42:8fe6 with SMTP id bx24csp4009848otb;
+        Wed, 21 Dec 2022 13:50:31 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXtAxXkua2rrGB2JG6UbmIx5Soas4hmaEdE4SGHECHpoH/h2dF/7lF6I1u2rBizOWDdeETHP
+X-Received: by 2002:a05:6a20:9391:b0:ad:2f8b:ed7c with SMTP id x17-20020a056a20939100b000ad2f8bed7cmr22477378pzh.56.1671659431301;
+        Wed, 21 Dec 2022 13:50:31 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671659431; cv=none;
+        d=google.com; s=arc-20160816;
+        b=SRX2MuVewZgjfVrrWNbHnvrb0TwBgQiL9iet9GneZJduwpViZjZ4P3PPMigRUUBBWN
+         N66fzclwZLaZiZCKZdDsFaAA1trGZsyGdR1hE9VsPFE3XT/fHsa11Md146fgm9vPKeuw
+         47O6meBWpysgVGcUFIOhj/1KuazIc1ZOBGJgvHU4h02TCini76+2AJkKuUSSuwpQuVYt
+         EHWELPBmrnNrjCj0gqnmkXhK8ar4/a8vYDH0ND+9+05n/3zcBkiGlVrOkXx530lLQeoQ
+         SzogH6M681zOISwO0Vbc2fUN3dTw3HthJ+B4CgYhOYDccZ8wQHReD1Xf5VG5NhqnvHyA
+         VrgA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date:dkim-signature
+         :dkim-signature;
+        bh=TDl/mZDhXOjujvb8JYiBdhaW6QzWl7BlzBSEyIFresU=;
+        b=kr23MtKuVspxNzP69WCjy3bmud+Ihnni/HvmmMPdVV8fRK3bEEfOAMaPY7Vm2+A0JZ
+         q8TI+pP2hpAffE4yFf0IihGcwNWfAkMrIAZcd14+/nzX9C5jQk9mjG5uDwNUzn5sxSnA
+         A1p6PVmF7xvdL28LNQbF3EU45JPetKlEDp66jtDRFqHhkyJwi9oPrPBOZ2HU2aQ8nRHW
+         wmjOPCRvwnDncEZuv0z51OBb1pRMTHP7v4BCo1Xu3IdRhvjbtKq/0MpIpXx7WRZyigCI
+         J7v1Y+2jgcQsEygW4HmjQMYpMlpZwp0T81VYmryRwbyIXPDJ2z1pRhBVV+4nYwzpaglK
+         aPHA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@shopifyemail.com header.s=amp header.b=vnFGuU9S;
+       dkim=pass header.i=@shopify.com header.s=m1 header.b=o5YoUtHF;
+       spf=pass (google.com: domain of bounces+21576334-cb43-brettbash=brettbash.com@mailer.shopify.com designates 198.37.151.162 as permitted sender) smtp.mailfrom="bounces+21576334-cb43-brettbash=brettbash.com@mailer.shopify.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=shopify.com
+Return-Path: <bounces+21576334-cb43-brettbash=brettbash.com@mailer.shopify.com>
+Received: from o29.mailer.shopify.com (o29.mailer.shopify.com. [198.37.151.162])
+        by mx.google.com with ESMTPS id a18-20020a637052000000b00434b19dc958si17363434pgn.349.2022.12.21.13.50.31
+        for <brettbash@brettbash.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Dec 2022 13:50:31 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+21576334-cb43-brettbash=brettbash.com@mailer.shopify.com designates 198.37.151.162 as permitted sender) client-ip=198.37.151.162;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@shopifyemail.com header.s=amp header.b=vnFGuU9S;
+       dkim=pass header.i=@shopify.com header.s=m1 header.b=o5YoUtHF;
+       spf=pass (google.com: domain of bounces+21576334-cb43-brettbash=brettbash.com@mailer.shopify.com designates 198.37.151.162 as permitted sender) smtp.mailfrom="bounces+21576334-cb43-brettbash=brettbash.com@mailer.shopify.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=shopify.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shopifyemail.com;
+	h=content-type:from:mime-version:subject:to:cc:content-type:from:
+	subject:to;
+	s=amp; bh=TDl/mZDhXOjujvb8JYiBdhaW6QzWl7BlzBSEyIFresU=;
+	b=vnFGuU9SrKfg3SJCEzIVp1qyL3yEdXQDcN6WrFxruENecBZp6rmtKqU+qOGL5I8Jzy+J
+	zzGKLUmVAWp77/4Y6n/6RJaUB13UWSG7rXr4SdIQkA+yO1WDu7hhu/HUTBPf34tuvtK0Uk
+	1MFUMc+bdE0Qo9u8SdhW9uuV0O4GO8Rsqil1gQbSSd9QZch/g5bIwKXVHnIWJepQILSs9m
+	l3a31G54hve05HOKFZao1mpZMdJ/RKcqy2AdNwU1GpJQ1J4UqrTkAOG0CPysAjEx56KuuZ
+	+1K9sFvdY4HxCnWsCDenGjsebsY2f2cS9Ua0tqwPBjpPNyRLGOtJHikZAg9N0cpg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shopify.com;
+	h=content-type:from:mime-version:subject:to:cc:content-type:from:
+	subject:to;
+	s=m1; bh=TDl/mZDhXOjujvb8JYiBdhaW6QzWl7BlzBSEyIFresU=;
+	b=o5YoUtHFZh2UB2NTjyDg6j5p8w5FkeuB1eRSJP4Yy9iuLV/1a6SI7gTnXybNjsLoCBcV
+	PKNlm8QSDbt07h/c+K5GONxhwXCZwa5yjdbCXfnMVaBHAuCGTjceb7fiZsz/QnfgYAbVSm
+	s5JRhUxI6k2vGRU5jCS7jQA3Q4UmmeIQs=
+Received: by filterdrecv-557d69979-xq98h with SMTP id filterdrecv-557d69979-xq98h-1-63A37FA6-49
+        2022-12-21 21:50:30.754969498 +0000 UTC m=+2933089.617678353
+Received: from MjE1NzYzMzQ (unknown)
+	by geopod-ismtpd-2-1 (SG) with HTTP
+	id yLnIKpHpSyuRa9bWrho6XA
+	Wed, 21 Dec 2022 21:50:30.692 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=d644f18b3152ba79a99e7b1589090751cfd38936942aa77cb602d7b093e8
+Date: Wed, 21 Dec 2022 21:50:30 +0000 (UTC)
+From: Shopify <no-reply@shopify.com>
+Mime-Version: 1.0
+Message-ID: <E103005E-1732ED651DD2A3D7-5702163C@shopify.com>
+Subject: [Shopify Theme Store] Thanks for purchasing Showcase
+X-SG-EID: 
+ =?us-ascii?Q?kGTXYPhJpECQbya0ED2FCY12uooQ1HetRQhIaQCotiQzNSLHHlKKJbgn1UxDoA?=
+ =?us-ascii?Q?CUCpNyU9Jm1R7WyneagYhDirVsq7i=2F2Vxg9SSC+?=
+ =?us-ascii?Q?fJs5WF0MrtCBkJmnUqP=2FDLh1hvp9kV4xC9DoRJT?=
+ =?us-ascii?Q?SgWL2ez=2FOuV3JQlitfPRfkl7ePkQMPXjaXTkiVX?=
+ =?us-ascii?Q?OhtEZJmbtko1tzt3ZqAhKaIeiU8S=2FQ9mrsro=2FYa?=
+ =?us-ascii?Q?t41RAHRjTg2rP+=2FKXNSC+HAmEN6M7dlq8zO8RI?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FKOpeJUHWlRJMC+AMZBck?=
+ =?us-ascii?Q?1F5oqXs6pyftI0TMR785stoG9DNZHA31vuvu9pI?=
+ =?us-ascii?Q?=2FugOQMVSDcKdkUpN=2F9h85fEMopLayGLlTsaqxCU?=
+ =?us-ascii?Q?8dRLnkrufamnu=2FQd0ys7hmxOEuhmsC3D+ovmVnG?=
+ =?us-ascii?Q?q7MUyLq=2F+8KvbNIEKmgRaL6EAaYakzr7bYYSSAG?=
+ =?us-ascii?Q?KTh44rwKKc9i1=2F=2FoE5eclAro4KwOpMAxuRhzdLj?=
+ =?us-ascii?Q?4eknCKBTZIL8GEi9A2Tk3nCMBUofCeAnj8MPQfp?=
+ =?us-ascii?Q?McNRp48efPrr5MTmqIA4yfZZYuNPG3dX7N8AR7R?=
+ =?us-ascii?Q?XPxVxDSpDvsaFT0uMPYNFfIJbrVg6TGvjoCNo4H?=
+ =?us-ascii?Q?7=2FgGm09kiJrab0h=2FxMk8OlE9dxlK6H1XIJalANq?=
+ =?us-ascii?Q?e+W7v6lci+rFqTCMa5zZTNhzDJBbbEcrUi0tOHG?=
+ =?us-ascii?Q?gTlC3gKtNpDAtakDw+OjoQzUvYA3VrfKghW7Uak?=
+ =?us-ascii?Q?eq0im15UIqMUbXgiJaqhHQUXSFUGLMwqgwZpQ15?=
+ =?us-ascii?Q?f1r+IvkVFa0nlABJL9MPyOLez9dAgUbl1Q5xmJ=2F?=
+ =?us-ascii?Q?PrrjO1fATYdSc7wOC6NatSHIBlNAo7lo6xH1Q46?=
+ =?us-ascii?Q?scYh76vO94MgBxObm3I+SPAR7k2VhEBxTiyHMmF?=
+ =?us-ascii?Q?PHtf1hOvQOFC7dIwUWSsskJnM9APUotrcAtUvW4?=
+ =?us-ascii?Q?=2FKk68BxKRjBc2wSjKMeaGLrY5laXKU7zOlYVZoa?=
+ =?us-ascii?Q?Iuz+w8vWMmWy0LAjYDsy=2FyidNT5U008zc4=2Fa3IQ?=
+ =?us-ascii?Q?UlsD?=
+To: brettbash@brettbash.com
+X-Entity-ID: N9KsDlPh+Y8VI+loRuZSzw==
+
+--d644f18b3152ba79a99e7b1589090751cfd38936942aa77cb602d7b093e8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+You purchased the Showcase theme for your Shopify store.
+
+To start using this theme, ensure it is added to your Theme library (https:=
+//themes.shopify.com/themes/showcase/styles/mila/download)
+
+About Showcase
+
+This theme is designed and supported by Clean Canvas (http://www.cleancanva=
+s.co.uk).
+
+Learn more (https://support.cleancanvas.co.uk/showcase-theme-support/).
+
+For additional help with setup or customization, email support (support@cle=
+ancanvas.co.uk).
+
+By purchasing Showcase you have agreed to Shopify's Terms of Service regard=
+ing Themes (https://www.shopify.com/legal/terms?target_locale=3Den#ThemeSto=
+re).
+
+--d644f18b3152ba79a99e7b1589090751cfd38936942aa77cb602d7b093e8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html lang=3D"en">
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <meta name=3D"viewport" content=3D"user-scalable=3Dno, width=3Ddevice-w=
+idth, initial-scale=3D1, maximum-scale=3D1">
+    <meta name=3D"referrer" content=3D"never" />
+    <!-- Styles specific to Outlook 2007, 2010 and 2013 -->
+      <!--[if gte mso 9]>
+        <style>
+          ul,
+          ol {
+           margin: 0 0 0 24px;
+          }
+
+          dd {
+            text-indent: -3em;
+          }
+        </style>
+    <![endif]-->
+    <style data-premailer=3D"ignore">
+      .apple-link a {
+        color: inherit !important;
+        text-decoration: none !important;
+      }
+      @media screen and (max-width: 470px) {
+        .mail-body > tbody > tr > td {
+          padding-top: 0 !important;
+        }
+        .mail-body__content > tbody > tr > td {
+          border-radius: 0;
+          border-top: 0 !important;
+          border-right: 0 !important;
+          border-left: 0 !important;
+        }
+        .mail-sections > tbody > tr > td {
+          padding-right: 0 !important;
+          padding-left: 0 !important;
+        }
+        .mail-section > tbody > tr > td:first-child {
+          padding-left: 20px !important;
+        }
+        .mail-section > tbody > tr > td:last-child {
+          padding-right: 20px !important;
+        }
+        .mail-help-center > tbody > tr > td:first-child {
+          padding-left: 20px !important;
+        }
+        .mail-help-center > tbody > tr > td:last-child {
+          padding-right: 20px !important;
+        }
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+        border: 0;
+        height: auto;
+        line-height: 0;
+        outline: none;
+        text-decoration: none;
+        vertical-align: top;
+      }
+      body {
+        -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        color: var(--p-text, #212b36);
+        font-family: -apple-system, BlinkMacSystemFont, San Francisco, Sego=
+e UI, Roboto, Helvetica Neue, sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        height: 100%;
+        letter-spacing: initial;
+        line-height: 20px;
+        margin: 0;
+        padding: 0;
+        text-size-adjust: 100%;
+        text-transform: initial;
+        width: 100%;
+      }
+      .mail-body__content a {
+        color:#007ace;
+        margin-bottom:0;
+        margin-top:0;
+        padding:0;
+        text-decoration:none;
+      }
+      .mail-body__content .mail-button {
+        background-color: #5563c1;
+        border-radius: 5px;
+        border:1px solid #5e6ebf;
+        color: #fff;
+        display: inline-block;
+        font-family:ShopifySans,Helvetica,Arial,sans-serif;
+        font-weight: 500;
+        line-height: 1;
+        min-width: 80px;
+        padding: 16px 26px;
+        text-decoration:none;
+        white-space: nowrap;
+      }
+      .mail-body__content .mail-button:hover {
+        background-color: #505ebc; border-color: #505ebc;
+      }
+    </style>
+  </head>
+  <body>
+    <div style=3D"height:100%;width:100%;font-size:15px;line-height:20px;te=
+xt-transform:initial;letter-spacing:initial;font-weight:400;color:var(--p-t=
+ext,#212b36);font-family:-apple-system,BlinkMacSystemFont,San Francisco,Seg=
+oe UI,Roboto,Helvetica Neue,sans-serif;margin:0;padding:0">
+      <table style=3D"width:100%;border-collapse:collapse;border-spacing:0;=
+margin-top:0;margin-bottom:0;padding:0" cellpadding=3D"0" cellspacing=3D"0"=
+>
+        <tbody>
+          <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+            <td style=3D"margin-top:0;margin-bottom:0;border-top-style:soli=
+d;height:0;border-top-color:#dfe3e8;padding:0;border-width:5px 0 0"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class=3D"mail-body" style=3D"width:100%;border-collapse:collap=
+se;border-spacing:0;margin-top:0;margin-bottom:0;padding:0" cellpadding=3D"=
+0" cellspacing=3D"0">
+        <tbody>
+          <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+            <td style=3D"margin-top:0;margin-bottom:0;padding:20px 0;border=
+:0"></td>
+            <td style=3D"margin-top:0;margin-bottom:0;width:470px;padding:2=
+0px 0;border:0">
+              <table class=3D"mail-body__content" align=3D"center" style=3D=
+"width:100%;border-collapse:initial;border-spacing:0;margin-top:0;margin-bo=
+ttom:0;padding:0" cellpadding=3D"0" cellspacing=3D"0">
+                <tbody>
+                  <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+                    <td style=3D"margin-top:0;margin-bottom:0;border-top-le=
+ft-radius:var(--p-border-radius-1,3px);border-top-right-radius:var(--p-bord=
+er-radius-1,3px);border-bottom-left-radius:var(--p-border-radius-1,3px);bor=
+der-bottom-right-radius:var(--p-border-radius-1,3px);padding:0;border:1px s=
+olid #dfe3e8">
+                      <table class=3D"mail-sections" style=3D"width:100%;bo=
+rder-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;paddin=
+g:0" cellpadding=3D"0" cellspacing=3D"0">
+                        <tbody>
+                          <tr style=3D"margin-top:0;margin-bottom:0;padding=
+:0">
+  <td style=3D"margin-top:0;margin-bottom:0;padding:16px;border:0">
+    <table style=3D"width:100%;border-collapse:collapse;border-spacing:0;ma=
+rgin-top:0;margin-bottom:0;padding:0" cellpadding=3D"0" cellspacing=3D"0">
+      <tbody>
+        <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+          <td style=3D"margin-top:0;margin-bottom:0;padding:0 8px 16px;bord=
+er:0">
+            <table style=3D"width:100%;border-collapse:collapse;border-spac=
+ing:0;margin-top:0;margin-bottom:0;padding:0" cellpadding=3D"0" cellspacing=
+=3D"0">
+              <tbody>
+                <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+                  <td style=3D"margin-top:0;margin-bottom:0;padding:0;borde=
+r:0">
+                    <h1 style=3D"margin-top:0;margin-bottom:0;font-size:15p=
+x;font-weight:400;line-height:20px;text-transform:initial;letter-spacing:in=
+itial;padding:0">
+                    You purchased the Showcase theme for your Shopify store=
+.
+                    </h1>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style=3D"width:100%;border-collapse:collapse;border-spacing:0;ma=
+rgin-top:0;margin-bottom:0;padding:0" cellpadding=3D"0" cellspacing=3D"0">
+      <tbody>
+        <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+          <td style=3D"margin-top:0;margin-bottom:0;border-top-color:#dfe3e=
+8;border-top-style:solid;padding:16px 8px 0;border-width:1px 0 0;">
+            <p  style=3D"margin-top: 0">
+            To start using this theme, ensure it is <a href=3D"https://them=
+es.shopify.com/themes/showcase/styles/mila/download">added to your theme li=
+brary</a>.
+            </p>
+
+            <h3><strong>
+            About Showcase
+            </strong></h3>
+
+            <p>
+            This theme is designed and supported by <a rel=3D"nofollow" sty=
+le=3D"margin-top:0;margin-bottom:0;color:#007ace;text-decoration:none;paddi=
+ng:0" href=3D"http://www.cleancanvas.co.uk">Clean Canvas</a>
+            </p>
+
+            <a class=3D"mail-button" href=3D"https://support.cleancanvas.co=
+.uk/showcase-theme-support/">Learn more</a>
+
+            <p>
+            For additional help with setup or customization, <a href=3D"mai=
+lto:support@cleancanvas.co.uk">email support</a>.
+            <p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style=3D"width:100%;border-collapse:collapse;border-spacing:0;ma=
+rgin-top:0;margin-bottom:0;padding:0" cellpadding=3D"0" cellspacing=3D"0">
+      <tbody>
+        <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+          <td style=3D"margin-top:0;margin-bottom:0;border-top-color:#dfe3e=
+8;border-top-style:solid;padding:16px 8px 0;border-width:1px 0 0;">
+            By purchasing Showcase you have agreed to <a style=3D"margin-to=
+p:0;margin-bottom:0;color:#007ace;text-decoration:none;padding:0" href=3D"h=
+ttps://www.shopify.com/legal/terms?target_locale=3Den#ThemeStore">Shopify's=
+ Terms of Service regarding themes</a>.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+<tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+  <td style=3D"margin:0;padding:0;border:none">
+    <table style=3D"width:100%;border-collapse:collapse;border-spacing:0;ma=
+rgin-top:0;margin-bottom:0;padding:0" cellpadding=3D"0" cellspacing=3D"0">
+      <tbody>
+        <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+          <td style=3D"margin-top:0;margin-bottom:0;border-top-color:#dfe3e=
+8;border-top-style:solid;padding:16px 8px 16px 24px;border-width:1px 0 0" b=
+gcolor=3D"#f9fafb">
+            <img alt=3D"" width=3D"24" src=3D"https://cdn.shopify.com/shopi=
+fycloud/theme_store/assets/mailer/theme/help_center-b9ed8a6c487024729cfad4e=
+096c20096c76786f59c4b85176be206de81107281.png" />
+          </td>
+          <td style=3D"margin-top:0;margin-bottom:0;border-top-color:#dfe3e=
+8;border-top-style:solid;padding:16px 24px 16px 0;border-width:1px 0 0" bgc=
+olor=3D"#f9fafb">
+          Find out about general <a style=3D"margin-top:0;margin-bottom:0;c=
+olor:#007ace;text-decoration:none;padding:0" href=3D"https://help.shopify.c=
+om/en/manual/online-store/os/using-themes/change-the-layout">theme customiz=
+ation</a> at the Shopify Help Center.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+
+
+
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+            <td style=3D"margin-top:0;margin-bottom:0;padding:20px 0;border=
+:0"></td>
+          </tr>
+        </tbody>
+      </table>
+      <footer>
+        <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"wi=
+dth:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bott=
+om:0;font-size:10px;line-height:14px;padding:0">
+          <tbody>
+            <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+              <td align=3D"center" valign=3D"bottom" style=3D"margin-top:0;=
+margin-bottom:0;padding:0;border:0">
+                <img alt=3D"" width=3D"89" src=3D"https://cdn.shopify.com/s=
+hopifycloud/theme_store/assets/mailer/theme/shopify_logo-ab8bfbd03d685aa04a=
+8db0c119c5cbee279b5f9bd32a26f9ad3df0a96d9b7f83.png" />
+              </td>
+            </tr>
+            <tr style=3D"margin-top:0;margin-bottom:0;padding:0">
+              <td align=3D"center" style=3D"margin-top:0;margin-bottom:0;pa=
+dding:8px 0 20px;border:0">
+                <p style=3D"margin-top:0;margin-bottom:0;padding:0">&copy; =
+Shopify &#124; <span class=3D"apple-link">151 O=E2=80=99Connor Street, Otta=
+wa ON, K2P 2L8</span></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </footer>
+    </div>
+  </body>
+</html>
+
+--d644f18b3152ba79a99e7b1589090751cfd38936942aa77cb602d7b093e8--

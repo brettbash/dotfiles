@@ -1,0 +1,417 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:7208:148e:b0:5e:f86b:774a with SMTP id c14csp6293502rbf;
+        Mon, 2 Jan 2023 10:48:53 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXsjbzuTPJ+HIv5gjqxoXuOhFeCst0O5UNG60PfomKxdCSjjXo4vFCvAQnwGNEW/ObC0PfcQ
+X-Received: by 2002:a6b:f002:0:b0:6e9:b3eb:d855 with SMTP id w2-20020a6bf002000000b006e9b3ebd855mr31103762ioc.17.1672685333643;
+        Mon, 02 Jan 2023 10:48:53 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1672685333; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=yImizvHzcxITpH94HQKsGBZXUyJc4MbCiF2CiokqpclOUkjWhp2uR3SedMEXiTQelm
+         CbT37hPWBktdjqs8BhOAojAFOAhZRGsuWPYhb8635iffVAoU0txuebV1NZKJBztedYaB
+         vdK5kcIXzicWiIu7O4GvlnSKw5p/4yrGzBi+XPCeI0QoWbVPA036dNl9JZdhdsnUZdiU
+         +9dtd5hLdXyLFGgI7KoL0/B+0f5bZEJJDaDHSzXsyw9pyTE0TZb1/P3hZnUkKfSFZmpV
+         nAloRB5F0l3sBfSY9wv9UcA25fFa4eHgLBCYHY3WysXCVowGmw/X/kH0F2rH1/NXDXB8
+         6Q7Q==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:msip_labels:content-language:accept-language
+         :in-reply-to:references:message-id:date:thread-index:thread-topic
+         :subject:cc:to:from;
+        bh=utufVEQPtfihdoYcJPNcOzfempCnL3ZO4xZZPxGE5IU=;
+        b=i7G97zdmuUHWFAjt6fM4ukhjxI1leEuRjtmfqnnp3Fd2IPOaOkvJtU8sKDlof/chZG
+         zChBFWY7pp4bl+QlSuyj4i95H1YY50eSs5lDJKzhhofo/k33tY6S+NoJvVD4HL0l8oZ5
+         dB3hH4NP0tWnDw6AjVyPiHOU72pMsDvAffph4EbEx1qWhguRx/LsMAhILQItfdCRed2L
+         M6KQiotC4UE5kMvSEKzSLXKlbeZAxx3jZzsQfPp7A5rBWjOACdXJuIHwIn+RwzTgbXFR
+         bXVT5tAZyBTXq4QfK/eggqUrDL1FU5TFcpKdRNd/mkwxLWprkyeJ+udypMrsIf7npSPB
+         ORAQ==
+ARC-Authentication-Results: i=2; mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=foregalsgolf.com dkim=pass dkdomain=foregalsgolf.com dmarc=pass fromdomain=foregalsgolf.com);
+       spf=neutral (google.com: 40.107.93.129 is neither permitted nor denied by best guess record for domain of info@foregalsgolf.com) smtp.mailfrom=info@foregalsgolf.com
+Return-Path: <info@foregalsgolf.com>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2129.outbound.protection.outlook.com. [40.107.93.129])
+        by mx.google.com with ESMTPS id t6-20020a028786000000b00388b6ad8b4asi21439888jai.6.2023.01.02.10.48.53
+        for <brettbash@brettbash.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 02 Jan 2023 10:48:53 -0800 (PST)
+Received-SPF: neutral (google.com: 40.107.93.129 is neither permitted nor denied by best guess record for domain of info@foregalsgolf.com) client-ip=40.107.93.129;
+Authentication-Results: mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=foregalsgolf.com dkim=pass dkdomain=foregalsgolf.com dmarc=pass fromdomain=foregalsgolf.com);
+       spf=neutral (google.com: 40.107.93.129 is neither permitted nor denied by best guess record for domain of info@foregalsgolf.com) smtp.mailfrom=info@foregalsgolf.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BiN92QiQM2nmTmipk6LSMu0wdRROU5nOJ+YpsV8bIehsKqTAi1xtFPk3FRc/IhyaOu+cAqA2tGo3UdqpeZ5vbN8cNOqNdR+vHfOH1BbP2+kmK8c7brwyAgzmRmvdxDuAI2wLywf7bclPkzVzkEoPZebpGTEt6ZcWQXt1c2vN+FXxIW4hOuXY6x4HP9cpkG+ewby4iXgxezQjN7/vGjT5d88/IIpQHi7nnKlpUMr98cjFJiAKKXCXrtxBFgvu6hdf2rHDpx5+8gcHMmNRj8VjIWPJeEaebRVsoOTV0BgzynjHAyWwgTqIogbzDmzH9eW15nU3PmpKjaybqlpPC4DAsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=utufVEQPtfihdoYcJPNcOzfempCnL3ZO4xZZPxGE5IU=;
+ b=GqwzeNC7ehIOuSGu4YH+j16wBWk3BHcA3KM6nZtOi7qebHwcKICqtT1sOouX2GmLJAzAAKUAF8ZjA9hJAb3CxysnGXULuZ8fCAnJ4RqNpBz1N5+ZTSUuyiBvjeWPFkPWhQX9TAHnpXScp++zRP/tE200g3kBxU7impFaID4Ktc8IrqBHGFyiU95M0hGR7MfvMH21su16wT9OD0wA96Ygyh9zemW02b8YQXvIUuJIUac9bg/XReIIIje6LaZmXBer0jiOqS6x02W4zhSAPvfoAJtADlCSF8deZpFDDgOew1tdbnzj5jPCIT7tz88iMoipnzs3MkG56WTJNLj+RiSRjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=foregalsgolf.com; dmarc=pass action=none
+ header.from=foregalsgolf.com; dkim=pass header.d=foregalsgolf.com; arc=none
+Received: from DM6PR15MB3049.namprd15.prod.outlook.com (2603:10b6:5:13a::20)
+ by MW3PR15MB3977.namprd15.prod.outlook.com (2603:10b6:303:4d::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Mon, 2 Jan
+ 2023 18:48:50 +0000
+Received: from DM6PR15MB3049.namprd15.prod.outlook.com
+ ([fe80::59a9:9353:906:65a3]) by DM6PR15MB3049.namprd15.prod.outlook.com
+ ([fe80::59a9:9353:906:65a3%2]) with mapi id 15.20.5944.018; Mon, 2 Jan 2023
+ 18:48:50 +0000
+From: Amber Estorga <info@foregalsgolf.com>
+To: Brett Bash <brettbash@brettbash.com>
+CC: Paola Hernandez <phernandez@foregalsgolf.com>, Paula Edwards
+	<pearlzconsulting11@gmail.com>
+Subject: Re: Website Staging Link
+Thread-Topic: Website Staging Link
+Thread-Index: AQHZHHfpRC3kw+j8MU254H5Jsii8sK6GzakGgASu8r4=
+Date: Mon, 2 Jan 2023 18:48:50 +0000
+Message-ID:
+ <DM6PR15MB30491BC0F7B57E440B817F61BEF79@DM6PR15MB3049.namprd15.prod.outlook.com>
+References:
+ <CAJn1cs7iQiH0pkq5AV4on1XdBJECqVu=VsaYz4HSqyFddmTBcw@mail.gmail.com>
+ <DM6PR15MB3049E425072FECF6C8B5DD37BEF09@DM6PR15MB3049.namprd15.prod.outlook.com>
+In-Reply-To:
+ <DM6PR15MB3049E425072FECF6C8B5DD37BEF09@DM6PR15MB3049.namprd15.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=foregalsgolf.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR15MB3049:EE_|MW3PR15MB3977:EE_
+x-ms-office365-filtering-correlation-id: 7046304b-c36c-492b-e54d-08daecf1fd39
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ xxW7JDFWFbX/mKSC4knPCiH/I2txpKyDg7xBsU7hrPWlkfpB2zTtu/wL+y96aD82ltoatfOnoQHPjxRPacyw6FAsstipgb+HRt1pImzPIyr5Wu6tFCKWIuEbtgABDg/2nJLpzTlY8+/6WQaql8GLlRYKQdOS5N05iPu3uxjiXMDFjq4cITv8X/zOa7d1FmHlt8FzWi4aP0dx99qBhIMhJw2x+ihUe26+XEJrRucYwU7ai0o6rfTQHZgXGKPD4byMw8/7eU5nO3ZKS7wt6S3rlMZ5hz66l76LsMxOUR36bmqTwwOVJ5iA5sUKKWj4z8WsEPoKZyH34nHmzQ4cRz1YBC2qytMDUT5fmV/+EX+qDO3SVDr5DSR3NiYTp+/rw3A+iyNm75lgpS+xqZesDFVTjPataVIaVsOs3QOE3g+EpQFFn3XC1DV9tY81Pzd6Smk00DWtIn5pV1pdz8+g7kn0b1IsXMJUqw9Ngt5U4Ky/rWvJGJsgxbKHa0P+b6z1c+3qnpmHYqp5IFwB2LpVtryOvHX1hva3yiNNkZnW2/O7vqBTgMTUHbJz0lE+ouOIL0SWsh7ToV2QQO/qoT6lWwUdGz4bSHibrNqgX7fzIq6GYQMvYTgtDCFkiK4lE/mtwOH+qEoyq7czTauhwuvIefi/AfKKz26s7/TFpf7pU3nRLcTcerZDgRMUjU3ZnVrPa+Vnina2w+QK7pDeh6Ex8jv44CBdLe3quSI0l55bojjpQwAzTEvCk77OSz5vXEkfFxtFC7cdqpjS4qPySkHMbh14fy00xf4kkJCU8mQ/6awjMbhVDPcVUeBmqXGbH+qWSFKw
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR15MB3049.namprd15.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(136003)(346002)(366004)(39830400003)(396003)(376002)(451199015)(1690799008)(19627405001)(40140700001)(33656002)(166002)(5660300002)(2906002)(38100700002)(122000001)(8936002)(41300700001)(52536014)(83380400001)(3480700007)(38070700005)(86362001)(66899015)(71200400001)(966005)(66556008)(76116006)(6916009)(66946007)(54906003)(7116003)(7696005)(6506007)(478600001)(55016003)(4326008)(316002)(186003)(91956017)(66446008)(64756008)(66476007)(8676002)(9686003)(53546011)(22166006)(131040200001)(57052004);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?tMFGQdVlHV67cHfq/T7tjBmwlHUSK7B8KTPivWkpUvrd2uM6zgXx/ZMjrN8Y?=
+ =?us-ascii?Q?mt3J6qNJ93YruYo1XGG84k9PAswuQQ/CJFFScqnTPwah3uHJPpnlstBcfSPj?=
+ =?us-ascii?Q?14hWEzraE4dw7jAekw0IIGktdN/LwCEV89uEul7nCZ68GT05y0oIdyo9PTfX?=
+ =?us-ascii?Q?aB48RpOcdRMci30ZF4yG9KIKFOMjEdw9X1d5LHBNW/tK8Gcb/rJJTgcrQOmZ?=
+ =?us-ascii?Q?NXCmj7Uj0v8DbUPOI1b6Gf/2bNADWi492atip30qQZ6YOV+SgZlzGJjB7N5e?=
+ =?us-ascii?Q?cMdHvU5U3Lztrlaz+Fh6HKIOCDrgnwXDq2AT9tBntL0sxGYsWsQ/X2Z445//?=
+ =?us-ascii?Q?+Y3qb+K4W8uq+thDA7A8FTUxwZcMJ7/LT0XjYhPsRV+GUlUVpWYWpzaC8x3E?=
+ =?us-ascii?Q?XHeE6XN6bDIDN7xrVN7mMD2uw5uSIf0iwWiK2JDorIhQo86SYAD+rI4oCx8B?=
+ =?us-ascii?Q?S2ggd8/haMwNNmgCaN44gPzG9yKNo96KJME43tXd/FfL8ol3pE4w4pN08/Na?=
+ =?us-ascii?Q?YiSWJbSxiZYUo8E5huJpeeijlrLaBZuVDfVpOEWTG5/pIXgyD6WELu8lnj++?=
+ =?us-ascii?Q?dgLFdGUk5jhyBF/Mo3J13mINH++rLYGsmPj/hSCUrW+7zUa7EFmJgOXWKD0E?=
+ =?us-ascii?Q?P+vKQuPgSllXFBeuLw+X/mwBK7mvTdFM4CeMzIvWhttJXHOSgzaKcnrZRpso?=
+ =?us-ascii?Q?+1QAok6irgAsWShfUV0BSQzEm31X12hxU4VeTBEEq1m085EQt3NlqCkx4Y0K?=
+ =?us-ascii?Q?Q72pYvgVVr5WXfL1tDrrpDZhDEXW7zG+Th5hLByEgGTIPphkP+EjlycDtj0h?=
+ =?us-ascii?Q?92Tt5Y2R6zvU/HVz2BxU6FoNHA6y+3uj2tSzcvmrRW4QrD7mBtpr+ZQO+OMi?=
+ =?us-ascii?Q?e3KQtwaRvYvQUaFjq7QnJn5u8pW/Edfb+SSG8L+oTuODJH+6ZVDnzswYERvY?=
+ =?us-ascii?Q?p5FHj9a9dYxUyUQlAYrFNUsrLcJ7uQgG+ZyNpKFslzjSZXTRYX5k1MQ9+vs9?=
+ =?us-ascii?Q?3YtnCtfdDNn6fnh6RKytDxHcY9OnNm7rbJStnD8ZsmOCFF6DHikrLHvmFLIO?=
+ =?us-ascii?Q?BWy94sGrH+qOHHumy/UloxPcnFBIU5tmNL2ts9qS0FFAVsPIZR77sdhT9Hzc?=
+ =?us-ascii?Q?jMM5PbSH3F1096cQPn9OlALMH3+IbddL7mXafkw06FbTjJHueppDnxaX2wcc?=
+ =?us-ascii?Q?yrif/OASSSkLo+tXLfcMNmAzmjuaZ+cT7r/CmI0I6fQFp5hnh/c8N/RkT1K7?=
+ =?us-ascii?Q?9h5pIHOOKW+gQnkNsWIWow0PtKk7/WwmK8njxkThXuIveic+/hnNcn3ryGsA?=
+ =?us-ascii?Q?uN/tICqrEO+o9qKp78nyT+WRqFwHLmMBKBjYemeXfFW0DdjzA4aflGkaqEFx?=
+ =?us-ascii?Q?zrSyMh0yhTSSzciHqQ+UoXM9YwrJ7Q2fhF/5aN3jP72S2WDqyBswiAcwihSQ?=
+ =?us-ascii?Q?d13QWfxXmDpOzY3GzZvX4qUqcXI9H1XDJ0SOaGknuXAwgM7ijw7cyG+AEyH4?=
+ =?us-ascii?Q?yu05Jk5aDrx1BRs7UtlC6hC8+QyTlmQ4igaSNvsLDkVlqYieRV41lSlkYFdY?=
+ =?us-ascii?Q?kLRnE+ggI+t3B7/5ixw4hn9XEYfDv6olTtFFq7CcsFXiHEvCQubWKo8JzBFb?=
+ =?us-ascii?Q?XK3+RYHilSXQPIYyfqCcTcdJCe/QcbtBqNm48JPwBwHR?=
+Content-Type: multipart/alternative;
+	boundary="_000_DM6PR15MB30491BC0F7B57E440B817F61BEF79DM6PR15MB3049namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: foregalsgolf.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR15MB3049.namprd15.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7046304b-c36c-492b-e54d-08daecf1fd39
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jan 2023 18:48:50.5893
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a02c6b5d-124f-4489-8130-4b06f9175986
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OW7frhBHQaOmJMLeSLMDkTlqRMiubVVF+pTC1wc9fVqvhz3YEc0eBVZVSh4A1M5L15Hl0NqDHJsZ5W7gVSy5fg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR15MB3977
+
+--_000_DM6PR15MB30491BC0F7B57E440B817F61BEF79DM6PR15MB3049namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Brett,
+
+ Go ahead and hand the site over. We will take it from here. Let me know wh=
+en it is in the shopify account. Thank you. This is my 3rd request.
+
+Amber
+________________________________
+From: Amber Estorga <info@foregalsgolf.com>
+Sent: Friday, December 30, 2022 11:18 AM
+To: Brett Bash <brettbash@brettbash.com>
+Subject: Re: Website Staging Link
+
+Hey Brett,
+Thank you. Can you please hand over the site?  I went into my shopify and i=
+t isn't in the active or inactive stores. Call me text me write me and let =
+me know when this is done. Thanks.
+
+Amber
+________________________________
+From: Brett Bash <brettbash@brettbash.com>
+Sent: Friday, December 30, 2022 9:55 AM
+To: Amber Estorga <info@foregalsgolf.com>
+Subject: Website Staging Link
+
+Hi Amber,
+
+Apologies I was unfortunate and received Covid for Christmas then had to de=
+al
+with canceled flights.
+
+I have the staging site ready for you! https://fore-gals-golf.myshopify.com=
+/
+Pass: foregals
+
+Below are some of my notes.
+
+1. Membership
+The Join page links out to the link from the FFG Instagram profile. As
+it looks, this is a 3rd party registration where to then add to the
+website would have to be manual on your end. Or if the current
+registration offers a call-back URL that redirects the user back to the
+site, then I can easily have a registration page on the site with a form th=
+at the user can fill out.
+
+Let me know if that sounds like the direction you are wanting to go
+there and I can look into the call-back URL. If it doesn't offer
+something like that, then they'll have to be manually added on the new
+site.
+
+Also the membership system on the site can send out welcome emails. I
+think it hooks out to MailChimp or another service like that.
+
+2. Payment Gateway
+This can be setup with Shopify Payments, Stripe, Paypal, Apple Pay. I'll
+show you on the live site on where to connect this up.
+
+3. Events
+Registration links need to be added for the events.
+January's Range Meetup and Golf Outing don't have the correct image as I
+couldn't find them on Instagram.
+
+4. Emails
+Usually I hook this up using MailChimp with using a Form Builder. This
+allows you to easily create forms for retreats, events, general
+newsletter. Another alternative is to use Typeform embeds.
+I noticed you have a Sumo account, I don't have much experience with
+them, but it seems they have a Shopify app. If you want to utilize Sumo,
+I can install and configure the app to your Sumo account. I'm not fully
+sure on the different form fields that can be had or different kinds of
+forms with Sumo.
+
+5. Instagram Feed
+This is setup to load at the bottom on the home page, I just need the
+correct logins to Instagram still to get this loading.
+
+6. Products
+The reviews are left by customers who purchased the item. This prevents
+fake reviews or spam.
+
+Let me know what you think, if you have any questions, and if there are any=
+ tweaks or content changes.
+
+Thanks!
+[https://d3vv6lp55qjaqc.cloudfront.net/items/2u0C0j310g15420R0u2W/bb_200.pn=
+g]
+
+Brett Bash
+
+Designer & Developer
+
+Austin, TX
+
+brettbash.com<https://brettbash.com>
+
+727.808.5106
+
+--_000_DM6PR15MB30491BC0F7B57E440B817F61BEF79DM6PR15MB3049namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);">Hi Brett,&nbsp;</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);"><br>
+</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);">&nbsp;Go ahead and hand the site over. We will take=
+ it from here. Let me know when it is in
+ the shopify account. Thank you. This is my 3<span><sup>rd</sup>&nbsp;reque=
+st.</span></span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);"><span><br>
+</span></span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);"><span>Amber</span></span></div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Amber Estorga &lt;inf=
+o@foregalsgolf.com&gt;<br>
+<b>Sent:</b> Friday, December 30, 2022 11:18 AM<br>
+<b>To:</b> Brett Bash &lt;brettbash@brettbash.com&gt;<br>
+<b>Subject:</b> Re: Website Staging Link</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div><span class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,He=
+lvetica,sans-serif; font-size:12pt; color:rgb(0,0,0); background-color:rgb(=
+255,255,255)">Hey Brett,</span></div>
+<div class=3D"x_elementToProof"><span class=3D"x_elementToProof" style=3D"f=
+ont-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt; color:rgb(0,=
+0,0); background-color:rgb(255,255,255)">Thank you. Can you please hand ove=
+r the site?&nbsp; I went into my shopify and
+ it isn't in the active or inactive stores. Call me text me write me and le=
+t me know when this is done. Thanks.&nbsp;</span></div>
+<div class=3D"x_elementToProof"><span class=3D"x_elementToProof" style=3D"f=
+ont-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt; color:rgb(0,=
+0,0); background-color:rgb(255,255,255)"><br>
+</span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0); background-color:rgb(255,25=
+5,255)">
+Amber</div>
+<div id=3D"x_appendonsend"></div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Brett Bash &lt;bret=
+tbash@brettbash.com&gt;<br>
+<b>Sent:</b> Friday, December 30, 2022 9:55 AM<br>
+<b>To:</b> Amber Estorga &lt;info@foregalsgolf.com&gt;<br>
+<b>Subject:</b> Website Staging Link</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi Amber,<br>
+<br>
+Apologies I was unfortunate and received Covid for Christmas then had to de=
+al<br>
+with canceled flights.<br>
+<br>
+I have the staging site ready for you! <a href=3D"https://fore-gals-golf.my=
+shopify.com/">
+https://fore-gals-golf.myshopify.com/</a><br>
+Pass: foregals<br>
+<br>
+Below are some of my notes.<br>
+<br>
+1. Membership<br>
+The Join page links out to the link from the FFG Instagram profile. As<br>
+it looks, this is a 3rd party registration where to then add to the<br>
+website would have to be manual on your end. Or if the current<br>
+registration offers a call-back URL that redirects the user back to the<br>
+site, then I can easily have a registration page on the site with a form th=
+at the user can fill out.<br>
+<br>
+Let me know if that sounds like the direction you are wanting to go<br>
+there and I can look into the call-back URL. If it doesn't offer<br>
+something like that, then they'll have to be manually added on the new<br>
+site.<br>
+<br>
+Also the membership system on the site can send out welcome emails. I<br>
+think it hooks out to MailChimp or another service like that.<br>
+<br>
+2. Payment Gateway<br>
+This can be setup with Shopify Payments, Stripe, Paypal, Apple Pay. I'll<br=
+>
+show you on the live site on where to connect this up.<br>
+<br>
+3. Events<br>
+Registration links need to be added for the events.<br>
+January's Range Meetup and Golf Outing don't have the correct image as I<br=
+>
+couldn't find them on Instagram.<br>
+<br>
+4. Emails<br>
+Usually I hook this up using MailChimp with using a Form Builder. This<br>
+allows you to easily create forms for retreats, events, general<br>
+newsletter. Another alternative is to use Typeform embeds.<br>
+I noticed you have a Sumo account, I don't have much experience with<br>
+them, but it seems they have a Shopify app. If you want to utilize Sumo,<br=
+>
+I can install and configure the app to your Sumo account. I'm not fully<br>
+sure on the different form fields that can be had or different kinds of<br>
+forms with Sumo.<br>
+<br>
+5. Instagram Feed<br>
+This is setup to load at the bottom on the home page, I just need the<br>
+correct logins to Instagram still to get this loading.<br>
+<br>
+6. Products<br>
+The reviews are left by customers who purchased the item. This prevents<br>
+fake reviews or spam.<br>
+<br>
+Let me know what you think, if you have any questions, and if there are any=
+ tweaks or content changes.
+<div><br>
+</div>
+<div>Thanks!<br>
+<div>
+<div dir=3D"ltr" class=3D"x_x_gmail_signature" data-smartmail=3D"gmail_sign=
+ature">
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr">
+<div>
+<div>
+<div style=3D"color:rgb(0,0,0); font-family:monospace; font-size:14px; disp=
+lay:inline-block; float:left; width:104px">
+<img alt=3D"" style=3D"height:auto; max-width:100%; margin:0px" src=3D"http=
+s://d3vv6lp55qjaqc.cloudfront.net/items/2u0C0j310g15420R0u2W/bb_200.png">&n=
+bsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</div>
+<div style=3D"color:rgb(0,0,0); font-family:monospace; font-size:14px; disp=
+lay:inline-block; padding-left:32px">
+<p style=3D"margin:0px; font-size:16px"><strong>Brett Bash</strong></p>
+<p style=3D"margin:0px 0px 8px"><em>Designer &amp; Developer</em></p>
+<p style=3D"margin:0px">Austin, TX</p>
+<p style=3D"margin:0px"><a href=3D"https://brettbash.com" target=3D"_blank"=
+ style=3D"color:rgb(96,217,235)">brettbash.com</a></p>
+<p style=3D"margin:0px">727.808.5106</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_DM6PR15MB30491BC0F7B57E440B817F61BEF79DM6PR15MB3049namp_--

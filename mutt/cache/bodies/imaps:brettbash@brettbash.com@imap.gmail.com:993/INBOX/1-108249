@@ -1,0 +1,1739 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:6830:6018:b0:66e:1f42:8fe6 with SMTP id bx24csp3676225otb;
+        Wed, 21 Dec 2022 01:38:37 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXsoyj2lXAkv0iEOWlhYgWuCpavIKz8IPkwdebzqimfJRt25IvZ9d134Feb7WYYXNQAhO62C
+X-Received: by 2002:a05:6402:8d9:b0:470:49a2:ad70 with SMTP id d25-20020a05640208d900b0047049a2ad70mr997064edz.5.1671615516957;
+        Wed, 21 Dec 2022 01:38:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671615516; cv=none;
+        d=google.com; s=arc-20160816;
+        b=QMviQmqqtAGUhELQKFNSlWrJy4R4R4FjPpjPhEcLQ+4BH6fYph1FYIf072p8Y9Shwh
+         OT7FtSYQouHt13dnxiYjyzcB0ITpOh/fHuVdoMCjwBImsZhp7mUNl0rSCdNwRWTj9NxD
+         v86yeGM/IMvbovLzFIZ6eF0fu/azElIF+WtLLm0m1vjSV87iRD7GKZWSPROKhBFrDKvl
+         ZWJ0001jeDivIyZykBHIoInlDxdPAKUUFe2m5JEKcYwotXpfiDU11SbB5IaWaAvJuN6o
+         nnCtg8X5y7rE6MU9WgEWEyWCl7zmReWU6/ZEDCLAS/B6/VgYRmCMWh8P4DKVgJP6Q4kq
+         3UMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:to:from:message-id:date:dkim-signature;
+        bh=ElBoAB29idzVyOXG48yGo1yxEdM3eObS/n6li4XYr28=;
+        b=a5jIXBp6eTxy4GLzspO9cvkeE0p/t3TulMdt35cd1NuCKe4OE45AgekSYyeN9DZ7F6
+         9qBOiQnA6ipVXECA2vtk4low7bJzT+z7lgILtZMtd5M0kFKkQ0FtL2K8MCQF/iQ0uOTg
+         npYyf19ptASy8aRti4viUALTWAKI9pE4SYYuOXki+EtC9Q2dPDSZQES9AnWVrN+KfiXt
+         YlQfYirLT42O5GdC+KLDvc+gjpOC60irP6LhBi40Jsshfa65aMj+m2dW0cTDuJB6SiVa
+         Z+BE1hb2GIrLjECEa+Maeavfa5f5rcuMy+1tgu+QCTlUeKyaPuZLuo1qsWpvg0Knbxm7
+         hUwQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@orders.apple.com header.s=orders0517 header.b=4aXDwSXN;
+       spf=pass (google.com: domain of shipping_notification@orders.apple.com designates 17.111.110.119 as permitted sender) smtp.mailfrom=shipping_notification@orders.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=orders.apple.com
+Return-Path: <shipping_notification@orders.apple.com>
+Received: from rn2-txn-msbadger08102.apple.com (rn2-txn-msbadger08102.apple.com. [17.111.110.119])
+        by mx.google.com with ESMTPS id u16-20020a056402065000b0046b5f80f128si12051187edx.193.2022.12.21.01.38.36
+        for <brettbash@brettbash.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 21 Dec 2022 01:38:36 -0800 (PST)
+Received-SPF: pass (google.com: domain of shipping_notification@orders.apple.com designates 17.111.110.119 as permitted sender) client-ip=17.111.110.119;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@orders.apple.com header.s=orders0517 header.b=4aXDwSXN;
+       spf=pass (google.com: domain of shipping_notification@orders.apple.com designates 17.111.110.119 as permitted sender) smtp.mailfrom=shipping_notification@orders.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=orders.apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orders.apple.com;
+	s=orders0517; t=1671615514;
+	bh=ElBoAB29idzVyOXG48yGo1yxEdM3eObS/n6li4XYr28=;
+	h=Date:Message-ID:From:To:Subject:Content-Type;
+	b=4aXDwSXNVsD8j3+zjNzfnpcZxYon4lw8glbye7v4qqmvCXZRH/0ZAySzO5MFw+dzM
+	 nrdos01FyduNJzQ0x02Eo/dH7oEbb3IsZS8tn/POKo6Au7gf3mv63mlKFQtjF9NEJb
+	 19g/CvNfn3MBkCUphJLtfQaeXFYNqX8oZHjNfkVx1yrux887c7DhZMU910KbAzBA+l
+	 RKtUiSh+wYxqE+OC0ewMBAZD1KP8ouV8VYuGFscaSU+Z5MJTICFXZ2ZjhJlk71aLo7
+	 WUo1mtBNmP8g/p+40sNLK0Y74SG2m9WvxMpT3KfCfgFWvRloSUlPFbL2+h7174fzxX
+	 qnIaus2FWMt/A==
+Date: Wed, 21 Dec 2022 09:38:34 +0000
+Message-ID: <A1.B3.29844.A14D2A36@mr29p01nt-txnmsbadger008.ise.apple.com>
+From: Apple Store <shipping_notification@orders.apple.com>
+To: brettbash@brettbash.com
+Subject: Your shipment is on its way. Order No. W1290104807
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_21701_1158615964.1671615514793"
+X-EmailType-Id: 1020452211
+X-Sent-To: brettbash@brettbash.com,2,Tdo6cO3vAm8ZY6FBQ9nErNHMIoi2tJsdJm%2F6hzUxbPWjEFJ89Jt1Yb7L0U6G5gvmjz9TMseq4aUJlG50ppWhJzgCduAb4qgtjaWTe10kpwN3fn8kpuLW%2Ft8DLobVP%2F7z0wIxePh39gjk%2BykjGTdPfjYSI%2Fio%2Fx3fNm%2BNcE8nnwAlW%2F9qinXvZ021%2BUJLJK1MxvCgs8ibr%2BcysUqlMT4F7A4EIzxVCEMplugY1WEbd0GodENphJyCK%2ByW7uWQkWNxosvnrcQ3kHyBI3PVfndcD8%2Fb5dLXQicQqSJgOWxBS%2FvOh67qSvk6f%2BdKG3Ydrafs6l2QrE%2ByF2NwEhLoIkmo1%2FLmWZhrr6rX2u6ahrNmZTBNStHT%2FgGZUesQXTRB9rOIvLtHi8ImgIKFlPCpiVf6YTe3VQbTDYiwpg1Ar0Q3SnrepAjtpcS2f4cNx4nKfNhq
+X-Business-Group: AOS-OMS
+X-Attach-Flag: N
+X-Txn-Id: 5B5721E5-7C77-42B2-9C9E-E4101B5367C3
+
+------=_Part_21701_1158615964.1671615514793
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+Apple Store
+
+Order Number W1290104807
+https://store.apple.com/vieworder/W1290104807/brettbash@brettbash.com/AOS-A=
+M-104801-A10000052038
+
+Ordered on December 17, 2022
+
+----------------------------------------------------------------------
+Your shipment is on its way.
+Here is your shipment and tracking information.
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Shipped   Delivers Jan 03, 2023
+  by  Standard Delivery
+ Track Shipment
+https://store.apple.com/vieworder/W1290104807/brettbash@brettbash.com/AOS-A=
+M-104801-A10000052038
+----------------------------------------------------------------------
+Pre-Sign for Delivery
+Track shipment to manage your delivery.
+----------------------------------------------------------------------
+
+iPhone 14 Pro Max 256GB Gold
+Qty 1
+
+With the following plan
+Voice Plan: null
+Data Plan: null
+Messaging Plan: null=09null
+Phone number:=C2=A0null
+
+
+
+
+
+AppleCare+ for iPhone 14 Pro Max
+Automatically registered with your Apple hardware.
+--------------------------------
+
+Shipping Address
+Brett Bash
+=E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A2=E2=80=A206
+
+10500 Lakeline Mall Dr
+2401
+Austin TX 78717-0082
+
+Carrier Name
+UPS=20
+Tracking Number
+1Z3026AA0425659413
+https://store.apple.com/vieworder/W1290104807/brettbash@brettbash.com/AOS-A=
+M-104801-A10000052038
+Shipment Notifications
+brettbash@brettbash.com
+
+
+----------------------------------------------------------------------
+To see all the items in this order, visit online Order Status
+https://store.apple.com/vieworder/W1290104807/brettbash@brettbash.com/AOS-A=
+M-104801-A10000052038
+----------------------------------------------------------------------
+iPhone Instructions
+
+iPhone Setup and Activation
+To activate your iPhone, turn it on by pressing and holding the On/Off butt=
+on for a few seconds. Then follow the onscreen instructions to set it up.
+
+For questions about rate plans, please contact your carrier. For questions =
+about your iPhone order or hardware, visit Apple Store Online Help.
+
+Apple Store Online Help :
+
+
+
+
+
+Activating your new iPhone with eSIM
+When you upgrade from your old phone, some of the content from your previou=
+s phone, such as voicemails and contacts, may not be accessible anymore fro=
+m your new phone. Please make sure you have listened to all of your voicema=
+ils and backed-up your contact information before using your new iPhone.
+
+How do I recycle my old phone?
+You can recycle your old cell phone for free with Apple GiveBack.
+https://store.apple.com/us/browse/recycling/?cid=3DSUSIN
+----------------------------------------------------------------------
+
+
+Free shipping on everything.
+And free returns
+
+----------------------------------------------------------------------
+
+Questions
+How do I track my shipment?
+Visit online Order Status to view the most up-to-date status of your order.=
+ Some carriers, including the U.S. Postal Service, may not provide tracking=
+ information. If you ordered multiple items, you may receive separate shipm=
+ents with no additional shipping charges. For more information about shippi=
+ng or returns, please visit online Help.You can also call Apple Store Custo=
+mer Service at 800-692-7753, Mon=E2=80=93Fri 5 a.m.=E2=80=93 8 p.m., Sat=E2=
+=80=93Sun 7 a.m.=E2=80=93 4 p.m Pacific. Please have your order number avai=
+lable.
+Do I need to sign for my shipment?
+Check the shipped items section to determine whether your shipment requires=
+ a signature. If a signature is required, the carrier will make three deliv=
+ery attempts before returning your items to Apple.If you=E2=80=99re unavail=
+able to sign for your items, we offer alternate delivery options. Visit Del=
+ivery Options for more information.
+
+https://store.apple.com/us/help/shipping_delivery#delivery
+----------------------------------------------------------------------
+Shop Mac
+https://store.apple.com/us/browse/home/shop_mac?cid=3DSUSIN
+
+Mac Accessories
+https://store.apple.com/us/browse/home/shop_mac/mac_accessories?cid=3DSUSIN
+
+Mac Software
+https://store.apple.com/us/browse/home/shop_mac/software?cid=3DSUSIN
+=20
+Gift Cards
+?cid=3DSUSIN
+
+Shop iPod
+https://store.apple.com/us/browse/home/shop_ipod?cid=3DSUSIN
+
+=20
+Gift Cards
+?cid=3DSUSIN
+
+Shop iPhone
+https://store.apple.com/us/browse/home/shop_iphone?cid=3DSUSIN
+
+iPhone Accessories
+https://store.apple.com/us/browse/home/shop_iphone/iphone_accessories?cid=
+=3DSUSIN
+=20
+Gift Cards
+?cid=3DSUSIN
+
+Shop iPad
+https://store.apple.com/us/go/ipad?cid=3DSUSIN
+
+iPad Accessories
+https://store.apple.com/us/go/ipad/accessories?cid=3DSUSIN
+=20
+Gift Cards
+?cid=3DSUSIN
+----------------------------------------------------------------------
+
+
+
+Copyright=C2=A92022=C2=A0Apple Inc. All rights reserved.
+
+Terms of Use
+https://www.apple.com/legal/terms/site.html?cid=3DSUSIN?cid=3D{SUSIN}
+
+Privacy Policy
+https://www.apple.com/privacy/?cid=3DSUSIN?cid=3D{SUSIN}
+
+Sales and Refunds
+https://store.apple.com/Catalog/US/Images/salespolicies.html
+
+
+
+
+Use of iPhone constitutes acceptance of the iPhone terms and conditions and=
+ other third party terms found in the iPhone box, or at https://www.apple.c=
+om/legal/sla/?cid=3DSUSIN
+
+If you purchased an iPhone for AT&T, you have agreed to the terms as stated=
+ in the AT&T Wireless Service Agreement, Terms of Service, and Rate Plan br=
+ochure, all of which are available at https://www.att.com/iphoneterms.
+
+If you purchased an iPhone for Verizon, you have agreed to the Verizon Wire=
+less Customer Agreement and Service Terms and Conditions.
+
+Verizon Wireless Customer Agreement
+https://www.verizonwireless.com/b2c/globalText?textName=3DCUSTOMER_AGREEMEN=
+T&jspName=3Dfooter/customerAgreement.jsp
+
+Service Terms and Conditions
+https://www.verizonwireless.com/wcms/myverizon/terms.html
+
+If you disagree with these terms and conditions you can return the iPhone i=
+n accordance with the Apple Online Store return policy.
+https://store.apple.com/Catalog/US/Images/salespolicies.html?cid=3DSUSIN#to=
+pic-21
+
+If you purchased an iPhone for Sprint, you have agreed to the Sprint Terms =
+and Conditions
+https://www.sprint.com/termsandconditions
+------=_Part_21701_1158615964.1671615514793
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name=3D"viewport" content=3D"width=3Ddevice-width">
+<meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8">
+=09<title>Your Message Subject or Title</title>
+
+=09<style type=3D"text/css">
+=09=09@font-face { font-family: 'SF UI Display Medium'; src: local('SF UI D=
+isplay Medium'), local('SF UI Display Medium'), url('https://email.images.a=
+pple.com/rover/aos/moe/Fonts/SFUIDisplay-Medium.ttf'); } /* font-weight:100=
+;  */
+=09=09@font-face { font-family: 'SF UI Text Semibold'; src: local('SF UI Te=
+xt Semibold'), local('SF UI Text Semibold'), url('https://email.images.appl=
+e.com/rover/aos/moe/Fonts/SFUIText-Semibold.ttf'); } /* font-weight:100;  *=
+/
+=09=09@font-face { font-family: 'SF UI Text Regular'; src: local('SF UI Tex=
+t Regular'), local('SF UI Text Regular'), url('https://email.images.apple.c=
+om/rover/aos/moe/Fonts/SFUIText-Regular.ttf'); } /* font-weight:100;  */
+=09=09@font-face { font-family: 'Apple Monochrome Emoji'; src: local('Apple=
+ Monochrome Emoji'), local('Apple Monochrome Emoji'), url('https://email.im=
+ages.apple.com/rover/aos/moe/Fonts/AppleMonochromeEmojiA-Regular.ttf'); }
+=09=09@font-face { font-family: 'SF Pro Rounded'; src: local('SF Pro Rounde=
+d'), local('SF Pro Rounded'), url('https://email.images.apple.com/rover/aos=
+/moe/Fonts/SF-Pro-Rounded-Bold_UC.ttf'); }
+=09=09@font-face { font-family: 'SFProRoundedCapsAMEmoji-Bold'; src: local(=
+'SFProRoundedCapsAMEmoji-Bold'), local('SFProRoundedCapsAMEmoji-Bold'), url=
+('https://email.images.apple.com/rover/aos/moe/Fonts/SFProRoundedCapsAMEmoj=
+i-Bold-v1.ttf'); }
+=09=09@font-face { font-family: 'SFProRoundedCapsAMEmoji-Regular'; src: loc=
+al('SFProRoundedCapsAMEmoji-Regular'), local('SFProRoundedCapsAMEmoji-Regul=
+ar'), url('https://email.images.apple.com/rover/aos/moe/Fonts/SFProRoundedC=
+apsAMEmoji-Regular-v1.ttf'); }
+=09=09@font-face { font-family: 'NeuzeitGrotesk-Light'; src: local('Neuzeit=
+Grotesk-Light'), local('NeuzeitGrotesk-Light'), url('https://email.images.a=
+pple.com/rover/aos/moe/Fonts/NeuzeitGrotesk-Light-v1.ttf '); }
+=09</style>
+
+=09
+=09<style type=3D"text/css">
+=09/* Reset */
+=09body {
+=09=09width:100% !important;
+=09=09-webkit-text-size-adjust:100%;
+=09=09-ms-text-size-adjust:100%;
+=09=09background-color: #FFFFFF;
+=09}
+
+=09img {
+=09=09outline:none;
+=09=09text-decoration:none;
+=09}
+
+=09a img {
+=09=09border:none;
+=09}
+
+=09p {
+=09=09margin: 1em 0;
+=09}
+
+=09br {
+=09=09line-height:12px;
+=09}
+
+=09h1, h2, h3, h4, h5, h6 {
+=09=09color: #333333 !important;
+=09=09margin: 0;
+=09=09padding: 0;
+=09=09border: 0;
+=09=09outline: 0;
+=09=09font-weight: inherit;
+=09=09font-style: inherit;
+=09=09font-size: 100%;
+=09=09font-family: inherit;
+=09=09vertical-align: baseline; =09
+=09}
+
+=09a {
+=09=09color: #0070C9;
+=09=09text-decoration:none;
+=09}
+=09
+=09a:link {
+=09=09color: #0070C9;
+=09=09text-decoration:none;
+=09}
+
+=09a:visited {
+=09=09color: #0070C9;
+=09=09text-decoration:none;
+=09}
+=09
+=09a:hover {
+=09=09color: #0070C9;
+=09=09text-decoration:underline;
+=09}
+
+=09a:focus{
+=09=09text-decoration: underline;
+=09}
+
+=09ul { padding-left:20px; padding-top:6px; padding-bottom:0px; margin-bott=
+om:5px; }=20
+=09.list-lr-nopad { padding-left:1px !important; padding-right:0px !importa=
+nt; padding-top:6px !important; padding-bottom:0px !important; }
+=09li { padding-left:0px !important; padding-bottom:9px !important; }=20
+=09.last-point { padding-left:0px !important; padding-bottom:0px !important=
+; }
+
+=09/* Client Specific */
+=09table td {
+=09=09border-collapse: collapse;
+=09}
+
+=09#outlook a {
+=09=09padding:0;
+=09}
+
+=09.ExternalClass {
+=09=09width:100%;
+=09}
+=09
+=09.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass fo=
+nt, .ExternalClass td, .ExternalClass div {
+=09=09line-height: 100%;
+=09}
+
+=09.ExternalClass img[class^=3DEmoji] {
+=09=09width: 10px !important;
+=09=09height: 10px !important;
+=09=09display: inline !important;
+=09}
+=09
+=09/* iPad Targeting */
+=09@media only screen and (device-width: 768px) {
+=09=09a, a:link, a:visited, a:active {
+=09=09=09text-decoration:none !important;
+=09=09}=20
+
+=09=09/* TJ added */
+=09=09a:hover {=09text-decoration:underline !important; /* none */}
+=09}
+=09
+=09/*Images should be double inverted when invert colors is detected*/
+=09@media (inverted-colors) { =20
+  =09=09img { =20
+  =09=09=09filter: invert(1); =20
+  =09=09} =20
+=09}
+=09=09
+=09/* Trying this media query for QQ.com - works - otherwise whole page has=
+ background gradient */
+=09.blue-button, .btn-track_ship_table, .btn-pre_sign_table, .btn-order_det=
+ails_table {=20
+=09padding-top:4px !important; padding-bottom:5px !important;
+=09-webkit-border-radius:8px !important; -moz-border-radius:8px !important;=
+ border-radius:8px !important;  border-top:0px !important; border-bottom:0p=
+x !important; border-left:0px !important; border-right:0px !important;
+=09background: #3b9ce8; /* Old browsers */
+=09background: -moz-linear-gradient(top, #3b9ce8 0%, #0171c9 100%); /* FF3.=
+6-15 */
+=09background: -webkit-linear-gradient(top, #3b9ce8 0%,#0171c9 100%); /* Ch=
+rome10-25,Safari5.1-6 */
+=09background-position: top left !important; background-repeat: repeat-x !i=
+mportant; /* added */
+=09}
+=09
+=09@media only screen and (min-width:50px) and (max-width:768px) {
+=09=09.blue-button, .btn-track_ship_table, .btn-pre_sign_table, .btn-order_=
+details_table {=20
+=09=09=09width:100% !important; float:none !important; margin-top:15px !imp=
+ortant;=20
+=09=09=09text-align:center !important; padding-top:3px !important; padding-=
+bottom:4px !important;=20
+=09=09=09-webkit-border-radius:8px !important; -moz-border-radius:8px !impo=
+rtant; border-radius:8px !important;  =09border-top:0px !important; border-=
+bottom:0px !important; border-left:0px !important; border-right:0px !import=
+ant;
+=09=09=09background: #3b9ce8;
+=09=09=09background: -moz-linear-gradient(top, #3b9ce8 0%, #0171c9 100%);=
+=20
+=09=09=09background: -webkit-linear-gradient(top, #3b9ce8 0%,#0171c9 100%);=
+=20
+=09=09=09background: linear-gradient(to bottom, #3b9ce8 0%,#0171c9 100%);=
+=20
+=09=09background-position: top left !important; background-repeat: repeat-x=
+ !important; /* added */
+=09=09}
+=09
+=09=09.webopen-td { padding-left:0px !important; padding-right:0px !importa=
+nt; }
+=09=09.saluation-td { padding-top:37px !important;padding-left:20px !import=
+ant; padding-right:20px !important; }
+=09=09.business-card-td { padding-left:20px !important; padding-right:20px =
+!important; }
+=09=09.vbizcard-container { padding-left:20px !important; padding-right:20p=
+x !important; }
+=09=09
+=09=09.main-table { width:100% !important; }
+=09=09.apple-logo-td { padding-top:18px !important; padding-left:20px !impo=
+rtant;  }
+=09=09.header-logo-img { height:25px !important; width:auto !important; mar=
+gin-right:10px !important; }=20
+=09=09
+=09=09/* Greeting td */
+=09=09.greeting-td { padding-top:44px !important; padding-bottom:22px !impo=
+rtant; padding-left:20px !important; padding-right:20px !important; }=20
+=09=09.heading-email { line-height:31px !important; font-size:28px !importa=
+nt; padding-top:0px !important; }=20
+=09=09.sub-heading { line-height:26px !important;padding-top:10px !importan=
+t; }
+=09=09.order-num-td { padding-bottom:26px !important; padding-left:20px !im=
+portant; padding-right:20px !important; }
+=09=09
+=09=09/* Section Heading */=09
+=09=09.section-heading-table-underline { width:100% !important; max-width:1=
+00% !important; padding-bottom:14px !important; padding-left:20px !importan=
+t; padding-right:20px !important; }=20
+=09=09.sectionHeading { font-size:22px !important; line-height:26px !import=
+ant; }
+=09=09.product-image-td-child { width:86px !important; padding-left:20px !i=
+mportant; padding-top:18px !important;}
+=09=09.line-item-table-intend { padding-top:4px !important; }
+=09=09
+=09=09/* Section Details */
+=09=09.section-details-table { width:100% !important; max-width:100% !impor=
+tant; min-width:100% !important; }
+=09=09.section-details-td { padding-left:20px !important; padding-right:20p=
+x !important;}=09
+
+=09=09/* Products section */=09
+=09=09.render-lineitems-table { padding-top:37px !important; }
+=09=09.product-name-td { padding-right:20px !important;}
+=09=09.product-image-td { width:86px !important; padding-left:20px !importa=
+nt; padding-right:7px !important; }
+=09=09.product-image-img { width:86px !important; height:86px !important; }
+=09=09.td-subscription { padding-right:20px !important;padding-bottom:20px =
+!important; }
+
+=09=09.product-list-table { padding:0px !important; width:100% !important; =
+max-width:100% !important; min-width:100% !important; }
+=09=09.gift-heading { padding-top:0px !important; padding-bottom:0px !impor=
+tant; padding-left:0px !important; padding-right:0px !important; }=09
+=09=09
+=09=09/* table left - Canceled Items */
+=09=09.LINE_COUNTER { padding-left:20px !important; padding-right:20px !imp=
+ortant; }
+=09
+=09=09/* H3 Headings. eg. Billing Address */
+=09=09.subsec-heading { padding-bottom:0px !important; padding-right:0px !i=
+mportant; padding-left:0px !important; margin-bottom:0px !important; text-a=
+lign:left !important; font-size:17px !important; line-height:26px !importan=
+t;color:#333333 !important; }=09
+
+=09=09/*RENDER ITEMS*/
+=09=09.pad-date { padding-bottom: 2px; }
+=09=09
+=09=09/* FAQ, WHN */=09
+=09=09.qa-heading-table { width:100% !important; max-width:100% !important;=
+ padding-bottom:14px !important; padding-left:20px !important; padding-righ=
+t:20px !important; }
+=09=09.qa-heading-td { width:auto !important; padding-bottom:0px !important=
+; padding-right:0px !important; }=20
+=09=09.whn-qa-td-row { padding-top:38px !important; }=20
+=09=09.table-Faq { width:100% !important; max-width:100% !important; min-wi=
+dth:100% !important; }
+=09=09.refund-td { padding-left:20px !important; padding-right:20px !import=
+ant; }
+=09=09.refund-line-div { padding-top:22px !important; }
+=09=09
+=09=09/* Footer section */=09
+=09=09.footer-container-table { padding-bottom:30px !important; padding-top=
+:1px !important; padding-left:20px !important; padding-right:20px !importan=
+t; }=20
+=09=09.footer-section-table { width:100% !important; }
+=09
+=09=09.footer-menu-td { padding-left:0px !important; padding-right:0px !imp=
+ortant; }
+=09=09.footer-copyright-td { padding-left:0px !important; padding-right:0px=
+ !important; }=20
+=09=09.footer-copyright-div { padding-top:8px !important; }
+=09=09.footer-copyrightmx-div { padding-top:2px !important; }
+=09=09.footer-address-div { padding-top:6px !important; }
+=09=09.footer-links-div { padding-top:4px !important;}=20
+=09=09.footer-menu-table { padding-bottom:0px !important; border-bottom-col=
+or:transparent !important; border-bottom-width:0px !important; border-botto=
+m-style:none !important;margin:0 !important;}=09
+=09=09.footer-links-div a:hover { text-decoration:underline !important; } =
+=09
+=09=09.footer-links-a a:hover { text-decoration:underline !important; }
+=09=09.footer-links-a a, .footer-links-a a:link, .footer-links-a a:visited,=
+ .footer-links-a a:active { text-decoration:none !important; }=20
+=09=09.footer-menu-td-top { padding-top:2px !important; padding-bottom:11px=
+ !important; font-size:11px !important; line-height:16px !important; color:=
+#888888 !important; width:100% !important; height:auto !important; mso-hide=
+:none !important; text-align:center !important; }
+=09=09.footer-menu-phone { font-size:11px !important; line-height:16px !imp=
+ortant; color:#888888 !important;}
+=09=09.Iphone_Legal-div { padding-bottom:0px !important; }
+=09=09=09=09
+=09=09/* For Footer-menu section */
+=09=09.footer-menu-item-table { width:100% !important; display:block !impor=
+tant; padding-bottom:11px !important; padding-top:8px !important; border-bo=
+ttom-color:#D6D6D6 !important; border-bottom-width:1px !important; border-b=
+ottom-style:solid !important; }
+=09=09.hide-line { display:none !important; }
+=09=09.footer-menu-item-td { font-size:11px !important; line-height:16px !i=
+mportant; }
+=09
+=09=09/* General */
+=09=09.product-quantity {padding-bottom:0px !important; padding-right:20px =
+!important;}
+=09=09.pad-lr { padding-left:20px !important; padding-right:20px !important=
+; }
+=09=09.promo-banner-td { padding-bottom:30px !important; padding-right:20px=
+ !important; padding-left:20px !important; }
+=09=09.promo-banner-td-img { padding-bottom:0px !important; padding-right: =
+20px !important; padding-left:20px !important; }
+
+=09=09.pad-r { padding-right:20px !important; }
+=09=09span { display: inline-block !important; }
+=09=09.cto-padtopright-20 { padding-right: 20px !important; padding-left:0p=
+x !important; padding-bottom: 0px !important; }=20
+=09=09.moe-line-col { background-color:#D6D6D6 !important; }=09
+=09=09ul { padding-left:20px !important; padding-top:6px !important; paddin=
+g-bottom:0px !important; }
+=09=09.list-lr-nopad { padding-left:1px !important; padding-right:0px !impo=
+rtant; padding-top:6px !important; padding-bottom:0px !important; }=20
+=09=09li { padding-left:0px !important; padding-bottom:9px !important; }=20
+=09=09.last-point { padding-left:0px !important; padding-bottom:0px !import=
+ant; }
+
+=09=09/*PROMO TILES*/=09
+=09=09.promotiles-table { padding-bottom:26px !important; }
+=09=09.moe-tile-table-1, .moe-tile-table-2 { width:100% !important; margin:=
+0 auto !important; }
+=09=09.moe-tile-table-2 { padding-top:30px !important; }
+=09=09.moe-tile-td { width:auto !important; padding-left:20px !important; p=
+adding-right:20px !important; }
+=09=09.tile-img { width:280px !important; height:auto !important; }
+=09=09
+=09=09/*VIDEO TILES*/=09
+=09=09.videotiles-table { padding-bottom:26px !important; }
+=09=09.moe-video-tile-table-1, .moe-video-tile-table-2 { width:100% !import=
+ant; margin:0 auto !important; }
+=09=09.moe-video-tile-table-2 { padding-top:30px !important; }
+=09=09.moe-video-tile-td { width:auto !important; padding-left:20px !import=
+ant; padding-right:20px !important; }
+=09=09.video-tile { width:280px !important; height:auto !important; }
+=09=09.iPhone-image {display:block !important; margin-right:auto !important=
+; margin-left:auto !important; }
+=09
+=09=09/* SHOW/HIDE in MOE */
+=09=09.moe-show { display:inline !important; height:auto !important; width:=
+auto !important;  }=09
+=09=09.moe-hide { display:none !important; width:0px !important; max-width:=
+0px !important; min-width:0px !important; height:0px !important; margin:0 !=
+important; padding:0 !important; padding-bottom:0 !important; background-co=
+lor:none !important; background:none !important; font-size:0px !important; =
+line-height:0px !important; font-weight:none !important; letter-spacing:0px=
+ !important; } =09=09
+
+=09=09.gap-1 { height:1px !important; font-size:1px !important; line-height=
+:1px !important; }
+=09=09.gap-2 { height:2px !important; font-size:2px !important; line-height=
+:2px !important; }
+=09=09.gap-3 { height:3px !important; font-size:3px !important; line-height=
+:3px !important; }
+=09=09.gap-5 { height:5px !important; font-size:5px !important; line-height=
+:5px !important; }
+=09=09.gap-6 { height:6px !important; font-size:6px !important; line-height=
+:6px !important; }=09
+=09=09.gap-8 { height:8px !important; font-size:8px !important; line-height=
+:8px !important; }
+=09=09.gap-10 { height:10px !important; font-size:10px !important; line-hei=
+ght:10px !important; }
+=09=09.gap-12 { height:12px !important; font-size:12px !important; line-hei=
+ght:12px !important; }
+=09=09.gap-13 { height:13px !important; font-size:13px !important; line-hei=
+ght:13px !important; }
+=09=09.gap-15 { height:15px !important; font-size:15px !important; line-hei=
+ght:15px !important; }
+=09=09.gap-16 { height:16px !important; font-size:16px !important; line-hei=
+ght:16px !important; }
+=09=09.gap-18 { height:18px !important; font-size:18px !important; line-hei=
+ght:18px !important; }=09
+=09=09.gap-20 { height:20px !important; font-size:20px !important; line-hei=
+ght:20px !important; }
+=09=09.gap-23 { height:23px !important; font-size:23px !important; line-hei=
+ght:23px !important; }
+=09=09.gap-24 { height:24px !important; font-size:24px !important; line-hei=
+ght:24px !important; }
+=09=09.gap-25 { height:25px !important; font-size:25px !important; line-hei=
+ght:25px !important; }
+=09=09.gap-26 { height:26px !important; font-size:26px !important; line-hei=
+ght:26px !important; }
+=09=09.gap-29 { height:29px !important; font-size:29px !important; line-hei=
+ght:29px !important; }
+=09=09.gap-30 { height:30px !important; font-size:30px !important; line-hei=
+ght:30px !important; }
+=09=09.gap-33 { height:33px !important; font-size:33px !important; line-hei=
+ght:33px !important; }=20
+=09=09.gap-37 { height:37px !important; font-size:37px !important; line-hei=
+ght:37px !important; }=20
+=09=09.gap-40 { height:40px !important; font-size:40px !important; line-hei=
+ght:40px !important; }
+=09=09.gap-42 { height:42px !important; font-size:42px !important; line-hei=
+ght:42px !important; }
+=09=09.gap-44 { height:44px !important; font-size:44px !important; line-hei=
+ght:44px !important; }
+=09=09.gap-45 { height:45px !important; font-size:45px !important; line-hei=
+ght:45px !important; }
+=09=09
+=09=09.moe-break-me { word-wrap:break-word; word-break:break-all; overflow-=
+wrap:break-word; }
+=09=09.aapl-link { color:#0070C9 !important; }
+=09}=09=09
+
+=09/* Android Targeting */
+=09@media only screen and (-webkit-device-pixel-ratio:.75) {/* low density =
+(ldpi) layouts */ }
+=09@media only screen and (-webkit-device-pixel-ratio:1) {/* medium density=
+ (mdpi) layouts */ }
+=09@media only screen and (-webkit-device-pixel-ratio:1.5) {/* high density=
+ (hdpi) layouts */ }
+</style>
+</head>=09
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+ =09  =09=09=09=09  =09=09 =09    =09
+
+
+<body leftmargin=3D"0" marginwidth=3D"0" topmargin=3D"0" marginheight=3D"0"=
+ offset=3D"0" bgcolor=3D"FFFFFF" style=3D"width:100% !important; background=
+-color:#FFFFFF; margin:0px; padding:0;-webkit-font-smoothing: antialiased;"=
+>
+=09<center>
+=09=09<table align=3D"center" width=3D"100%" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0">
+=09=09<tr><td>
+=09=09=09<table align=3D"center" width=3D"100%" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"margin-top:0px; margin-right:0px; margin-bot=
+tom:0px; margin-left:0px;" >
+=09=09=09<tr><td align=3D"center">=20
+=09=09=09=09<table class=3D"main-table" align=3D"center" width=3D"660" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" >=20
+=09=09=09=09<tr><td class=3D"apple-logo-td" valign=3D"top" align=3D"left" s=
+tyle=3D"padding-top:36px;" >
+=09=09=09=09=09<img class=3D"header-logo-img" src=3D"https://email.images.a=
+pple.com/rover/aos/moe/apple_icon_2x.png" style=3D"outline:none; display:bl=
+ock;color:#888;" border=3D"0" height=3D"24" width=3D"auto"  alt=3D"Apple">
+=09=09=09=09</td></tr>
+=09=09=09=09
+=09=09=09=09=09<tr>
+=09=09<td class=3D"greeting-td" valign=3D"top" align=3D"left" style=3D"padd=
+ing-top:76px; padding-bottom:46px;" >
+=09=09=09=09=09<h1 class=3D"heading-email" style=3D"font-family:'SF UI Disp=
+lay Medium',system,-apple-system,-webkit-system-font,'SFNSText','Segoe UI',=
+'Helvetica Neue',Helvetica,Arial,sans-serif !important; font-weight:normal;=
+ color:#333333; line-height:37px; font-size:34px; margin-top:0px; margin-le=
+ft:0px; margin-right:0px; margin-bottom:2px; border-bottom:0px;">    =09   =
+ =09=09Here is your shipment and tracking information.</h1>
+=09=09=09=09=09   =09=09<!--<p class=3D"sub-heading" style=3D"font-family:s=
+ystem-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', =
+Helvetica, Arial, sans-serif;; font-size:17px; line-height:26px; color:#333=
+333; padding-top:15px; margin-top:0; margin-left:0; margin-right:0; margin-=
+bottom:0;"> =09        =09Here is your shipment and tracking information.</=
+p>-->
+=09   =09=09   =09</td>
+=09</tr>
+ =09
+=09<tr>
+=09=09<td class=3D"order-num-td" style=3D"padding-bottom:13px;"> =09=09=09<=
+div class=3D"order-num" style=3D"color:#333333; font-weight:normal; font-si=
+ze:14px; line-height:21px; margin-top:0px; margin-bottom:0px;">
+=09=09=09=09<span style=3D"font-family:system-ui, -apple-system, BlinkMacSy=
+stemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; font=
+-weight:600; letter-spacing:0px;">Order Number:</span>
+=09=09=09=09<span style=3D"font-family:system-ui, -apple-system, BlinkMacSy=
+stemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;;  col=
+or:#0070C9;">=09<a href=3D"https://store.apple.com/vieworder/W1290104807/br=
+ettbash@brettbash.com/AOS-AM-104801-A10000052038" style=3D"color:#0070C9 !i=
+mportant;font-weight:normal;font-family:system-ui, -apple-system, BlinkMacS=
+ystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;;" cl=
+ass=3D"bluelink" aria-label=3D"Order Number W1290104807">W1290104807</a>
+  </span>
+=09=09=09</div>=20
+=09=09=09<div class=3D"order-num" style=3D"color:#333333; font-weight:norma=
+l; font-size:14px; line-height:21px; margin-top:0px; margin-bottom:0px;">
+=09=09=09=09<span style=3D"font-family:system-ui, -apple-system, BlinkMacSy=
+stemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; font=
+-weight:600; letter-spacing:0px;">Ordered on:</span>=20
+=09=09=09=09<span style=3D"font-family:system-ui, -apple-system, BlinkMacSy=
+stemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; font=
+-weight:normal;">December 17, 2022</span>
+=09=09=09</div>
+=09=09</td>
+=09</tr>=09=09=09
+=09<tr>
+=09=09<td class=3D"order-num-line" valign=3D"top" bgcolor=3D"D6D6D6" style=
+=3D"background-color:#D6D6D6;width: height:1px; font-size:1px; line-height:=
+1px;" height=3D"1" align=3D"left"> =09=09=09<div style=3D"background-color:=
+#D6D6D6 !important; font-size:1px !important; height:1px !important;"></div=
+>
+=09=09</td>
+=09</tr>=09=09=09=09=09   =09=09   =09
+=09=09=09=09
+=09=09=09=09<tr><td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table class=3D"re=
+nder-lineitems-table" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" bo=
+rder=3D"0" style=3D"padding-top:41px;" >=20
+=09<tr><td>
+=09=09<table width=3D"29%" class=3D"section-heading-table-underline" align=
+=3D"left" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"width:2=
+9%; max-width:29%;" > =09=09<tr><td valign=3D"top" align=3D"left" style=3D"=
+border-bottom-color:#FFFFFF;" >
+=09=09=09<h2 class=3D"sectionHeading" style=3D"font-family:'SF UI Display M=
+edium',system,-apple-system,-webkit-system-font,'SFNSText','Segoe UI','Helv=
+etica Neue',Helvetica,Arial,sans-serif !important; font-weight:500; letter-=
+spacing:0px; color:#333333; font-size:22px !important; line-height:27px; ma=
+rgin-top:0; margin-left:0; margin-right:0; margin-bottom:0;">Items to Be Sh=
+ipped</h2>
+=09=09</td></tr></table>
+=09=09=09
+=09=09<table class=3D"product-list-table" width=3D"66.5%" align=3D"right" c=
+ellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"width:66.5%; max-w=
+idth:66.5%; min-width:66.5%;" >=20
+=09=09=09=09=09<tr><td class=3D"pad-lr" valign=3D"top" align=3D"left">
+=09=09=09=09<div style=3D"font-family:system-ui, -apple-system, BlinkMacSys=
+temFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; lette=
+r-spacing:0px; font-size:17px; line-height:26px; color:#333333;">
+=09=09=09=09=09<span style=3D"font-family:system-ui, -apple-system, BlinkMa=
+cSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; f=
+ont-weight:600; letter-spacing:0px; font-size:17px; line-height:26px; color=
+:#333333;">Shipped:</span>
+=09=09=09=09=09
+=09=09=09=09=09<span style=3D"font-family:system-ui, -apple-system, BlinkMa=
+cSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; f=
+ont-weight:400; letter-spacing:0px; font-size:17px; line-height:26px; color=
+:#333333;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09 =09=09=09=09Delivers=
+ =20
+=09=09=09Jan 03, 2023
+=09=09=09=09 =09=09=09=09=09=09=09 =09=09=09
+=09=09=09=09 =09=09=09=09=09=09=09=09 =09=09=09=09=09 =09=09
+=09=09=09=09=09 =09=09                =09=09=09=09by =09=09=09=09=09=09=09=
+=09=09 Standard Delivery
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09      =
+          =09=09=09=09=09=09=09=09 =09=09=09=09=09=09</span>
+=09=09=09=09</div>
+=09=09=09</td></tr>
+=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr><td class=3D"pad-=
+lr" valign=3D"top" align=3D"left">
+=09=09=09=09=09=09=09
+=09=09=09=09=09=09<table class=3D"btn-track_ship_table" style=3D"background=
+-color:#127fd2; background-position: top left; background-repeat: repeat-x;=
+ border-top:1px solid #1992da; border-right: 1px solid #0d76bc; border-left=
+: 1px solid #0d76bc; border-bottom: 1px solid #00599d; -webkit-border-radiu=
+s:6px;-moz-border-radius:6px; border-radius:6px; margin-top:20px; float:lef=
+t;" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+=09=09=09<tr><td style=3D"font-family:system-ui, -apple-system, BlinkMacSys=
+temFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; color=
+:#ffffff; font-size: 16px; padding-left:0; padding-right:0;" class=3D"ap-bt=
+n" align=3D"center" valign=3D"middle">
+=09     =09=09<a href=3D"https://store.apple.com/vieworder/W1290104807/bret=
+tbash@brettbash.com/AOS-AM-104801-A10000052038" style=3D"cursor:pointer; li=
+ne-height:26px; padding-left:50px; padding-top:0px;padding-bottom:0px;paddi=
+ng-right:50px; display:block; text-decoration:none; color:#ffffff !importan=
+t;" target=3D"_blank"><span style=3D"color:#ffffff">Track Shipment</span></=
+a>
+=09=09=09</td></tr></table>
+=09=09=09=09=09=09=09=09=09</td></tr>=09=09=09
+=09=09=09=09=09=09=09=09=09=09               =20
+=09            =09            =09<tr><td class=3D"pad-lr" valign=3D"top" al=
+ign=3D"left">
+=09                =09=09=09=09<table class=3D"btn-pre_sign_table" style=3D=
+"background-color:#127fd2; background-position: top left; background-repeat=
+: repeat-x; border-top:1px solid #1992da; border-right: 1px solid #0d76bc; =
+border-left: 1px solid #0d76bc; border-bottom: 1px solid #00599d; -webkit-b=
+order-radius:6px;-moz-border-radius:6px; border-radius:6px; margin-top: 20p=
+x; float: left;" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+=09=09<tr><td style=3D"font-family:system-ui, -apple-system, BlinkMacSystem=
+Font, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#f=
+fffff; font-size: 16px; padding-left:0; padding-right:0;" class=3D"ap-btn" =
+align=3D"center" valign=3D"middle">
+=09     =09<a href=3D"https://store.apple.com/vieworder/W1290104807/brettba=
+sh@brettbash.com/AOS-AM-104801-A10000052033" style=3D"cursor:pointer; line-=
+height:26px; padding-top:0px;padding-bottom:0px;padding-left:31px; padding-=
+right:31px; display:block; text-decoration:none; color:#ffffff !important;"=
+ target=3D"_blank"><span style=3D"color:#ffffff">Pre-Sign for Delivery</spa=
+n></a>
+=09=09</td></tr></table>=09=09
+=09=09
+=09=09=09<table  width=3D"100%" align=3D"left" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" >
+=09=09<tr><td class=3D"gen-txt-gray" align=3D"left" style=3D"font-family:sy=
+stem-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', H=
+elvetica, Arial, sans-serif;; color: #6f6f6f; font-size:17px; line-height:2=
+4px;padding-top:16px;">Track shipment to manage your delivery.
+</td></tr></table>
+=09
+=09=09                </td></tr>          =09=09=09=09
+=09            =09        =09=09=09=09
+=09=09=09=09=09<tr><td class=3D"pad-lr" valign=3D"top" align=3D"left">
+        =09=09<table width=3D"100%" align=3D"center" cellspacing=3D"0" cell=
+padding=3D"0" border=3D"0" style=3D"min-width:100%; max-width:100%; width:1=
+00%;"> =09<tr>
+=09=09<td class=3D"gap-20" valign=3D"top" height=3D"21" align=3D"left" styl=
+e=3D"height:21px; font-size:21px; line-height:21px;">
+=09=09=09<img class=3D"gap-20" src=3D"https://email.images.apple.com/dm/gro=
+ups/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline=
+:none;" border=3D"0" height=3D"21" width=3D"1">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"moe-line-col" valign=3D"top" bgcolor=3D"D6D6D6" style=3D=
+"background-color:#D6D6D6; height:1px; font-size:1px; line-height:1px;" hei=
+ght=3D"1" align=3D"left">
+=09=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !=
+important; height:1px !important;">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"gap-24" valign=3D"top" height=3D"28" align=3D"left" styl=
+e=3D"height:28px; font-size:28px; line-height:28px;">
+=09=09=09<img class=3D"gap-24" src=3D"https://email.images.apple.com/dm/gro=
+ups/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline=
+:none;" border=3D"0" height=3D"28" width=3D"1">
+=09=09</td>
+=09</tr>
+</table>
+       =09=09</td></tr>
+=09=09=09
+=09=09<tr><td valign=3D"top" align=3D"left">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09<table class=3D"line-item-table" width=3D"100%" align=3D"right"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0" >
+=09=09=09=09<tr>
+=09=09=09=09=09
+=09   =09=09=09
+=09=09=09
+=09=09   =09=09=09
+=09=09=09
+=09=09=09=20
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09<td class=3D"product-image-td" align=3D"center" width=3D"=
+97" valign=3D"top" style=3D"padding-right:10px;">
+=09=09=09=09=09=09<img class=3D"product-image-img" src=3D"https://store.sto=
+reimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-gold-s=
+elect?wid=3D192&hei=3D192&fmt=3Djpeg&qlt=3D90&.v=3D1663364576380" alt=3D"" =
+height=3D"96" width=3D"96" style=3D"outline:none; display:block;">
+=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td valign=3D"top" align=3D"le=
+ft">
+     =09=09=09=09=09<table class=3D"item-details-table" width=3D"100%" alig=
+n=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"paddin=
+g-bottom:25px;">
+     =09=09=09=09=09<tr><td class=3D"product-name-td" align=3D"left" valign=
+=3D"top" style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont,=
+ 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; font-weight:6=
+00; letter-spacing:0px; color:#333333; font-size:17px; line-height:26px;">=
+=09=09=09=09=09=09=09=09=09=09iPhone 14 Pro Max 256GB Gold
+=09=09=09=09=09=09=09=09=09=09</td></tr>=20
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=20
+=09 =09=09=09=09=09=09=09=09=09=09=09=09<tr><td class=3D"pad-r" align=3D"le=
+ft" width=3D"100%" valign=3D"top" >
+=09=09=09=09=09=09=09<table width=3D"100%" align=3D"center" cellspacing=3D"=
+0" cellpadding=3D"0" border=3D"0" style=3D"min-width:100%; max-width:100%; =
+width:100%;"> =09<tr>
+=09=09<td class=3D"gap-6" valign=3D"top" height=3D"6" align=3D"left" style=
+=3D"height:6px; font-size:6px; line-height:6px;">
+=09=09=09<img class=3D"gap-6" src=3D"https://email.images.apple.com/dm/grou=
+ps/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline:=
+none;" border=3D"0" height=3D"6" width=3D"1">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"moe-line-col" valign=3D"top" bgcolor=3D"D6D6D6" style=3D=
+"background-color:#D6D6D6; height:1px; font-size:1px; line-height:1px;" hei=
+ght=3D"1" align=3D"left">
+=09=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !=
+important; height:1px !important;">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"gap-6" valign=3D"top" height=3D"5" align=3D"left" style=
+=3D"height:5px; font-size:5px; line-height:5px;">
+=09=09=09<img class=3D"gap-6" src=3D"https://email.images.apple.com/dm/grou=
+ps/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline:=
+none;" border=3D"0" height=3D"5" width=3D"1">
+=09=09</td>
+=09</tr>
+</table>
+=09=09=09=09=09=09</td></tr>
+=09=09=09=09=09=09
+=09=09=09=09=09=09<tr><td class=3D"product-quantity" align=3D"left" style=
+=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', '=
+Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333; font-size:17=
+px; line-height:26px;">Qty 1
+=09=09=09=09=09=09</td></tr>=09=09=09=09    =09=09=09=09=09=09=20
+=09=09=09=09    =09=09=09=09=09=09   =20
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09<tr><td class=3D"pad-r" align=3D"left" width=3D"100%" valign=
+=3D"top" >
+=09=09=09=09<table width=3D"100%" align=3D"center" cellspacing=3D"0" cellpa=
+dding=3D"0" border=3D"0" style=3D"min-width:100%; max-width:100%; width:100=
+%;"> =09<tr>
+=09=09<td class=3D"gap-6" valign=3D"top" height=3D"6" align=3D"left" style=
+=3D"height:6px; font-size:6px; line-height:6px;">
+=09=09=09<img class=3D"gap-6" src=3D"https://email.images.apple.com/dm/grou=
+ps/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline:=
+none;" border=3D"0" height=3D"6" width=3D"1">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"moe-line-col" valign=3D"top" bgcolor=3D"D6D6D6" style=3D=
+"background-color:#D6D6D6; height:1px; font-size:1px; line-height:1px;" hei=
+ght=3D"1" align=3D"left">
+=09=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !=
+important; height:1px !important;">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"gap-6" valign=3D"top" height=3D"5" align=3D"left" style=
+=3D"height:5px; font-size:5px; line-height:5px;">
+=09=09=09<img class=3D"gap-6" src=3D"https://email.images.apple.com/dm/grou=
+ps/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline:=
+none;" border=3D"0" height=3D"5" width=3D"1">
+=09=09</td>
+=09</tr>
+</table>
+=09=09=09</td></tr>
+=09=09=09
+=09=09=09<tr><td class=3D"cto-padtopright-20" align=3D"left" valign=3D"top"=
+> =09=09=09=09<div class=3D"product-cto-heading" style=3D"font-family:syste=
+m-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helv=
+etica, Arial, sans-serif;; font-weight:600; letter-spacing:0px; color:#3333=
+33; font-size:14px; line-height:21px;padding-bottom:13px;">
+=09=09=09=09=09=09=09=09=09=09=09=09With the following plan=09=09
+=09=09=09=09=09=09=09=09=09</div>=09=09=09=09
+
+=09=09=09=09=09=09=09=09=09<div class=3D"product-cto-div" align=3D"left" st=
+yle=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333; font-size=
+:14px; line-height:21px;">Voice Plan: null</div>   =20
+=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09<div class=3D"product-cto-div" align=3D"left" st=
+yle=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333; font-size=
+:14px; line-height:21px;">Data Plan: null</div>   =20
+=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09<div class=3D"product-cto-div" align=3D"left" st=
+yle=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333; font-size=
+:14px; line-height:21px;">Messaging Plan: null=09null</div>   =20
+=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09<div class=3D"product-cto-div" align=3D"left" st=
+yle=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333; font-size=
+:14px; line-height:21px;">Phone number:&nbsp;null</div>   =20
+=09=09=09=09=09=09=09</td></tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09</td></tr></table>=09=09=09
+=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09<table class=3D"line-item-table-intend"=
+ width=3D"100%" align=3D"right" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"padding-top:9px;" >
+=09=09=09<tr>
+=09=09=09=09=09=09=09
+=09=09
+=09=09
+
+=09=09
+=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"product-image-=
+td-child" align=3D"right" width=3D"96" valign=3D"top" style=3D"padding-righ=
+t:10px; padding-top:10px;"><img  src=3D"https://store.storeimages.cdn-apple=
+.com/4982/as-images.apple.com/is/APPLECARE-plus?wid=3D192&hei=3D192&fmt=3Dj=
+peg&qlt=3D90&.v=3D1629955314000" alt=3D"" height=3D"36" width=3D"36" style=
+=3D"outline:none; display:block;"></td>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<td valign=3D"top" align=3D"left">
+=09=09=09=09<table  class=3D"item-details-table" width=3D"100%" align=3D"le=
+ft" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09<tr><td class=3D"product-name-td" align=3D"left" width=3D"10=
+0%" valign=3D"top">
+=09=09=09=09=09<table width=3D"100%" align=3D"center" cellspacing=3D"0" cel=
+lpadding=3D"0" border=3D"0" style=3D"min-width:100%; max-width:100%; width:=
+100%;"> =09<tr>
+=09=09<td class=3D"gap-1" valign=3D"top" height=3D"0" align=3D"left" style=
+=3D"height:0px; font-size:0px; line-height:0px;">
+=09=09=09<img class=3D"gap-1" src=3D"https://email.images.apple.com/dm/grou=
+ps/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline:=
+none;" border=3D"0" height=3D"0" width=3D"1">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"moe-line-col" valign=3D"top" bgcolor=3D"D6D6D6" style=3D=
+"background-color:#D6D6D6; height:1px; font-size:1px; line-height:1px;" hei=
+ght=3D"1" align=3D"left">
+=09=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !=
+important; height:1px !important;">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"gap-14" valign=3D"top" height=3D"6" align=3D"left" style=
+=3D"height:6px; font-size:6px; line-height:6px;">
+=09=09=09<img class=3D"gap-14" src=3D"https://email.images.apple.com/dm/gro=
+ups/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline=
+:none;" border=3D"0" height=3D"6" width=3D"1">
+=09=09</td>
+=09</tr>
+</table>
+ </td></tr>
+=09=09=09=09=09=09=09=09=09=09=09<tr><td class=3D"product-name-td" align=3D=
+"left" valign=3D"top" style=3D"font-family:system-ui, -apple-system, BlinkM=
+acSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; =
+font-weight:600; color:#333333; font-size:14px; line-height:21px;">=09=09=
+=09=09=09=09=09=09=09=09AppleCare+ for iPhone 14 Pro Max
+=09=09=09=09=09=09=09=09=09=09</td></tr>=09
+=09=09=09=09=09=09<tr><td  class=3D"td-subscription" width=3D"100%" align=
+=3D"left" style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont=
+, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#33333=
+3; font-size:14px; line-height:21px;">
+=09=09=09=09=09=09=09Automatically registered with your Apple hardware.
+=09=09=09=09=09=09</td></tr>
+=09=09=09=09=09
+=09=09=09=09=09=09
+=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09</td>
+=09=09</tr></table>=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td></tr></table>=09=09=09=09=09=
+=09=09=09
+=09</td></tr></table>=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09
+=09<table align=3D"center" width=3D"100%" cellpadding=3D"0" border=3D"0" ce=
+llspacing=3D"0">
+=09<tr><td>=09
+=09=09<table class=3D"section-details-table" width=3D"66.5%" align=3D"right=
+" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"width:66.5%; ma=
+x-width:66.5%; min-width:66.5%;padding-bottom:31px;">
+=09=09<tr><td class=3D"section-details-td" align=3D"left" valign=3D"top" st=
+yle=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif;; font-size:17px; line-hei=
+ght:26px; color:#333333;">=09=09=09=09=09=09=09
+=09=09=09<table width=3D"100%" align=3D"center" cellspacing=3D"0" cellpaddi=
+ng=3D"0" border=3D"0" style=3D"min-width:100%; max-width:100%; width:100%;"=
+> =09<tr>
+=09=09<td class=3D"gap-3" valign=3D"top" height=3D"6" align=3D"left" style=
+=3D"height:6px; font-size:6px; line-height:6px;">
+=09=09=09<img class=3D"gap-3" src=3D"https://email.images.apple.com/dm/grou=
+ps/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline:=
+none;" border=3D"0" height=3D"6" width=3D"1">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"moe-line-col" valign=3D"top" bgcolor=3D"D6D6D6" style=3D=
+"background-color:#D6D6D6; height:1px; font-size:1px; line-height:1px;" hei=
+ght=3D"1" align=3D"left">
+=09=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !=
+important; height:1px !important;">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"gap-29" valign=3D"top" height=3D"27" align=3D"left" styl=
+e=3D"height:27px; font-size:27px; line-height:27px;">
+=09=09=09<img class=3D"gap-29" src=3D"https://email.images.apple.com/dm/gro=
+ups/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline=
+:none;" border=3D"0" height=3D"27" width=3D"1">
+=09=09</td>
+=09</tr>
+</table>
+=09=09</td></tr>
+=09=09
+=09=09=09=09=09<tr><td class=3D"section-details-td" align=3D"left" valign=
+=3D"top" style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont,=
+ 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333=
+; font-size:17px; line-height:26px;">
+=09=09=09=09<h3 class=3D"subsec-heading" style=3D"font-family:system-ui, -a=
+pple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, A=
+rial, sans-serif;; font-weight:600; letter-spacing:0px; font-size:17px; lin=
+e-height:26px; color:#333333; margin-top:0px; margin-bottom:0px;">Shipping =
+Address:</h3>
+=09=09=09=09<div class=3D"gen-txt" style=3D"font-family:system-ui, -apple-s=
+ystem, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, =
+sans-serif;; font-size:17px; line-height:26px; color:#333333;">=09<div clas=
+s=3D"gen-txt" style=3D"font-size:17px;line-height:26px;">Brett Bash</div>
+<div class=3D"gen-txt" style=3D"font-size:17px;line-height:26px;">&bull;&bu=
+ll;&bull;&bull;&bull;&bull;&bull;&bull;06</div>
+<div style=3D"line-height:4px;">=C2=A0</div>
+<div class=3D"gen-txt" style=3D"font-size:17px;line-height:27px;">10500 Lak=
+eline Mall Dr</div>
+<div class=3D"gen-txt" style=3D"font-size:17px;line-height:27px;">2401</div=
+>
+<div class=3D"gen-txt" style=3D"font-size:17px;line-height:27px;">Austin TX=
+ 78717-0082</div>
+</div>
+=09=09=09=09
+=09=09=09=09<h3 class=3D"subsec-heading" style=3D"font-family:system-ui, -a=
+pple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, A=
+rial, sans-serif;; font-weight:600; letter-spacing:0px; font-size:17px; lin=
+e-height:26px; color:#333333; margin-top:0px; margin-bottom:0px;padding-top=
+:23px;">Shipment Notifications:</h3>
+=09=09=09=09=09=09=09=09=09<div class=3D"gen-txt" style=3D"font-family:syst=
+em-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Hel=
+vetica, Arial, sans-serif;; font-size:17px; line-height:26px; color:#333333=
+;">=09<span class=3D"moe-break-me" style=3D"color:#0070C9">brettbash@brettb=
+ash.com</span></div>
+=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h3 class=3D"subsec-heading" s=
+tyle=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI=
+', 'Helvetica Neue', Helvetica, Arial, sans-serif;; font-weight:600; letter=
+-spacing:0px; font-size:17px; line-height:26px; color:#333333 !important; m=
+argin-top:0px; margin-bottom:0px;padding-top:23px;">Carrier Name:</h3>
+=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"gen-txt" style=3D"font=
+-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetic=
+a Neue', Helvetica, Arial, sans-serif;; font-size:17px; line-height:26px; c=
+olor:#333333;">UPS</div>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h3 class=3D"subsec-h=
+eading" style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, =
+'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; font-weight:60=
+0; letter-spacing:0px; font-size:17px; line-height:26px; color:#333333; mar=
+gin-top:0px; margin-bottom:0px;padding-top:23px;">Tracking Number:</h3>
+=09=09=09=09=09=09=09<div class=3D"gen-txt" style=3D"font-family:system-ui,=
+ -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica=
+, Arial, sans-serif;; font-size:17px; line-height:26px; color:#333333;margi=
+n-bottom:0;padding-bottom:0px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<a =
+href=3D"https://store.apple.com/vieworder/W1290104807/brettbash@brettbash.c=
+om/AOS-AM-104801-A10000052038" class=3D"bluelink" style=3D"color:#0070C9 !i=
+mportant" aria-label=3D"Tracking Number 1Z3026AA0425659413">1Z3026AA0425659=
+413</a>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</div>=09=09=09=09=09=
+=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td></tr>
+=09=09=09=09</table>
+=09</td></tr></table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td></tr>=09
+=09=09=09=09
+=09=09=09=09    =09=09=09
+    =09=09=09    =09=09=09
+=09=09=09=09=09=09=09=09=09=09<tr><td class=3D"moe_space" style=3D"padding-=
+top:10px;"></td></tr>
+
+=09<tr><td class=3D"qa-heading-divider" height=3D"1" bgcolor=3D"D6D6D6" val=
+ign=3D"top" align=3D"left" valign=3D"top" style=3D"background-color:#D6D6D6=
+; padding-right:17px; height:1px; font-size:1px; line-height:1px;" >
+=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !imp=
+ortant; height:1px !important;"></div>
+=09</td></tr>=09=09=09
+
+=09<tr><td class=3D"whn-qa-td-row" style=3D"padding-top:41px;">=20
+=09=09<table class=3D"faq-table" width=3D"100%" cellspacing=3D"0" cellpaddi=
+ng=3D"0" border=3D"0">
+=09=09<tr><td>
+=09=09=09<table width=3D"29%" class=3D"qa-heading-table" align=3D"left" cel=
+lspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"width:29%; max-width=
+:29%;">
+=09=09=09<tr><td class=3D"qa-heading-td" valign=3D"top" align=3D"left" >
+=09=09=09=09<h2 class=3D"sectionHeading" style=3D"font-family:'SF UI Displa=
+y Medium',system,-apple-system,-webkit-system-font,'SFNSText','Segoe UI','H=
+elvetica Neue',Helvetica,Arial,sans-serif !important; font-weight:500; lett=
+er-spacing:0px; color:#333333; font-size:22px !important; line-height:27px;=
+ margin-top:0; margin-left:0; margin-right:0; margin-bottom:0;">iPhone Setu=
+p and Activation
+</h2>
+=09=09=09</td></tr></table>=20
+=09=09=09
+=09=09=09<table width=3D"66.5%" class=3D"table-Faq" align=3D"right" cellspa=
+cing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"padding-bottom:31px;widt=
+h:66.5%; max-width:66.5%; min-width:66.5%;" >
+=09=09=09<tr><td class=3D"refund-td" valign=3D"top" align=3D"left">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09<h3 style=3D"font-family:system-ui, -apple-system, BlinkM=
+acSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; =
+font-weight:600; letter-spacing:0px; color:#333333; font-size:17px; line-he=
+ight:26px; margin-top:0; margin-left: 0; margin-right:0; margin-bottom:0px;=
+">Setting up your new iPhone is easy</h3>=09
+=09=09=09=09=09=09<div class=3D"moe-tile-table-1" align=3D"left" width=3D"2=
+10" style=3D"padding-top:12px; padding-bottom:12px;">
+=09=09=09=09=09=09=09=09<a class=3D"amt-row-td" href=3D"https://support.app=
+le.com/set-up-and-activate-new-iphone?cid=3Dmc-ols-iphone-setuplp-email-shi=
+p-08232022">
+=09=09=09=09=09=09=09=09=09<img class=3D"video-tile iPhone-image" src=3D"ht=
+tps://email.images.apple.com/rover/aos/moe/img-setup-activation_iphone.jpg"=
+ width=3D"210" height=3D"auto" border=3D"0" style=3D"display:block;margin:0=
+" />
+=09=09=09=09=09=09=09=09</a>
+=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<div style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, =
+'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333;=
+ font-size:17px; line-height:26px;margin:0;">
+In just a few simple steps, you can set up, activate, and transfer your inf=
+ormation to your new iPhone =E2=80=94 right from your home.</div>
+
+<div style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Se=
+goe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;;  font-size:17px; =
+line-height:26px;padding-top:12px;margin:0;">
+<a href=3D"https://support.apple.com/set-up-and-activate-new-iphone?cid=3Dm=
+c-ols-iphone-setuplp-email-ship-08232022"style=3D"color:#0070C9;">Here=E2=
+=80=99s how =E2=80=BA</a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09<h3 style=3D"font-family:system-ui, -apple-system, BlinkM=
+acSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; =
+font-weight:600; letter-spacing:0px; color:#333333; font-size:17px; line-he=
+ight:26px;padding-top:24px; margin-top:0; margin-left: 0; margin-right:0; m=
+argin-bottom:0px;">Activating your new iPhone with eSIM</h3>
+=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<div style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, =
+'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333;=
+ font-size:17px; line-height:26px;margin:0;">iPhone models now activate wit=
+h eSIM, and no physical SIM card is required to connect to your carrier.</d=
+iv>
+
+<div style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Se=
+goe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;;  font-size:17px; =
+line-height:26px;padding-top:12px;margin:0;">
+<a href=3D"https://support.apple.com/en-us/HT212780?CID=3DTRX-EN-US-DM-OM-B=
+DY-00SUSIN00"style=3D"color:#0070C9;">Learn more about eSIM =E2=80=BA</a></=
+div>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+</td></tr></table>
+=09=09</td></tr></table>
+=09</td></tr>=09=09
+=09=09=09=09=09=09=09=09
+=09=09=09=09=09<tr><td class=3D"moe_space" style=3D"padding-top:10px;"></td=
+></tr>
+
+=09<tr><td class=3D"qa-heading-divider" height=3D"1" bgcolor=3D"D6D6D6" val=
+ign=3D"top" align=3D"left" valign=3D"top" style=3D"background-color:#D6D6D6=
+; padding-right:17px; height:1px; font-size:1px; line-height:1px;" >
+=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !imp=
+ortant; height:1px !important;"></div>
+=09</td></tr>=09=09=09
+
+=09<tr><td class=3D"whn-qa-td-row" style=3D"padding-top:41px;">
+=09=09<table class=3D"faq-table" width=3D"100%" cellspacing=3D"0" cellpaddi=
+ng=3D"0" border=3D"0">
+=09=09<tr><td>
+=09=09=09<table width=3D"29%" class=3D"qa-heading-table" align=3D"left" cel=
+lspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"width:29%; max-width=
+:29%;">
+=09=09=09<tr><td class=3D"qa-heading-td" valign=3D"top" align=3D"left" >
+=09=09=09=09<h2 class=3D"sectionHeading" style=3D"font-family:'SF UI Displa=
+y Medium',system,-apple-system,-webkit-system-font,'SFNSText','Segoe UI','H=
+elvetica Neue',Helvetica,Arial,sans-serif !important; font-weight:500; lett=
+er-spacing:0px; color:#333333; font-size:22px !important; line-height:27px;=
+ margin-top:0; margin-left:0; margin-right:0; margin-bottom:0;">Questions</=
+h2>
+=09=09=09</td></tr></table>=20
+=09=09=09   =20
+=09=09=09<table width=3D"66.5%" class=3D"table-Faq" align=3D"right" cellspa=
+cing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"padding-bottom:40px; wid=
+th:66.5%; max-width:66.5%; min-width:66.5%;" >
+=09=09=09<tr><td class=3D"refund-td" valign=3D"top" align=3D"left">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09<h3 style=3D"font-family:system-ui, -apple-system, BlinkM=
+acSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; =
+font-weight:600; letter-spacing:0px; color:#333333; font-size:17px; line-he=
+ight:26px; margin-top:0; margin-left: 0; margin-right:0; margin-bottom:0px;=
+">How do I track my shipment?</h3>=09=09=09
+=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<div style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, =
+'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333;=
+ font-size:17px; line-height:26px;">Visit online <a class=3D"bluelink" href=
+=3D"https://store.apple.com/vieworder/W1290104807/brettbash@brettbash.com/A=
+OS-AM-104801-A10000052033" style=3D"color:#0070C9;font-weight:normal;">Orde=
+r Status</a> to view the most up-to-date status of your order. Some carrier=
+s, including the U.S. Postal Service, may not provide tracking information.=
+ If you ordered multiple items, you may receive separate shipments with no =
+additional shipping charges. For more information about shipping or returns=
+, please visit online <a class=3D"bluelink" href=3D"https://store.apple.com=
+/us/help/" aria-label=3D"Online Help link to get more information about you=
+r Order" style=3D"color:#0070C9;font-weight:normal;">Help</a>.</div>   <!--=
+Added padding diff in static content -->
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<div style=3D"font-family:system-=
+ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvet=
+ica, Arial, sans-serif;; color:#333333; font-size:17px; line-height:26px;pa=
+dding-top:12px;margin:0;">You can also call Apple Store Customer Service at=
+ <nobr>800-692-7753,</nobr> Monday through Friday from 5:00 a.m. to 8:00 p.=
+m. and Saturday and Sunday from 7:00 a.m. to 4:00 p.m. Pacific time. Please=
+ have your order number available. </div>
+    <!--Added padding diff in static content -->
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09<h3 class=3D"refund-line-div" style=3D"font-family:system=
+-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helve=
+tica, Arial, sans-serif;; font-weight:600; letter-spacing:0px; color:#33333=
+3; font-size:17px; line-height:26px; margin-top:0; margin-left: 0; margin-r=
+ight:0; margin-bottom:0px;padding-top:24px;">Do I need to sign for my shipm=
+ent?</h3>
+=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<div style=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, =
+'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#333333;=
+ font-size:17px; line-height:26px;">Check the shipped items section to dete=
+rmine whether your shipment requires a signature. If a signature is require=
+d, the carrier will make three delivery attempts before returning your item=
+s to Apple.</div>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<div style=3D"font-family:system-=
+ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvet=
+ica, Arial, sans-serif;; color:#333333; font-size:17px; line-height:26px;pa=
+dding-top:12px;">If you=E2=80=99re unavailable to sign for your items, we o=
+ffer alternate delivery options. Visit <a class=3D"bluelink" href=3D"https:=
+//store.apple.com/us/help/shipping_delivery#delivery" style=3D"color:#0070C=
+9;font-weight:normal;">Delivery Options</a> for more information.</div>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09
+                =09=09=09=09=09=09=09=09=09<h3 class=3D"refund-line-div" st=
+yle=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif;; font-weight:600; letter-=
+spacing:0px; color:#333333; font-size:17px; line-height:26px; margin-top:0;=
+ margin-left: 0; margin-right:0; margin-bottom:0px;padding-top:24px;">How d=
+o I recycle my old phone?</h3>
+=09=09=09=09=09<div style=3D"font-family:system-ui, -apple-system, BlinkMac=
+SystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; le=
+tter-spacing:0px; color:#333333; font-size:17px; line-height:26px;">You can=
+ recycle your old mobile phone for free with <a class=3D"bluelink" href=3D"=
+https://store.apple.com/us/browse/recycling/?cid=3DSUSIN" style=3D"color:#0=
+070C9;font-weight:normal;">Apple Trade In</a>.</div>
+=09=09=09=09=09<h3 class=3D"refund-line-div" style=3D"font-family:system-ui=
+, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetic=
+a, Arial, sans-serif;; font-weight:600; letter-spacing:0px; color:#333333; =
+font-size:17px; line-height:26px; margin-top:0; margin-left: 0; margin-righ=
+t:0; margin-bottom:0px;padding-top:24px;">Have other questions?</h3>
+=09=09=09=09=09<div style=3D"font-family:system-ui, -apple-system, BlinkMac=
+SystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;; le=
+tter-spacing:0px; color:#333333; font-size:17px; line-height:26px;">For que=
+stions about your rate plan, please contact your carrier. For questions abo=
+ut your iPhone order or hardware, visit <a class=3D"bluelink" href=3D"https=
+://support.apple.com" style=3D"color:#0070C9;font-weight:normal;">Apple Sup=
+port</a>.</div>
+=09=09=09=09               =20
+=09=09=09</td></tr></table>=09=09=09=09=09=09=09=09=09=09=09
+=09=09</td></tr></table>
+=09</td></tr>=09=09=09=09=09=09=09=09=09=09=09=09
+=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09<tr><td class=3D"pad-lr">
+=09=09<table width=3D"100%" align=3D"center" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0" style=3D"min-width:100%; max-width:100%; width:100%;"> =
+=09<tr>
+=09=09<td class=3D"gap-1" valign=3D"top" height=3D"1" align=3D"left" style=
+=3D"height:1px; font-size:1px; line-height:1px;">
+=09=09=09<img class=3D"gap-1" src=3D"https://email.images.apple.com/dm/grou=
+ps/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline:=
+none;" border=3D"0" height=3D"1" width=3D"1">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"moe-line-col" valign=3D"top" bgcolor=3D"D6D6D6" style=3D=
+"background-color:#D6D6D6; height:1px; font-size:1px; line-height:1px;" hei=
+ght=3D"1" align=3D"left">
+=09=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !=
+important; height:1px !important;">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"gap-33" valign=3D"top" height=3D"43" align=3D"left" styl=
+e=3D"height:43px; font-size:43px; line-height:43px;">
+=09=09=09<img class=3D"gap-33" src=3D"https://email.images.apple.com/dm/gro=
+ups/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline=
+:none;" border=3D"0" height=3D"43" width=3D"1">
+=09=09</td>
+=09</tr>
+</table>
+=09</td></tr>
+
+=09<tr><td class=3D"promo-banner-td-img" align=3D"center" style=3D"padding-=
+bottom:2px;">
+=09=09<div style=3D"width:100%; margin:0 auto;">
+=09=09=09<img  src=3D"https://email.images.apple.com/rover/aos/global/shipp=
+ing-icon.png" alt=3D"" style=3D"vertical-align:middle;" border=3D"0" height=
+=3D"45" width=3D"41">
+=09=09</div>=09
+=09</td></tr>
+
+=09<tr><td class=3D"promo-banner-td" align=3D"center" style=3D"padding-bott=
+om:41px;">
+=09=09<h2 class=3D"sectionHeading" style=3D"width:100%; padding-top:12px; f=
+ont-family:'SF UI Display Medium',system,-apple-system,-webkit-system-font,=
+'SFNSText','Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif !importan=
+t; font-weight:500; letter-spacing:0px; color:#333333; font-size:22px !impo=
+rtant; line-height:27px; margin:0;">Free shipping on everything.</h2>
+=09=09<div style=3D"width:100%; padding-top:4px; font-family:system-ui, -ap=
+ple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Ar=
+ial, sans-serif;; font-size:17px !important; line-height:26px; color:#33333=
+3;">And free returns</div>=09
+=09</td></tr>
+=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09=09=09=09<tr><td class=3D"pad-lr" valign=3D"top"=
+ align=3D"left">
+        =09<table width=3D"100%" align=3D"center" cellspacing=3D"0" cellpad=
+ding=3D"0" border=3D"0" style=3D"min-width:100%; max-width:100%; width:100%=
+;"> =09<tr>
+=09=09<td class=3D"gap-1" valign=3D"top" height=3D"0" align=3D"left" style=
+=3D"height:0px; font-size:0px; line-height:0px;">
+=09=09=09<img class=3D"gap-1" src=3D"https://email.images.apple.com/dm/grou=
+ps/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline:=
+none;" border=3D"0" height=3D"0" width=3D"1">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"moe-line-col" valign=3D"top" bgcolor=3D"D6D6D6" style=3D=
+"background-color:#D6D6D6; height:1px; font-size:1px; line-height:1px;" hei=
+ght=3D"1" align=3D"left">
+=09=09=09<div style=3D"background-color:#D6D6D6 !important; font-size:1px !=
+important; height:1px !important;">
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td class=3D"gap-42" valign=3D"top" height=3D"41" align=3D"left" styl=
+e=3D"height:41px; font-size:41px; line-height:41px;">
+=09=09=09<img class=3D"gap-42" src=3D"https://email.images.apple.com/dm/gro=
+ups/aos/om/global/cmon/spacer.gif" alt=3D"" style=3D"display:block; outline=
+:none;" border=3D"0" height=3D"41" width=3D"1">
+=09=09</td>
+=09</tr>
+</table>
+    =09</td></tr>=09=09
+
+=09=09<tr><td>
+=09=09=09<table class=3D"promotiles-table" width=3D"100%" align=3D"center" =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"padding-bottom:46=
+px;">
+=09=09=09<tr><td>
+=09=09=09=09<table class=3D"moe-tile-table-1" width=3D"309" height=3D"auto"=
+ align=3D"left" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" >
+=09=09=09=09<tr><td class=3D"moe-tile-td" align=3D"center" width=3D"309">
+=09=09=09=09=09            <a href=3D"https://www.apple.com/us/shop/accesso=
+ries/all-accessories/whats-new?&cid=3DTRX-EN-US-DM-OM-BDY-00SUSIN00-IPHACR-=
+s1-iphone-merchtile_whats_new">
+            <img class=3D"tile-img" src=3D"https://email.images.apple.com/r=
+over/aos/tiles/us/071518/new-arrivals.jpg" aria-label=3D"New Arrivals. Chec=
+k out the latest accessories." alt=3D"New Arrivals. Check out the latest ac=
+cessories." title=3D"" width=3D"309" height=3D"auto" border=3D"0" style=3D"=
+display:block;margin:0" /></a>   =20
+    =09=09=09=09</td></tr></table>
+=09=09=09=09<table class=3D"moe-tile-table-2" width=3D"309" height=3D"auto"=
+ align=3D"right" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" >
+=09=09=09=09<tr><td class=3D"moe-tile-td" align=3D"center" width=3D"309">
+=09=09=09=09=09=09 =09=09<a href=3D"https://www.apple.com/today/event/virtu=
+al-session-getting-started-iphone?cid=3Drmc-us-taa-aos-ppdm">=20
+ =09=09<img class=3D"tile-img" src=3D"https://email.images.apple.com/rover/=
+aos/tiles/121421-us-TOA-iphone.jpg"  aria-label=3D"Today at Apple=20
+Get more out of your iPhone in free virtual sessions." alt=3D"Today at Appl=
+e=20
+Get more out of your iPhone in free virtual sessions." title=3D"" width=3D"=
+309" height=3D"auto" border=3D"0" style=3D"display:block;margin:0" /></a>
+=09   =20
+=09=09=09=09</td></tr></table>
+=09=09=09</td></tr></table>
+=09=09</td></tr>
+=09=09=09=09=09=09=09=09=09</table>=09
+=09=09=09
+=09=09=09=09<table class=3D"footer-container-table" width=3D"100%" align=3D=
+"center" cellspacing=3D"0" bgcolor=3D"F2F2F2" cellpadding=3D"0" border=3D"0=
+" style=3D"padding-top:18px; padding-bottom:28px; background-color:#F2F2F2;=
+" >=20
+=09=09=09=09<tr><td align=3D"center">
+=09=09=09=09=09<table align=3D"center" class=3D"footer-section-table" width=
+=3D"660" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" >=20
+=09=09=09=09=09<tr><td class=3D"footer-menu-td" style=3D"padding-left:16px;=
+ padding-right:16px;">=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09<table class=3D"footer-menu-table" width=3D"100%" alig=
+n=3D"center" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"padd=
+ing-bottom:14px;border-bottom-color:#D6D6D6; border-bottom-width:1px; borde=
+r-bottom-style:solid;">
+=09<tr><td class=3D"footer-menu-td-top" valign=3D"top" align=3D"center" sty=
+le=3D"font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',=
+ 'Helvetica Neue', Helvetica, Arial, sans-serif;; color:#888888; font-size:=
+12px; line-height:18px;">
+=09=09<table class=3D"footer-menu-item-table" width=3D"auto" cellspacing=3D=
+"0" cellpadding=3D"0" border=3D"0" style=3D"display: inline-table;">
+=09=09<tr><td class=3D"footer-menu-item-td" style=3D"font-family:system-ui,=
+ -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica=
+, Arial, sans-serif;; color:#888888; font-size:12px; line-height:18px;">=20
+=09=09=09<a href=3D"https://store.apple.com/us/xc/home" style=3D"color:#888=
+888" color=3D"#888888">Shop Online</a><span class=3D"hide-line" color=3D"#D=
+6D6D6" style=3D"color:#D6D6D6;" aria-hidden=3D"true">&nbsp;&nbsp;|&nbsp;&nb=
+sp;</span></td></tr></table>
+=09=09<table class=3D"footer-menu-item-table" width=3D"auto" cellspacing=3D=
+"0" cellpadding=3D"0" border=3D"0" style=3D"display: inline-table;">
+=09=09<tr><td class=3D"footer-menu-item-td" style=3D"font-family:system-ui,=
+ -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica=
+, Arial, sans-serif;; color:#888888; font-size:12px; line-height:18px;">
+=09=09=09<a href=3D"https://www.apple.com/retail/" style=3D"color:#888888" =
+color=3D"#888888">Find a Store</a><span class=3D"hide-line" color=3D"#D6D6D=
+6" style=3D"color:#D6D6D6;" aria-hidden=3D"true">&nbsp;&nbsp;|&nbsp;&nbsp;<=
+/span></td></tr></table>
+=09=09<table class=3D"footer-menu-item-table" width=3D"auto" cellspacing=3D=
+"0" cellpadding=3D"0" border=3D"0" style=3D"display: inline-table;">
+=09=09<tr><td class=3D"footer-menu-item-td" style=3D"font-family:system-ui,=
+ -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica=
+, Arial, sans-serif;; color:#888888; font-size:12px; line-height:18px;">
+=09=09=09<span class=3D"footer-menu-phone" style=3D"white-space:nowrap; col=
+or:#888888;">800-692-7753</span><span class=3D"hide-line" color=3D"#D6D6D6"=
+ style=3D"color:#D6D6D6;" aria-hidden=3D"true">&nbsp;&nbsp;|&nbsp;&nbsp;</s=
+pan></td></tr></table>
+=09=09<table class=3D"footer-menu-item-table" width=3D"auto" cellspacing=3D=
+"0" cellpadding=3D"0" border=3D"0" style=3D"display: inline-table;">
+=09=09<tr><td class=3D"footer-menu-item-td" style=3D"font-family:system-ui,=
+ -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica=
+, Arial, sans-serif;; color:#888888; font-size:12px; line-height:18px;">
+=09=09=09<a href=3D"https://store.apple.com/us/go/app?" style=3D"color:#888=
+888" color=3D"#888888">Get the Apple Store App</a></span></td></tr></table>
+=09</td></tr></table>=09=09
+
+=09=09=09=09=09</td></tr>
+=09=09=09=09
+=09=09=09=09=09=09<tr><td class=3D"footer-copyright-td" align=3D"left" vali=
+gn=3D"top" style=3D"padding-left:16px; padding-right:16px; font-family:syst=
+em-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Hel=
+vetica, Arial, sans-serif;; color:#888888; font-size:11px; line-height:16px=
+;">
+=09=09=09=09
+=09=09=09=09=09<div class=3D"footer-copyright-div" style=3D"padding-top:19p=
+x;margin:0;">=09=09
+=09=09=09=09Copyright &#169; 2022&nbsp;<a color=3D"#888888" style=3D"text-d=
+ecoration:none !important; color:#888888 !important;">Apple Inc.</a>&#32; A=
+ll rights reserved.
+=09=09=09</div>
+=09=09=09=09
+=09=09<div class=3D"footer-links-div" style=3D"padding-top:13px; font-famil=
+y:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue=
+', Helvetica, Arial, sans-serif;; font-size:11px; line-height:16px;margin:0=
+;">=09=09=09
+=09=09=09<a class=3D"footer-links-a" href=3D"https://www.apple.com/legal/te=
+rms/site.html?cid=3DSUSIN" target=3D"_blank" style=3D"color:#555555;"><nobr=
+>Terms of Use</nobr></a>&nbsp; <span color=3D"#D6D6D6" aria-hidden=3D"true"=
+>|</span> &nbsp;<a class=3D"footer-links-a" href=3D"https://www.apple.com/p=
+rivacy/?cid=3DSUSIN" target=3D"_blank" style=3D"color:#555555;"><nobr>Priva=
+cy Policy</nobr></a>&nbsp; <span color=3D"#D6D6D6" aria-hidden=3D"true">|</=
+span> &nbsp;<a class=3D"footer-links-a" href=3D"https://store.apple.com/Cat=
+alog/US/Images/salespolicies.html" target=3D"_blank" style=3D"color:#555555=
+;"><nobr>Sales and Refunds</nobr></a>
+=09=09</div>=09=09
+=09</td></tr>
+=09=09=09=09=09=09=09=09
+=09=09=09=09=09<tr><td class=3D"webopen-td" style=3D"padding-left:16px; pad=
+ding-right:16px;margin:0;">=09
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<tr><td class=3D"footer-copyright-td" align=3D"left" valign=3D"top" styl=
+e=3D"padding-left:16px; padding-right:16px; font-family:system-ui, -apple-s=
+ystem, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, =
+sans-serif;; color:#6f6f6f; font-size:11px; line-height:16px;">
+=09=09=09=09<div class=3D"Iphone_Legal-div" style=3D"padding-top:15px;">Use=
+ of iPhone constitutes acceptance of the iPhone terms and conditions and ot=
+her third party terms found in the iPhone box, or at <a href=3D"https://www=
+.apple.com/legal/sla/?cid=3DSUSIN" style=3D"color:#0070C9" class=3D"bluelin=
+k">https://www.apple.com/legal/sla/</a>.</div>
+=09=09=09</td></tr>
+=09=09=09=09=09<tr><td class=3D"footer-copyright-td" align=3D"left" valign=
+=3D"top" style=3D"padding-left:16px; padding-right:16px; font-family:system=
+-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helve=
+tica, Arial, sans-serif;; color:#6f6f6f; font-size:11px; line-height:16px;"=
+>
+=09=09=09=09<div class=3D"Iphone_Legal-div" style=3D"padding-top:15px;">If =
+you purchased an iPhone for AT&T, you have agreed to the terms as stated in=
+ the AT&T Wireless Service Agreement, Terms of Service, and Rate Plan broch=
+ure, all of which are available at <a href=3D"https://www.att.com/iphoneter=
+ms" style=3D"color:#0070C9" class=3D"bluelink">https://www.att.com/iphonete=
+rms</a>.</div>
+=09=09=09</td></tr>
+=09=09=09=09=09<tr><td class=3D"footer-copyright-td" align=3D"left" valign=
+=3D"top" style=3D"padding-left:16px; padding-right:16px; font-family:system=
+-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helve=
+tica, Arial, sans-serif;; color:#6f6f6f; font-size:11px; line-height:16px;"=
+>
+=09=09=09=09<div class=3D"Iphone_Legal-div" style=3D"padding-top:15px;">If =
+you purchased an iPhone for Sprint, you have agreed to the <a href=3D"https=
+://www.sprint.com/termsandconditions" style=3D"color:#0070C9" class=3D"blue=
+link">Sprint Terms and Conditions</a>.</div>
+=09=09=09</td></tr>
+=09=09=09=09=09<tr><td class=3D"footer-copyright-td" align=3D"left" valign=
+=3D"top" style=3D"padding-left:16px; padding-right:16px; font-family:system=
+-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helve=
+tica, Arial, sans-serif;; color:#6f6f6f; font-size:11px; line-height:16px;"=
+>
+=09=09=09=09<div class=3D"Iphone_Legal-div" style=3D"padding-top:15px;">If =
+you purchased an iPhone for Verizon, you have agreed to the <a href=3D"http=
+s://www.verizonwireless.com/b2c/globalText?textName=3DCUSTOMER_AGREEMENT&js=
+pName=3Dfooter/customerAgreement.jsp"  style=3D"color:#0070C9" class=3D"blu=
+elink">Verizon Wireless Customer Agreement</a> and <a href=3D"https://www.v=
+erizonwireless.com/wcms/myverizon/terms.html" style=3D"color:#0070C9" class=
+=3D"bluelink">Service Terms and Conditions</a>.</div>
+=09=09=09</td></tr>
+=09=09=09=09=09<tr><td class=3D"footer-copyright-td" align=3D"left" valign=
+=3D"top" style=3D"padding-left:16px; padding-right:16px; font-family:system=
+-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helve=
+tica, Arial, sans-serif;; color:#6f6f6f; font-size:11px; line-height:16px;"=
+>
+=09=09=09=09<div class=3D"Iphone_Legal-div" style=3D"padding-top:15px;">If =
+you disagree with these terms and conditions you can return the iPhone in a=
+ccordance with the <a href=3D"https://store.apple.com/Catalog/US/Images/sal=
+espolicies.html?cid=3DSUSIN#topic-21" style=3D"color:#0070C9" class=3D"blue=
+link">Apple Online Store return policy</a>.</div>
+=09=09=09</td></tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<img src=3D"" border=3D"0" alt=3D"">
+=09=09=09=09=09=09</td></tr></table>    =20
+=09=09=09=09</td></tr></table>
+=09=09=09</td></tr></table>
+=09=09</td></tr></table>
+=09</center>=09
+</body>
+
+</html>
+------=_Part_21701_1158615964.1671615514793--
+

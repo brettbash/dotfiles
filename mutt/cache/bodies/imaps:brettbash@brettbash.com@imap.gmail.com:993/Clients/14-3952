@@ -1,0 +1,143 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:6919:3c42:b0:f6:1483:c6cb with SMTP id wz2csp160348ysb;
+        Thu, 15 Dec 2022 11:46:40 -0800 (PST)
+X-Received: by 2002:ac8:6786:0:b0:3a8:1a6d:3db3 with SMTP id b6-20020ac86786000000b003a81a6d3db3mr18785864qtp.62.1671133600190;
+        Thu, 15 Dec 2022 11:46:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671133600; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CZWwVEosL52zp7ONQ0KiprQvQpE6xQueZGJ54Yy+Muw3GiDF0D/5EFkwvbrqjqH+g/
+         9i4C8JQvJh+i+bk4j11jFVtgEyP5akfARPDPO3QtYUT2odwyxStljss0b+WQMdUdZGDj
+         B+rBikgSIuuuMCkU0W1CpwjHsLiwYr5nnhKUmKw/1ADlAtTdaG/5pxatgDvmSjHKmNeP
+         V2Z4pz+pxIqdb+sV3XT4kaBxaTnZkYso4HLODTD4c2Z2hUZsHvBy697E3jIS9JhUXFLy
+         xWeJe8EdwAoDWbL3whJOzF/MhfIYMzuSAg4eyj+M4OrU8ep6PYU2K3ibxL0WsQ7tch5L
+         RKag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=iEG1dOEJbtQ/uXhTiYsjLP0yVz9fWTgHhLdfqrk75mY=;
+        b=MwFz/7xnzLJg5dCs3uiTgshZ3ZcXIh3mtNvF/W7L+jhfTKzQcaztRJF7gtcZujLVfk
+         gL+l9qGFyVuS1wpAystx2p03o84XxHZS0DR0GbtmADYzq1ORCgvLK1O6DFzf+J1OogF2
+         ILtfKmbLxkKo0zdSdbs8HLo6x27geAfRRV0NgtPFTWVSLIlhBc4jkvg399Mpa0soQGev
+         ynWd6mJNzghGtotmqd+WtQJCUwke+f+eKEd+u+ifd1gmju7xA6osYHML2QXS6O6Dqwue
+         06FfTlSAJG+OiUhQ6UlXQwjhEbCvh5gr9obQz/3rksv0OOvPs9wh2oC/GRIQvz44JPg2
+         gObQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@digitechaustin.com header.s=google header.b=aHva71l+;
+       spf=pass (google.com: domain of jake@digitechaustin.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=jake@digitechaustin.com
+Return-Path: <jake@digitechaustin.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id i9-20020ac87649000000b0035ba1715008sor3798061qtr.0.2022.12.15.11.46.40
+        for <brettbash@brettbash.com>
+        (Google Transport Security);
+        Thu, 15 Dec 2022 11:46:40 -0800 (PST)
+Received-SPF: pass (google.com: domain of jake@digitechaustin.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@digitechaustin.com header.s=google header.b=aHva71l+;
+       spf=pass (google.com: domain of jake@digitechaustin.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=jake@digitechaustin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=digitechaustin.com; s=google;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=iEG1dOEJbtQ/uXhTiYsjLP0yVz9fWTgHhLdfqrk75mY=;
+        b=aHva71l+TKrNLPWHw9NxFP4eZznKgqOF+1+5TIrN0skLe4GQfLbprtxNIU8THgYzGP
+         CXZQVHZD/QKOsgnHYTET7Y0Tx8E2Y5mQpXtom6GJlOz5P4R1RYg+ft7X0GOsSD0D++oa
+         PAtgJ/jGBm7hCo3CvJP95FKrrTQ66dnahh5rk+4bnqDL3oM8lRaNQ9QpviXkaRZc6Tfh
+         ZLMlhdCTj9wGJIRFuDrOdz+4eebKzEjCRFOBKdcPVXiN4nvfb227hdvgy6Lu+ciHEmbM
+         zimdKrWGjoESfEEq1EQOFQRvqYbily48tXMa6IVKI2UksAFwpl7JmO/5Is7USns3+dFy
+         W5JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iEG1dOEJbtQ/uXhTiYsjLP0yVz9fWTgHhLdfqrk75mY=;
+        b=BfARrB9x6o+EWpqDC63+JlgDTRQA01UtzUaAxpUU0ikWHZ8ysB+mNmPwSnjwkna7Yy
+         YueTCMvbJzMJ76bCjT6Ds2pMkuIYOj8mrl69ZxLpbJlHVzk7MJp/MhNZJlFRwQyvPS7i
+         vK/clDNSMXQHM47y/YrGSWKmzfVuy0T3IXcemcaHJM8HX9sT9dSlJrnvU9ZRvJC5ED+R
+         ftM3eATRN5Tb7lPDfZRI6HKuYpH+/EO+r2O0qo/Hdj6aUBEggsNsGfATij99H7WHqEQs
+         C9b8uQPSvVFu7zgE/MopsDwuAlUpDkpobwLoJTphTddW2Da23fNSbpSNONoGTnLKjgKn
+         od9A==
+X-Gm-Message-State: ANoB5pm6kpcaD6l0MbGiJ3YlLYec7eQdrV1njRRG52+mhwW2Ib5PGVL/
+	Utn6gXgucrGGyWiA2D95gjhKYiB/zmT2iT+5BwgCykAHyo0x8w==
+X-Google-Smtp-Source: AA0mqf6S8PDI4wPpfWpnAkslkBlGswsxwv6BSTZiTPZtwZIp7jeKnHGenPoBSMeutoa7DNfzvP7zL3huIh4O7u7XSPc=
+X-Received: by 2002:a05:622a:4886:b0:35b:af0c:6c9 with SMTP id
+ fc6-20020a05622a488600b0035baf0c06c9mr65002599qtb.71.1671133599678; Thu, 15
+ Dec 2022 11:46:39 -0800 (PST)
+MIME-Version: 1.0
+From: Jake Wooldridge <jake@digitechaustin.com>
+Date: Thu, 15 Dec 2022 13:46:29 -0600
+Message-ID: <CAK-hhOez1qgb+ffrVYKaVpS7GFisr9pwk8tQFr4MsmJHd6LO7g@mail.gmail.com>
+Subject: Design Access
+To: Brett Bash <brettbash@brettbash.com>, Darryl Stevens <darryl@digitechaustin.com>
+Content-Type: multipart/alternative; boundary="00000000000094db8c05efe31c0f"
+
+--00000000000094db8c05efe31c0f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hey Brett,
+
+Could you copy over the design files over on to a project in our Figma
+account so we have access to the designs? I=E2=80=99ll need to create some
+additional SEO pages and stuff so I=E2=80=99ll need to be able to start wit=
+h
+existing elements you created.
+
+Let me know if you want to give me access temporarily to edit your project
+then I can copy everything over. That way you don=E2=80=99t get charged for=
+ having
+me as an editor.
+
+Thanks!
+--=20
+
+*Jake Wooldridge*
+*VP / Creative Director*
+
+*As Seen On:*
+Forbes
+Entrepreneur
+Inc
+
+Phone: 512.653.3003 x1
+http://www.digitechaustin.com
+
+--00000000000094db8c05efe31c0f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hey Brett,<div dir=3D"auto"><br></div><div dir=3D"auto">Could you copy over=
+ the design files over on to a project in our Figma account so we have acce=
+ss to the designs? I=E2=80=99ll need to create some additional SEO pages an=
+d stuff so I=E2=80=99ll need to be able to start with existing elements you=
+ created.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Let me know if=
+ you want to give me access temporarily to edit your project then I can cop=
+y everything over. That way you don=E2=80=99t get charged for having me as =
+an editor.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks!</div>=
+-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_s=
+ignature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"display:inline-block;wid=
+th:193px;height:208px;margin:0px 20px 20px 0px"><div style=3D"color:rgb(34,=
+34,34);font-size:12.8px"><font face=3D"Arial, sans-serif"><b><br>Jake Woold=
+ridge</b></font></div><div style=3D"color:rgb(34,34,34);font-size:12.8px"><=
+span style=3D"font-family:Arial,sans-serif"><b><i>VP / Creative Director</i=
+></b></span></div><div style=3D"color:rgb(34,34,34);font-size:12.8px"><br><=
+/div><div style=3D"color:rgb(34,34,34);font-size:12.8px"><b style=3D"font-s=
+ize:12.8px"><i>As Seen On:</i></b><br></div><div style=3D"color:rgb(34,34,3=
+4);font-size:12.8px"><div style=3D"font-size:12.8px">Forbes</div><div style=
+=3D"font-size:12.8px">Entrepreneur</div><div style=3D"font-size:12.8px">Inc=
+</div><div style=3D"font-size:12.8px"><br></div></div><div style=3D"color:r=
+gb(34,34,34);font-size:12.8px"><span style=3D"font-family:Arial,sans-serif;=
+font-size:12.8px">Phone:=C2=A0<a href=3D"tel:512.653.3003%20x1" value=3D"+1=
+5126533003" style=3D"color:rgb(17,85,204)" target=3D"_blank">512.653.3003 x=
+1</a></span></div><div style=3D"color:rgb(34,34,34);font-size:12.8px"><font=
+ face=3D"Arial, sans-serif"><a href=3D"http://www.digitechaustin.com/" styl=
+e=3D"color:rgb(17,85,204)" target=3D"_blank">http://www.digitechaustin.com<=
+/a></font></div><img src=3D"https://docs.google.com/uc?export=3Ddownload&am=
+p;id=3D1mmqKCN-AYyKfYHXh7ApY-DaZy94ugJs_&amp;revid=3D0B7j_W-t194MKZGN4Tmhzb=
+mUrOFdsMzFQRDB0OHdRWWJrc2hrPQ" style=3D"color:rgb(34,34,34);font-size:12.8p=
+x"></div><table style=3D"color:rgb(0,0,0);font-size:medium;display:inline-b=
+lock;font-family:Inconsolata,monospace"></table><br><div><div dir=3D"ltr"><=
+div><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div style=3D"font-size:12.8px"></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div>
+
+--00000000000094db8c05efe31c0f--

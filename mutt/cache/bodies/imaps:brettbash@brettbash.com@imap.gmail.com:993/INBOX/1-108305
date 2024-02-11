@@ -1,0 +1,529 @@
+Delivered-To: brettbash@brettbash.com
+Received: by 2002:a05:6830:6018:b0:66e:1f42:8fe6 with SMTP id bx24csp4009839otb;
+        Wed, 21 Dec 2022 13:50:29 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXtZrgmqjvlRCZvSIu/S7NNEdN22QVy/h3lWFZiqGKikkCoMEnpFw7wIrSEYrOefr7l3RWBI
+X-Received: by 2002:a25:50e:0:b0:737:c3c5:5e93 with SMTP id 14-20020a25050e000000b00737c3c55e93mr3197764ybf.15.1671659429481;
+        Wed, 21 Dec 2022 13:50:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671659429; cv=none;
+        d=google.com; s=arc-20160816;
+        b=FEhykrfufCdvhkA45tHb8DwJ7wR1jMYVE+PO6DE/SpzABPAr5WFZj7i75Wv6arphVz
+         XjdfPlmkimC13i3UaKr19viN68AJqWqRF4tbwGt+wEEa4YNBleAyzCqLhXx120q+Qeqa
+         f7sTra4OIHEe5wdT9d5Br8OD0MdSDGaaYxsAnePF7GextriwWqHhFfgYyl+mAZh7lHXj
+         bpHHAEcTZYVAuMlyYYLJkrMn9y6co5MNmDg1IJWjV2LDbD57Hq9BxV6W3AJntMtpfyXM
+         6LgXoUDGMBx3Cdtcy4lyGtXJSwXE+ZooqfvPkHQHhEBx/KuKum1EqBus0zm8jX6dwbSZ
+         aC5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date:dkim-signature
+         :dkim-signature;
+        bh=TcCrNXiS4tq1auf8dpBkm4mIgUnknUc5j3rfR8gkBTA=;
+        b=i+jPmxSQeklbU8p7yRl5oBREpR3hqZmPII13EmHPCJGWndm1C7+nuXo0Dv546mYAOp
+         Rluo77/9yA4/deVQWc2H6H9TjsjVumw3LEfV30RCW54nDnn1ejsnjkNuI86lbdbZGIxR
+         rfeZaTXEuNFCtbGO8KrIs6kRd7yUQ9FVE1IDUlV2MlVpY1vBFHrZU+9BDxPZ51nkyz3Q
+         O7IERMPO7vY6fIsJT2z0T7yfIlHMvzQr4njlAeSK0Hx950YizXTvF7ejzrKHswg/QmE1
+         T1Tw80dQr1OEp/rGEIPmLoNYHTxN/znx7Vdq6kL/iI+lYZAJCcONWA8Ybm78rBYgdtFg
+         l0IA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@shopifyemail.com header.s=amp header.b=ABbVdfPC;
+       dkim=pass header.i=@shopify.com header.s=m1 header.b=kDWEvivC;
+       spf=pass (google.com: domain of bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com designates 198.37.151.162 as permitted sender) smtp.mailfrom="bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=shopify.com
+Return-Path: <bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com>
+Received: from o29.mailer.shopify.com (o29.mailer.shopify.com. [198.37.151.162])
+        by mx.google.com with ESMTPS id z2-20020a254c02000000b006fcaee638e7si14560211yba.665.2022.12.21.13.50.28
+        for <brettbash@brettbash.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Dec 2022 13:50:29 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com designates 198.37.151.162 as permitted sender) client-ip=198.37.151.162;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@shopifyemail.com header.s=amp header.b=ABbVdfPC;
+       dkim=pass header.i=@shopify.com header.s=m1 header.b=kDWEvivC;
+       spf=pass (google.com: domain of bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com designates 198.37.151.162 as permitted sender) smtp.mailfrom="bounces+11253745-e602-brettbash=brettbash.com@mailer.shopify.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=shopify.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shopifyemail.com;
+	h=content-type:from:mime-version:subject:to:cc:content-type:from:
+	subject:to;
+	s=amp; bh=TcCrNXiS4tq1auf8dpBkm4mIgUnknUc5j3rfR8gkBTA=;
+	b=ABbVdfPCkWN37oDDOC53PSBAiSucL57RJMfMpP1CfqLdzi1FbRIb6L4kc2SSrJYvbVar
+	LtmHuERqdbXzKdFMmYMSP55zB0sCS+7CzmS9F2VEHYTOnSDAN3D0ljAnqal/lBB0fRCV+6
+	kM++XdEnkE4xz7zUcRkp1ipY/rOIqZbNQ2Ag7a/TCRLvbVKzu8FvIcrlGxE11p1YA6HIi4
+	YuUVeWZK2o45sqG66zAYSypHZO1fgCMzcg+n3WDb7wUuE0hdaZMF4cMEEaloACS0Q9ESTU
+	QIgO7460yek9w34MYOqqW5OXIjANPA2/gmcR5sF4UJOTVLDhm7V5CE+jSkIxNTlQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shopify.com;
+	h=content-type:from:mime-version:subject:to:cc:content-type:from:
+	subject:to;
+	s=m1; bh=TcCrNXiS4tq1auf8dpBkm4mIgUnknUc5j3rfR8gkBTA=;
+	b=kDWEvivC2ruf91105R2Fi3K+L6Ugd0Vq7Hkj8DdBh9v6cWH9i1rsZUNRJhw6tV4u76wf
+	e2Q/rRfKNv2M+H3Mr/Ka5eKAimtwxLwunsENEBfRqlCJwqrl8EzO/PAgJjNXNyOHw3lJA9
+	+21nx1uoMSLF5hwXy4RJTXXfvoT/sodQA=
+Received: by filterdrecv-5bc4588b5c-mld4t with SMTP id filterdrecv-5bc4588b5c-mld4t-1-63A37FA3-2C
+        2022-12-21 21:50:27.894637965 +0000 UTC m=+2933016.456004437
+Received: from MTEyNTM3NDU (unknown)
+	by geopod-ismtpd-3-1 (SG) with HTTP
+	id EAbZ1O9WQWKg3FtiPsX2WQ
+	Wed, 21 Dec 2022 21:50:27.816 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=90379a4b4697c13610b8985ccd552620b940b33eab2a7fc0cf2599f37cde
+Date: Wed, 21 Dec 2022 21:50:27 +0000 (UTC)
+From: "Fore Gals Golf (Shopify)" <mailer@shopify.com>
+Mime-Version: 1.0
+Message-ID: <E1030004-1732ED644F300B60-73C4CEFF@shopify.com>
+Subject: Charge approved for Theme Store
+X-SG-EID: 
+ =?us-ascii?Q?LoM1Pep5=2Fv1zMFIkgvRxWRtEc14RoT7LelmPwHU5uTLboluhJVESoKVDHGq+U4?=
+ =?us-ascii?Q?NnfIAiA8D6fVCpd8WIH0DQRuocewB7ENGtMLBOq?=
+ =?us-ascii?Q?MTZcC5Lx9dcd5XyphYAenRfb5unm5Ze=2FkBzCDSD?=
+ =?us-ascii?Q?M=2FUXqK0huNjNTgL6HIFwvshbIIceAn5+UJDBCN5?=
+ =?us-ascii?Q?D+RM+73JB52UF8c6bHHkwY2zl9uTeF3kkm780By?=
+ =?us-ascii?Q?cQXOdTX0WL3jldiawvxnZzvEcCCQxleUh=2FqNZcp?=
+ =?us-ascii?Q?3yqOYxJkaeRtk+coX7Zmw=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FKOpeJUHWlRJMC+AMZBck?=
+ =?us-ascii?Q?1F5oqXs6pyftI0TMR785stoEDVcln1tWtZuHDvA?=
+ =?us-ascii?Q?ux0nTCzqbXyJWBgX5H6XwnsE5N3WBmK=2FnNWqFDL?=
+ =?us-ascii?Q?cuevKoc3wPDyxFZmExY1woPgbSNyc9EUfs75rOf?=
+ =?us-ascii?Q?eVvoHCOINGMkb+0eYOgfotkNWPcRoWLzOGRvtR1?=
+ =?us-ascii?Q?o34zohusuLMQ+QFRP7JtOe3Xa+AcM2GFmWUH8Nd?=
+ =?us-ascii?Q?GCLoa9CeyB0PB+OZaZC30v=2Fe0f0jk0HzMioR2kB?=
+ =?us-ascii?Q?z8qmgdE06vmnV4l=2F4jk5x64=2FfZ0+P+qDRhji+KZ?=
+ =?us-ascii?Q?oDwsmUZ36ugrGSb9euLACO3F2TA75nKqDctGtwl?=
+ =?us-ascii?Q?fCZZ4iP2v0lTs9NlPCl39F=2FZNRDKU0kkKTHBZ7O?=
+ =?us-ascii?Q?4IPZQcHTNGXFd8eRx1zKYgcIfU8w0WY0CeJH=2Frv?=
+ =?us-ascii?Q?BTZR2NphNuIhEmlAmpdu3Rpk31UIyrJKx4UfORN?=
+ =?us-ascii?Q?=2Fkhio116Ato+OGpoFv2wwT=2Fv5owsSx3FLIJb4QZ?=
+ =?us-ascii?Q?wJifB80sTz+UJ01EeHA2V2IYRdbUzEcvBqU+4Kj?=
+ =?us-ascii?Q?ATft6lfn0Rf6Z21pPkg9AHAznUQ6AVYBJAlZl6u?=
+ =?us-ascii?Q?cqExhe1EPRGK8NYttczezYZChQjU9j0eFixgpqY?=
+ =?us-ascii?Q?wQo2YeBFzww7pXfA3r14s0diZE02DYTzl6jUY7W?=
+ =?us-ascii?Q?q5TtmOs7wCFKj5mGK=2FU10+rfU+pp7RuMJHcLOXH?=
+ =?us-ascii?Q?wiqv+JmIN8tFZzRsDqsjpS=2FtpxZmB4VRwCwkjR+?=
+ =?us-ascii?Q?L91+9xQ+LAOsEwUQ6OMp7OfIILVbRGCbEulr5=2FC?=
+ =?us-ascii?Q?oG94J2bYI2f9DiJd5IFee6fW1ZjNnKko8zhCBnE?=
+ =?us-ascii?Q?TsZhzX=2FB0P+96AUyXJr6V+4RPGy5W7wtFO8bPgT?=
+ =?us-ascii?Q?An+w+BBe976UMvfoYnGkSP77vWbhuUKyk+bBuIs?=
+ =?us-ascii?Q?8MEpduz04H2K0ufXKQE9p4KsexL+aX5bbsOAWt6?= =?us-ascii?Q?c?=
+To: brettbash@brettbash.com
+X-Entity-ID: zu0bgA062pRICVhCkOOE/A==
+
+--90379a4b4697c13610b8985ccd552620b940b33eab2a7fc0cf2599f37cde
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+You=E2=80=98ve approved a one-time charge for a theme.
+
+App name
+Theme Store
+Charge name
+Theme (Showcase)
+Charge approval date
+December 21, 2022
+Charge amount
+$300.00
+
+You will be charged for this theme today.
+
+Learn more about and get support for Shopify app billing=20
+( https://help.shopify.com/support/app-billing-email ).
+
+151 O'Connor Street, Ground floor, Ottawa, ON, K2P
+2L8
+
+@media print{
+#_t {
+background-image:
+url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbrettbash%40brettbash.com&p=
+=3D')
+}
+}
+
+div.OutlookMessageHeader {
+background-image:
+url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbrettbash%40brettbash.com&f=
+=3D')
+}
+
+table.moz-email-headers-table {
+background-image:
+url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbrettbash%40brettbash.com&f=
+=3D')
+}
+
+blockquote #_t {
+background-image:
+url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbrettbash%40brettbash.com&f=
+=3D')
+}
+
+#MailContainerBody #_t {
+background-image:
+url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbrettbash%40brettbash.com&f=
+=3D')
+}
+--90379a4b4697c13610b8985ccd552620b940b33eab2a7fc0cf2599f37cde
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html><html lang=3D"en" style=3D"font-size: 14px; font-weight: 400=
+; line-height: 20px; text-transform: initial; letter-spacing: initial; colo=
+r: #202223; font-family: -apple-system, BlinkMacSystemFont, San Francisco, =
+Segoe UI, Roboto, Helvetica Neue, sans-serif; margin: 0; padding: 0;"><head=
+>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+"/>
+    <meta name=3D"viewport" content=3D"user-scalable=3Dno, width=3Ddevice-w=
+idth, initial-scale=3D1, maximum-scale=3D1"/>
+    <meta name=3D"referrer" content=3D"never"/>
+      <title>Charge approved for Theme Store</title>
+   =20
+    <!-- Styles specific to Outlook 2007, 2010 and 2013 -->
+      <!--[if gte mso 9]>
+        <style>
+          ul,
+          ol {
+           margin: 0 0 0 24px;
+          }
+
+          dd {
+            text-indent: -3em;
+          }
+        </style>
+    <![endif]-->
+    <style data-premailer=3D"ignore">
+      .apple-link a {
+        color: inherit !important;
+        text-decoration: none !important;
+      }
+
+      @media screen and (max-width: 534px) {
+        .mail-body > tbody > tr > td {
+          padding-top: 0 !important;
+        }
+
+        .mail-body__content > tbody > tr > td {
+          border-radius: 0;
+          border-top: 0 !important;
+          border-right: 0 !important;
+          border-left: 0 !important;
+        }
+
+        .mail-sections > tbody > tr > td {
+          padding-right: 0 !important;
+          padding-left: 0 !important;
+        }
+
+        .mail-section > tbody > tr > td:first-child {
+          padding-left: 20px !important;
+        }
+
+        .mail-section > tbody > tr > td:last-child {
+          padding-right: 20px !important;
+        }
+
+        .mail-help-center > tbody > tr > td:first-child {
+          padding-left: 20px !important;
+        }
+
+        .mail-help-center > tbody > tr > td:last-child {
+          padding-right: 20px !important;
+        }
+      }
+    </style>
+  <style>body {
+margin: 0 !important; padding: 0;
+}
+body {
+height: 100%; width: 100%;
+}
+img {
+border: 0; height: auto; line-height: 0; outline: none; text-decoration: no=
+ne; vertical-align: top; -ms-interpolation-mode: bicubic;
+}
+.ReadMsgBody {
+width: 100%;
+}
+.ExternalClass {
+width: 100%;
+}
+.ExternalClass {
+line-height: 100%;
+}
+body {
+-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; text-size-adjust: 100%;
+}
+body {
+font-size: 14px; font-weight: 400; line-height: 20px; text-transform: initi=
+al; letter-spacing: initial; color: #202223; font-family: -apple-system, Bl=
+inkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-ser=
+if;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+.mail-button:hover {
+background-color: #007658; border-color: #007658;
+}
+@media (max-width: 534px) {
+  .mail-body__content {
+    padding: 0 !important; border-left: 0 !important; border-right: 0 !impo=
+rtant; border-top: none !important; border-radius: 0 !important; width: 100=
+% !important; max-width: none !important; margin-top: 0 !important;
+  }
+  .container.section {
+    margin-top: 16px !important;
+  }
+  .banner-container {
+    margin-top: 8px !important;
+  }
+  .main-action-cell {
+    float: none !important; margin-right: 0 !important;
+  }
+  .secondary-action-cell {
+    text-align: center; width: 100%;
+  }
+  .row.content {
+    width: 100% !important; padding: 20px !important;
+  }
+  .customer-info__item {
+    display: block; width: 100% !important;
+  }
+  .subtotal-spacer {
+    display: none;
+  }
+  .banner-alert__table {
+    margin-top: 16px !important; margin-bottom: 16px !important;
+  }
+}
+@media screen and (min-width: breakpoint(display-text)) {
+  .mail-button {
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+  <body style=3D"height: 100%; width: 100%; -webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; font-size: 14px; font-weight: 400; line-height: 20px; text-transform=
+: initial; letter-spacing: initial; color: #202223; font-family: -apple-sys=
+tem, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, s=
+ans-serif; margin: 0; padding: 0;">
+        <table class=3D"mail-body" style=3D"width: 100%; border-collapse: c=
+ollapse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: =
+0;" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; =
+margin-bottom: 0; padding: 0;">
+<td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso=
+-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;">=
+</td>
+<td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso=
+-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;">=
+<table class=3D"mail-body__content" align=3D"center" style=3D"width: 100%; =
+border-collapse: initial; border-spacing: 0; -webkit-text-size-adjust: 100%=
+; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0; mso-table-rspace: 0; max-width: 470px; text-al=
+ign: left; border-radius: 8px; overflow: hidden; margin: 32px auto 0; paddi=
+ng: 0; border: 1px solid #c9cccf;" cellpadding=3D"0" cellspacing=3D"0"><tbo=
+dy>
+<tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-we=
+bkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0=
+; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;"><table class=3D"=
+mail-sections" style=3D"width: 100%; border-collapse: collapse; border-spac=
+ing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-tabl=
+e-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;" cellpadding=3D"0=
+" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; margin-bottom: 0; pa=
+dding: 0;"><td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 20px=
+; border: 0;">
+<table class=3D"mail-section mail-section--type-primary" style=3D"width: 10=
+0%; border-collapse: collapse; border-spacing: 0; -webkit-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margi=
+n-bottom: 0; padding: 0;" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr st=
+yle=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-webkit-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; marg=
+in-top: 0; margin-bottom: 0; padding: 0 0 20px; border: 0;"><table style=3D=
+"width: 100%; border-collapse: collapse; border-spacing: 0; -webkit-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top=
+: 0; margin-bottom: 0; padding: 0;" cellpadding=3D"0" cellspacing=3D"0"><tb=
+ody><tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D=
+"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspac=
+e: 0; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;"><div class=
+=3D"primary-message">You=E2=80=98ve approved a <strong style=3D"color: #202=
+223;">one-time charge</strong> for a theme.</div></td></tr></tbody></table>=
+</td></tr></tbody></table>
+ =20
+
+  <table class=3D"mail-section" style=3D"width: 100%; border-collapse: coll=
+apse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;"=
+ cellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; mar=
+gin-bottom: 0; border-top-width: 1px; border-top-color: #c9cccf; border-top=
+-style: solid; padding: 0;"><td style=3D"-webkit-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom:=
+ 0; padding: 20px 0; border: 0;">
+    <dl style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+      <dt style=3D"margin-top: 0; margin-bottom: 0; font-weight: bold; padd=
+ing: 0;"><strong style=3D"color: #202223;">App name</strong></dt>
+<dd style=3D"margin-top: 0; margin-bottom: 0; margin-left: 0; padding: 0;">=
+Theme Store</dd>
+      <dt style=3D"margin-top: 15px; margin-bottom: 0; font-weight: bold; p=
+adding: 0;"><strong style=3D"color: #202223;">Charge name</strong></dt>
+<dd style=3D"margin-top: 0; margin-bottom: 0; margin-left: 0; padding: 0;">=
+Theme (Showcase)</dd>
+      <dt style=3D"margin-top: 15px; margin-bottom: 0; font-weight: bold; p=
+adding: 0;"><strong style=3D"color: #202223;">Charge approval date</strong>=
+</dt>
+<dd style=3D"margin-top: 0; margin-bottom: 0; margin-left: 0; padding: 0;">=
+December 21, 2022</dd>
+      <dt style=3D"margin-top: 15px; margin-bottom: 0; font-weight: bold; p=
+adding: 0;"><strong style=3D"color: #202223;">Charge amount</strong></dt>
+<dd style=3D"margin-top: 0; margin-bottom: 0; margin-left: 0; padding: 0;">=
+$300.00</dd>
+    </dl>
+</td></tr></tbody></table>
+  <table class=3D"mail-section" style=3D"width: 100%; border-collapse: coll=
+apse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0;"=
+ cellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: 0; mar=
+gin-bottom: 0; border-top-width: 1px; border-top-color: #c9cccf; border-top=
+-style: solid; padding: 0;"><td style=3D"-webkit-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom:=
+ 0; padding: 20px 0 0; border: 0;">
+    <p style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; text-size-adjust: 100%; color: #202223; line-=
+height: 20px; margin: 0; padding: 0;">
+      You will be charged for this theme today.
+    </p>
+</td></tr></tbody></table>
+ =20
+</td></tr></tbody></table></td></tr>
+<tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;"><td style=3D"-we=
+bkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0=
+; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;"><table class=3D"=
+mail-help-center" style=3D"width: 100%; border-collapse: collapse; border-s=
+pacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-t=
+able-rspace: 0; margin-top: 0; margin-bottom: 0; text-align: center; paddin=
+g: 0;" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr style=3D"margin-top: =
+0; margin-bottom: 0; padding: 0;">
+<td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso=
+-table-rspace: 0; margin-top: 0; margin-bottom: 0; border-radius: 8px; bord=
+er-top-color: #c9cccf; border-top-style: solid; padding: 20px 8px 20px 20px=
+; border-width: 1px 0 0;" align=3D"left" bgcolor=3D"#f9fafb"><img alt=3D"" =
+width=3D"20" src=3D"https://cdn.shopify.com/shopifycloud/shopify/assets/mai=
+ler/merchant/help_center-aa5be7c1c968a8e31fcc2b83d716478d5b9f04a8c0c8f76da4=
+50d382dcb41545.png" style=3D"height: 20px; line-height: 0; outline: none; t=
+ext-decoration: none; vertical-align: top; -ms-interpolation-mode: bicubic;=
+ width: 20px; border: 0;"/></td>
+<td class=3D"mail-help-center__message" style=3D"-webkit-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-ad=
+just: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin=
+-bottom: 0; border-radius: 8px; border-top-color: #c9cccf; border-top-style=
+: solid; width: 100%; padding: 20px 20px 20px 0; border-width: 1px 0 0;" al=
+ign=3D"left" bgcolor=3D"#f9fafb">Learn more about and get support for <a hr=
+ef=3D"https://help.shopify.com/support/app-billing-email" style=3D"-webkit-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; text-size-adjust: 100%; margin-top: 0; margin-bottom: 0; color: #2C6E=
+CB; text-decoration: none; padding: 0;">Shopify app billing</a>.</td>
+</tr></tbody></table></td></tr>
+</tbody></table></td>
+<td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso=
+-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; border: 0;">=
+</td>
+</tr></tbody></table>
+
+
+    <footer>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mail=
+-footer" style=3D"width: 100%; border-collapse: collapse; border-spacing: 0=
+; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspa=
+ce: 0; font-size: 12px; line-height: 20px; color: #6d7175; max-width: 470px=
+; margin: 32px auto 0; padding: 0;">
+        <tbody>
+          <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+            <td align=3D"center" valign=3D"bottom" style=3D"-webkit-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top=
+: 0; margin-bottom: 0; padding: 0 20px; border: 0;">
+              <img alt=3D"" width=3D"89" src=3D"https://cdn.shopify.com/sho=
+pifycloud/shopify/assets/mailer/merchant/shopify_logo-ab8bfbd03d685aa04a8db=
+0c119c5cbee279b5f9bd32a26f9ad3df0a96d9b7f83.png" style=3D"height: auto; lin=
+e-height: 0; outline: none; text-decoration: none; vertical-align: top; -ms=
+-interpolation-mode: bicubic; margin-bottom: 12px; border: 0;"/>
+            </td>
+          </tr>
+          <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+            <td align=3D"center" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; padding: 0 20px; border: 0;">
+              <p style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; color: #6d7=
+175; line-height: 20px; margin: 0; padding: 0;"><span class=3D"apple-link">=
+151 O&#39;Connor Street, Ground floor, Ottawa, ON, K2P 2L8</span></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </footer>
+    <style data-ignore-inlining=3D"" data-premailer=3D"ignore">      @media=
+ print{
+        #_t {
+          background-image: url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Db=
+rettbash%40brettbash.com&p=3D')
+        }
+      }
+
+      div.OutlookMessageHeader {
+        background-image: url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbre=
+ttbash%40brettbash.com&f=3D')
+      }
+
+      table.moz-email-headers-table {
+        background-image: url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbre=
+ttbash%40brettbash.com&f=3D')
+      }
+
+      blockquote #_t {
+        background-image: url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbre=
+ttbash%40brettbash.com&f=3D')
+      }
+
+      #MailContainerBody #_t {
+        background-image: url('https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbre=
+ttbash%40brettbash.com&f=3D')
+      }
+</style>
+<div id=3D"_t"></div>
+<img src=3D"https://m77eqxhc.emltrk.com/m77eqxhc?d=3Dbrettbash%40brettbash.=
+com" width=3D"1" height=3D"1" border=3D"0" style=3D"height: auto; line-heig=
+ht: 0; outline: none; text-decoration: none; vertical-align: top; -ms-inter=
+polation-mode: bicubic; border: 0;"/>
+
+ =20
+
+</body></html>
+--90379a4b4697c13610b8985ccd552620b940b33eab2a7fc0cf2599f37cde--
