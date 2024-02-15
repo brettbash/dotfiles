@@ -7,15 +7,15 @@ set realname = "Brett Bash"
 
 # IMAP
 set imap_user = "brett@whiteboard.is"
-set imap_pass = "uyekkhohvmjvokjx"
+set imap_pass = ""
 set imap_keepalive = 300
 set mail_check = 120
 
 # SMTP
 set smtp_url = "smtps://brett@whiteboard.is@smtp.gmail.com:587"
 set smtp_authenticators = "gssapi:login"
-# set smtp_pass = "Rc=nNw82R#erzgysc"
-set smtp_pass = "uyekkhohvmjvokjx"
+# set smtp_pass = ""
+set smtp_pass = ""
 set ssl_starttls = yes
 set ssl_force_tls = yes
 
@@ -28,4 +28,4 @@ set trash = "+[Gmail]/Trash"
 
 mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash
 
-# account-hook $folder "set imap_pass=uyekkhohvmjvokjx"
+# account-hook $folder "set imap_pass="
