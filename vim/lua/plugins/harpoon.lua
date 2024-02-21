@@ -9,7 +9,8 @@ return {
   config = function()
     require("lualine").setup({
       sections = {
-        lualine_x = {
+        lualine_y = {
+          "progress",
           {
             function()
               local key = require("grapple").key()
@@ -17,9 +18,6 @@ return {
             end,
             cond = require("grapple").exists,
           },
-          "encoding",
-          "fileformat",
-          "filetype",
         },
       },
     })
