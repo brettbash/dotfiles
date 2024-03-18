@@ -5,14 +5,14 @@ vim.keymap.set({ "n", "v" }, "<F4>", "5w", { desc = "Word Forward Fast" })
 
 vim.keymap.set(
   { "n", "v" },
-  "<F12>",
+  "<F16>",
   "<cmd>lua require('mini.files').open(vim.api.nvim_buf_get_name(0), true)<cr>",
   { desc = "Oil" }
 )
 
 vim.keymap.set(
   { "n", "v" },
-  "<F11>",
+  "<F13>",
   "<cmd>lua require('mini.files').open(vim.loop.cwd(), true)<cr>",
   { desc = "Oil CWD" }
 )
