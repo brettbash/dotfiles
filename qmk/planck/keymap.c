@@ -285,7 +285,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_VIM] = LAYOUT_planck_grid(
     _______, _______, LSFT(KC_G), JUMP_TOP, _______, _______, KC_CIRC, LCTL(KC_F),         LCTL(KC_D),       LCTL(KC_U), LCTL(KC_B), _______,
     KC_ESC,  KC_B,    KC_RCBR,    KC_LCBR,  KC_W,    KC_E,    KC_0,    KC_H,               KC_J,             KC_K,       KC_L,       KC_DLR,
-    _______, KC_F1,   KC_F2,      KC_F3,    KC_F4,   _______, _______, S_R,                KC_F12,           KC_F11,     _______,    _______,
+    _______, KC_F1,   KC_F2,      KC_F3,    KC_F4,   _______, _______, S_R,                KC_F16,           KC_F13,     _______,    _______,
     _______, _______, _______,    _______,  _______, _______, KC_LSFT, LGUI(LSFT(KC_SPC)), LGUI(LSFT(KC_J)), _______,    _______,    _______
 ),
 
@@ -420,7 +420,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT_planck_grid(
     _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL,
     _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, _______, COLEMAK,  _______, _______, _______,
-    _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
+    _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 )
 };
@@ -942,7 +942,7 @@ uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (IS_LAYER_ON(_DESIGN)) {
         if (clockwise) {
             tap_code16(LGUI(KC_MINS));
@@ -955,6 +955,18 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         } else {
             tap_code16(A(S(KC__VOLUP)));
         }
+    } else if (IS_LAYER_ON(_RAISE)) {
+        if (clockwise) {
+            tap_code16(KC_F9);
+        } else {
+            tap_code16(KC_F10);
+        }
+    } else if (IS_LAYER_ON(_NAV_TEMP)) {
+        if (clockwise) {
+            tap_code16(KC_F11);
+        } else {
+            tap_code16(KC_F12);
+        }
     } else {
         if (clockwise) {
             tap_code16(LGUI(LALT(KC_DOWN)));
@@ -962,9 +974,10 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             tap_code16(LGUI(LALT(KC_UP)));
         }
     }
+    return false;
 }
 
-void dip_switch_update_user(uint8_t index, bool active) {
+bool dip_switch_update_user(uint8_t index, bool active) {
     switch (index) {
         case 0: {
 #ifdef AUDIO_ENABLE
@@ -993,6 +1006,7 @@ void dip_switch_update_user(uint8_t index, bool active) {
             muse_mode = false;
         }
     }
+    return false;
 }
 
 void matrix_scan_user(void) {

@@ -1,5 +1,7 @@
 #pragma once
 
+#define LAYER_STATE_32BIT
+
 #ifdef AUDIO_ENABLE
     #define SONIC_RINGS \
         E__NOTE(_E6), \
