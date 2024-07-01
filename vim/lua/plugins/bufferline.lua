@@ -1,5 +1,8 @@
 return {
   "akinsho/bufferline.nvim",
+  dependencies = {
+    "echasnovski/mini.bufremove",
+  },
   opts = {
     options = {
       indicator = {
