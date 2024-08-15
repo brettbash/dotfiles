@@ -19,9 +19,16 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+      { "tzachar/cmp-ai" },
     },
 
     opts = function(_, opts)
+      require("cmp").setup({
+        sources = {
+          { name = "cmp_ai" },
+        },
+      })
+      -- table.insert(opts.sources, 1, "cmp_ai")
       local format_kinds = opts.formatting.format
       opts.formatting.format = function(entry, item)
         format_kinds(entry, item) -- add icons

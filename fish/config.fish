@@ -35,8 +35,8 @@ alias tmwsm "timew summary :ids month"
 alias tmwsq "timew summary :ids quarter"
 alias tmwsum "timew summary :ids "
 
-if type -q exa
-    alias ll "exa -l -g --icons"
+if type -q eza
+    alias ll "eza -l -g --icons"
     alias lla "ll -a"
 end
 

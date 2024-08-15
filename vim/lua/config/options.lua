@@ -4,6 +4,7 @@
 
 local opt = vim.opt
 
+vim.diagnostic.enable(false)
 opt.tabstop = 4
 opt.shiftwidth = 4 -- Size of an indent
 opt.softtabstop = 4
