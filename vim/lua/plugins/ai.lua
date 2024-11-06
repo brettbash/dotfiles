@@ -32,63 +32,63 @@ return {
     },
   },
 
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim", -- Optional
-      {
-        "stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
-        opts = {},
-      },
-    },
-    opts = function()
-      require("codecompanion").setup({
-        adapters = {
-          ollama = require("codecompanion.adapters").use("ollama", {
-            url = "http://192.168.0.121:11434",
-            schema = {
-              model = {
-                default = "codegemma",
-              },
-            },
-          }),
-        },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-telescope/telescope.nvim", -- Optional
+  --     {
+  --       "stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
+  --       opts = {},
+  --     },
+  --   },
+  --   opts = function()
+  --     require("codecompanion").setup({
+  --       adapters = {
+  --         ollama = require("codecompanion.adapters").extend("ollama", {
+  --           url = "http://192.168.0.121:11434",
+  --           schema = {
+  --             model = {
+  --               default = "codegemma",
+  --             },
+  --           },
+  --         }),
+  --       },
+  --
+  --       strategies = {
+  --         chat = "ollama",
+  --         inline = "ollama",
+  --         agent = "ollama",
+  --       },
+  --     })
+  --   end,
+  -- },
 
-        strategies = {
-          chat = "ollama",
-          inline = "ollama",
-          agent = "ollama",
-        },
-      })
-    end,
-  },
-
-  {
-    "tzachar/cmp-ai",
-    dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      local cmp_ai = require("cmp_ai.config")
-      cmp_ai:setup({
-        max_lines = 100,
-        provider = "Ollama",
-        provider_options = {
-          base_url = "http://192.168.0.121:11434/api/generate",
-          model = "codegemma",
-          stream = true,
-        },
-        notify = true,
-        notify_callback = function(msg)
-          vim.notify(msg)
-        end,
-        run_on_every_keystroke = true,
-        ignored_file_types = {
-          -- default is not to ignore
-          -- uncomment to ignore in lua:
-          -- lua = true
-        },
-      })
-    end,
-  },
+  -- {
+  --   "tzachar/cmp-ai",
+  --   dependencies = "nvim-lua/plenary.nvim",
+  --   config = function()
+  --     local cmp_ai = require("cmp_ai.config")
+  --     cmp_ai:setup({
+  --       max_lines = 100,
+  --       provider = "Ollama",
+  --       provider_options = {
+  --         base_url = "http://192.168.0.121:11434/api/generate",
+  --         model = "codegemma",
+  --         stream = true,
+  --       },
+  --       notify = true,
+  --       notify_callback = function(msg)
+  --         vim.notify(msg)
+  --       end,
+  --       run_on_every_keystroke = true,
+  --       ignored_file_types = {
+  --         -- default is not to ignore
+  --         -- uncomment to ignore in lua:
+  --         -- lua = true
+  --       },
+  --     })
+  --   end,
+  -- },
 }
