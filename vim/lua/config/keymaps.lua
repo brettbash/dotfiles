@@ -34,3 +34,5 @@ vim.keymap.set(
 vim.keymap.set({ "n", "v" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "Git Preview Hunk" })
 
 vim.keymap.set({ "n", "v" }, "U", "<cmd>redo<cr>", { desc = "Redo" })
+
+vim.keymap.set({ "n", "v" }, "<leader>bo", "<cmd>BufferLinePick<cr>", { desc = "Pick Buffer" })

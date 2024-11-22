@@ -36,12 +36,34 @@ ls.add_snippets("twig", {
   }),
 
   s({
-    trig = "tag",
-    name = "Twig Braces",
+    trig = "!!",
+    name = "File Info",
   }, {
-    t("{{ "),
-    i(1, "var"),
-    t(" }}"),
+    t({ "{#", "" }),
+    t({ "    @name " }),
+    i(1, "Name"),
+    t({ "", "    @desc " }),
+    i(2, "Description"),
+    t({ "", "    @type " }),
+    i(3, "type"),
+    t({ "", "#}", "", "" }),
+    i(0),
+  }),
+
+  s({
+    trig = "el",
+    name = "Element",
+  }, {
+    t({ "<" }),
+    i(1, "div"),
+    t({ "", '    class="', "        " }),
+    i(2, ""),
+    t({ "", '    "', "" }),
+    t({ ">", "    " }),
+    i(3, ""),
+    t({ "", "</" }),
+    i(4, "div"),
+    t({ ">", "" }),
     i(0),
   }),
 })
