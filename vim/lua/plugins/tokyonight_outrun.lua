@@ -109,6 +109,24 @@ return {
 
         hl.NeoTreeDimText = { fg = fg_dark }
 
+        -- WhichKey
+        hl.WhichKey = {
+          fg = cyan1,
+          bg = bg,
+        }
+        hl.WhichKeyTitle = {
+          fg = magenta,
+          bg = bg,
+        }
+        hl.WhichKeyNormal = {
+          fg = cyan1,
+          bg = bg,
+        }
+        hl.WhichKeyBorder = {
+          fg = cyan1,
+          bg = bg,
+        }
+
         -- Oil (MiniFiles)
         hl.MiniFilesBorder = {
           bg = bg,
