@@ -17,12 +17,7 @@ vim.keymap.set(
   { desc = "Oil CWD" }
 )
 
-vim.keymap.set(
-  { "n", "v" },
-  "<tab>",
-  "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
-  { desc = "Telescope Buffers" }
-)
+vim.keymap.set({ "n", "v" }, "<tab>", "<cmd>lua require('fzf-lua').buffers()<cr>", { desc = "Telescope Buffers" })
 
 vim.keymap.set(
   { "n", "v" },

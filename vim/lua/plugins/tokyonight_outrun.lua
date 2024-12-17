@@ -108,6 +108,28 @@ return {
         hl.SignColumn = { bg = bg }
 
         hl.NeoTreeDimText = { fg = fg_dark }
+
+        -- Oil (MiniFiles)
+        hl.MiniFilesBorder = {
+          bg = bg,
+          fg = cyan1,
+        }
+        hl.MiniFilesTitle = {
+          bg = bg,
+          fg = magenta,
+        }
+        hl.MiniFilesTitleFocused = {
+          bg = bg,
+          fg = cyan1,
+        }
+
+        -- FZF
+        hl.FzfLuaNormal = { bg = bg }
+        hl.FzfLuaBackdrop = { bg = bg }
+        hl.FzfLuaTitle = { fg = cyan1, bg = bg }
+        hl.FzfLuaPreviewBorder = { fg = cyan1, bg = bg }
+        hl.FzfLuaBorder = { fg = cyan1, bg = bg }
+        hl.FzfLuaPreviewTitle = { fg = magenta, bg = bg }
       end,
 
       on_colors = function(colors)
