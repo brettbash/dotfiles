@@ -61,6 +61,7 @@ return {
     require("tokyonight").setup({
       transparent = true, -- Enable this to disable setting the background color
       on_highlights = function(hl, c)
+        hl.LspInlayHint = { fg = fg_darker, bg = bg }
         hl.YankyPut = { fg = bg_darker, bg = purple }
         hl.YankyYanked = { fg = bg_darker, bg = yellow2 }
         hl.BufferlineActiveSeparator = {
@@ -162,7 +163,7 @@ return {
         colors.bg_statusline = bg_dark
         colors.bg_highlight = bg_light
         colors.fg_gutter = bg_lighter
-        colors.bg_visual = bg_lighter
+        colors.bg_visual = blue2
 
         colors.cyan = cyan
         colors.blue0 = purple
