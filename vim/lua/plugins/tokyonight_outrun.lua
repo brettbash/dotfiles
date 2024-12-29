@@ -20,12 +20,9 @@ return {
     -- "#b893ce"
 
     local fg_darker = "#545c7e"
-    -- local fg_dark = "#848bbd"
     local fg_dark = "#6971a2"
 
     local fg = "#a8c7fa"
-    -- local fg = "#d9bbdb"
-    -- local fg = "#e7cad8"
 
     local pink = "#ff7edb"
     local magenta = "#ff00ff"
@@ -61,7 +58,7 @@ return {
     require("tokyonight").setup({
       transparent = true, -- Enable this to disable setting the background color
       on_highlights = function(hl, c)
-        hl.LspInlayHint = { fg = fg_darker, bg = bg }
+        hl.LspInlayHint = { fg = fg_darker, bg = black }
         hl.YankyPut = { fg = bg_darker, bg = purple }
         hl.YankyYanked = { fg = bg_darker, bg = yellow2 }
         hl.BufferlineActiveSeparator = {
@@ -73,13 +70,13 @@ return {
           fg = c.bg_dark,
         }
         hl.NormalFloat = {
-          bg = bg,
+          bg = black,
           fg = fg,
         }
         hl.FloatBorder = { fg = cyan1, bg = bg_dark }
         hl.FloatTitle = { fg = magenta, bg = c.bg_dark }
         hl.TelescopeNormal = {
-          bg = bg,
+          bg = black,
           fg = c.fg_dark,
         }
 
@@ -95,7 +92,7 @@ return {
         }
 
         hl.TelescopeBorder = {
-          bg = bg,
+          bg = black,
           fg = cyan1,
         }
 
@@ -105,52 +102,52 @@ return {
         hl.LineNrBelow = { fg = fg_dark }
         hl.Folded = { bg = bg_dark }
         hl.FoldColumn = {
-          bg = bg,
+          bg = black,
           fg = cyan,
         }
-        hl.SignColumn = { bg = bg }
+        hl.SignColumn = { bg = lack }
 
         hl.NeoTreeDimText = { fg = fg_dark }
 
         -- WhichKey
         hl.WhichKey = {
           fg = cyan1,
-          bg = bg,
+          bg = black,
         }
         hl.WhichKeyTitle = {
           fg = magenta,
-          bg = bg,
+          bg = black,
         }
         hl.WhichKeyNormal = {
           fg = cyan1,
-          bg = bg,
+          bg = black,
         }
         hl.WhichKeyBorder = {
           fg = cyan1,
-          bg = bg,
+          bg = black,
         }
 
         -- Oil (MiniFiles)
         hl.MiniFilesBorder = {
-          bg = bg,
+          bg = black,
           fg = cyan1,
         }
         hl.MiniFilesTitle = {
-          bg = bg,
+          bg = black,
           fg = magenta,
         }
         hl.MiniFilesTitleFocused = {
-          bg = bg,
+          bg = black,
           fg = cyan1,
         }
 
         -- FZF
-        hl.FzfLuaNormal = { bg = bg }
-        hl.FzfLuaBackdrop = { bg = bg }
-        hl.FzfLuaTitle = { fg = cyan1, bg = bg }
-        hl.FzfLuaPreviewBorder = { fg = cyan1, bg = bg }
-        hl.FzfLuaBorder = { fg = cyan1, bg = bg }
-        hl.FzfLuaPreviewTitle = { fg = magenta, bg = bg }
+        hl.FzfLuaNormal = { bg = black }
+        hl.FzfLuaBackdrop = { bg = black }
+        hl.FzfLuaTitle = { fg = cyan1, bg = black }
+        hl.FzfLuaPreviewBorder = { fg = cyan1, bg = black }
+        hl.FzfLuaBorder = { fg = cyan1, bg = black }
+        hl.FzfLuaPreviewTitle = { fg = magenta, bg = black }
       end,
 
       on_colors = function(colors)
@@ -161,7 +158,7 @@ return {
         colors.fg = fg
         colors.bg_dark = bg_dark
         colors.bg_statusline = bg_dark
-        colors.bg_highlight = bg_light
+        colors.bg_highlight = black
         colors.fg_gutter = bg_lighter
         colors.bg_visual = blue2
 

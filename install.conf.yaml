@@ -17,6 +17,7 @@
     ~/.config/nvim: vim
     ~/.config/timewarrior: timewarrior
     ~/.config/vifm: vifm
+    ~/.config/ghostty: ghostty
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.hammerspoon: hammerspoon

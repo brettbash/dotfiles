@@ -1,0 +1,6 @@
+config-file = "font"
+config-file = "window"
+config-file = "shell"
+config-file = "icon"
+custom-shader = crt.glsl
+theme = "cyberpunk"

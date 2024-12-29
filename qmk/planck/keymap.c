@@ -52,6 +52,8 @@ enum planck_keycodes {
 
     // VIM
     JUMP_TOP,
+    OIL,
+    OIL_ROOT,
     TMUX,
     TMUX_SESS,
     TMUX_MENU,
@@ -284,9 +286,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ____
 [_VIM] = LAYOUT_planck_grid(
     _______, _______, LSFT(KC_G), JUMP_TOP, _______, _______, KC_CIRC, LCTL(KC_F),         LCTL(KC_D),       LCTL(KC_U), LCTL(KC_B), _______,
-    KC_ESC,  KC_B,    KC_RCBR,    KC_LCBR,  KC_W,    KC_E,    KC_0,    KC_H,               KC_J,             KC_K,       KC_L,       KC_DLR,
-    _______, KC_F1,   KC_F2,      KC_F3,    KC_F4,   _______, _______, S_R,                KC_F16,           KC_F13,     _______,    _______,
-    _______, _______, _______,    _______,  _______, _______, KC_LSFT, LGUI(LSFT(KC_SPC)), LGUI(LSFT(KC_J)), _______,    _______,    _______
+    KC_ESC,  KC_B,    KC_RCBR,    KC_LCBR,  KC_W,    KC_E,    KC_0,    KC_H,               KC_J,             KC_K,             KC_L,  KC_DLR,
+    _______, KC_F1,   KC_F2,      KC_F3,    KC_F4,   _______, _______, S_R,                OIL,              OIL_ROOT,      _______, _______,
+    _______, _______, _______,    _______,  _______, _______, KC_LSFT, LGUI(LSFT(KC_SPC)), LGUI(LSFT(KC_J)), _______,       _______, _______
 ),
 
 [_VMUX] = LAYOUT_planck_grid(
@@ -544,6 +546,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case JUMP_TOP:
             if (record->event.pressed) {
                 SEND_STRING("gg");
+            }
+            return false;
+            break;
+
+        case OIL:
+            if (record->event.pressed) {
+                SEND_STRING(" fm");
+            }
+            return false;
+            break;
+
+        case OIL_ROOT:
+            if (record->event.pressed) {
+                SEND_STRING(" fM");
             }
             return false;
             break;

@@ -50,6 +50,9 @@ return {
       tab = {
         bg = "#191726",
       },
+      duplicate = {
+        bg = "#191726",
+      },
 
       buffer_selected = {
         fg = "#00ffff",
