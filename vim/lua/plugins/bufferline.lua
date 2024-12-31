@@ -24,11 +24,6 @@ return {
         return vim.trim(ret)
       end,
 
-      -- indicator = {
-      --   style = "underline",
-      -- },
-      --
-
       offsets = {
         {
           text = "ファイルツリー",
@@ -43,7 +38,6 @@ return {
       fill = {
         bg = "#191726",
       },
-
       background = {
         bg = "#191726",
       },
@@ -77,6 +71,10 @@ return {
         fg = "#00ffff",
       },
 
+      pick = {
+        bg = "#191726",
+      },
+
       hint_selected = {
         fg = "#00ffff",
         sp = "#00ffff",
@@ -99,35 +97,21 @@ return {
         fg = "#fede5d",
         sp = "#fede5d",
       },
-      -- warning_diagnostic_visible = {
-      --   fg = "#ffefae",
-      -- },
       diagnostic_selected = {
         fg = "#fede5d",
       },
-      -- diagnostic_visible = {
-      --   fg = "#ffefae",
-      -- },
       hint_diagnostic_selected = {
         fg = "#fede5d",
       },
-      -- hint_diagnostic_visible = {
-      --   fg = "#ffefae",
-      -- },
       info_diagnostic_selected = {
         fg = "#fede5d",
       },
-      -- info_diagnostic_visible = {
-      --   fg = "#ffefae",
-      -- },
-
       error_visible = {
         fg = "#ff00ff",
       },
       error_selected = {
         fg = "#00ffff",
       },
-
       tab_close = {
         bg = "#191726",
       },
@@ -145,7 +129,6 @@ return {
         bg = "#2a2139",
         fg = "#00ffff",
       },
-
       separator = {
         fg = "#463465",
         bg = "#191726",
@@ -157,7 +140,6 @@ return {
       tab_separator_selected = {
         bg = "#2a2139",
         fg = "#00ffff",
-        -- underline = "#00ffff",
       },
       separator_selected = {
         bg = "#2a2139",

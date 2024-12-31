@@ -59,34 +59,51 @@ set -gx PATH node_modules/.bin $PATH
 # π ---------------------------------------------------------//
 # // :: THEME
 # // : ----------------------------------------------------- #}
-# set -g fish_prompt_pwd_dir_length 0
-set -g theme_display_user yes
+set -U fish_prompt_pwd_dir_length 50
+set -U theme_display_user yes
 
-set -g tide_os_bg_color fede5d
-set -g tide_os_color 000000
-set -g tide_os_icon 👽 - 碌- バッシュ
-set -g tide_os_icon 👽
+set -U tide_os_bg_color fede5d
+set -U tide_os_color 000000
+set -U tide_os_icon 👽 - 碌- バッシュ
+#set -U tide_os_icon 👽
 
-# ::-- PWD -------------------------:: //
-set -g tide_pwd_bg_color 191726
-set -g tide_pwd_color_ancors ff00ff
-set -g tide_pwd_color_dirs ff7edb
+set -U tide_pwd_bg_color 463465
+set -U tide_pwd_color 463465
+set -U tide_pwd_color_truncated_dirs 00ffff
+set -U tide_pwd_color_dirs 03edf9
+set -U tide_pwd_color_anchors e5fe5d
+set -U tide_pwd_anchors italic
+set -U tide_pwd_icon_home 🔮
+set -U tide_pwd_icon 💀
 
-set -g tide_pwd_bg_color 191726
-set -g tide_pwd_color_ancors 191726
-set -g tide_pwd_color_dirs 191726
-set -g tide_pwd_color_truncated_dirs 191726
+set -U tide_vi_mode_bg_color_default 5f3fff
+set -U tide_vi_mode_color_default ffffff
+set -U tide_vi_mode_icon_default 󰊠
+set -U tide_vi_mode_bg_color_insert ff00ff
+set -U tide_vi_mode_color_insert ffffff
+set -U tide_vi_mode_icon_insert 󰢚
+set -U tide_vi_mode_bg_color_replace 038AF9
+set -U tide_vi_mode_color_replace ffffff
+set -U tide_vi_mode_icon_replace 󱥒
+set -U tide_vi_mode_bg_color_visual 03edf9
+set -U tide_vi_mode_icon_visual 
 
-set -g tide_pwd_icon_home 🔮
-set -g tide_pwd_icon 💀
+set -U tide_git_bg_color 72f1b8
+set -U tide_git_bg_color_unstable ff8b39
+set -U tide_git_icon 
+#
+set -U tide_status_bg_color 72f1b8
+set -U tide_status_bg_color_failure fe4450
+set -U tide_status_color 191726
+set -U tide_status_color_failure ffffff
+set -U tide_status_icon  󰁱
+set -U tide_status_icon_failure 
 
-set -g tide_git_bg_color 72f1b8
-set -g tide_git_bg_color_unstable 03edf9
-set -g tide_git_icon 
+set -U tide_cmd_duration_bg_color fede5d
 
-set -g tide_status_bg_color A148AB
-set -g tide_status_color 72f1b8
-set -g tide_status_icon 
+set -U tide_node_bg_color 7ee787
+set -U tide_php_bg_color 3F59FF
+set -U tide_php_color ffffff
 
-set -g tide_time_bg_color bd93f9
-set -g tide_time_color 1a1836
+set -U tide_time_bg_color ff7edb
+set -U tide_time_color 191726
