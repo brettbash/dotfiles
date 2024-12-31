@@ -92,18 +92,18 @@ set -U tide_git_bg_color 72f1b8
 set -U tide_git_bg_color_unstable ff8b39
 set -U tide_git_icon 
 #
-set -U tide_status_bg_color 72f1b8
+set -U tide_status_bg_color 191726
 set -U tide_status_bg_color_failure fe4450
-set -U tide_status_color 191726
+set -U tide_status_color 72f1b8
 set -U tide_status_color_failure ffffff
-set -U tide_status_icon  󰁱
+set -U tide_status_icon  ╶┄┄
 set -U tide_status_icon_failure 
 
 set -U tide_cmd_duration_bg_color fede5d
 
 set -U tide_node_bg_color 7ee787
 set -U tide_php_bg_color 3F59FF
-set -U tide_php_color ffffff
+set -U tide_php_color ffefae
 
 set -U tide_time_bg_color ff7edb
 set -U tide_time_color 191726

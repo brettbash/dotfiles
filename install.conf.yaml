@@ -11,20 +11,21 @@
     ~/.config/btop/btop.conf: btop/btop.conf
     ~/.config/btop/themes: btop/themes
     ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/ghostty: ghostty
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.config/lazygit: lazygit
     ~/.config/mutt: mutt
     ~/.config/nvim: vim
+    ~/.config/stig: stig
     ~/.config/timewarrior: timewarrior
     ~/.config/vifm: vifm
-    ~/.config/ghostty: ghostty
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.hammerspoon: hammerspoon
     ~/.newsboat/config: newsboat/config
     ~/.newsboat/urls: newsboat/urls/
+    ~/.qmk/keyboards/1upkeyboards/super16v2/keymaps/atomic16: qmk/super16
+    ~/.qmk/keyboards/planck/keymaps/acidwraith: qmk/planck
     ~/.taskrc: taskwarrior/taskrc/
     ~/.tmux.conf: tmux/tmux.conf
     ~/.wezterm: wezterm
-    ~/.qmk/keyboards/planck/keymaps/acidwraith: qmk/planck
-    ~/.qmk/keyboards/1upkeyboards/super16v2/keymaps/atomic16: qmk/super16
