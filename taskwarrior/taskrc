@@ -41,9 +41,14 @@ include dark-violets-256.theme
 #include no-color.theme
 
 # Colors --------------------------------- |
-color.active=cyan
-color.label=color7
-color.alternate=color7
+color.active=color11
+color.label=color11
+color.alternate=color15
+# color.tagged=color15
+
+color.project.label=color15
+color.tag.label=color15
+color.keyword.label=color15
 
 color.burndown.done=black on cyan
 color.burndown.started=black on color5
@@ -51,7 +56,7 @@ color.burndown.pending=black on rgb104
 
 color.due=color5
 color.due.today=color13
-color.overdue=color30
+color.overdue=color1
 
 color.error=color9
 color.footnote=color12
@@ -60,13 +65,12 @@ color.header=color12
 color.schedule=color2
 color.scheduled=color2
 
-color.summary.background=color30
+color.summary.background=black
 
 color.sync.added=color7
 
-color.vit.header=color4 on color20
-color.vit.selection=black on yellow
-color.project.label=color2
+color.vit.header=color4 on black
+color.vit.selection=black on color4
 
 # Context --------------------------------- |
 news.version=2.6.0

@@ -4,3 +4,4 @@ config-file = "shell"
 config-file = "icon"
 custom-shader = crt.glsl
 theme = "cyberpunk"
+macos-option-as-alt = true
