@@ -142,6 +142,7 @@ return {
         }
 
         -- FZF
+        hl.FzfLuaFzfGutter = { bg = black }
         hl.FzfLuaNormal = { bg = black }
         hl.FzfLuaBackdrop = { bg = black }
         hl.FzfLuaTitle = { fg = cyan1, bg = black }
