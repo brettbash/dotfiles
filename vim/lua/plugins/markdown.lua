@@ -16,6 +16,7 @@ return {
     bullet = {
       icons = { "●", "○", "◆", "◇" },
       right_pad = 1,
+      left_pad = 2,
     },
     checkbox = {
       unchecked = {
@@ -34,7 +35,7 @@ return {
     indent = {
       enabled = true,
       per_level = 2,
-      skip_level = 1,
+      skip_level = 0,
       skip_heading = false,
     },
     link = {

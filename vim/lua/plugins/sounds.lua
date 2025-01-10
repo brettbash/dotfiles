@@ -12,8 +12,8 @@ return {
       { auto_command = "BufNewFile", sound = "Dot.wav" },
       { auto_command = "BufDelete", sound = "Hollow.wav" },
       { auto_command = "BufWritePost", sound = "Bam.wav" },
-      -- I want this only when the Noice cmdline popup is open, not on viewing a different buffer as well...
-      -- { auto_command = "CmdlineEnter", sound = "Schlik.wav" },
+      { key_map = { mode = "n", key_chord = ":", blocking = false }, sound = "Schlik.wav" },
+
       { auto_command = "TermOpen", sound = "Klink.wav" },
       -- 🧠 Additional Sound Ideas:
       ----- TextYankPost
