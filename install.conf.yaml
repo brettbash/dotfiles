@@ -14,6 +14,7 @@
     ~/.config/ghostty: ghostty
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.config/lazygit: lazygit
+    ~/.config/marksman: marksman
     ~/.config/mutt: mutt
     ~/.config/nvim: vim
     ~/.config/stig: stig

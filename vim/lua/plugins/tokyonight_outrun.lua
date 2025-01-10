@@ -149,6 +149,10 @@ return {
         hl.FzfLuaPreviewBorder = { fg = cyan1, bg = black }
         hl.FzfLuaBorder = { fg = cyan1, bg = black }
         hl.FzfLuaPreviewTitle = { fg = magenta, bg = black }
+
+        -- Markdown
+        hl.RenderMarkdownCode = { bg = bg_dark }
+        hl.RenderMarkdownCodeInline = { bg = bg }
       end,
 
       on_colors = function(colors)
