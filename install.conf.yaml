@@ -20,6 +20,7 @@
     ~/.config/stig: stig
     ~/.config/timewarrior: timewarrior
     ~/.config/vifm: vifm
+    ~/.config/yazi: yazi
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.hammerspoon: hammerspoon

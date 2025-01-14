@@ -1,0 +1,7 @@
+[manager]
+ratio          = [ 1, 4, 3 ]
+sort_sensitive = false
+show_hidden    = true
+title_format   = "ヤズ: {cwd}"
+SHELL = "fish"
+
