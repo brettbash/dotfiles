@@ -30,12 +30,16 @@ bind-key Y halfpageup
 browser "open -g -a 'Arc' %u"
 
 color listnormal          white   default
-color listnormal_unread   color17 default
-color listfocus           color2  color22 bold
-color listfocus_unread    color3 color22 bold
-color title               color13  color20
-color info                color6  color21
+color listnormal_unread   color15 default
+color listfocus           color13  color6 bold
+color listfocus_unread    color14 color11 bold
+color title               color13  default
+color info                color6  default
+color article             color15  default
 
-highlight article "^(Title):.*$" color18 default
-highlight article "https?://[^ ]+" color30 default
-highlight article "\\[image\\ [0-9]+\\]" color2 default
+highlight article "^(Title|Date|Author):.*$" color4 default
+highlight article "^(Feed|Link):.*$" color6 default bold
+highlight article "https?://[^ ]+" color13 default underline
+highlight article "\\[image\\ [0-9]+\\]" color5 default
+highlight article "\\[[0-9]+\\]" color10 default bold
+highlight feedlist "^─.*$" color11 default bold
