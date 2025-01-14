@@ -27,6 +27,7 @@ return {
     local pink = "#ff7edb"
     local magenta = "#ff00ff"
     local magenta2 = "#ff007c"
+    local hot = "#F70067"
 
     local cyan = "#03edf9"
     local cyan1 = "#00ffff"
@@ -34,14 +35,12 @@ return {
     local blue = "#55beff"
     local blue1 = "#abf3fd"
     local blue2 = "#5f3fff"
-    local blue3 = "#3F59FF"
-    local blue4 = "#038AF9"
-    local blue5 = "#5f3fff"
-    local blue6 = "#5f3fff"
-    local blue7 = "#5f3fff"
+    local blue3 = "#640FDA"
+    local blue4 = "#370ABE"
 
     local green = "#72f1b8"
     local green1 = "#7ee787"
+    local teal = "#69E473"
 
     local yellow = "#fede5d"
     local yellow1 = "#f3e70f"
@@ -174,9 +173,9 @@ return {
         colors.blue2 = yellow2
         colors.blue3 = green1
         colors.blue4 = blue1
-        colors.blue5 = cyan1
-        colors.blue6 = cyan1
-        colors.blue6 = cyan
+        colors.blue6 = hot
+        colors.blue4 = magenta2
+        colors.blue5 = blue
 
         colors.magenta = pink
         colors.magenta2 = magenta
@@ -187,7 +186,7 @@ return {
         colors.green2 = green1
 
         colors.yellow = red
-        colors.teal = blue
+        colors.teal = teal
         colors.orange = yellow3
 
         colors.red = yellow2

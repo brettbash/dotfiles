@@ -1,16 +1,24 @@
-local theme = require("lualine.themes.nord")
-return {
-  "nvim-lualine/lualine.nvim",
-  config = function()
-    require("lualine").setup({
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { { "filename", path = 1 } },
-        lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
-      },
-    })
-  end,
-}
+-- local theme = require("lualine.themes.nightfly")
+-- theme.normal.b.fg = "#72f1b8"
+-- theme.normal.b.bg = "#463465"
+-- theme.normal.c.fg = "#03edf9"
+-- theme.normal.c.bg = "#251c2e"
+-- theme.normal.x.fg = "#545c7e"
+--
+-- return {
+--   "nvim-lualine/lualine.nvim",
+--   config = function()
+--     require("lualine").setup({
+--       sections = {
+--         lualine_a = { "mode" },
+--         lualine_b = { "branch", "diff", "diagnostics" },
+--         lualine_c = { { "filename", path = 1 } },
+--         lualine_x = { "encoding", "fileformat", "filetype" },
+--         lualine_y = { "progress" },
+--         lualine_z = { "location" },
+--       },
+--       options = { theme = theme },
+--     })
+--   end,
+-- }
+return {}
