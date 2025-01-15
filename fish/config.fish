@@ -4,7 +4,7 @@ set -gx TERM xterm-256color
 
 # Aliases
 alias fishload "source ~/.config/fish/config.fish"
-alias tmuxinit "TERM=screen-256color-bce tmux"
+alias tmuxinit "set TERM tmux-256color && tmux"
 alias clear "TERM=xterm /usr/bin/clear"
 alias g git
 alias ls "ls -p -G"
@@ -12,7 +12,6 @@ alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
 alias c clear
-alias t "task list"
 alias neomail neomutt
 alias pint "./vendor/bin/pint"
 alias notes "cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ"
