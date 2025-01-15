@@ -68,7 +68,7 @@
   "reverb.nvim": { "branch": "main", "commit": "4aeca12572458f17a3a6aad425446351e8b07514" },
   "scratch.nvim": { "branch": "main", "commit": "6230634669d29bf05ab4e85b3c7df8fd8402dcb4" },
   "smear-cursor.nvim": { "branch": "main", "commit": "005b50b891d662bdd3160dc2a143939066b5cc17" },
-  "snacks.nvim": { "branch": "main", "commit": "eca68b595abe10d4dc932980ea7c30ca89adcf3a" },
+  "snacks.nvim": { "branch": "main", "commit": "e5dd9281ee9402858fb7b7f1ac74ddcef40ebacc" },
   "statuscol.nvim": { "branch": "main", "commit": "a2a0e3ed55ba0f636ce0b2ccf61bca4050edd288" },
   "tardis.nvim": { "branch": "main", "commit": "a6ee00a217529490e79d349b1f1a9cf5831180d3" },
   "telekasten.nvim": { "branch": "main", "commit": "6a10a7929421d6e696e46bbc5aa5627a8cbcf61d" },
