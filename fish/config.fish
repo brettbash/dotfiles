@@ -20,6 +20,7 @@ command -qv vim && alias vim nvim
 # alias finder "open -R $(fzf --height 40%)"
 # open . --> This can just open the current directory (pwd) in Finder
 
+alias twt taskwarrior-tui
 alias tw task
 alias twa "task add "
 alias tmw timew
