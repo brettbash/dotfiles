@@ -1,8 +1,9 @@
 return {
   "EggbertFluffle/beepboop.nvim",
   opts = {
-    audio_player = "ffplay",
+    audio_player = "mpv",
     max_sounds = 20,
+    volume = 80,
     sound_map = {
       { trigger_name = "patdown", sound = "Pat Down.wav" },
       { trigger_name = "patup", sound = "Pat Up.wav" },
