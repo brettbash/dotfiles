@@ -40,7 +40,7 @@ return {
 
     local green = "#72f1b8"
     local green1 = "#7ee787"
-    local teal = "#69E473"
+    local teal = "#97E736"
 
     local yellow = "#fede5d"
     local yellow1 = "#f3e70f"
@@ -72,7 +72,8 @@ return {
           bg = black,
           fg = fg,
         }
-        hl.FloatBorder = { fg = cyan1, bg = bg_dark }
+        hl.FloatBorder = { fg = cyan1, bg = black }
+        hl.MatchParen = { fg = magenta, bg = black }
         hl.FloatTitle = { fg = magenta, bg = c.bg_dark }
         hl.TelescopeNormal = {
           bg = black,
@@ -152,6 +153,12 @@ return {
         -- Markdown
         hl.RenderMarkdownCode = { bg = bg_dark }
         hl.RenderMarkdownCodeInline = { bg = bg }
+        hl.RenderMarkdownTableHead = { fg = cyan1 }
+        hl.RenderMarkdownTableRow = { fg = magenta }
+
+        hl.CalNavi = { fg = cyan, bg = black }
+        hl.CalRuler = { fg = green, bg = black }
+        hl.CalHeader = { fg = magenta, bg = black }
       end,
 
       on_colors = function(colors)
@@ -164,7 +171,7 @@ return {
         colors.bg_statusline = bg_dark
         colors.bg_highlight = black
         colors.fg_gutter = bg_lighter
-        colors.bg_visual = blue2
+        colors.bg_visual = blue3
 
         colors.cyan = cyan
         colors.blue0 = purple

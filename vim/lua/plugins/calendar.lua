@@ -1,3 +1,3 @@
 return {
-  "renerocksai/calendar-vim",
+  "nvim-telekasten/calendar-vim",
 }

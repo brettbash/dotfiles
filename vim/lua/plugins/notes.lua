@@ -1,5 +1,5 @@
 return {
-  "renerocksai/telekasten.nvim",
+  "nvim-telekasten/telekasten.nvim",
   lazy = false,
   dependencies = { "nvim-telescope/telescope.nvim" },
   keys = {
