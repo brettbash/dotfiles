@@ -17,9 +17,6 @@ alias pint "./vendor/bin/pint"
 alias notes "cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ"
 command -qv vim && alias vim nvim
 
-# alias finder "open -R $(fzf --height 40%)"
-# open . --> This can just open the current directory (pwd) in Finder
-
 alias twt taskwarrior-tui
 alias tw task
 alias twa "task add "
@@ -34,6 +31,12 @@ alias tmwsw "timew summary :ids week"
 alias tmwsm "timew summary :ids month"
 alias tmwsq "timew summary :ids quarter"
 alias tmwsum "timew summary :ids "
+
+# FZF
+fzf --fish | source
+alias f "fd --type f --strip-cwd-prefix --hidden --follow --exclude .git | fzf --border --preview 'bat --color=always --style=header,grid --line-range :500 {}' --preview-window '~3' --print0 | xargs -0 -o nvim"
+# alias finder "open -R $(fzf --height 40%)"
+# open . --> This can just open the current directory (pwd) in Finder
 
 if type -q eza
     alias ll "eza -l -g --icons"
@@ -81,7 +84,6 @@ set -U tide_pwd_color 463465
 set -U tide_pwd_color_truncated_dirs 00ffff
 set -U tide_pwd_color_dirs 03edf9
 set -U tide_pwd_color_anchors e5fe5d
-set -U tide_pwd_anchors italic
 set -U tide_pwd_icon_home 🔮
 set -U tide_pwd_icon 💀
 
