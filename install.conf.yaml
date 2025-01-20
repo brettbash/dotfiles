@@ -15,6 +15,7 @@
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.config/lazygit: lazygit
     ~/.config/marksman: marksman
+    ~/.config/mc/ini: mc/ini
     ~/.config/mutt: mutt
     ~/.config/nvim: vim
     ~/.config/stig: stig
@@ -24,6 +25,7 @@
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.hammerspoon: hammerspoon
+    ~/.local/share/mc/skins: mc/skins
     ~/.newsboat/config: newsboat/config
     ~/.newsboat/urls: newsboat/urls/
     ~/.qmk/keyboards/1upkeyboards/super16v2/keymaps/atomic16: qmk/super16
