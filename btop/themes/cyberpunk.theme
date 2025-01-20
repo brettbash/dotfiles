@@ -1,44 +1,44 @@
-# Theme: tokyo-storm
-# By: Pascal Jaeger
+# Theme: Cyberpunk Outrun
+# By: Brett Bash
 
 # Main bg
 theme[main_bg]=""
 
 # Main text color
-theme[main_fg]="#cfc9c2"
+theme[main_fg]="#a8c7fa"
 
 # Title color for boxes
-theme[title]="#cfc9c2"
+theme[title]="#ff7edb"
 
 # Higlight color for keyboard shortcuts
-theme[hi_fg]="#7dcfff"
+theme[hi_fg]="#e5fe5d"
 
 # Background color of selected item in processes box
-theme[selected_bg]="#414868"
+theme[selected_bg]="#fede5d"
 
 # Foreground color of selected item in processes box
-theme[selected_fg]="#cfc9c2"
+theme[selected_fg]="#191726"
 
 # Color of inactive/disabled text
-theme[inactive_fg]="#88d1ff"
+theme[inactive_fg]="#5f3fff"
 
 # Misc colors for processes box including mini cpu graphs, details memory graph and details status text
 theme[proc_misc]="#7dcfff"
 
 # Cpu box outline color
-theme[cpu_box]="#88d1ff"
+theme[cpu_box]="#03edf9"
 
 # Memory/disks box outline color
-theme[mem_box]="#88d1ff"
+theme[mem_box]="#03edf9"
 
 # Net up/down box outline color
-theme[net_box]="#88d1ff"
+theme[net_box]="#03edf9"
 
 # Processes box outline color
-theme[proc_box]="#88d1ff"
+theme[proc_box]="#03edf9"
 
 # Box divider line and small boxes line color
-theme[div_line]="#88d1ff"
+theme[div_line]="#03edf9"
 
 # Temperature graph colors
 theme[temp_start]="#7ee787"
