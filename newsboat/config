@@ -32,7 +32,7 @@ browser "open -g -a 'Arc' %u"
 color listnormal          white   default
 color listnormal_unread   color15 default
 color listfocus           color13  color6 bold
-color listfocus_unread    color14 color11 bold
+color listfocus_unread    color16 color11 bold
 color title               color13  default
 color info                color6  default
 color article             color15  default
