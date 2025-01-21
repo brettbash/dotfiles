@@ -1,7 +1,36 @@
 [manager]
 ratio          = [ 1, 4, 3 ]
-sort_sensitive = false
 show_hidden    = true
+sort_by = "natural"
+sort_dir_first = true
+sort_sensitive = false
+# linemode = "size"
+show_symlink = true
 title_format   = "ヤズ: {cwd}"
 SHELL = "fish"
 
+[[preview]]
+max_width       = 3024
+max_height      = 1964
+image_quality = 90
+
+[pick]
+open_title  = "で開く:"
+
+[plugin]
+prepend_preloaders = [
+    { mime = "image/vnd.adobe.photoshop", run = "sips-preview" }
+]
+prepend_previewers = [
+    { mime = "image/vnd.adobe.photoshop", run = "sips-preview" },
+]
+
+[[plugin.prepend_fetchers]]
+id   = "mactag"
+name = "*"
+run  = "mactag"
+
+[[plugin.prepend_fetchers]]
+id   = "mactag"
+name = "*/"
+run  = "mactag"
