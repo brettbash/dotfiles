@@ -13,6 +13,7 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias c clear
 alias neomail neomutt
+alias gif ascii-image-converter
 alias pint "./vendor/bin/pint"
 alias notes "cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ"
 command -qv vim && alias vim nvim

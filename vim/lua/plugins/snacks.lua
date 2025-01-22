@@ -45,13 +45,13 @@ return {
           pane = 2,
           {
             section = "terminal",
-            cmd = "cmatrix -ba -C cyan",
-            height = 20,
+            cmd = "gif ~/.config/nvim/animations/rei-ayanami-evangelion.gif -b --dither -d 60,15 -C -c",
+            height = 15,
             padding = 1,
           },
           {
             section = "terminal",
-            cmd = "fortune literature | lolcat",
+            cmd = "cmatrix -ba -C cyan",
             padding = 1,
           },
         },
