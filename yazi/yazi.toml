@@ -19,7 +19,12 @@ open_title  = "で開く:"
 
 [opener]
 xld = [
-    { run = 'xld "$@"', desc = "XLD", block = true, for = "unix" },
+    { run = 'xld "$@"', desc = "XLD" },
+]
+
+[open]
+prepend_rules = [
+	{ name = "*.cue", use = [ "open", "xld", "edit" ] },
 ]
 
 [plugin]
