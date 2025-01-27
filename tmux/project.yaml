@@ -1,0 +1,17 @@
+session_name: project
+start_directory: "~/Dev"
+global_options:
+  default-command: fish
+windows:
+  - window_name: 🔮 ターミナル
+    layout: even-horizontal
+    panes:
+      - pane
+      - pane
+  - window_name: 🌴 ヴィム
+    panes:
+      - pane
+  - window_name: 👁️ グリモワール
+    start_directory: "~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ/Projects"
+    panes:
+      - pane
