@@ -151,10 +151,19 @@ return {
         hl.FzfLuaPreviewTitle = { fg = magenta, bg = black }
 
         -- Markdown
-        hl.RenderMarkdownCode = { bg = bg_dark }
-        hl.RenderMarkdownCodeInline = { bg = bg }
-        hl.RenderMarkdownTableHead = { fg = cyan1 }
-        hl.RenderMarkdownTableRow = { fg = magenta }
+
+        hl["@markup.heading.1.markdown"] = { fg = magenta, italic = true }
+        hl["@markup.heading.2.markdown"] = { fg = yellow, italic = true }
+        hl["@markup.heading.3.markdown"] = { fg = teal, italic = true }
+        hl.MarkviewTableBorder = { fg = cyan }
+        hl.MarkviewTableHeader = { fg = magenta }
+        hl.MarkviewDivider = { fg = blue3 }
+
+        hl.MarkviewCheckboxProgress = { fg = yellow1 }
+        hl.MarkviewCheckboxPending = { fg = orange }
+        hl.MarkviewCheckboxChecked = { fg = cyan }
+        hl.MarkviewFrontMatter = { bg = black }
+        hl.MarkviewFrontMatterFg = { fg = cyan }
 
         hl.CalNavi = { fg = cyan, bg = black }
         hl.CalRuler = { fg = green, bg = black }
