@@ -1,5 +1,5 @@
 local apps = {
-	f2 = "Firefox",
+	f2 = "Zen Browser",
 	a = "Ghostty",
 	r = "Arc",
 	s = "Plexamp",
@@ -33,8 +33,8 @@ local apps = {
 	f11 = "System Settings",
 	f10 = "XLD",
 	f9 = "After Effects",
-	-- f8 = "TablePlus",
-	-- f7 = "Transmit",
+	f8 = "TablePlus",
+	f7 = "Transmit",
 	f6 = "QuickTime Player",
 	f5 = "Private Internet Access",
 	f4 = "Discord",
