@@ -1,0 +1,63 @@
+# vim: set filetype=config:
+*.default=true
+*.normal=true
+*.selected.italic=true
+*.selected.bg=#fede5d
+*.selected.fg=#191726
+
+default.fg=#a8c7fa
+
+error.fg=#fe4450
+warning.fg=#ff8b39
+success.fg=#72f1b8
+
+tab.fg=#e5fe5d
+tab.bg=
+tab.selected.fg=#ff00ff
+tab.selected.bg=#03edf9
+tab.selected.bold=true
+tab.selected.italic=true
+
+border.fg=#03edf9
+border.bold=true
+
+msglist_unread.bold=true
+msglist_unread.fg=#ff7edb
+msglist_unread.selected.bg=#fede5d
+msglist_unread.selected.fg=#191726
+msglist_flagged.fg=#55beff
+msglist_marked.fg=#ff00ff
+msglist_flagged.bold=true
+msglist_result.fg=#7ee787
+msglist_result.bold=true
+msglist_*.selected.bold=true
+msglist_*.selected.bg=#fede5d
+
+dirlist_*.selected.bold=true
+dirlist_*.selected.bg=#fede5d
+dirlist_default.fg=#ff00ff
+
+statusline_default.fg=#8086b7
+statusline_default.bg=
+statusline_error.bold=true
+statusline_success.bold=true
+
+selector_chooser.bg=#191726
+selector_chooser.bold = true
+selector_focused.bold = true
+selector_focused.bg = #ff00ff
+selector_focused.fg = #55beff
+
+[viewer]
+url.fg=#97E736
+url.underline=true
+header.bold=true
+signature.dim=true
+diff_meta.bold=true
+diff_chunk.fg=#88d1ff
+diff_chunk_func.fg=#88d1ff
+diff_chunk_func.bold=true
+diff_add.fg=#b8bb26
+diff_del.fg=#cc241d
+quote_*.fg=#d5c4a1
+quote_1.fg=#b16286

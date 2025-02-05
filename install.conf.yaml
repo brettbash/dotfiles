@@ -7,16 +7,17 @@
       quiet: true
 - clean: ["~"]
 - link:
-    ~/.composer/composer.json: composer/composer.json
+    ~/Library/Preferences/aerc: aerc
+    ~/.config/aerc: aerc
     ~/.config/btop/btop.conf: btop/btop.conf
     ~/.config/btop/themes: btop/themes
+    ~/.composer/composer.json: composer/composer.json
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/ghostty: ghostty
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.config/lazygit: lazygit
     ~/.config/marksman: marksman
     ~/.config/mc/ini: mc/ini
-    ~/.config/mutt: mutt
     ~/.config/nvim: vim
     ~/.config/stig: stig
     ~/.config/timewarrior: timewarrior
