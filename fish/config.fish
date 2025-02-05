@@ -12,11 +12,13 @@ alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
 alias c clear
+alias m aerc
 alias neomail neomutt
 alias gif ascii-image-converter
 alias pint "./vendor/bin/pint"
 alias notes "cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ"
 command -qv vim && alias vim nvim
+alias v vim
 
 alias twt taskwarrior-tui
 alias tw task
