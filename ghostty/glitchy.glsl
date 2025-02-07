@@ -1,3 +1,9 @@
+// First it does a "chromatic aberration" by splitting the rgb signals by a product of sin functions
+// over time, then it does a glow effect in a perceptual color space
+// Based on kalgynirae's Ghostty passable glow shader and NickWest's Chromatic Aberration shader demo
+// Passable glow:  https://github.com/kalgynirae/dotfiles/blob/main/ghostty/glow.glsl
+// "Chromatic Aberration": https://www.shadertoy.com/view/Mds3zn
+
 // sRGB linear -> nonlinear transform from https://bottosson.github.io/posts/colorwrong/
 float f(float x) {
     if (x >= 0.0031308) {
@@ -81,12 +87,32 @@ const vec3[24] samples = {
   vec3(-2.8769733643574344, 3.9652268864187157, 0.20412414523193154)
 };
 
+float offsetFunction(float iTime) {
+	float amount = 1.0;
+	const float periods[4] = {6.0, 16.0, 19.0, 27.0};
+    for (int i = 0; i < 4; i++) {
+	    amount *= 1.0 + 0.5 * sin(iTime*periods[i]);
+	}
+	//return amount;
+	return amount * periods[3];
+}
+
 const float DIM_CUTOFF = 0.35;
 const float BRIGHT_CUTOFF = 0.65;
+const float ABBERATION_FACTOR = 0.05;
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     vec2 uv = fragCoord.xy / iResolution.xy;
-    vec4 source = toOklab(texture(iChannel0, uv));
+
+    float amount = offsetFunction(iTime);
+
+    vec3 col;
+    col.r = texture( iChannel0, vec2(uv.x-ABBERATION_FACTOR*amount / iResolution.x, uv.y) ).r;
+    col.g = texture( iChannel0, uv ).g;
+    col.b = texture( iChannel0, vec2(uv.x+ABBERATION_FACTOR*amount / iResolution.x, uv.y) ).b;
+
+	vec4 splittedColor = vec4(col, 1.0);
+    vec4 source = toOklab(splittedColor);
     vec4 dest = source;
 
     if (source.x > DIM_CUTOFF) {
@@ -104,7 +130,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
                 if (c.x <= BRIGHT_CUTOFF) {
                     glow.x += c.x * weight * 0.05;
                 } else {
-                    glow.x += c.x * weight * 0.13;
+                    glow.x += c.x * weight * 0.10;
                 }
             }
         }
