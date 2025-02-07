@@ -1,5 +1,5 @@
 return {
   "gregorias/coerce.nvim",
-  tag = "v0.2",
+  tag = "v4.1.0",
   config = true,
 }
