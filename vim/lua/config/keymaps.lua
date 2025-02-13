@@ -5,29 +5,9 @@ vim.keymap.set({ "n", "v" }, "<F4>", "5w", { desc = "Word Forward Fast" })
 
 vim.keymap.set(
   { "n", "v" },
-  "<F16>",
-  "<cmd>lua require('mini.files').open(vim.api.nvim_buf_get_name(0), true)<cr>",
-  { desc = "Oil" }
+  "<tab>",
+  "<cmd>lua require('fzf-lua').buffers()<cr><cmd>lua require('beepboop').play_audio('klink')<cr>",
+  { desc = "Browse Buffers" }
 )
-
-vim.keymap.set(
-  { "n", "v" },
-  "<F13>",
-  "<cmd>lua require('mini.files').open(vim.loop.cwd(), true)<cr>",
-  { desc = "Oil CWD" }
-)
-
-vim.keymap.set({ "n", "v" }, "<tab>", "<cmd>lua require('fzf-lua').buffers()<cr>", { desc = "Telescope Buffers" })
-
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>gb",
-  "<cmd>Gitsigns toggle_current_line_blame<cr>",
-  { desc = "Git Blame Current Line" }
-)
-
-vim.keymap.set({ "n", "v" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "Git Preview Hunk" })
-
 vim.keymap.set({ "n", "v" }, "U", "<cmd>redo<cr>", { desc = "Redo" })
-
 vim.keymap.set({ "n", "v" }, "<leader>bo", "<cmd>BufferLinePick<cr>", { desc = "Pick Buffer" })

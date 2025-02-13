@@ -11,6 +11,7 @@ opt.softtabstop = 4
 opt.wrap = false -- Line wrap
 opt.linebreak = true
 opt.foldmethod = "expr"
+vim.g.lazyvim_picker = "fzf"
 
 vim.opt_local.spelllang = "en_us"
 vim.opt_local.fo:append("aw")
