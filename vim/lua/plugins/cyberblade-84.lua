@@ -73,12 +73,17 @@ return {
           fg = fg,
         }
         hl.FloatBorder = { fg = cyan1, bg = black }
+        hl.FloatTitle = { fg = magenta, bg = black }
+
+        -- Search & Flash
         hl.MatchParen = { fg = magenta, bg = black }
-        hl.FloatTitle = { fg = magenta, bg = c.bg_dark }
-        hl.TelescopeNormal = {
-          bg = black,
-          fg = c.fg_dark,
-        }
+        hl.IncSearch = { fg = magenta, bg = cyan }
+        hl.Search = { fg = yellow, bg = magenta }
+        hl.FlashLabel = { fg = yellow3, bg = hot }
+        hl.FlashMatch = { fg = yellow2, bg = blue4 }
+
+        -- Portal
+        hl.PortalLabel = { fg = yellow3, bg = hot }
 
         -- Spelling
         hl.SpellBad = {
@@ -91,11 +96,6 @@ return {
           fg = c.comment,
         }
 
-        hl.TelescopeBorder = {
-          bg = black,
-          fg = cyan1,
-        }
-
         hl.LineNrAbove = { fg = fg_dark }
         hl.CursorLineNr = { fg = magenta }
         hl.LineNr = { fg = magenta }
@@ -105,9 +105,7 @@ return {
           bg = black,
           fg = cyan,
         }
-        hl.SignColumn = { bg = lack }
-
-        hl.NeoTreeDimText = { fg = fg_dark }
+        hl.SignColumn = { bg = black }
 
         -- WhichKey
         hl.WhichKey = {
@@ -149,9 +147,44 @@ return {
         hl.FzfLuaPreviewBorder = { fg = cyan1, bg = black }
         hl.FzfLuaBorder = { fg = cyan1, bg = black }
         hl.FzfLuaPreviewTitle = { fg = magenta, bg = black }
+        hl.FzfLuaCursorLine = { fg = magenta }
+        hl.FzfLuaFzfPointer = { fg = yellow }
+        hl.FzfLuaFzfCursorLine = { fg = c.bg_darker, bg = blue3 }
+        hl.FzfLuaFzfMatch = { bg = yellow1 }
+        hl.FzfLuaDirPart = { fg = purple }
+        hl.FzfLuaFilePart = { fg = green }
+        hl.FzfLuaSearch = { fg = yellow, bg = blue2 }
+
+        -- Telescope
+        hl.TelescopeNormal = {
+          bg = black,
+          fg = c.fg_dark,
+        }
+        hl.TelescopeBorder = {
+          bg = black,
+          fg = cyan1,
+        }
+        hl.TelescopePromptNormal = {
+          bg = black,
+        }
+        hl.TelescopePromptBorder = {
+          bg = black,
+          fg = magenta,
+        }
+        hl.TelescopePromptTitle = {
+          bg = black,
+          fg = c.cyan1,
+        }
+        hl.TelescopeResultsTitle = {
+          bg = black,
+          fg = magenta,
+        }
+        hl.TelescopeSelection = {
+          bg = yellow2,
+          fg = blue2,
+        }
 
         -- Markdown
-
         hl["@markup.heading.1.markdown"] = { fg = magenta, italic = true }
         hl["@markup.heading.2.markdown"] = { fg = yellow, italic = true }
         hl["@markup.heading.3.markdown"] = { fg = teal, italic = true }
@@ -164,6 +197,17 @@ return {
         hl.MarkviewCheckboxChecked = { fg = cyan }
         hl.MarkviewFrontMatter = { bg = black }
         hl.MarkviewFrontMatterFg = { fg = cyan }
+        hl.MarkviewCodeInfo = { bg = black }
+        hl.MarkviewInlineCode = { bg = black }
+        hl.MarkviewCode = { bg = black }
+
+        hl.MarkdownIcon0 = { fg = magenta }
+        hl.MarkdownIcon1 = { fg = yellow1 }
+        hl.MarkdownIcon2 = { fg = teal }
+        hl.MarkdownIcon3 = { fg = orange }
+        hl.MarkdownIcon4 = { fg = cyan }
+        hl.MarkdownIcon5 = { fg = pink }
+        hl.MarkdownIcon6 = { fg = purple }
 
         hl.CalNavi = { fg = cyan, bg = black }
         hl.CalRuler = { fg = green, bg = black }
@@ -179,7 +223,7 @@ return {
         colors.bg_dark = bg_dark
         colors.bg_statusline = bg_dark
         colors.bg_highlight = black
-        colors.fg_gutter = bg_lighter
+        colors.fg_gutter = bg_light
         colors.bg_visual = blue3
 
         colors.cyan = cyan
