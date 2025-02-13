@@ -895,14 +895,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case GLOW:
             if (record->event.pressed) {
-                SEND_STRING(":Glow");
+                SEND_STRING(":Glow" SS_DOWN(X_ENT) SS_UP(X_ENT));
             }
             return false;
             break;
 
         case RAIN:
             if (record->event.pressed) {
-                SEND_STRING(" car");
+                SEND_STRING(" Cr");
             }
             return false;
             break;
@@ -963,8 +963,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         if (clockwise) {
             tap_code16(LGUI(KC_MINS));
         } else {
-            tap_code16(LGUI(KC_PLUS));
-        }
+            tap_code16(LGUI(KC_EQL));
+        }a
     } else if (IS_LAYER_ON(_FNC)) {
         if (clockwise) {
             tap_code16(A(S(KC__VOLDOWN)));
