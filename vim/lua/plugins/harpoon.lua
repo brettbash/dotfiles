@@ -2,84 +2,49 @@
 -- We have such sights to show you --
 -- 󰫣 --
 return {
-  -- "cbochs/grapple.nvim",
-  -- dependencies = { "nvim-lua/plenary.nvim" },
-  -- name = "harpoon",
-  --
-  -- config = function()
-  --   require("lualine").setup({
-  --     sections = {
-  --       lualine_y = {
-  --         "progress",
-  --         {
-  --           function()
-  --             local key = require("grapple").key()
-  --             return "󰛢---->> [󰯈 " .. key .. "]"
-  --           end,
-  --           cond = require("grapple").exists,
-  --         },
-  --       },
-  --     },
-  --   })
-  --   require("telescope").load_extension("grapple")
-  --   -- vim.keymap.set("n", "<leader>j", function()
-  --   --   require("grapple").select({ key = "{name}" })
-  --   -- end, { desc = "Harpoon Select" })
-  -- end,
-  --
-  -- keys = {
-  --   {
-  --     "<leader>m",
-  --     "<cmd>lua require('grapple').toggle()<cr>",
-  --     desc = "Harpoon Hook",
-  --   },
-  --
-  --   {
-  --     "<C-r>",
-  --     "<cmd>lua require('grapple').popup_tags()<cr>",
-  --     desc = "Harpoon Menu",
-  --   },
-  --
-  --   {
-  --     "<leader>fh",
-  --     "<cmd>Telescope grapple tags<cr>",
-  --     desc = "Harpoon Telescope Menu",
-  --   },
-  --
-  --   {
-  --     "<leader>j1",
-  --     "<cmd>lua require('grapple').select({ key = 1 })<cr>",
-  --     desc = "Harpoon Select 1",
-  --   },
-  --
-  --   {
-  --     "<leader>j2",
-  --     "<cmd>lua require('grapple').select({ key = 2 })<cr>",
-  --     desc = "Harpoon Select 2",
-  --   },
-  --
-  --   {
-  --     "<leader>j3",
-  --     "<cmd>lua require('grapple').select({ key = 3 })<cr>",
-  --     desc = "Harpoon Select 3",
-  --   },
-  --
-  --   {
-  --     "<leader>j4",
-  --     "<cmd>lua require('grapple').select({ key = 4 })<cr>",
-  --     desc = "Harpoon Select 4",
-  --   },
-  --
-  --   {
-  --     "<leader>j5",
-  --     "<cmd>lua require('grapple').select({ key = 5 })<cr>",
-  --     desc = "Harpoon Select 5",
-  --   },
-  --
-  --   {
-  --     "<leader>j6",
-  --     "<cmd>lua require('grapple').select({ key = 6 })<cr>",
-  --     desc = "Harpoon Select 6",
-  --   },
-  -- },
+  "cbochs/grapple.nvim",
+  name = "harpoon",
+  opts = {
+    scope = "git",
+  },
+  event = { "BufReadPost", "BufNewFile" },
+  cmd = "Grapple",
+  keys = {
+    { "<leader>j", "", desc = "Harpoon Jump 󰯈 " },
+    { "<leader>h", "", desc = "Harpoon Hook 󰛢" },
+    { "<leader>N", "<cmd>Grapple toggle_tags<cr>", desc = "Harpoon" },
+  },
+
+  config = function()
+    require("lualine").setup({
+      sections = {
+        lualine_y = {
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "location", padding = { left = 0, right = 1 } },
+          "grapple",
+        },
+      },
+    })
+
+    require("grapple").setup({
+      statusline = {
+        icon = "󰛢 ───  ",
+        active = "[󰯈 %s]",
+        inactive = " %s ",
+      },
+    })
+
+    local alphabet = "abcdefghijklmnopqrstuvwxyz"
+    for i = 1, #alphabet do
+      local letter = alphabet:sub(i, i)
+
+      vim.keymap.set("n", "<leader>h" .. letter, function()
+        require("grapple").tag({ name = letter })
+      end, { desc = "Harpoon Hook 󰛢" .. letter })
+
+      vim.keymap.set("n", "<leader>j" .. letter, function()
+        require("grapple").select({ name = letter })
+      end, { desc = "Harpoon Jump 󰯈 " .. letter })
+    end
+  end,
 }
