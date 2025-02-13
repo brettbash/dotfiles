@@ -7,7 +7,7 @@ return {
         require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
         require("beepboop").play_audio("patup")
       end,
-      desc = "Open mini.files (Directory of Current File)",
+      desc = "Open Oil (Directory of Current File)",
     },
     {
       "<leader>fM",
@@ -15,7 +15,7 @@ return {
         require("mini.files").open(vim.uv.cwd(), true)
         require("beepboop").play_audio("patdown")
       end,
-      desc = "Open mini.files (cwd)",
+      desc = "Open Oil (cwd)",
     },
   },
 }
