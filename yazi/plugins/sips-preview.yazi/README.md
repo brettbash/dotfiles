@@ -7,9 +7,15 @@
 - **macOS Integration**: Leverages the native `sips` utility for efficient image processing.
 
 ## Requirements
-- [Yazi](https://yazi-rs.github.io/) v0.3 or higher.
 - Operating System: macOS
 - Ensure the `sips` command-line tool is available on your system (pre-installed on macOS).
+
+## Compatibility table
+| Yazi Version | Plugin Version | Status         |
+|--------------|----------------|----------------|
+| 25.x.x       | -              | not compatible |
+| 0.4.x        | 0.3.x          | ✅             |
+| 0.3.x        | 0.2.x          | ✅             |
 
 ## Installation
 ```sh
@@ -23,10 +29,12 @@ Add the following preloader configuration to your `yazi.toml` file to enable the
 ```toml
 [plugin]
 prepend_preloaders = [
-    { mime = "image/vnd.adobe.photoshop", run = "sips-preview" }
+    { mime = "image/vnd.adobe.photoshop", run = "sips-preview" },
+    { name = "*.psd", run = "sips-preview" },
 ]
 prepend_previewers = [
     { mime = "image/vnd.adobe.photoshop", run = "sips-preview" },
+    { name = "*.psd", run = "sips-preview" },
 ]
 ```
 
