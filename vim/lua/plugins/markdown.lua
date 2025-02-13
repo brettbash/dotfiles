@@ -8,6 +8,7 @@ return {
 
     config = function()
       require("markview").setup({
+
         markdown = {
           headings = {
             enable = true,
@@ -92,25 +93,35 @@ return {
             },
           },
 
-          -- metadata_minus = {
-          --   enable = true,
-          --
-          --   hl = "MarkviewFrontMatter",
-          --   border_hl = "MarkviewFrontMatterFg",
-          --
-          --   border_top = "-",
-          --   border_bottom = "-",
-          -- },
+          metadata_minus = {
+            enable = true,
 
-          -- metadata_plus = {
-          --   enable = true,
-          --
-          --   hl = "MarkviewFrontMatter",
-          --   border_hl = "MarkviewFrontMatterFg",
-          --
-          --   border_top = "-",
-          --   border_bottom = "-",
-          -- },
+            hl = "MarkviewFrontMatter",
+            border_hl = "MarkviewFrontMatterFg",
+
+            border_top = "─",
+            border_bottom = "─",
+          },
+
+          metadata_minus_static = {
+            enable = true,
+
+            hl = "MarkviewFrontMatter",
+            border_hl = "MarkviewFrontMatterFg",
+
+            border_top = "─",
+            border_bottom = "─",
+          },
+
+          metadata_plus = {
+            enable = true,
+
+            hl = "MarkviewFrontMatter",
+            border_hl = "MarkviewFrontMatterFg",
+
+            border_top = "─",
+            border_bottom = "─",
+          },
 
           list_items = {
             indent_size = 2,
@@ -134,6 +145,130 @@ return {
 
             marker_parenthesis = {
               add_padding = false,
+            },
+          },
+        },
+
+        yaml = {
+          properties = {
+            enable = true,
+
+            data_types = {
+              ["text"] = {
+                text = " 󰗊  ",
+                hl = "MarkdownIcon4",
+              },
+              ["list"] = {
+                text = " 󰝖  ",
+                hl = "MarkdownIcon5",
+              },
+              ["number"] = {
+                text = "   ",
+                hl = "MarkdownIcon6",
+              },
+              ["checkbox"] = {
+                ---@diagnostic disable
+                text = function(_, item)
+                  return item.value == "true" and " 󰄲  " or " 󰄱  "
+                end,
+                ---@diagnostic enable
+                hl = "MarkdownIcon6",
+              },
+              ["date"] = {
+                text = " 󰃭  ",
+                hl = "MarkdownIcon2",
+              },
+              ["date_&_time"] = {
+                text = " 󰥔  ",
+                hl = "MarkdownIcon3",
+              },
+            },
+
+            default = {
+              use_types = true,
+
+              border_top = " │ ",
+              border_middle = " │ ",
+              border_bottom = " ╰╸",
+
+              border_hl = "MarkviewComment",
+            },
+
+            ["^title$"] = {
+              match_string = "^title$",
+              use_types = false,
+              text = "   ",
+              hl = "MarkdownIcon4",
+            },
+
+            ["^type$"] = {
+              match_string = "^type$",
+              use_types = false,
+              text = "   ",
+              hl = "MarkdownIcon2",
+            },
+
+            ["^tags$"] = {
+              match_string = "^tags$",
+              use_types = false,
+              text = " 󰓹  ",
+              hl = "MarkdownIcon0",
+            },
+
+            ["^aliases$"] = {
+              match_string = "^aliases$",
+              use_types = false,
+              text = " 󱞫  ",
+              hl = "MarkdownIcon4",
+            },
+
+            ["^cssclasses$"] = {
+              match_string = "^cssclasses$",
+              use_types = false,
+              text = "   ",
+              hl = "MarkdownIcon4",
+            },
+
+            ["^publish$"] = {
+              match_string = "^publish$",
+              use_types = false,
+              text = "   ",
+              hl = "MarkdownIcon4",
+            },
+
+            ["^permalink$"] = {
+              match_string = "^permalink$",
+              use_types = false,
+              text = "   ",
+              hl = "MarkdownIcon4",
+            },
+
+            ["^description$"] = {
+              match_string = "^description$",
+              use_types = false,
+              text = " 󰋼  ",
+              hl = "MarkdownIcon5",
+            },
+
+            ["^brief$"] = {
+              match_string = "^brief$",
+              use_types = false,
+              text = " 󰙴  ",
+              hl = "MarkdownIcon5",
+            },
+
+            ["^image$"] = {
+              match_string = "^image$",
+              use_types = false,
+              text = " 󰋫  ",
+              hl = "MarkdownIcon3",
+            },
+
+            ["^cover$"] = {
+              match_string = "^cover$",
+              use_types = false,
+              text = " 󰹉  ",
+              hl = "MarkdownIcon4",
             },
           },
         },
