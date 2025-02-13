@@ -18,6 +18,7 @@ return {
       graphql = "# %s",
       handlebars = "{{! %s }}",
       hcl = "# %s",
+      -- html = "<!-- %s -->",
       html = "{{# %s #}}",
       hyprlang = "# %s",
       ini = "; %s",
@@ -62,5 +63,5 @@ return {
     },
   },
   event = "VeryLazy",
-  enabled = vim.fn.has("nvim-0.10.0") == 1,
+  enabled = true,
 }
