@@ -37,6 +37,7 @@ return {
     local blue2 = "#5f3fff"
     local blue3 = "#640FDA"
     local blue4 = "#370ABE"
+    local blue5 = "#00aaf9"
 
     local green = "#72f1b8"
     local green1 = "#7ee787"
@@ -80,7 +81,7 @@ return {
         hl.IncSearch = { fg = magenta, bg = cyan }
         hl.Search = { fg = yellow, bg = magenta }
         hl.FlashLabel = { fg = yellow3, bg = hot }
-        hl.FlashMatch = { fg = yellow2, bg = blue4 }
+        hl.FlashMatch = { fg = blue4, bg = blue5 }
 
         -- Portal
         hl.PortalLabel = { fg = yellow3, bg = hot }
