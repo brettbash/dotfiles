@@ -5,7 +5,6 @@ return {
       scroll = { enabled = false },
     },
   },
-
   {
     "echasnovski/mini.animate",
     opts = {

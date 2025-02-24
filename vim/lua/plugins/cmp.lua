@@ -137,6 +137,7 @@ return {
             return items
           end,
         },
+
         snippets = {
           name = "snippets",
           enabled = true,
@@ -173,12 +174,14 @@ return {
             return items
           end,
         },
+
         emoji = {
           module = "blink-emoji",
           name = "Emoji",
           score_offset = 15,
           opts = { insert = true },
         },
+
         copilot = {
           name = "copilot",
           enabled = true,
