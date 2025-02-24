@@ -1,0 +1,25 @@
+# H1 as Title
+MD041: false
+
+# Unordered list style
+MD004: false
+
+# Unordered list indentation
+MD007: false
+
+# Hard tabs
+MD010:
+  code_blocks: false
+
+# Multiple consecutive blank lines
+MD012:
+  maximum: 2
+
+# Line length
+MD013: false
+
+# Spaces after list markers
+MD030: false
+
+# Inline HTML
+MD033: false

@@ -27,8 +27,10 @@
     ~/.gitignore_global: git/gitignore_global
     ~/.hammerspoon: hammerspoon
     ~/.local/share/mc/skins: mc/skins
+    ~/.markdownlint.yaml: .markdownlint.yaml
     ~/.newsboat/config: newsboat/config
     ~/.newsboat/urls: newsboat/urls/
+    ~/.pretterrc.yaml: .pretterrc.yaml
     ~/.qmk/keyboards/1upkeyboards/super16v2/keymaps/atomic16: qmk/super16
     ~/.qmk/keyboards/planck/keymaps/acidwraith: qmk/planck
     ~/.taskrc: taskwarrior/taskrc/
