@@ -340,10 +340,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_ESCAPE_ZONE] = LAYOUT_planck_grid(
-    C_SBAR,                       KC_LCTL,                      KC_TAB,                        XXXXXXX,                       XXXXXXX,                       _______, _______, _______,          _______,          _______,          _______,          _______,
-    XXXXXXX,                      XXXXXXX,                      KC_LEFT,                       KC_RIGHT,                      _______,                       _______, _______, LCTL(LALT(KC_1)), LCTL(LALT(KC_2)), LCTL(LALT(KC_3)), LCTL(LALT(KC_4)), _______,
-    LGUI(LALT(LCTL(LSFT(KC_K)))), LGUI(LALT(LCTL(LSFT(KC_B)))), LGUI(LALT(LCTL(LSFT(KC_F1)))), LGUI(LALT(LCTL(LSFT(KC_F2)))), LGUI(LALT(LCTL(LSFT(KC_F3)))), _______, _______, LCTL(LALT(KC_5)), LCTL(LALT(KC_6)), LCTL(LALT(KC_7)), LCTL(LALT(KC_8)), _______,
-    _______,                      _______,                      _______,                       _______,                       _______,                       _______, _______, _______,          _______,          _______,          _______,          _______
+KC_LCTL,                      KC_TAB,                       XXXXXXX,                       XXXXXXX,                       XXXXXXX,                       _______, _______, LGUI(LCTL(LALT(KC_1))), LGUI(LCTL(LALT(KC_2))), LGUI(LCTL(LALT(KC_3))), LGUI(LCTL(LALT(KC_4))), _______,
+XXXXXXX,                      XXXXXXX,                      XXXXXXX,                       XXXXXXX,                       _______,                       _______, _______, _______,                LGUI(LSFT(KC_RBRC)),    LGUI(LSFT(KC_LBRC)),    _______,                _______,
+LGUI(LALT(LCTL(LSFT(KC_K)))), LGUI(LALT(LCTL(LSFT(KC_B)))), LGUI(LALT(LCTL(LSFT(KC_F1)))), LGUI(LALT(LCTL(LSFT(KC_F2)))), LGUI(LALT(LCTL(LSFT(KC_F3)))), _______, _______, _______,                _______,                _______,                _______,                _______,
+_______,                      _______,                      _______,                       _______,                       _______,                       _______, _______, _______,                _______,                _______,                _______,                _______
 ),
 
 // π ----
@@ -537,7 +537,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case C_SBAR:
             if (record->event.pressed) {
-                SEND_STRING(SS_LALT("e"));
+                SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_TAB) SS_UP(X_TAB));
             }
             return false;
             break;
@@ -964,7 +964,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             tap_code16(LGUI(KC_MINS));
         } else {
             tap_code16(LGUI(KC_EQL));
-        }a
+        }
     } else if (IS_LAYER_ON(_FNC)) {
         if (clockwise) {
             tap_code16(A(S(KC__VOLDOWN)));

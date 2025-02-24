@@ -1,7 +1,7 @@
 local apps = {
-	f2 = "Zen Browser",
+	f2 = "Arc",
 	a = "Ghostty",
-	r = "Arc",
+	r = "Zen",
 	s = "Plexamp",
 	t = "Plex",
 	g = "Preview",
