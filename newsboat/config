@@ -27,7 +27,7 @@ bind-key u pagedown
 bind-key U halfpagedown
 bind-key Y halfpageup
 
-browser "open -g -a 'Arc' %u"
+browser "open -g -a 'Zen' %u"
 
 color listnormal          white   default
 color listnormal_unread   color15 default
