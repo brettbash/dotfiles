@@ -37,3 +37,5 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.wezterm: wezterm
     ~/.vit: vit
+    "~/Library/Application Support/zen/Profiles/get7dqs1.default-release/chrome/userChrome.css": zen/userChrome.css
+    "~/Library/Application Support/zen/Profiles/get7dqs1.default-release/chrome/modules": zen/modules

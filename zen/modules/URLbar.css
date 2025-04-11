@@ -1,0 +1,154 @@
+/* === FLOATING URL BAR ANIMATION/BLUR ===================================================================================== */
+/* Add blur when URL bar is opened */
+#urlbar[open] {
+  margin-top: 3px !important;
+  padding-top: 6px !important;
+  position: fixed !important;
+  top: 20% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 50vw !important;
+  max-width: 600px !important;
+  min-height: 72px !important;
+  z-index: 9999 !important;
+  border-radius: 13px !important;
+  background: rgba(42, 33, 57, 0.8) !important;
+  border: 1px solid #03edf9 !important;
+  box-shadow: 0 0 10px 0px rgba(3, 237, 249, 0.3);
+  backdrop-filter: blur(7px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  font-family: "Operator Mono";
+  color: #03edf9;
+  font-size: 12px !important;
+  transition: height 0.2s ease-out !important;
+}
+
+/* Expand results downward */
+#urlbar[open] #urlbar-results {
+  position: relative !important;
+  width: 100% !important;
+  top: 100% !important;
+  max-height: 400px !important;
+  overflow-y: auto !important;
+  opacity: 1 !important;
+  transition: max-height 0.2s ease-out !important;
+}
+
+/* Blur background when url bar opens */
+#browser:has(#urlbar[open]) .browserContainer {
+  pointer-events: none;
+  filter: blur(2rem) brightness(70%) saturate(180%) !important;
+  backdrop-filter: blur(2rem) contrast(90%) brightness(30%) !important;
+  opacity: 0.85 !important;
+  scale: 1.11 !important;
+  transition:
+    filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    backdrop-filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+}
+
+/* Remove blur when URL bar is closed */
+.browserContainer {
+  filter: blur(0px) brightness(100%) saturate(100%) !important;
+  backdrop-filter: blur(0px) !important;
+  opacity: 1 !important;
+  scale: 1 !important;
+  transition:
+    filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    backdrop-filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+}
+
+#urlbar-background {
+  border: 1px solid #ff00ff !important;
+}
+
+/* Floating urlbar background */
+#urlbar[open] #urlbar-background {
+  background: rgba(42, 33, 57, 0.8) !important;
+  border: transparent !important;
+}
+#urlbar {
+  #urlbar-background,
+  #searchbar {
+    background: rgba(42, 33, 57, 0.8) !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+    border: 1px solid #03edf9;
+    box-shadow: 0 0 10px 0px rgba(3, 237, 249, 0.3);
+    transition:
+      background 0.25s ease,
+      box-shadow 0.25s ease !important;
+  }
+}
+
+/* compact mode fixes for urlbar */
+/* Force URL bar to center properly when clicked */
+#browser[sidebar="compact"] #urlbar[open] {
+  left: 50% !important;
+  transform: translateX(-50%) scale(1) !important;
+}
+
+/* Adjust zoom button position */
+#urlbar-zoom-button {
+  left: 30px !important;
+}
+#urlbar[open] #urlbar-zoom-button {
+  left: 0 !important;
+}
+
+/* Scale down URL bar in compact mode */
+:root[zen-compact-mode="true"] #urlbar[open] {
+  transform: translateX(-50%) scale(1) !important;
+}
+
+/* Hide all results after the 6th one */
+#urlbar[open] #urlbar-results > *:nth-child(n + 6) {
+  display: none !important;
+}
+
+.urlbarView-title {
+  font-size: 12px !important;
+  color: #03edf9 !important;
+}
+
+.urlbarView-url,
+.urlbarView-title-separator::before {
+  font-size: 12px !important;
+  color: #ff7edb !important;
+}
+
+#urlbar,
+#searchbar {
+  font-size: 12px !important;
+}
+
+.urlbar-input {
+  color: #72f1b8 !important;
+  font-family: "Operator Mono" !important;
+  font-size: 12px !important;
+}
+
+.zen-current-workspace-indicator {
+  color: #ff00ff !important;
+  font-family: "Madou Futo Maru Gothic" !important;
+  & .zen-current-workspace-indicator-name {
+    opacity: 1 !important;
+  }
+}
+
+.urlbarView-row {
+  &[selected] {
+    color: #ffefae !important;
+  }
+}
+
+.urlbar-input::placeholder,
+.searchbar-textbox::placeholder {
+  color: #e5b9e7 !important;
+  opacity: 1 !important;
+}

@@ -1,0 +1,127 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: subpixel-antialiased;
+}
+
+div > .vimiumHintMarker {
+  /* linkhint boxes */
+  background: #34264b;
+  border: none;
+  opacity: 1;
+  text-shadow: none !important;
+  padding: 3px 6px 4px;
+}
+
+div > .vimiumHintMarker span {
+  /* linkhint text */
+  font-family: "Operator Mono";
+  color: #03edf9;
+  font-weight: 400;
+  font-size: 12px;
+  text-shadow: none;
+}
+
+div > .vimiumHintMarker > .matchingCharacter {
+  color: #ff00ff;
+}
+
+#vomnibar {
+  border: 1px solid #03edf9;
+  box-shadow: 0 0 10px 0px rgba(3, 237, 249, 0.3);
+  border-radius: 12px;
+  font-family: "Operator Mono";
+  background: rgba(42, 33, 57, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+#vomnibar input {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  font-family: "Operator Mono";
+  font-size: 13px;
+  color: #72f1b8;
+}
+
+#vomnibar .vomnibarSearchArea {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+#vomnibar ul {
+  background-color: transparent;
+  border-radius: 0;
+  margin: 0;
+}
+
+#vomnibar li {
+  border-bottom: 0;
+  font-size: 12px;
+  padding: 12px 8px;
+}
+
+#vomnibar li.vomnibarSelected {
+  background-color: #640fda;
+}
+
+#vomnibar li .vomnibarSource {
+  color: #ff7edb;
+  font-family: "Operator Mono";
+  font-size: 12px;
+}
+
+#vomnibar li em,
+#vomnibar li .vomnibarTitle {
+  color: #03edf9;
+  font-family: "Operator Mono";
+}
+
+#vomnibar li .vomnibarUrl {
+  color: #ffefae;
+  font-family: "Operator Mono";
+  font-style: italic;
+  font-size: 12px;
+}
+
+#vomnibar li .vomnibarMatch,
+#vomnibar li em .vomnibarMatch,
+#vomnibar li .vomnibarTitle .vomnibarMatch {
+  font-weight: normal;
+  color: #ff00ff;
+}
+
+/* Status */
+div.vimiumHUD {
+  background: rgba(42, 33, 57, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid #03edf9;
+  box-shadow: none;
+}
+
+div.vimiumHUD .vimiumHUDSearchArea {
+  background-color: transparent;
+}
+
+div.vimiumHUD .vimiumHUDSearchAreaInner {
+  color: #ff8b39;
+  font-family: "Operator Mono";
+  font-size: 12px;
+  font-style: italic;
+}
+
+div.vimiumHUD span#hud-find-input,
+div.vimiumHUD span#hud-match-count {
+  color: #ff00ff;
+}
+
+div.vimiumHUD .hud-find {
+  color: #ff00ff;
+  border: none !important;
+  background: #34264b;
+}
+
+div.vimiumHUD span#hud-match-count {
+  color: #ffefae;
+}

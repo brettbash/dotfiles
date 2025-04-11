@@ -1,0 +1,23 @@
+/* === GENERAL BROWSER UI ================================================================================================== */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: subpixel-antialiased;
+  shape-rendering: geometricPrecision !important;
+}
+
+#browser {
+  background: rgba(42, 33, 57, 0) !important;
+}
+browser[transparent="true"] {
+  background: rgba(255, 255, 255, 0) !important;
+}
+
+:root {
+  --attention-dot-color: transparent !important;
+}
+
+#identity-icon-label[value="Extension (Bonjourr · Minimalist Startpage)"] {
+  display: none !important;
+}
