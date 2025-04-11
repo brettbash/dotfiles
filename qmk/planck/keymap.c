@@ -340,9 +340,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_ESCAPE_ZONE] = LAYOUT_planck_grid(
-KC_LCTL,                      KC_TAB,                       XXXXXXX,                       XXXXXXX,                       XXXXXXX,                       _______, _______, LGUI(LCTL(LALT(KC_1))), LGUI(LCTL(LALT(KC_2))), LGUI(LCTL(LALT(KC_3))), LGUI(LCTL(LALT(KC_4))), _______,
-XXXXXXX,                      XXXXXXX,                      XXXXXXX,                       XXXXXXX,                       _______,                       _______, _______, _______,                LGUI(LSFT(KC_RBRC)),    LGUI(LSFT(KC_LBRC)),    _______,                _______,
-LGUI(LALT(LCTL(LSFT(KC_K)))), LGUI(LALT(LCTL(LSFT(KC_B)))), LGUI(LALT(LCTL(LSFT(KC_F1)))), LGUI(LALT(LCTL(LSFT(KC_F2)))), LGUI(LALT(LCTL(LSFT(KC_F3)))), _______, _______, _______,                _______,                _______,                _______,                _______,
+XXXXXXX,                      XXXXXXX,                      XXXXXXX,                       XXXXXXX,                       XXXXXXX,                       _______, _______, LGUI(LCTL(LALT(KC_1))), LGUI(LCTL(LALT(KC_2))), LGUI(LCTL(LALT(KC_3))), LGUI(LCTL(LALT(KC_4))), _______,
+XXXXXXX,                      KC_LCTL,                      KC_TAB,                        XXXXXXX,                       _______,                       _______, _______, KC_TABL,                LGUI(LSFT(KC_RBRC)),    LGUI(LSFT(KC_LBRC)),    KC_TABR,                _______,
+LGUI(LALT(LCTL(LSFT(KC_K)))), LGUI(LALT(LCTL(LSFT(KC_B)))), LGUI(LALT(LCTL(LSFT(KC_F1)))), LGUI(LALT(LCTL(LSFT(KC_F2)))), LGUI(LALT(LCTL(LSFT(KC_F3)))), _______, _______, _______,                LCTL(LSFT(KC_PGDN)),    LCTL(LSFT(KC_PGUP)),    _______,                _______,
 _______,                      _______,                      _______,                       _______,                       _______,                       _______, _______, _______,                _______,                _______,                _______,                _______
 ),
 
