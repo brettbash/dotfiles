@@ -3,5 +3,7 @@ config-file = "window"
 config-file = "shell"
 config-file = "icon"
 custom-shader = crt.glsl
+custom-shader = smear_cursor.glsl
+custom-shader = cursor-blaze.glsl
 theme = "cyberpunk"
 macos-option-as-alt = true
