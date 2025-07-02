@@ -1,4 +1,4 @@
-set fish_greeting "ネオンフィッシュ"
+set fish_greeting ネオンフィッシュ
 
 set -gx TERM xterm-256color
 
@@ -19,6 +19,8 @@ alias pint "./vendor/bin/pint"
 alias notes "cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ"
 command -qv vim && alias vim nvim
 alias v vim
+alias l hledger
+alias z zoxide
 
 alias twt taskwarrior-tui
 alias tw task
@@ -121,3 +123,5 @@ set -U tide_php_color ffefae
 
 set -U tide_time_bg_color ff7edb
 set -U tide_time_color 191726
+
+zoxide init fish | source
