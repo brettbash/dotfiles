@@ -2,8 +2,11 @@
 data.location=/Users/brettbash/.task
 
 editor=nvim
+uda.taskwarrior-tui.selection.indicator=⛧
 uda.taskwarrior-tui.selection.reverse=yes
 uda.taskwarrior-tui.selection.italic=yes
+uda.taskwarrior-tui.task-report.looping=false
+uda.taskwarrior-tui.task-report.show-info=false
 
 
 # Colors --------------------------------- |
@@ -45,7 +48,7 @@ color.vit.header=color4 on black
 color.vit.selection=black on color4
 
 # Context --------------------------------- |
-news.version=2.6.0
+news.version=3.3.0
 context.personal.read=+personal
 context.personal.write=+personal
 
