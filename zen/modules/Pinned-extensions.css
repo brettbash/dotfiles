@@ -6,7 +6,7 @@
     flex-wrap: wrap !important;
     gap: 2.5px !important;
     justify-content: space-between !important;
-    height: calc(100% - 37px) !important;
+    height: 100% !important;
   
     #tabbrowser-tabs {
       min-width: 100% !important;
