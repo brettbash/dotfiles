@@ -19,13 +19,6 @@ return {
   },
 
   {
-    "sphamba/smear-cursor.nvim",
-    opts = {
-      legacy_computing_symbols_support = true,
-    },
-  },
-
-  {
     "rachartier/tiny-glimmer.nvim",
     event = "TextYankPost",
     keys = {
