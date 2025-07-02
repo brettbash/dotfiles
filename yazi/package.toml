@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "imsi32/yatline"
-rev = "9328205"
-hash = "3e51d1fd8a2e481fcfa8eab1251d1c5f"
+rev = "88bd1c5"
+hash = "981acbe9b758b1af3a8154c932bb936d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "8945e54"
-hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
+rev = "2ad42fa"
+hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "llanosrocas/githead"
-rev = "2375024"
-hash = "f46c42b1146bed331c7000b1efd076f5"
+rev = "74c4ea4"
+hash = "3e8d22864bfef7452f9a106841b5268"
 
 [[plugin.deps]]
 use = "imsi32/yatline-githead"
-rev = "a6377a8"
-hash = "4f1a71eff1dd8f245ae2e3985e3e2f91"
+rev = "f8f969e"
+hash = "4d441b38138ce6492a4e10fa349fd65"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"

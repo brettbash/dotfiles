@@ -1,4 +1,4 @@
-[mgr]
+[manager]
 ratio          = [ 1, 4, 3 ]
 show_hidden    = true
 sort_by = "natural"
@@ -35,12 +35,12 @@ prepend_previewers = [
     { mime = "image/vnd.adobe.photoshop", run = "sips-preview" },
 ]
 
-# [[plugin.prepend_fetchers]]
-# id   = "mactag"
-# name = "*"
-# run  = "mactag"
-#
-# [[plugin.prepend_fetchers]]
-# id   = "mactag"
-# name = "*/"
-# run  = "mactag"
+[[plugin.prepend_fetchers]]
+id   = "mactag"
+name = "*"
+run  = "mactag"
+
+[[plugin.prepend_fetchers]]
+id   = "mactag"
+name = "*/"
+run  = "mactag"

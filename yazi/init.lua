@@ -16,26 +16,26 @@ function Linemode:size_and_mtime()
 	return string.format("%s %s", size and ya.readable_size(size) or "-", time)
 end
 
-require("mactag"):setup({
-	-- Keys used to add or remove tags
-	keys = {
-		r = "Red",
-		o = "Orange",
-		y = "Yellow",
-		g = "Green",
-		b = "Blue",
-		p = "Purple",
-	},
-	-- Colors used to display tags
-	colors = {
-		Red = "#ee7b70",
-		Orange = "#f5bd5c",
-		Yellow = "#fbe764",
-		Green = "#91fc87",
-		Blue = "#5fa3f8",
-		Purple = "#cb88f8",
-	},
-})
+-- require("mactag"):setup({
+-- 	-- Keys used to add or remove tags
+-- 	keys = {
+-- 		r = "Red",
+-- 		o = "Orange",
+-- 		y = "Yellow",
+-- 		g = "Green",
+-- 		b = "Blue",
+-- 		p = "Purple",
+-- 	},
+-- 	-- Colors used to display tags
+-- 	colors = {
+-- 		Red = "#ee7b70",
+-- 		Orange = "#f5bd5c",
+-- 		Yellow = "#fbe764",
+-- 		Green = "#91fc87",
+-- 		Blue = "#5fa3f8",
+-- 		Purple = "#cb88f8",
+-- 	},
+-- })
 
 require("relative-motions"):setup({ show_numbers = "relative", show_motion = true })
 
