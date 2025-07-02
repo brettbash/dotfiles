@@ -24,3 +24,7 @@ vim.keymap.set(
 )
 
 vim.keymap.set({ "n", "v" }, "U", "<cmd>redo<cr>", { desc = "Redo" })
+vim.keymap.set("n", "<leader>on", "<CMD>Nvumi<CR>", { desc = "[O]pen [N]vumi" })
+
+-- Macros
+vim.keymap.set("n", "<leader>mb", '^ea<Cr><Tab><Esc>f"a<Cr><Tab><esc>f"i<Cr><BS><Esc>$i<Cr><BS><Esc>', { remap = true })
