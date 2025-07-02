@@ -3,7 +3,7 @@ return {
   opts = {
     audio_player = "afplay",
     max_sounds = 4,
-    volume = 80,
+    -- volume = 100,
     sound_map = {
       { trigger_name = "patdown", sound = "Pat Down.wav" },
       { trigger_name = "patup", sound = "Pat Up.wav" },
@@ -18,7 +18,7 @@ return {
       -- { auto_command = "BufNewFile", sound = "Dot.wav" },
       -- { auto_command = "BufWritePost", sound = "Tink.wav" },
       -- { auto_command = "TextYankPost", sound = "Bloop.wav" },
-
+      --
       -- { key_map = { mode = "n", key_chord = ":", blocking = false }, sound = "Schlik.wav" },
       -- { key_map = { mode = "n", key_chord = "  ", blocking = false }, sound = "Klink.wav" },
       -- { auto_command = "TermOpen", sound = "Klink.wav" },
