@@ -1,28 +1,40 @@
 return {
-  "neovim/nvim-lspconfig",
-  opts = function()
-    local keys = require("lazyvim.plugins.lsp.keymaps").get()
-    keys[#keys + 1] = { "gr", false }
-    keys[#keys + 1] = { "gR", vim.lsp.buf.references, { desc = "References" } }
-
-    local ret = {
-      inlay_hints = { enabled = false },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
       servers = {
-        emmet_ls = {
-          filetypes = {
-            "html",
-            "css",
-            "sass",
-            "scss",
-            "less",
-            "javascript",
-            "markdown",
-            "typescript",
-            "twig",
+        html = {
+          filetypes = { "html", "blade", "antlers", "htmldjango" },
+        },
+        emmet_language_server = {
+          filetypes = { "html", "blade", "antlers" },
+        },
+        harper_ls = {
+          enabled = true,
+          filetypes = { "markdown" },
+          settings = {
+            ["harper-ls"] = {
+              userDictPath = "~/.dotfiles/vim/spell/en.utf-8.add",
+              linters = {
+                ToDoHyphen = false,
+                SpellCheck = false,
+              },
+              isolateEnglish = true,
+              markdown = {
+                IgnoreLinkTitle = true,
+              },
+            },
           },
         },
-        eslint = {},
+        tailwindcss = {
+          filetypes = { "html", "htmldjango", "blade", "antlers", "css" },
+        },
+        antlersls = true,
+        jsonls = true,
+        yamlls = true,
+        vimls = true,
       },
+
       setup = {
         eslint = function()
           require("lazyvim.util").lsp.on_attach(function(client)
@@ -34,6 +46,15 @@ return {
           end)
         end,
       },
-    }
-  end,
+    },
+  },
+
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        tailwind = true,
+      },
+    },
+  },
 }
