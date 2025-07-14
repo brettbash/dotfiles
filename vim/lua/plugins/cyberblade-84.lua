@@ -11,6 +11,7 @@ return {
   },
 
   config = function()
+    local blackest = "#000000"
     local bg_darker = "#191726"
     local bg_dark = "#251c2e"
     local bg = "#2a2139"
@@ -101,7 +102,7 @@ return {
         hl.CursorLineNr = { fg = magenta }
         hl.LineNr = { fg = magenta }
         hl.LineNrBelow = { fg = fg_dark }
-        hl.Folded = { bg = bg_dark }
+        hl.Folded = { bg = black, fg = cyan }
         hl.FoldColumn = {
           bg = black,
           fg = cyan,
@@ -184,6 +185,26 @@ return {
           bg = yellow2,
           fg = blue2,
         }
+
+        -- Trouble
+        hl.TroubleNormal = { bg = black, fg = fg }
+
+        -- Blink
+        hl.BlinkCmpMenu = { bg = black, fg = cyan1 }
+        hl.BlinkCmpMenuBorder = { bg = black, fg = cyan1 }
+        hl.BlinkCmpMenuSelection = { bg = green1, fg = blackest, italic = true, bold = true }
+
+        hl.BlinkCmpScrollBarGutter = { bg = black, fg = cyan1 }
+        hl.BlinkCmpScrollBarThumb = { bg = blue }
+
+        hl.BlinkLabelDetail = { fg = fg, bg = black }
+        hl.BlinkLabelDescription = { fg = fg, bg = black }
+        hl.BlinkCmpKind = { fg = magenta, bg = black }
+        hl.BlinkCmpKindRipgrep = { fg = magenta, bg = black }
+        hl.BlinkCmpSource = { fg = magenta, bg = black }
+
+        hl.BlinkCmpDoc = { fg = fg, bg = black }
+        hl.BlinkCmpDocBorder = { fg = cyan1, bg = black }
 
         -- Markdown
         hl["@markup.heading.1.markdown"] = { fg = magenta, italic = true }

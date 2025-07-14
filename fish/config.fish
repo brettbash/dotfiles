@@ -15,6 +15,7 @@ alias c clear
 alias m aerc
 alias neomail neomutt
 alias gif ascii-image-converter
+alias art = "php artisan"
 alias pint "./vendor/bin/pint"
 alias notes "cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ"
 command -qv vim && alias vim nvim
@@ -97,7 +98,7 @@ set -U tide_vi_mode_color_default ffffff
 set -U tide_vi_mode_icon_default 󰊠
 set -U tide_vi_mode_bg_color_insert ff00ff
 set -U tide_vi_mode_color_insert ffffff
-set -U tide_vi_mode_icon_insert 󰢚
+set -U tide_vi_mode_icon_insert ⛧
 set -U tide_vi_mode_bg_color_replace 038AF9
 set -U tide_vi_mode_color_replace ffffff
 set -U tide_vi_mode_icon_replace 󱥒

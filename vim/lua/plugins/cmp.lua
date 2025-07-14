@@ -127,15 +127,15 @@ return {
           -- (optional) customize how the results are displayed. Many options
           -- are available - make sure your lua LSP is set up so you get
           -- autocompletion help
-          transform_items = function(_, items)
-            for _, item in ipairs(items) do
-              -- example: append a description to easily distinguish rg results
-              item.labelDetails = {
-                description = "⚡",
-              }
-            end
-            return items
-          end,
+          -- transform_items = function(_, items)
+          --   for _, item in ipairs(items) do
+          --     -- example: append a description to easily distinguish rg results
+          --     item.labelDetails = {
+          --       description = "⚡",
+          --     }
+          --   end
+          --   return items
+          -- end,
         },
 
         snippets = {
@@ -193,6 +193,22 @@ return {
         },
       },
     })
+
+    opts.cmdline = {
+      enabled = true,
+    }
+
+    opts.completion = {
+      menu = {
+        border = "rounded",
+      },
+      documentation = {
+        auto_show = true,
+        window = {
+          border = "rounded",
+        },
+      },
+    }
 
     opts.snippets = {
       preset = "luasnip",

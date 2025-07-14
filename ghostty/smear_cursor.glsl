@@ -60,9 +60,12 @@ float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
 
-const vec4 TRAIL_COLOR = vec4(1., 1., 0., 1.0);
+// const vec4 TRAIL_COLOR = vec4(1., 1., 0., 1.0); // yellow
+// const vec4 TRAIL_COLOR = vec4(0.016, 0.82, 0.976, 1.0); // cyan
+const vec4 TRAIL_COLOR = vec4(1.0, 1.0, 0.643, 1.0); // bloom yellow #FFFFA4 converts to cyberblack yellow #fede5d
+
 const float OPACITY = 0.6;
-const float DURATION = 0.3; //IN SECONDS
+const float DURATION = 0.25; //IN SECONDS
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
