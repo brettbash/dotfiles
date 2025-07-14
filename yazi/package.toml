@@ -5,7 +5,7 @@ hash = "981acbe9b758b1af3a8154c932bb936d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "2ad42fa"
+rev = "e5f00e2"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
@@ -19,39 +19,29 @@ rev = "f8f969e"
 hash = "4d441b38138ce6492a4e10fa349fd65"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:max-preview"
-rev = "8945e54"
-hash = "15b2ff7f6563c14d5b2e93b3e9da35de"
-
-[[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "7c20850"
-hash = "adeb11c4bdb0594b65237bbd438484ca"
+rev = "d939163"
+hash = "e32ba0947f8ba9bc53aacfd96bd50884"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "8945e54"
-hash = "b482f4f2d3c4e0aa3f8db89a95699439"
-
-[[plugin.deps]]
-use = "andreas-timm/sips-preview"
-rev = "6cd7cf5"
-hash = "74b06f2adb8c7d1c800e8e922f6baad1"
+rev = "e5f00e2"
+hash = "a9d553bd19a3cd7f4eab3abaac5d67ff"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "8945e54"
-hash = "771f18427fb75fb19990ce602bb322f4"
+rev = "e5f00e2"
+hash = "37ebed215c8742eada643fc2655b65e2"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
-rev = "0d9c8cf"
-hash = "561ad872c77b95360c2657c5e8d395ed"
+rev = "9d26460"
+hash = "6c0568cfa966a5d4ac496c926975a613"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "8945e54"
-hash = "5f957d83569f0bdb52e0e2d1b8f1e64c"
+rev = "e5f00e2"
+hash = "72dfb25e9d0c015365827431e28df322"
 
 [flavor]
 deps = []
