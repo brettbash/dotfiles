@@ -13,5 +13,6 @@
 @import "modules/Tabstyles.css";
 
 :root {
+  --zen-main-browser-background: rgba(0, 0, 0, 0) !important;
   --zen-big-shadow: transparent !important;
 }
