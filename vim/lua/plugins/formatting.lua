@@ -29,10 +29,21 @@ return {
         tailwindcss = {
           filetypes = { "html", "htmldjango", "blade", "antlers", "css" },
         },
-        antlersls = true,
-        jsonls = true,
-        yamlls = true,
-        vimls = true,
+        antlersls = {
+          filetypes = { "html", "antlers" },
+        },
+        jsonls = {
+          filetypes = { "json" },
+        },
+        yamlls = {
+          filetypes = { "yaml" },
+        },
+        lua_ls = {
+          filetypes = { "lua" },
+        },
+        vimls = {
+          filetypes = { "vim" },
+        },
       },
 
       setup = {
