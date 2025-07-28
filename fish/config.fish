@@ -15,7 +15,7 @@ alias c clear
 alias m aerc
 alias neomail neomutt
 alias gif ascii-image-converter
-alias art = "php artisan"
+alias art "php artisan"
 alias pint "./vendor/bin/pint"
 alias notes "cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/バッシュ"
 command -qv vim && alias vim nvim
