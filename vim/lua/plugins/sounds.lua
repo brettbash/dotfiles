@@ -13,11 +13,11 @@ return {
       { trigger_name = "hitap", sound = "Hi Tap.wav" },
       { trigger_name = "dot", sound = "Dot.wav" },
 
-      { auto_command = "VimEnter", sound = "Harpsichord.mp3" },
+      -- { auto_command = "VimEnter", sound = "Harpsichord.mp3" },
       -- { auto_command = "VimLeavePre", sound = "AMFM.wav" },
       -- { auto_command = "BufNewFile", sound = "Dot.wav" },
       -- { auto_command = "BufWritePost", sound = "Tink.wav" },
-      -- { auto_command = "TextYankPost", sound = "Bloop.wav" },
+      { auto_command = "TextYankPost", sound = "Bloop.wav" },
 
       { key_map = { mode = "n", key_chord = ":", blocking = false }, sound = "Schlik.wav" },
       -- { key_map = { mode = "n", key_chord = "  ", blocking = false }, sound = "Klink.wav" },

@@ -12,6 +12,13 @@ vim.keymap.set(
 
 vim.keymap.set(
   { "n", "v" },
+  "<leader><leader>",
+  "<cmd>lua require('fzf-lua').files()<cr><cmd>lua require('beepboop').play_audio('klink')<cr>",
+  { desc = "Browse Files" }
+)
+
+vim.keymap.set(
+  { "n", "v" },
   "<leader>bo",
   "<cmd>lua require('beepboop').play_audio('knuckle')<cr><cmd>BufferLinePick<cr>",
   { desc = "Pick Buffer" }
