@@ -2,6 +2,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      folds = {
+        enable = false,
+      },
       servers = {
         html = {
           filetypes = { "html", "blade", "antlers", "htmldjango" },

@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.files",
+  "nvim-mini/mini.files",
   opts = function(_, opts)
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesWindowOpen",

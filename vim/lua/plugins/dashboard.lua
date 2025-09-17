@@ -45,7 +45,7 @@ return {
           {
             section = "terminal",
             cmd = "gif ~/.config/nvim/animations/rei-ayanami-evangelion.gif -b --dither -d 60,15 -C -c",
-            height = 15,
+            height = 16,
             padding = 1,
           },
           {

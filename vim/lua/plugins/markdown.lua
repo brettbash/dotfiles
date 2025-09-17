@@ -9,6 +9,10 @@ return {
     config = function()
       require("markview").setup({
 
+        experimental = {
+          check_rtp = false,
+          check_rtp_message = false,
+        },
         markdown = {
           headings = {
             enable = true,

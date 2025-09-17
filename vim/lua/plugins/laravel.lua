@@ -2,30 +2,110 @@ return {
   {
     "adalessa/laravel.nvim",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
       "tpope/vim-dotenv",
       "MunifTanjim/nui.nvim",
-      "nvimtools/none-ls.nvim",
-      "kevinhwang91/promise-async",
+      "nvim-lua/plenary.nvim",
+      "nvim-neotest/nvim-nio",
+      "ravitemer/mcphub.nvim", -- option
     },
-    cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
+    cmd = { "Laravel" },
     keys = {
-      { "<leader>la", ":Laravel artisan<cr>" },
-      { "<leader>lr", ":Laravel routes<cr>" },
-      { "<leader>lm", ":Laravel related<cr>" },
+      {
+        "<leader>ll",
+        function()
+          Laravel.pickers.laravel()
+        end,
+        desc = "Laravel: Open Laravel Picker",
+      },
+      {
+        "<c-g>",
+        function()
+          Laravel.commands.run("view:finder")
+        end,
+        desc = "Laravel: Open View Finder",
+      },
+      {
+        "<leader>la",
+        function()
+          Laravel.pickers.artisan()
+        end,
+        desc = "Laravel: Open Artisan Picker",
+      },
       {
         "<leader>lt",
         function()
-          require("laravel.tinker").send_to_tinker()
+          Laravel.commands.run("actions")
         end,
-        mode = "v",
-        desc = "Laravel Application Routes",
+        desc = "Laravel: Open Actions Picker",
+      },
+      {
+        "<leader>lr",
+        function()
+          Laravel.pickers.routes()
+        end,
+        desc = "Laravel: Open Routes Picker",
+      },
+      {
+        "<leader>lh",
+        function()
+          Laravel.run("artisan docs")
+        end,
+        desc = "Laravel: Open Documentation",
+      },
+      {
+        "<leader>lm",
+        function()
+          Laravel.pickers.make()
+        end,
+        desc = "Laravel: Open Make Picker",
+      },
+      {
+        "<leader>lc",
+        function()
+          Laravel.pickers.commands()
+        end,
+        desc = "Laravel: Open Commands Picker",
+      },
+      {
+        "<leader>lo",
+        function()
+          Laravel.pickers.resources()
+        end,
+        desc = "Laravel: Open Resources Picker",
+      },
+      {
+        "<leader>lp",
+        function()
+          Laravel.commands.run("command_center")
+        end,
+        desc = "Laravel: Open Command Center",
+      },
+      {
+        "gf",
+        function()
+          local ok, res = pcall(function()
+            if Laravel.app("gf").cursorOnResource() then
+              return "<cmd>lua Laravel.commands.run('gf')<cr>"
+            end
+          end)
+          if not ok or not res then
+            return "gf"
+          end
+          return res
+        end,
+        expr = true,
+        noremap = true,
       },
     },
     event = { "VeryLazy" },
-    config = function()
-      require("laravel").setup()
-    end,
+    opts = {
+      lsp_server = "phpactor", -- "phpactor | intelephense"
+      features = {
+        pickers = {
+          provider = "fzf-lua", -- "snacks | telescope | fzf-lua | ui-select"
+        },
+      },
+    },
   },
 
   {
