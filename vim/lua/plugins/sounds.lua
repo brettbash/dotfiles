@@ -3,7 +3,7 @@ return {
   opts = {
     audio_player = "afplay",
     max_sounds = 2,
-    -- volume = 100,
+    volume = 60,
     sound_map = {
       { trigger_name = "patdown", sound = "Pat Down.wav" },
       { trigger_name = "patup", sound = "Pat Up.wav" },
@@ -13,7 +13,7 @@ return {
       { trigger_name = "hitap", sound = "Hi Tap.wav" },
       { trigger_name = "dot", sound = "Dot.wav" },
 
-      -- { auto_command = "VimEnter", sound = "Harpsichord.mp3" },
+      { auto_command = "VimEnter", sound = "Harpsichord.mp3" },
       -- { auto_command = "VimLeavePre", sound = "AMFM.wav" },
       -- { auto_command = "BufNewFile", sound = "Dot.wav" },
       -- { auto_command = "BufWritePost", sound = "Tink.wav" },
