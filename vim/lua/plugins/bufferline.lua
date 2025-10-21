@@ -6,8 +6,10 @@ return {
   opts = {
     options = {
       indicator = {
-        icon = " ",
+        icon = "",
+        style = "none",
       },
+      separator_style = { "", "" },
       show_close_icon = false,
       show_buffer_close_icons = false,
       modified_icon = "󰯆 ",
@@ -36,31 +38,35 @@ return {
 
     highlights = {
       fill = {
-        bg = "#191726",
+        bg = "none",
       },
       background = {
-        bg = "#191726",
+        bg = "none",
       },
       tab = {
-        bg = "#191726",
+        bg = "none",
       },
       duplicate = {
-        bg = "#191726",
+        bg = "none",
       },
 
       buffer_selected = {
         fg = "#00ffff",
+        bg = "none",
       },
       buffer_visible = {
         fg = "#ff00ff",
+        bg = "none",
       },
 
       modified_selected = {
         fg = "#00ffff",
+        bg = "none",
       },
 
       offset_separator = {
         fg = "#00ffff",
+        bg = "none",
       },
 
       pick_selected = {
@@ -72,16 +78,19 @@ return {
       },
 
       pick = {
-        bg = "#191726",
+        bg = "none",
       },
 
+      hint_visible = {
+        fg = "#ff00ff",
+      },
       hint_selected = {
         fg = "#00ffff",
         sp = "#00ffff",
       },
 
       warning = {
-        bg = "#191726",
+        bg = "none",
       },
       warning_selected = {
         fg = "#00ffff",
@@ -90,7 +99,7 @@ return {
         fg = "#ff00ff",
       },
       warning_diagnostic = {
-        bg = "#191726",
+        bg = "none",
       },
 
       warning_diagnostic_selected = {
@@ -113,40 +122,40 @@ return {
         fg = "#00ffff",
       },
       tab_close = {
-        bg = "#191726",
+        bg = "none",
       },
       close_button = {
-        bg = "#191726",
+        bg = "none",
       },
       close_button_visible = {
-        bg = "#2a2139",
+        bg = "none",
       },
       close_button_selected = {
-        bg = "#2a2139",
+        bg = "none",
         fg = "#00ffff",
       },
       numbers_selected = {
-        bg = "#2a2139",
+        bg = "none",
         fg = "#00ffff",
       },
       separator = {
         fg = "#463465",
-        bg = "#191726",
+        bg = "none",
       },
       tab_separator = {
         fg = "#463465",
-        bg = "#191726",
+        bg = "none",
       },
       tab_separator_selected = {
-        bg = "#2a2139",
+        bg = "none",
         fg = "#00ffff",
       },
       separator_selected = {
-        bg = "#2a2139",
+        bg = "none",
         fg = "#00ffff",
       },
       separator_visible = {
-        bg = "#2a2139",
+        bg = "none",
         fg = "#00ffff",
       },
     },
@@ -170,6 +179,8 @@ return {
       "<cmd>lua require('beepboop').play_audio('dot')<cr><cmd>BufferLinePickClose<cr>",
       { desc = "Pick Buffer to Close" }
     )
+
+    vim.keymap.set({ "n", "v" }, "<leader>bt", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin a Buffer" })
 
     vim.keymap.set("n", "<leader>bO", function()
       Snacks.bufdelete.other()

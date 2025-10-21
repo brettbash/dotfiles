@@ -243,7 +243,7 @@ return {
         colors.bg = bg
         colors.fg = fg
         colors.bg_dark = bg_dark
-        colors.bg_statusline = bg_dark
+        colors.bg_statusline = black
         colors.bg_highlight = black
         colors.fg_gutter = bg_light
         colors.bg_visual = blue3
