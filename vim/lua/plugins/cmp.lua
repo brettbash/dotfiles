@@ -90,7 +90,7 @@ return {
         copilot = {
           name = "copilot",
           enabled = true,
-          module = "blink-cmp-copilot",
+          module = "blink-copilot",
           kind = "Copilot",
           min_keyword_length = 6,
           score_offset = -100,
@@ -114,6 +114,19 @@ return {
         },
       },
     }
+
+    -- opts.keymap = {
+    --   ["<Tab>"] = {
+    --     "snippet_forward",
+    --     function() -- sidekick next edit suggestion
+    --       return require("sidekick").nes_jump_or_apply()
+    --     end,
+    --       function() -- if you are using Neovim's native inline completions
+    --       return vim.lsp.inline_completion.get()
+    --     end,
+    --     "fallback",
+    --   },
+    -- }
 
     opts.snippets = {
       preset = "luasnip",
