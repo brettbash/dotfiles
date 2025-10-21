@@ -8,9 +8,11 @@ instead of the --config file specified below lamw25wmal
 
 return {
   "mfussenegger/nvim-lint",
-  optional = true,
   opts = {
-    linters = {
+    llinters_by_ft = {
+      markdown = { "markdownlint-cli2" },
+    },
+    inters = {
       ["markdownlint-cli2"] = {
         args = { "--config", os.getenv("HOME") .. ".markdownlint.yaml", "--" },
       },
