@@ -11,6 +11,7 @@
 @import "modules/Topbar-buttons.css";
 @import "modules/URLbar.css";
 @import "modules/Tabstyles.css";
+@import "modules/MediaPlayer.css";
 
 :root {
   --zen-main-browser-background: rgba(0, 0, 0, 0) !important;

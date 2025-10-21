@@ -1,5 +1,23 @@
 /* ------------------------- Tabs Styling -------------------------- */
 
+/* Tab Groups */
+zen-folder {
+  & > .tab-group-label-container {
+    & > label {
+      font-family: "Operator Mono", monospace !important;
+      font-weight: 400 !important;
+    }
+  }
+}
+
+.tab-group-label {
+  #tabbrowser-tabs[orient="vertical"] & {
+    #tabbrowser-tabs[expanded] & {
+      font-style: italic !important;
+    }
+  }
+}
+
 .tabbrowser-tab {
   font-family: "Operator Mono", monospace;
 }

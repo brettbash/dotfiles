@@ -42,7 +42,7 @@
   filter: blur(2rem) brightness(70%) saturate(180%) !important;
   backdrop-filter: blur(2rem) contrast(90%) brightness(30%) !important;
   opacity: 0.85 !important;
-  scale: 1.11 !important;
+  /* scale: 1.11 !important; */
   transition:
     filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
     opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
