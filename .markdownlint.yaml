@@ -18,6 +18,9 @@ MD012:
 # Line length
 MD013: false
 
+# Multiple h1
+MD025: false
+
 # Spaces after list markers
 MD030: false
 
