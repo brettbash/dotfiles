@@ -10,7 +10,6 @@ uda.taskwarrior-tui.task-report.show-info=false
 
 
 # Colors --------------------------------- |
-include dark-violets-256.theme
 uda.taskwarrior-tui.style.context.active=cyan on black
 uda.taskwarrior-tui.style.calendar.title=cyan on black
 uda.taskwarrior-tui.style.report.scrollbar=black
@@ -40,6 +39,9 @@ color.header=color12
 color.schedule=color4
 color.scheduled=color6
 
+color.blocked=color9
+color.blocking=color10
+
 color.summary.background=black
 
 color.sync.added=color8
@@ -48,7 +50,7 @@ color.vit.header=color4 on black
 color.vit.selection=black on color4
 
 # Context --------------------------------- |
-news.version=3.3.0
+news.version=3.4.1
 context.personal.read=+personal
 context.personal.write=+personal
 
