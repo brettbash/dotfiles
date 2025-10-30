@@ -10,19 +10,19 @@ vim.keymap.set({ "n", "v" }, "<F4>", "5w", { desc = "Word Forward Fast" })
 --   { desc = "Browse Buffers" }
 -- )
 
--- vim.keymap.set(
---   { "n", "v" },
---   "<leader><leader>",
---   "<cmd>lua require('fzf-lua-enchanted-files').files()<cr><cmd>lua require('beepboop').play_audio('klink')<cr>",
---   { desc = "Browse Files" }
--- )
-
 vim.keymap.set(
   { "n", "v" },
   "<leader><leader>",
-  "<cmd>lua require('fzf-lua-enchanted-files').files()<cr>",
+  "<cmd>lua require('fzf-lua-enchanted-files').files()<cr><cmd>lua require('beepboop').play_audio('klink')<cr>",
   { desc = "Browse Files" }
 )
+
+-- vim.keymap.set(
+--   { "n", "v" },
+--   "<leader><leader>",
+--   "<cmd>lua require('fzf-lua-enchanted-files').files()<cr>",
+--   { desc = "Browse Files" }
+-- )
 
 vim.keymap.set({ "n", "v" }, "<leader>bo", "<cmd>BufferLinePick<cr>", { desc = "Pick Buffer" })
 
@@ -87,7 +87,7 @@ end
 local function set_markdown_folding()
   vim.opt_local.foldmethod = "expr"
   -- vim.opt_local.foldexpr = "v:lua.markdown_foldexpr()"
-  vim.opt_local.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+  vim.opt_local.foldexpr = "v:lua.require'lazyvim.util'.treesitter.foldexpr()"
   vim.opt_local.foldlevel = 99
 
   -- Detect frontmatter closing line
