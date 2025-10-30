@@ -17,7 +17,7 @@ return {
       desc = "Jumplist Portal",
     },
     {
-      "<leader>T",
+      "<leader>C",
       "<cmd>lua require('beepboop').play_audio('patdown')<cr><cmd>lua require('portal.builtin').changelist.tunnel()<cr>",
       desc = "Changelist Portal",
     },
