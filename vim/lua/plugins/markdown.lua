@@ -129,28 +129,41 @@ return {
           },
 
           list_items = {
+            enable = false,
             indent_size = 2,
             shift_width = 2,
 
             marker_minus = {
+              text = "",
               add_padding = true,
+              conceal_on_checkboxes = true,
             },
 
             marker_plus = {
               add_padding = false,
+              conceal_on_checkboxes = true,
             },
 
             marker_star = {
               add_padding = false,
+              conceal_on_checkboxes = true,
             },
 
             marker_dot = {
               add_padding = false,
+              conceal_on_checkboxes = true,
             },
 
             marker_parenthesis = {
               add_padding = false,
+              conceal_on_checkboxes = true,
             },
+          },
+        },
+
+        markdown_inline = {
+          checkboxes = {
+            enable = false,
           },
         },
 
@@ -284,5 +297,102 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     enabled = false,
+  },
+  {
+    "bngarren/checkmate.nvim",
+    ft = "markdown", -- Lazy loads for Markdown files matching patterns in 'files'
+    opts = {
+      -- checkmate.Config
+      todo_states = {
+        checked = {
+          marker = "󰄳",
+        },
+        unchecked = {
+          marker = "󰄰",
+        },
+        in_progress = {
+          marker = "󱎖",
+          markdown = ".", -- Saved as `- [.]`
+          type = "incomplete", -- Counts as "not done"
+          order = 50,
+          style = { fg = "#ff8b39" },
+        },
+        cancelled = {
+          marker = "󰯈",
+          markdown = "c", -- Saved as `- [c]`
+          type = "complete", -- Counts as "done"
+          order = 2,
+        },
+        on_hold = {
+          marker = "󱙝",
+          markdown = "/", -- Saved as `- [/]`
+          type = "inactive", -- Ignored in counts
+          order = 100,
+        },
+      },
+
+      style = {
+        CheckmateTodoCountIndicator = { fg = "#00ffff" },
+        CheckmateCheckedMarker = { fg = "#03edf9" },
+        CheckmateInProgressMarker = { fg = "#f97e72" },
+        CheckmateUncheckedMarker = { fg = "#f3e70f" },
+      },
+
+      metadata = {
+        -- Example: A @priority tag that has dynamic color based on the priority value
+        priority = {
+          style = function(context)
+            local value = context.value:lower()
+            if value == "high" then
+              return { fg = "#ff00ff", bold = true }
+            elseif value == "medium" then
+              return { fg = "#fe4450" }
+            elseif value == "low" then
+              return { fg = "#55beff" }
+            else -- fallback
+              return { fg = "#55beff" }
+            end
+          end,
+          get_value = function()
+            return "medium" -- Default priority
+          end,
+          choices = function()
+            return { "low", "medium", "high" }
+          end,
+          key = "<leader>Tp",
+          sort_order = 10,
+          jump_to_on_insert = "value",
+          select_on_insert = true,
+        },
+        -- Example: A @started tag that uses a default date/time string when added
+        started = {
+          aliases = { "init" },
+          style = { fg = "#55beff" },
+          get_value = function()
+            return tostring(os.date("%Y-%m-%d %H:%M"))
+          end,
+          key = "<leader>Ts",
+          sort_order = 20,
+        },
+        -- Example: A @done tag that also sets the todo item state when it is added and removed
+        done = {
+          aliases = { "completed", "finished" },
+          style = { fg = "#7ee787" },
+          get_value = function()
+            return tostring(os.date("%Y-%m-%d %H:%M"))
+          end,
+          key = "<leader>Td",
+          on_add = function(todo_item)
+            require("checkmate").set_todo_item(todo_item, "checked")
+          end,
+          on_remove = function(todo_item)
+            require("checkmate").set_todo_item(todo_item, "unchecked")
+          end,
+          sort_order = 30,
+        },
+      },
+
+      files = { "*.md" }, -- any .md file (instead of defaults)
+    },
   },
 }
