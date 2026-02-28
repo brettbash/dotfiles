@@ -14,7 +14,7 @@ return {
         },
         harper_ls = {
           enabled = true,
-          filetypes = { "markdown" },
+          filetypes = { "markdown", "eml" },
           settings = {
             ["harper-ls"] = {
               userDictPath = "~/.dotfiles/vim/spell/en.utf-8.add",
@@ -69,6 +69,8 @@ return {
     opts = {
       formatters_by_ft = {
         php = { "pint", "php_cs_fixer" },
+        ledger = { "trim_newlines", "trim_whitespace" },
+        eml = { "trim_newlines", "trim_whitespace" },
       },
     },
   },

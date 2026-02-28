@@ -11,6 +11,7 @@ return {
   opts = {
     llinters_by_ft = {
       markdown = { "markdownlint-cli2" },
+      ledger = { "hledger" },
     },
     inters = {
       ["markdownlint-cli2"] = {

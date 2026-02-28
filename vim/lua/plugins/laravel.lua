@@ -2,11 +2,13 @@ return {
   {
     "adalessa/laravel.nvim",
     dependencies = {
-      "tpope/vim-dotenv",
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-neotest/nvim-nio",
-      "ravitemer/mcphub.nvim", -- option
+    },
+    ft = { "php", "blade" },
+    event = {
+      "BufEnter composer.json",
     },
     cmd = { "Laravel" },
     keys = {
@@ -81,6 +83,13 @@ return {
         desc = "Laravel: Open Command Center",
       },
       {
+        "<leader>lu",
+        function()
+          Laravel.commands.run("hub")
+        end,
+        desc = "Laravel Artisan hub",
+      },
+      {
         "gf",
         function()
           local ok, res = pcall(function()
@@ -97,24 +106,12 @@ return {
         noremap = true,
       },
     },
-    event = { "VeryLazy" },
     opts = {
-      lsp_server = "phpactor", -- "phpactor | intelephense"
       features = {
         pickers = {
-          provider = "fzf-lua", -- "snacks | telescope | fzf-lua | ui-select"
+          provider = "snacks", -- "snacks | telescope | fzf-lua | ui-select"
         },
       },
     },
-  },
-
-  {
-    "oliverhkraft/nvim-pint",
-    config = function()
-      require("nvim-pint").setup({
-        silent = true, -- No notifications
-        exclude_folders = { "resources/views" }, -- Accepts comma separated array to exlude folders
-      })
-    end,
   },
 }

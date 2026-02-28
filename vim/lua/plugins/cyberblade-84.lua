@@ -4,6 +4,7 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
+    lualine_bold = true,
     styles = {
       sidebars = "transparent",
       floats = "transparent",
@@ -23,6 +24,8 @@ return {
     local fg_darker = "#545c7e"
     local fg_dark = "#6971a2"
 
+    -- #8fa1e3
+    -- #9fb6e9
     local fg = "#a8c7fa"
 
     local pink = "#ff7edb"
@@ -157,6 +160,11 @@ return {
         hl.FzfLuaFilePart = { fg = green }
         hl.FzfLuaSearch = { fg = yellow, bg = blue2 }
 
+        -- Snacks Picker
+        hl.SnacksPickerTitle = { fg = cyan1, bg = black }
+        hl.SnacksPickerInputTitle = { fg = cyan1, bg = black }
+        hl.SnacksPickerInputBorder = { fg = cyan1, bg = black }
+
         -- Telescope
         hl.TelescopeNormal = {
           bg = black,
@@ -185,6 +193,11 @@ return {
           bg = yellow2,
           fg = blue2,
         }
+
+        -- Lualine
+        -- hl.normal = {
+        --   a = { bg = magenta, fg = black },
+        -- }
 
         -- Trouble
         hl.TroubleNormal = { bg = black, fg = fg }

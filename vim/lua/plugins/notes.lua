@@ -85,6 +85,7 @@ return {
 
     require("telekasten").setup({
       home = home,
+      picker = "snacks",
       dailies = home .. "/Log/" .. year .. "/" .. month,
       weeklies = home .. "/Log/" .. year .. "/weekly",
       template_new_note = home .. "/templates/note.md",

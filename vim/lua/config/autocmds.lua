@@ -6,6 +6,7 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
+-- Disable wrap and enable spell check for text files
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("wrap_spell"),
   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
@@ -16,18 +17,28 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Diagnostics float on CursorHold
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-  group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-  callback = function()
-    vim.diagnostic.open_float(nil, {
-      focus = false,
-      border = "rounded",
-    })
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+--   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+--   callback = function()
+--     vim.diagnostic.open_float(nil, {
+--       focus = false,
+--       border = "rounded",
+--     })
+--   end,
+-- })
+
+-- Disable diagnostics for .env files
+local group = vim.api.nvim_create_augroup("__env", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = ".env",
+  group = group,
+  callback = function(args)
+    vim.diagnostic.disable(args.buf)
   end,
 })
 
+-- Force filetype to html for *.antlers.html files
 local force_filetype = vim.api.nvim_create_augroup("force_filetype", { clear = true })
-
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.antlers.html" },
   group = force_filetype,

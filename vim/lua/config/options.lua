@@ -22,6 +22,7 @@ opt.fillchars = {
   fold = ".",
   foldsep = " ",
   foldclose = "󱓇",
+  eob = " ",
 }
 vim.g.lazyvim_picker = "fzf"
 
@@ -49,6 +50,7 @@ vim.g.lazyvim_picker = "fzf"
 -- opt.foldenable = false
 vim.opt_local.spelllang = "en_us"
 vim.opt_local.fo:append("aw")
+vim.api.nvim_set_hl(0, "@text.strike", { strikethrough = true })
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])

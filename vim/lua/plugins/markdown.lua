@@ -302,6 +302,83 @@ return {
     "bngarren/checkmate.nvim",
     ft = "markdown", -- Lazy loads for Markdown files matching patterns in 'files'
     opts = {
+      keys = {
+        ["<leader>tt"] = {
+          rhs = "<cmd>Checkmate toggle<CR>",
+          desc = "Toggle todo item",
+          modes = { "n", "v" },
+        },
+        ["<leader>tc"] = {
+          rhs = "<cmd>Checkmate check<CR>",
+          desc = "Set todo item as checked (done)",
+          modes = { "n", "v" },
+        },
+        ["<leader>tu"] = {
+          rhs = "<cmd>Checkmate uncheck<CR>",
+          desc = "Set todo item as unchecked (not done)",
+          modes = { "n", "v" },
+        },
+        ["<leader>t="] = {
+          rhs = "<cmd>Checkmate cycle_next<CR>",
+          desc = "Cycle todo item(s) to the next state",
+          modes = { "n", "v" },
+        },
+        ["<leader>t-"] = {
+          rhs = "<cmd>Checkmate cycle_previous<CR>",
+          desc = "Cycle todo item(s) to the previous state",
+          modes = { "n", "v" },
+        },
+        ["<leader>tn"] = {
+          rhs = "<cmd>Checkmate create<CR>",
+          desc = "Create todo item",
+          modes = { "n", "v" },
+        },
+        ["<leader>tr"] = {
+          rhs = "<cmd>Checkmate remove<CR>",
+          desc = "Remove todo marker (convert to text)",
+          modes = { "n", "v" },
+        },
+        ["<leader>tR"] = {
+          rhs = "<cmd>Checkmate remove_all_metadata<CR>",
+          desc = "Remove all metadata from a todo item",
+          modes = { "n", "v" },
+        },
+        ["<leader>ti"] = {
+          rhs = "<cmd>Checkmate toggle in_progress<CR>",
+          desc = "Mark todo item(s) as in progress",
+          modes = { "n", "v" },
+        },
+        ["<leader>th"] = {
+          rhs = "<cmd>Checkmate toggle on_hold<CR>",
+          desc = "Mark todo item(s) as on-hold",
+          modes = { "n", "v" },
+        },
+        ["<leader>tx"] = {
+          rhs = "<cmd>Checkmate toggle cancelled<CR>",
+          desc = "Mark todo item(s) as cancelled",
+          modes = { "n", "v" },
+        },
+        ["<leader>ta"] = {
+          rhs = "<cmd>Checkmate archive<CR>",
+          desc = "Archive checked/completed todo items (move to bottom section)",
+          modes = { "n" },
+        },
+        ["<leader>tv"] = {
+          rhs = "<cmd>Checkmate metadata select_value<CR>",
+          desc = "Update the value of a metadata tag under the cursor",
+          modes = { "n" },
+        },
+        ["<leader>t]"] = {
+          rhs = "<cmd>Checkmate metadata jump_next<CR>",
+          desc = "Move cursor to next metadata tag",
+          modes = { "n" },
+        },
+        ["<leader>t["] = {
+          rhs = "<cmd>Checkmate metadata jump_previous<CR>",
+          desc = "Move cursor to previous metadata tag",
+          modes = { "n" },
+        },
+      },
       -- checkmate.Config
       todo_states = {
         checked = {
@@ -335,7 +412,17 @@ return {
         CheckmateTodoCountIndicator = { fg = "#00ffff" },
         CheckmateCheckedMarker = { fg = "#03edf9" },
         CheckmateInProgressMarker = { fg = "#f97e72" },
+        CheckmateOnHoldMarker = { fg = "#00aaf9" },
+        CheckmateOnHoldMainContent = { fg = "#8fa1e3" },
+        CheckmateOnHoldAdditionalContent = { fg = "#6971a2" },
+        CheckmateCancelledMarker = { fg = "#af87ff" },
+        CheckmateCancelledMainContent = {
+          fg = "#6971a2",
+          strikethrough = true,
+        },
+        CheckmateCancelledAdditionalContent = { fg = "#545c7e" },
         CheckmateUncheckedMarker = { fg = "#f3e70f" },
+        CheckmateCheckedAdditionalContent = { fg = "#545c7e" },
       },
 
       metadata = {
@@ -359,7 +446,7 @@ return {
           choices = function()
             return { "low", "medium", "high" }
           end,
-          key = "<leader>Tp",
+          key = "<leader>tp",
           sort_order = 10,
           jump_to_on_insert = "value",
           select_on_insert = true,
@@ -371,7 +458,7 @@ return {
           get_value = function()
             return tostring(os.date("%Y-%m-%d %H:%M"))
           end,
-          key = "<leader>Ts",
+          key = "<leader>ts",
           sort_order = 20,
         },
         -- Example: A @done tag that also sets the todo item state when it is added and removed
@@ -381,7 +468,7 @@ return {
           get_value = function()
             return tostring(os.date("%Y-%m-%d %H:%M"))
           end,
-          key = "<leader>Td",
+          key = "<leader>td",
           on_add = function(todo_item)
             require("checkmate").set_todo_item(todo_item, "checked")
           end,

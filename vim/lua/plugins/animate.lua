@@ -20,7 +20,8 @@ return {
 
   {
     "rachartier/tiny-glimmer.nvim",
-    event = "TextYankPost",
+    event = "VeryLazy",
+    priority = 10,
     keys = {
       { "p" },
       { "P" },
@@ -29,39 +30,18 @@ return {
       { "*" },
       { "u" },
       { "<C-r>" },
-      -- {
-      --   "n",
-      --   function()
-      --     require("tiny-glimmer").search_next()
-      --     vim.api.nvim_feedkeys("zzzv", "n", false)
-      --   end,
-      --   { noremap = true, silent = true },
-      -- },
-      -- {
-      --   "N",
-      --   function()
-      --     require("tiny-glimmer").search_prev()
-      --     vim.api.nvim_feedkeys("zzzv", "n", false)
-      --   end,
-      --   { noremap = true, silent = true },
-      -- },
     },
     opts = {
       disable_warnings = false,
       transparency_color = "#2a2139",
       overwrite = {
-        -- default_animation = "rainbow",
+        default_animation = "fade",
         search = { enabled = true },
         paste = {
           enabled = true,
-          paste_mapping = {
-            lhs = "p",
-            rhs = "<Plug>(YankyPutAfter)",
-          },
-          Paste_mapping = {
-            lhs = "P",
-            rhs = "<Plug>(YankyPutBefore)",
-          },
+          default_animation = "fade",
+          paste_mapping = "p", -- Paste after cursor
+          Paste_mapping = "P", -- Paste before cursor
         },
         undo = { enabled = true },
         redo = { enabled = true },
