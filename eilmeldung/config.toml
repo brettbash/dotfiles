@@ -1,0 +1,49 @@
+startup_commands = ["sync", "focus articles" ]
+
+# Layout
+feed_list_focused_width = "33%"
+article_list_focused_width = "85%"
+article_list_focused_height = "66%"
+article_content_focused_height = "80%"
+thumbnail_show = true
+thumbnail_width = "18 length"
+show_top_bar = false
+
+
+# Icons
+offline_icon = ""
+unread_icon = ""
+read_icon = ""
+marked_icon = "⛧"
+unmarked_icon = " "
+tag_icon = "󰓹"
+command_line_prompt_icon = ""
+info_icon = ''
+warning_icon = ''
+error_icon = ''
+
+# Scrollbar symbols
+scrollbar_begin_symbol = "│"
+scrollbar_end_symbol = "│"
+scrollbar_track_symbol = ":"
+scrollbar_thumb_symbol = "│"
+
+# Labels
+all_label = "󱀂 All {unread_count}"
+feed_label = " {label} {unread_count}"
+category_label = "󰉋 {label} {unread_count}"
+categories_label = "󰉓 Categories {unread_count}"
+tags_label = "󰓻 Tags {unread_count}"
+tag_label = "󰓹 {label} {unread_count}"
+query_label = " {label}"
+
+# Articles
+article_table = "{read},{marked},{tag_icons},{age},{title},{feed}"
+
+# Theme
+[theme.style_set]
+border_focused = { fg = "accent_tertiary" }
+selected = { bg = "highlight", fg = "background", mods = ["italic", "bold"] }
+
+unread = { mods = [] }
+
