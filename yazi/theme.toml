@@ -52,11 +52,17 @@ unset_alt  = { fg = "#55beff", bg = "#463465" }
 
 # : }}}
 
+[indicator]
+parent  = { bg = "#fede5d", fg = "#000000", bold = true, italic = true }
+current = { bg = "#fede5d", fg = "#000000", bold = true, italic = true }
+preview = { underline = true }
+padding = { open = "▊", close = "▊" }
+
 # : Status bar {{{
 
 [status]
-separator_open  = ""
-separator_close = ""
+separator_open  = "▊"
+separator_close = "▊"
 separator_style = { fg = "#55beff", bg = "#463465" }
 
 
@@ -83,6 +89,10 @@ active = { fg = "#ff00ff", bold = true, italic = true }
 inactive = { fg = "#72f1b8" }
 
 # : }}}
+#
+[tabs]
+sep_open  = "▊"
+sep_close = "▊"
 
 # : Input {{{
 

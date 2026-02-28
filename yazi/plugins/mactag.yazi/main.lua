@@ -8,7 +8,7 @@ local update = ya.sync(function(st, tags)
 	if ui.render then
 		ui.render()
 	else
-		ya.render()
+		ui.render()
 	end
 end)
 

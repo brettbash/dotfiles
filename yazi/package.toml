@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "imsi32/yatline"
-rev = "88bd1c5"
-hash = "981acbe9b758b1af3a8154c932bb936d"
+rev = "c5d4b48"
+hash = "e6e98d12b1648d1894c2b560d85eeaa7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "e5f00e2"
+rev = "6f50636"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
@@ -39,9 +39,14 @@ rev = "9d26460"
 hash = "6c0568cfa966a5d4ac496c926975a613"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:mactag"
-rev = "e5f00e2"
-hash = "72dfb25e9d0c015365827431e28df322"
+use = "Sonico98/allmytoes"
+rev = "acdc53b"
+hash = "7bf0ed68a45144b28041affd2a334ff"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "9ef1254"
+hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [flavor]
 deps = []

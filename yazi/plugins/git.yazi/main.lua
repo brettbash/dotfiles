@@ -112,7 +112,7 @@ local add = ya.sync(function(st, cwd, repo, changed)
 	if ui.render then
 		ui.render()
 	else
-		ya.render()
+		ui.render()
 	end
 end)
 
@@ -126,7 +126,7 @@ local remove = ya.sync(function(st, cwd)
 	if ui.render then
 		ui.render()
 	else
-		ya.render()
+		ui.render()
 	end
 	st.dirs[cwd] = nil
 	if not st.repos[repo] then
