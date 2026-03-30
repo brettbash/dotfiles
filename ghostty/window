@@ -2,7 +2,6 @@ adjust-cell-height  = 100%
 adjust-cursor-height  = 75%
 background-opacity = 0.8
 copy-on-select = true
-gtk-adwaita = false
 macos-non-native-fullscreen = true
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = hidden
