@@ -2,7 +2,7 @@ return {
   "EggbertFluffle/beepboop.nvim",
   opts = {
     audio_player = "afplay",
-    max_sounds = 2,
+    max_sounds = 4,
     volume = 60,
     sound_map = {
       { trigger_name = "patdown", sound = "Pat Down.wav" },
@@ -12,8 +12,11 @@ return {
       { trigger_name = "hollow", sound = "Hollow.wav" },
       { trigger_name = "hitap", sound = "Hi Tap.wav" },
       { trigger_name = "dot", sound = "Dot.wav" },
+      { trigger_name = "toasty", sound = "Toasty.mp3" },
+      { trigger_name = "beeps", sound = "Beeps.mp3" },
 
       { auto_command = "VimEnter", sound = "Harpsichord.mp3" },
+      { auto_command = "VimEnter", sound = "anime-girl.mp3" },
       { auto_command = "VimLeavePre", sound = "AMFM.wav" },
       { auto_command = "BufNewFile", sound = "Dot.wav" },
       { auto_command = "BufWritePost", sound = "Tink.wav" },
