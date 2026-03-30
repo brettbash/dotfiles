@@ -101,6 +101,10 @@ return {
           fg = c.comment,
         }
 
+        -- Power Mode
+        hl.PowerModeCombo0 = { bg = black }
+        -- hl.NormalFloatPowerModeCombo0 = { bg = black }
+
         hl.LineNrAbove = { fg = fg_dark }
         hl.CursorLineNr = { fg = magenta }
         hl.LineNr = { fg = magenta }

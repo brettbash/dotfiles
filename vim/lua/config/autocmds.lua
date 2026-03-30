@@ -37,6 +37,21 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- On TabEnter, run the command PowerModeDisable and then PowerModeEnable to reset the power mode particles
+vim.api.nvim_create_autocmd("TabEnter", {
+  callback = function()
+    -- Your command here
+    -- print("Entered a tab!")
+    -- vim.cmd("PowerModeDisable")
+    -- vim.cmd("PowerModeEnable")
+    -- if not pcall(vim.cmd, "PowerModeToggle") then
+    --   print("Failed to execute PowerModeToggle")
+    -- end
+    -- fire a shortcut of <leader>pp to toggle power mode
+    -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<leader>pp", true, false, true), "n", true)
+  end,
+})
+
 -- Force filetype to html for *.antlers.html files
 local force_filetype = vim.api.nvim_create_augroup("force_filetype", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
