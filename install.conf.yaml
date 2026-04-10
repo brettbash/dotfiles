@@ -7,12 +7,13 @@
       quiet: true
 - clean: ["~"]
 - link:
-    ~/Library/Preferences/aerc: aerc
+    ~/.composer/composer.json: composer/composer.json
     ~/.config/aerc: aerc
     ~/.config/btop/btop.conf: btop/btop.conf
     ~/.config/btop/themes: btop/themes
-    ~/.composer/composer.json: composer/composer.json
     ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/gh-dash/config.yml: git/dash/config.yml
+    ~/.config/gh-dash: gh-dash
     ~/.config/ghostty: ghostty
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.config/lazygit: lazygit
@@ -21,6 +22,7 @@
     ~/.config/nvim: vim
     ~/.config/stig: stig
     ~/.config/timewarrior: timewarrior
+    ~/.config/tuisky: tuisky
     ~/.config/vifm: vifm
     ~/.config/yazi: yazi
     ~/.gitconfig: git/gitconfig
@@ -35,7 +37,11 @@
     ~/.qmk/keyboards/planck/keymaps/acidwraith: qmk/planck
     ~/.taskrc: taskwarrior/taskrc/
     ~/.tmux.conf: tmux/tmux.conf
-    ~/.wezterm: wezterm
     ~/.vit: vit
-    "~/Library/Application Support/zen/Profiles/get7dqs1.default-release/chrome/userChrome.css": zen/userChrome.css
-    "~/Library/Application Support/zen/Profiles/get7dqs1.default-release/chrome/modules": zen/modules
+    ~/.wezterm: wezterm
+    ~/Library/Application Support/lazysql/config.toml: lazysql/config.toml
+    ~/Library/Application Support/org.christo-auer.eilmeldung/config.toml: eilmeldung/config.toml
+    ~/Library/Application Support/tenere: tenere
+    ~/Library/Application Support/zen/Profiles/get7dqs1.default-release/chrome/modules: zen/modules
+    ~/Library/Application Support/zen/Profiles/get7dqs1.default-release/chrome/userChrome.css: zen/userChrome.css
+    ~/Library/Preferences/aerc: aerc
