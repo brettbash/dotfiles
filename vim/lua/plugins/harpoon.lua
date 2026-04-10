@@ -35,11 +35,13 @@ return {
       vim.keymap.set("n", "<leader>h" .. letter, function()
         require("grapple").tag({ name = letter })
         require("beepboop").play_audio("dot")
+        require("beepboop").play_audio("waifu")
       end, { desc = "Harpoon Hook 󰛢" .. letter })
 
       vim.keymap.set("n", "<leader>j" .. letter, function()
         require("grapple").select({ name = letter })
         require("beepboop").play_audio("hitap")
+        require("beepboop").play_audio("scorpion")
       end, { desc = "Harpoon Jump 󰯈 " .. letter })
     end
   end,
