@@ -1,0 +1,43 @@
+ConfigFile = '/Users/brettbash/Library/Application Support/lazysql/config.toml'
+
+[application]
+DefaultPageSize = 300
+DisableSidebar = false
+SidebarOverlay = false
+MaxQueryHistoryPerConnection = 100
+
+[[database]]
+Name = 'Reneovare'
+URL = 'mysql://avclient01:ujtc7B.2NYRiNkN3tr@162.247.136.78/dbname_craft'
+Provider = 'mysql'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'dbname_craft'
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'Herd'
+URL = 'mysql://root@127.0.0.1'
+Provider = 'mysql'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = ''
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'Human Rights First'
+URL = 'mysql://root@127.0.0.1/wp_humanrights1st'
+Provider = 'mysql'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'wp_humanrights1st'
+URLParams = ''
+Commands = []
