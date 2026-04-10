@@ -62,21 +62,35 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
--- If filetype is yaml or json, set the indent to 2 spaces
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "yaml", "json", "markdown", "lua" },
-  group = force_filetype,
-  callback = function()
-    vim.opt.shiftwidth = 2
-    vim.opt.tabstop = 2
-    vim.opt.softtabstop = 2
-  end,
-})
-
 -- BufRead and set a fold for every indentation level
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = augroup("set_folds"),
   callback = function()
     vim.opt.foldmethod = "manual"
+  end,
+})
+
+-- Re-detect indentation for all buffers after session restore
+vim.api.nvim_create_autocmd("SessionLoadPost", {
+  group = augroup("session_indent_fix"),
+  callback = function()
+    vim.schedule(function()
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buflisted then
+          vim.api.nvim_buf_call(buf, function()
+            vim.cmd("silent! GuessIndent silent")
+          end)
+        end
+      end
+    end)
+  end,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client then
+      client.server_capabilities.documentHighlightProvider = false
+    end
   end,
 })
