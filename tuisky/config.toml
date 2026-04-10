@@ -1,0 +1,11 @@
+num_columns = 1
+
+[keybindings.global]
+# Ctrl-c = "Quit"
+
+[keybindings.column]
+# Ctrl-n = "NextItem"
+# Ctrl-p = "PrevItem"
+
+[watcher.intervals]
+# feed = 20
