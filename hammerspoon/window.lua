@@ -2,11 +2,26 @@
 
 hs.grid.setMargins(hs.geometry.size(0, 0))
 hs.grid.setGrid("8x4")
+hs.window.animationDuration = 0
 
 local function setWindowGrid(key, gridSettings, Modifier)
 	hs.hotkey.bind(Modifier or Bind, key, function()
-		local win = hs.window.focusedWindow()
-		hs.grid.set(win, gridSettings)
+		local window = hs.window.focusedWindow()
+		local app = window:application()
+		local ax_app = hs.axuielement.applicationElement(app)
+
+		-- original settings
+		local was_enhanced = ax_app.AXEnhancedUserInterface
+		local original_animation_duration = hs.window.animationDuration
+
+		-- set & run action
+		ax_app.AXEnhancedUserInterface = false
+		hs.window.animationDuration = 0
+		hs.grid.set(window, gridSettings)
+
+		-- restore original settings
+		hs.window.animationDuration = original_animation_duration
+		ax_app.AXEnhancedUserInterface = was_enhanced
 	end)
 end
 
