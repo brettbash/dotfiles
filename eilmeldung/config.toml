@@ -1,4 +1,6 @@
 startup_commands = ["sync", "focus articles" ]
+sync_every_minutes = 10
+after_sync_commands = [ "query lastsync", "collapse all", "expandcategories unread", "refresh" ]
 
 # Layout
 feed_list_focused_width = "33%"
@@ -12,7 +14,7 @@ show_top_bar = false
 
 # Icons
 offline_icon = ""
-unread_icon = ""
+unread_icon = ""
 read_icon = ""
 marked_icon = "⛧"
 unmarked_icon = " "
@@ -29,21 +31,36 @@ scrollbar_track_symbol = ":"
 scrollbar_thumb_symbol = "│"
 
 # Labels
-all_label = "󱀂 All {unread_count}"
+all_label = "󱀂  全て {unread_count}"
 feed_label = " {label} {unread_count}"
 category_label = "󰉋 {label} {unread_count}"
 categories_label = "󰉓 Categories {unread_count}"
 tags_label = "󰓻 Tags {unread_count}"
 tag_label = "󰓹 {label} {unread_count}"
-query_label = " {label}"
+query_label = "{label}"
+
+# Feed List
+feed_list = [
+  'query: "󰢚 Today" today unread',
+  'query: "⛧ Marked" today marked',
+  "feeds",
+  "* categories",
+  "tags",
+]
 
 # Articles
 article_table = "{read},{marked},{tag_icons},{age},{title},{feed}"
 
 # Theme
+[theme.color_palette]
+# info = "#251c2e"
+accent_secondary = "#ff00ff"
+
 [theme.style_set]
 border_focused = { fg = "accent_tertiary" }
 selected = { bg = "highlight", fg = "background", mods = ["italic", "bold"] }
+category = { fg = "accent_tertiary" }
+header = { fg = "accent_secondary" }
 
 unread = { mods = [] }
 
