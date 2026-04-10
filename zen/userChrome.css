@@ -17,3 +17,23 @@
   --zen-main-browser-background: rgba(0, 0, 0, 0) !important;
   --zen-big-shadow: transparent !important;
 }
+
+/* === ZenLeap Styles === */
+/*
+ * ZenLeap - Tab Navigation Styles
+ *
+ * All ZenLeap styles are now injected at runtime by zenleap.uc.js via
+ * injectStyles().  This allows the JS to apply dynamic theme colors
+ * (--zl-* custom properties) and keeps styling in a single canonical
+ * source, eliminating drift between static CSS and runtime CSS.
+ *
+ * This file is intentionally empty.  The installer still appends it to
+ * userChrome.css for backwards compatibility, but no rules are needed
+ * here — the runtime #zenleap-styles element handles everything.
+ *
+ * If you previously customized ZenLeap colors via --zenleap-* CSS
+ * variables in this file, use the built-in Settings panel instead
+ * (Ctrl+Space → :settings).
+ */
+
+/* === End ZenLeap Styles === */
