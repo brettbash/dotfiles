@@ -51,7 +51,7 @@ return {
   keys = {
     {
       "<leader>pp",
-      "<cmd>PowerModeToggle<cr><cmd>lua require('beepboop').play_audio('knuckle')<cr><cmd>lua require('beepboop').play_audio('starfox')<cr>",
+      "<cmd>PowerModeToggle<cr><cmd>lua require('beepboop').play_audio('knuckle')<cr>",
       desc = "Power Mode Toggle ⚡",
     },
   },
