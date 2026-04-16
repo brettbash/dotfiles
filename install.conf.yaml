@@ -10,6 +10,7 @@
     ~/.composer/composer.json: composer/composer.json
     ~/.config/aerc: aerc
     ~/.config/btop/btop.conf: btop/btop.conf
+    ~/.config/crush/crush.json: crush/crush.json
     ~/.config/btop/themes: btop/themes
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/gh-dash/config.yml: git/dash/config.yml
