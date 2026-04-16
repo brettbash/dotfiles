@@ -1,0 +1,14 @@
+# Build artifacts
+*.so
+*.dylib
+
+# Editor
+.netrwhist
+tags
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Session
+Session.vim

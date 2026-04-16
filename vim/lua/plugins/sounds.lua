@@ -2,7 +2,7 @@ return {
   "EggbertFluffle/beepboop.nvim",
   opts = {
     audio_player = "afplay",
-    max_sounds = 4,
+    max_sounds = 6,
     volume = 60,
     sound_map = {
       { trigger_name = "patdown", sound = "Pat Down.wav" },
@@ -13,8 +13,11 @@ return {
       { trigger_name = "hitap", sound = "Hi Tap.wav" },
       { trigger_name = "dot", sound = "Dot.wav" },
       { trigger_name = "toasty", sound = "Toasty.mp3" },
-      { trigger_name = "scorpion", sound = "GetOverHere.mp3" },
-      { trigger_name = "waifu", sound = "anime-girl.mp3" },
+      { trigger_name = "scorpion", sound = "GetOverHere.mp3", volume = 40 },
+      { trigger_name = "perfect", sound = "perfect.mp3", volume = 40 },
+      { trigger_name = "outstanding", sound = "outstanding.mp3" },
+      { trigger_name = "excellent", sound = "excellent.mp3", volume = 40 },
+      { trigger_name = "waifu", sound = "anime-girl.mp3", volume = 40 },
       { trigger_name = "beeps", sound = "Beeps.mp3" },
       { trigger_name = "starfox", sound = "where-did-you-learn-to-fly.mp3" },
 

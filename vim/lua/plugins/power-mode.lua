@@ -1,5 +1,6 @@
 return {
-  "axsaucedo/neovim-power-mode",
+  dir = vim.fn.expand("~/.dotfiles/vim/plugins/power-mode"),
+  name = "power-mode",
   config = function()
     require("power-mode").setup({
       auto_enable = false,
@@ -20,10 +21,10 @@ return {
       combo = {
         enabled = true, -- Show combo counter
         position = "top-right", -- "top-right"|"top-left"|"bottom-right"|"bottom-left"
-        width = 20, -- Window width
+        width = 21, -- Window width
         height = 6, -- Window height
         timeout = 3000, -- ms before combo resets
-        thresholds = { 10, 25, 50, 100, 200 }, -- Level escalation thresholds
+        thresholds = { 10, 25, 50, 100, 150 }, -- Level escalation thresholds
         shake = true, -- Shake combo window on keystroke
         shake_intensity = nil, -- Override: { min, max } (nil = auto)
         exclamations = { -- Random phrases at milestones
@@ -37,12 +38,17 @@ return {
         },
         exclamation_interval = 10, -- Show phrase every N keystrokes
         exclamation_duration = 1500, -- ms to display phrase
-        level_colors = { -- Colors per level: { gui_fg, ctermfg }
-          [0] = { "#97e736", default }, -- Green
-          [1] = { "#fede5d", 14 }, -- Cyan
-          [2] = { "#ff7edb", 199 }, -- Pink
-          [3] = { "#ff00ff", 129 }, -- Purple
-          [4] = { "#fe4450", 196 }, -- Red
+        level_colors = { -- Colors per level: { gui_fg, ctermfg, gui_bg, ctermbg }
+          [0] = { "#97e736", 46, default, default }, -- Green
+          [1] = { "#fede5d", 14, default, default }, -- Cyan
+          [2] = { "#ff7edb", 199, default, default }, -- Pink
+          [3] = { "#ff00ff", 129, default, default }, -- Purple
+          [4] = { "#fe4450", 196, default, default }, -- Red
+        },
+        level_hooks = {
+          [2] = "lua require('beepboop').play_audio('excellent')",
+          [3] = "lua require('beepboop').play_audio('toasty')",
+          [4] = "lua require('beepboop').play_audio('outstanding')",
         },
       },
     })
