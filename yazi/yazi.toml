@@ -19,12 +19,12 @@ open_title  = "で開く:"
 
 [opener]
 xld = [
-    { run = 'xld "$@"', desc = "XLD" },
+    { run = 'open -a XLD "$0"', desc = "XLD", for = "macos" },
 ]
 
 [open]
 prepend_rules = [
-	{ name = "*.cue", use = [ "open", "xld", "edit" ] },
+	{ url = "*.cue", use = [ "xld", "edit" ] },
 ]
 
 [plugin]
