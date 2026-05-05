@@ -48,7 +48,8 @@ local defaults = {
     width = 20,
     height = 7,
     timeout = 3000,
-    thresholds = { 10, 25, 50, 100, 250 },
+    combo_box_disappear_seconds = 2,
+    thresholds = { 10, 25, 50, 100, 200 },
     shake = true,
     shake_intensity = nil,
     exclamations = {
@@ -116,6 +117,7 @@ local function read_vim_globals()
     { "g:power_mode_combo_enabled", { "combo", "enabled" } },
     { "g:power_mode_combo_position", { "combo", "position" } },
     { "g:power_mode_combo_timeout", { "combo", "timeout" } },
+    { "g:power_mode_combo_box_disappear_seconds", { "combo", "combo_box_disappear_seconds" } },
     { "g:power_mode_shake_mode", { "shake", "mode" } },
     { "g:power_mode_shake_interval", { "shake", "interval" } },
     { "g:power_mode_shake_restore_delay", { "shake", "restore_delay" } },
