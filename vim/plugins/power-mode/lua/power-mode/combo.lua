@@ -9,9 +9,15 @@ local state = {
   current_streak = 0,
   level = 0,
   max_streak = 0,
+  max_wpm = 0,
   last_keystroke_time = 0,
   timeout_remaining = 0,
 }
+
+-- Keystroke timestamps for WPM calculation (last 10 kept)
+local keystroke_times = {}
+local WPM_SAMPLE = 5          -- keystrokes per WPM sample (1 word)
+local WPM_MIN_MS = 100        -- ~600 WPM ceiling, prevents divide-by-zero only
 
 -- Callback fired when combo resets (timeout or explicit)
 local on_reset_cb = nil
@@ -26,6 +32,32 @@ local base_row = 1
 local base_col = 0
 local exclamation = ""
 local exclamation_timer = nil
+
+local function calculate_wpm()
+  local count = #keystroke_times
+  if count < WPM_SAMPLE then
+    return 0
+  end
+
+  -- Cap array so we only keep the last 10 timestamps
+  while #keystroke_times > 10 do
+    table.remove(keystroke_times, 1)
+    count = count - 1
+  end
+
+  -- Measure time across the last WPM_SAMPLE keystrokes (1 word)
+  local start_idx = count - WPM_SAMPLE + 1
+  local elapsed_ms = keystroke_times[count] - keystroke_times[start_idx]
+
+  -- Clamp to avoid division-by-zero and startup spikes
+  if elapsed_ms < WPM_MIN_MS then
+    elapsed_ms = WPM_MIN_MS
+  end
+
+  -- WPM = (keystrokes / 5) / (minutes)
+  -- With exactly 5 keystrokes (1 word): WPM = 1 / (elapsed_min)
+  return math.floor((WPM_SAMPLE / 5) / (elapsed_ms / 60000))
+end
 
 local function compute_level(streak)
   local cfg = config.get()
@@ -142,6 +174,13 @@ function M.increment()
     state.max_streak = state.current_streak
   end
 
+  -- Record keystroke for WPM calculation
+  table.insert(keystroke_times, vim.loop.now())
+  local current_wpm = calculate_wpm()
+  if current_wpm > state.max_wpm then
+    state.max_wpm = current_wpm
+  end
+
   local prev_level = state.level
   state.level = compute_level(state.current_streak)
   state.timeout_remaining = cfg.combo.timeout
@@ -235,6 +274,7 @@ function M.reset()
   state.level = 0
   state.timeout_remaining = 0
   exclamation = ""
+  keystroke_times = {}
 
   -- Reset combo window highlight back to default level 0
   if win and vim.api.nvim_win_is_valid(win) then
@@ -283,12 +323,20 @@ function M.render()
   bar_ratio = utils.clamp(bar_ratio, 0, 1)
   local bar = render_bar(bar_ratio, w - 4)
 
+  local max_str = "MAX: " .. tostring(state.max_streak)
+  local wpm_str = "WPM: " .. tostring(state.max_wpm)
+  local pad = w - 2 - #max_str - #wpm_str - 2
+  if pad < 1 then
+    pad = 1
+  end
+  local stats_line = "  " .. max_str .. string.rep(" ", pad) .. wpm_str
+
   local lines = {
     center_text("╔═ COMBO コンボ 󰯈  ═╗", w),
     center_text("     ║    " .. num_str .. "    ║", w),
     center_text("╚═══════  ⛧  ═══════╝", w),
     "  " .. bar,
-    "  MAX: " .. tostring(state.max_streak),
+    stats_line,
     "",
     "",
   }
@@ -350,8 +398,10 @@ function M.cleanup()
   state.current_streak = 0
   state.level = 0
   state.max_streak = 0
+  state.max_wpm = 0
   state.timeout_remaining = 0
   exclamation = ""
+  keystroke_times = {}
 end
 
 return M
