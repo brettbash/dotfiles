@@ -14,7 +14,7 @@ return {
     { "<leader>h", "", desc = "Harpoon Hook 󰛢" },
     {
       "<leader>N",
-      "<cmd>Grapple toggle_tags<cr><cmd>lua require('beepboop').play_audio('klink')<cr>",
+      "<cmd>Grapple toggle_tags<cr><cmd>lua require('beepboop').play('klink')<cr>",
       desc = "Harpoon",
     },
   },
@@ -34,14 +34,14 @@ return {
 
       vim.keymap.set("n", "<leader>h" .. letter, function()
         require("grapple").tag({ name = letter })
-        require("beepboop").play_audio("dot")
-        require("beepboop").play_audio("waifu")
+        require("beepboop").play("dot")
+        require("beepboop").play("waifu")
       end, { desc = "Harpoon Hook 󰛢" .. letter })
 
       vim.keymap.set("n", "<leader>j" .. letter, function()
         require("grapple").select({ name = letter })
-        require("beepboop").play_audio("hitap")
-        require("beepboop").play_audio("scorpion")
+        require("beepboop").play("hitap")
+        require("beepboop").play("scorpion")
       end, { desc = "Harpoon Jump 󰯈 " .. letter })
     end
   end,

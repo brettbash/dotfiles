@@ -6,14 +6,14 @@ vim.keymap.set({ "n", "v" }, "<F4>", "5w", { desc = "Word Forward Fast" })
 -- vim.keymap.set(
 --   { "n", "v" },
 --   "<tab>",
---   "<cmd>lua require('fzf-lua').buffers()<cr><cmd>lua require('beepboop').play_audio('klink')<cr>",
+--   "<cmd>lua require('fzf-lua').buffers()<cr><cmd>lua require('beepboop').play('klink')<cr>",
 --   { desc = "Browse Buffers" }
 -- )
 
 vim.keymap.set(
   { "n", "v" },
   "<leader><leader>",
-  "<cmd>lua require('fzf-lua-enchanted-files').files()<cr><cmd>lua require('beepboop').play_audio('klink')<cr>",
+  "<cmd>lua require('fzf-lua-enchanted-files').files()<cr><cmd>lua require('beepboop').play('klink')<cr>",
   { desc = "Browse Files" }
 )
 
@@ -29,13 +29,13 @@ vim.keymap.set({ "n", "v" }, "<leader>bo", "<cmd>BufferLinePick<cr>", { desc = "
 -- vim.keymap.set(
 --   { "n", "v" },
 --   "<leader>bo",
---   "<cmd>lua require('beepboop').play_audio('knuckle')<cr><cmd>BufferLinePick<cr>",
+--   "<cmd>lua require('beepboop').play('knuckle')<cr><cmd>BufferLinePick<cr>",
 --   { desc = "Pick Buffer" }
 -- )
 -- vim.keymap.set(
 --   { "n", "v" },
 --   "<leader>bc",
---   "<cmd>lua require('beepboop').play_audio('hollow')<cr><cmd>BufferLinePickClose<cr>",
+--   "<cmd>lua require('beepboop').play('hollow')<cr><cmd>BufferLinePickClose<cr>",
 --   { desc = "Pick Buffer to Close" }
 -- )
 

@@ -8,22 +8,22 @@ return {
   keys = {
     {
       "<leader>P",
-      "<cmd>lua require('beepboop').play_audio('patdown')<cr><cmd>lua require('portal.builtin').grapple.tunnel()<cr>",
+      "<cmd>lua require('beepboop').play('patdown')<cr><cmd>lua require('portal.builtin').grapple.tunnel()<cr>",
       desc = "Harpoon Portal",
     },
     {
       "<leader>J",
-      "<cmd>lua require('beepboop').play_audio('patdown')<cr><cmd>lua require('portal.builtin').jumplist.tunnel()<cr>",
+      "<cmd>lua require('beepboop').play('patdown')<cr><cmd>lua require('portal.builtin').jumplist.tunnel()<cr>",
       desc = "Jumplist Portal",
     },
     {
       "<leader>C",
-      "<cmd>lua require('beepboop').play_audio('patdown')<cr><cmd>lua require('portal.builtin').changelist.tunnel()<cr>",
+      "<cmd>lua require('beepboop').play('patdown')<cr><cmd>lua require('portal.builtin').changelist.tunnel()<cr>",
       desc = "Changelist Portal",
     },
     {
       "<leader>F",
-      "<cmd>lua require('beepboop').play_audio('patdown')<cr><cmd>lua require('portal.builtin').quickfix.tunnel()<cr>",
+      "<cmd>lua require('beepboop').play('patdown')<cr><cmd>lua require('portal.builtin').quickfix.tunnel()<cr>",
       desc = "Quickfix Portal",
     },
   },

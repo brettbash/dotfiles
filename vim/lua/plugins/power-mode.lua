@@ -46,9 +46,9 @@ return {
           [4] = { "#fe4450", 196, default, default }, -- Red
         },
         level_hooks = {
-          [2] = "lua require('beepboop').play_audio('excellent')",
-          [3] = "lua require('beepboop').play_audio('toasty')",
-          [4] = "lua require('beepboop').play_audio('outstanding')",
+          [2] = "lua require('beepboop').play('excellent')",
+          [3] = "lua require('beepboop').play('toasty')",
+          [4] = "lua require('beepboop').play('outstanding')",
         },
       },
     })
@@ -57,7 +57,7 @@ return {
   keys = {
     {
       "<leader>pp",
-      "<cmd>PowerModeToggle<cr><cmd>lua require('beepboop').play_audio('knuckle')<cr>",
+      "<cmd>PowerModeToggle<cr><cmd>lua require('beepboop').play('knuckle')<cr>",
       desc = "Power Mode Toggle ⚡",
     },
   },

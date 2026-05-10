@@ -170,13 +170,13 @@ return {
     vim.keymap.set(
       { "n", "v" },
       "<leader>bo",
-      "<cmd>BufferLinePick<cr><cmd>lua require('beepboop').play_audio('hollow')<cr>",
+      "<cmd>BufferLinePick<cr><cmd>lua require('beepboop').play('hollow')<cr>",
       { desc = "Pick Buffer" }
     )
     vim.keymap.set(
       { "n", "v" },
       "<leader>bc",
-      "<cmd>lua require('beepboop').play_audio('dot')<cr><cmd>BufferLinePickClose<cr>",
+      "<cmd>lua require('beepboop').play('dot')<cr><cmd>BufferLinePickClose<cr>",
       { desc = "Pick Buffer to Close" }
     )
 
