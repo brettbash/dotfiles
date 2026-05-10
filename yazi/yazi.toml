@@ -19,7 +19,7 @@ open_title  = "で開く:"
 
 [opener]
 xld = [
-    { run = 'open -a XLD "$0"', desc = "XLD", for = "macos" },
+    { run = 'open -a XLD "$@"', desc = "XLD", for = "macos" },
 ]
 
 [open]
