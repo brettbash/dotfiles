@@ -11,5 +11,14 @@ return {
       },
     })
     table.insert(opts.sections.lualine_x, 1, { "grapple", color = { fg = "#e5fe5d" } })
+    table.insert(opts.sections.lualine_x, 1, {
+      function()
+        if require("power-mode").is_enabled() then
+          return "⚡"
+        end
+        return ""
+      end,
+      color = { fg = "#FFD700" },
+    })
   end,
 }
