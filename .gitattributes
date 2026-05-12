@@ -1,3 +1,2 @@
-aerc/accounts.conf filter=git-crypt diff=git-crypt
 crush/** filter=git-crypt diff=git-crypt
 fish/secrets.fish filter=git-crypt diff=git-crypt
