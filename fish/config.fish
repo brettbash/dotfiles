@@ -76,11 +76,10 @@ set -gx PATH node_modules/.bin $PATH
 # Herd
 # fish_add_path -U $HOME/Library/Application\ Support/Herd/bin/
 
-# set -gx ANTHROPIC_AUTH_TOKEN ollama
-set -gx ANTHROPIC_API_KEY ***REMOVED***
-# set -gx ANTHROPIC_BASE_URL "http://localhost:11434"
-set -gx OPENAI_API_KEY ***REMOVED***
-set -gx KIMI_API_KEY ***REMOVED***
+# Load API secrets from encrypted file
+if test -f ~/.config/fish/secrets.fish
+    source ~/.config/fish/secrets.fish
+end
 
 # π ---------------------------------------------------------//
 # // :: THEME
