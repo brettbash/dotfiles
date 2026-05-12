@@ -13,6 +13,7 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias c clear
 alias m aerc
+alias news eilmeldung
 alias neomail neomutt
 alias gif ascii-image-converter
 alias art "php artisan"
@@ -22,6 +23,7 @@ command -qv vim && alias vim nvim
 alias v vim
 alias l hledger
 alias z zoxide
+alias p "~/puffin -v3"
 
 alias twt taskwarrior-tui
 alias tw task
@@ -73,6 +75,12 @@ fish_add_path $HOME/.tmux/plugins/t-smart-tmux-session-manager/bin
 set -gx PATH node_modules/.bin $PATH
 # Herd
 # fish_add_path -U $HOME/Library/Application\ Support/Herd/bin/
+
+# set -gx ANTHROPIC_AUTH_TOKEN ollama
+set -gx ANTHROPIC_API_KEY ***REMOVED***
+# set -gx ANTHROPIC_BASE_URL "http://localhost:11434"
+set -gx OPENAI_API_KEY ***REMOVED***
+set -gx KIMI_API_KEY ***REMOVED***
 
 # π ---------------------------------------------------------//
 # // :: THEME
