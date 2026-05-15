@@ -1,0 +1,29 @@
+# cyberblade
+
+# general
+# background = "#000000"
+border_fg = "#03edf9"
+text_fg = "#a8c7fa"
+dimmed_text_fg = "#6971a2"
+
+# input
+input_text_fg = "#ff7edb"
+result_count_fg = "#ff00ff"
+
+# results
+result_name_fg = "#a8c7fa"
+result_line_number_fg = "#e5fe5d"
+result_value_fg = "#55beff"
+selection_bg = "#fede5d"
+selection_fg = "#000000"
+match_fg = "#ff00ff"
+
+# preview
+preview_title_fg = "#03edf9"
+
+# modes
+channel_mode_fg = "#000000"
+channel_mode_bg = "#ff7edb"
+remote_control_mode_fg = "#000000"
+remote_control_mode_bg = "#72f1b8"
+send_to_channel_mode_fg = "#03edf9"
