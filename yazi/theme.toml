@@ -10,8 +10,8 @@ hovered         = { italic = true, bold = true, bg = "#fede5d", fg = "#191726" }
 preview_hovered = { italic = true }
 
 # Find
-find_keyword  = { fg = "#ff7edb", bold = true, italic = true, underline = true }
-find_position = { fg = "#ff00ff", bg = "reset", bold = true, italic = true }
+find_keyword  = { fg = "#00ffff", bold = true, italic = true, underline = true }
+find_position = { fg = "#ff00ff", bg = "#fede5d", bold = true, italic = true }
 
 # Marker
 marker_copied   = { fg = "#7ee787", bg = "#7ee787" }
@@ -53,10 +53,10 @@ unset_alt  = { fg = "#55beff", bg = "#463465" }
 # : }}}
 
 [indicator]
-parent  = { bg = "#fede5d", fg = "#000000", bold = true, italic = true }
-current = { bg = "#fede5d", fg = "#000000", bold = true, italic = true }
+parent  = { fg = "#000000", bg = "#fede5d", bold = true, italic = true }
+current = { fg = "#000000", bg = "#fede5d", bold = true, italic = true }
 preview = { underline = true }
-padding = { open = "▊", close = "▊" }
+padding = { open = "", close = "▊" }
 
 # : Status bar {{{
 
@@ -156,6 +156,9 @@ title_error = { fg = "#fede5d" }
 [filetype]
 
 rules = [
+    # Directories
+    { mime = "folder/*", fg = "#ff7edb" },
+
     # Images
     { mime = "image/*", fg = "#fede5d" },
 
@@ -179,8 +182,7 @@ rules = [
     { mime = "application/vnd.*", fg = "#7ee787" },
 
     # Fallback
-    { name = "*", fg = "#abf3fd" },
-    { name = "*/", fg = "#00ffff" }
+    { mime = "*", fg = "#abf3fd" },
 ]
 
 # : }}}
@@ -191,6 +193,7 @@ rules = [
 globs = []
 dirs  = [
     { name = ".config", text = "" },
+    { name = ".dotfiles", text = "" },
     { name = ".git", text = "" },
     { name = "Desktop", text = "" },
     { name = "Dev", text = "" },
@@ -824,7 +827,7 @@ conds = [
     { if = "dummy", text = "" },
 
     # Fallback
-    { if = "dir", text = "󰉋" },
+    { if = "dir", text = "󰉋", fg = "#ff7edb" },
     { if = "exec", text = "" },
     { if = "!dir", text = "󰈔" },
 ]

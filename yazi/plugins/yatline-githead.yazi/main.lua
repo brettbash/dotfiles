@@ -3,7 +3,6 @@
 local save = ya.sync(function(this, cwd, output)
 	if cx.active.current.cwd == Url(cwd) then
 		this.output = output
-		ui.render()
 	end
 end)
 
@@ -221,8 +220,6 @@ return {
 
 			return ui.Line({ prefix, branch, behind, ahead, stashes, state, staged, unstaged, untracked })
 		end
-
-		Header:children_add(Header.githead, 2000, Header.LEFT)
 
 		local callback = function()
 			local cwd = cx.active.current.cwd
