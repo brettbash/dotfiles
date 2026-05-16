@@ -57,7 +57,7 @@ return {
   keys = {
     {
       "<leader>pp",
-      "<cmd>PowerModeToggle<cr><cmd>lua require('beepboop').play('knuckle')<cr>",
+      "<cmd>PowerModeToggle<cr><cmd>lua require('beepboop').play('hitap')<cr>",
       desc = "Power Mode Toggle ⚡",
     },
   },
