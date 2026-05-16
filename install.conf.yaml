@@ -22,6 +22,7 @@
     ~/.config/mc/ini: mc/ini
     ~/.config/nvim: vim
     ~/.config/stig: stig
+    ~/.config/television: television
     ~/.config/timewarrior: timewarrior
     ~/.config/tuisky: tuisky
     ~/.config/vifm: vifm
@@ -38,7 +39,6 @@
     ~/.qmk/keyboards/planck/keymaps/acidwraith: qmk/planck
     ~/.taskrc: taskwarrior/taskrc/
     ~/.tmux.conf: tmux/tmux.conf
-    ~/.vit: vit
     ~/.wezterm: wezterm
     ~/Library/Application Support/lazysql/config.toml: lazysql/config.toml
     ~/Library/Application Support/org.christo-auer.eilmeldung/config.toml: eilmeldung/config.toml
