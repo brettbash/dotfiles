@@ -23,7 +23,7 @@ return {
         { trigger_name = "starfox", sound = "where-did-you-learn-to-fly.mp3" },
 
         { auto_command = "VimEnter", sound = "Harpsichord.mp3" },
-        { auto_command = "VimEnter", sound = "FanFare.mp3" },
+        { auto_command = "VimEnter", sound = "FanFare.mp3", volume = 25 },
         { auto_command = "BufNewFile", sound = "Dot.wav" },
         { auto_command = "BufWritePost", sound = "Tink.wav" },
         { auto_command = "TextYankPost", sound = "Bloop.wav" },
