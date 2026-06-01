@@ -109,6 +109,10 @@ enum planck_keycodes {
     MCRL_OPN,
     MCRL_CLS,
 
+    // Move line ( avoids TMUX Harpoon M-j/M-k conflict )
+    M_LINE_DOWN,
+    M_LINE_UP,
+
     // Emoji
     KISS
 };
@@ -300,7 +304,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_DOT_VIM] = LAYOUT_planck_grid(
     XXXXXXX, XXXXXXX,   BUFF_SORT_EXT, BUFF_SORT_TABS, BUFF_SORT_DIR, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX,   XXXXXXX,
-    XXXXXXX, BUFF_PREV, LALT(KC_J),    LALT(KC_K),     BUFF_NEXT,     XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX,   XXXXXXX,
+    XXXXXXX, BUFF_PREV, M_LINE_DOWN,   M_LINE_UP,      BUFF_NEXT,     XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX,   XXXXXXX,
     XXXXXXX, TASK_ADD,  BUFF_CLOSE,    BUFF_PICK,      XXXXXXX,       XXXXXXX, XXXXXXX, TAB_PREV,  TAB_NEXT,   XXXXXXX, TAB_NEW,   TAB_CLOSE,
     XXXXXXX, XXXXXXX,   XXXXXXX,       XXXXXXX,        XXXXXXX,       DELETE,  RENAME,  DUPLICATE, TAB_RENAME, XXXXXXX, TAB_FIRST, TAB_LAST
 ),
@@ -937,6 +941,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_EQL) SS_UP(X_LCTRL) SS_UP(X_LALT) SS_UP(X_EQL));
                 PLAY_SONG(mission_close);
+            }
+            return false;
+            break;
+
+        // Move line (avoids TMUX Harpoon M-j/M-k conflict)
+        case M_LINE_DOWN:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_SPC) "m" "j");
+            }
+            return false;
+            break;
+
+        case M_LINE_UP:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_SPC) "m" "k");
             }
             return false;
             break;

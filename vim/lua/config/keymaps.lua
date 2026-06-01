@@ -3,35 +3,17 @@ vim.keymap.set({ "n", "v" }, "<F2>", "5j", { desc = "Down Fast" })
 vim.keymap.set({ "n", "v" }, "<F3>", "5k", { desc = "Up Fast" })
 vim.keymap.set({ "n", "v" }, "<F4>", "5w", { desc = "Word Forward Fast" })
 
--- vim.keymap.set(
---   { "n", "v" },
---   "<tab>",
---   "<cmd>lua require('fzf-lua').buffers()<cr><cmd>lua require('beepboop').play('klink')<cr>",
---   { desc = "Browse Buffers" }
--- )
-
 vim.keymap.set(
   { "n", "v" },
   "<leader><leader>",
-  "<cmd>lua require('fzf-lua-enchanted-files').files()<cr><cmd>lua require('beepboop').play('klink')<cr>",
+  function()
+    Snacks.picker.files()
+    require("beepboop").play("klink")
+  end,
   { desc = "Browse Files" }
 )
 
--- vim.keymap.set(
---   { "n", "v" },
---   "<leader><leader>",
---   "<cmd>lua require('fzf-lua-enchanted-files').files()<cr>",
---   { desc = "Browse Files" }
--- )
-
 vim.keymap.set({ "n", "v" }, "<leader>bo", "<cmd>BufferLinePick<cr>", { desc = "Pick Buffer" })
-
--- vim.keymap.set(
---   { "n", "v" },
---   "<leader>bo",
---   "<cmd>lua require('beepboop').play('knuckle')<cr><cmd>BufferLinePick<cr>",
---   { desc = "Pick Buffer" }
--- )
 -- vim.keymap.set(
 --   { "n", "v" },
 --   "<leader>bc",
@@ -251,4 +233,15 @@ end, { desc = "[P]Fold the heading cursor currently on" })
 
 -------------------------------------------------------------------------------
 --                         End Folding section
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+--                         Move Line (rebind to avoid TMUX Harpoon conflict)
+-------------------------------------------------------------------------------
+-- <A-j> / <A-k> are captured by TMUX Harpoon for session switching.
+-- Rebound to <leader>m{j,k} so they can be sent cleanly from QMK.
+vim.keymap.set("n", "<leader>mj", "<cmd>m .+1<cr>==", { desc = "Move line down" })
+vim.keymap.set("n", "<leader>mk", "<cmd>m .-2<cr>==", { desc = "Move line up" })
+vim.keymap.set("v", "<leader>mj", ":m '>+1<cr>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<leader>mk", ":m '<-2<cr>gv=gv", { desc = "Move selection up" })
 -------------------------------------------------------------------------------
