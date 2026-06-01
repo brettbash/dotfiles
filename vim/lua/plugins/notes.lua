@@ -1,7 +1,10 @@
 return {
   "nvim-telekasten/telekasten.nvim",
   lazy = false,
-  dependencies = { "nvim-telescope/telescope.nvim" },
+  dependencies = {
+    "folke/snacks.nvim",
+    "nvim-telescope/telescope.nvim",
+  },
   keys = {
     {
       "<leader>z",
@@ -93,7 +96,7 @@ return {
       template_new_weekly = home .. "/templates/weekly.md",
       image_subdir = "aseets",
       image_link_style = "markdown",
-
+      auto_set_filetype = false,
       plug_into_calendar = true,
       calendar_opts = {
         -- calendar week display mode: 1 .. 'WK01', 2 .. 'WK 1', 3 .. 'KW01', 4 .. 'KW 1', 5 .. '1'
@@ -107,6 +110,17 @@ return {
       rename_update_links = true,
       media_previewer = "telescope-media-files",
       journal_auto_open = true,
+    })
+
+    -- Fix markview nil parser crash: ensure note buffers have markdown filetype
+    vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+      pattern = "*.md",
+      callback = function(args)
+        local bufname = vim.api.nvim_buf_get_name(args.buf)
+        if vim.startswith(bufname, home) then
+          vim.bo[args.buf].filetype = "markdown"
+        end
+      end,
     })
   end,
 }

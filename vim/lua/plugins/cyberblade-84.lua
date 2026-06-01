@@ -165,7 +165,20 @@ return {
         hl.FzfLuaSearch = { fg = yellow, bg = blue2 }
 
         -- Snacks Picker
-        hl.SnacksPickerTitle = { fg = cyan1, bg = black }
+        hl.SnacksPickerTitle = { fg = magenta, bg = black }
+        hl.SnacksPickerSearch = { fg = pink, bg = black }
+        hl.SnacksPickerLabel = { fg = pink, bg = black }
+        hl.SnacksPickerPrompt = { fg = yellow, bg = black }
+        hl.SnacksPickerInputSearch = { fg = magenta, bg = black }
+        hl.SnacksPickerTotals = { fg = magenta, bg = black }
+
+        hl.SnacksPickerListCursorLine = { fg = blackest, bg = yellow, bold = true, italic = true }
+        hl.SnacksPickerDirectory = { fg = fg_dark, bg = black }
+        hl.SnacksPickerDir = { fg = fg_dark, bg = black }
+        hl.SnacksPickerDimmed = { fg = fg_dark, bg = black }
+        hl.SnacksPickerFile = { fg = fg, bg = black }
+        hl.SnacksPickerMatch = { fg = magenta, bg = black }
+
         hl.SnacksPickerInputTitle = { fg = cyan1, bg = black }
         hl.SnacksPickerInputBorder = { fg = cyan1, bg = black }
 

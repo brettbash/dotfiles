@@ -24,7 +24,7 @@ opt.fillchars = {
   foldclose = "󱓇",
   eob = " ",
 }
-vim.g.lazyvim_picker = "fzf"
+vim.g.lazyvim_picker = "snacks"
 
 -- Make foldtext show the number of lines in the fold
 -- opt.foldtext = "substitute(getline(v:foldstart), '^\\s*', '', '') . ' (' . (v:foldend - v:foldstart + 1) . ' lines)'"
@@ -55,3 +55,33 @@ vim.api.nvim_set_hl(0, "@text.strike", { strikethrough = true })
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
+
+-- Use macOS pbcopy/pbpaste directly (skip OSC 52 to avoid tmux passthrough leaks)
+vim.g.clipboard = {
+  name = "pbcopy",
+  copy = {
+    ["+"] = { "pbcopy" },
+    ["*"] = { "pbcopy" },
+  },
+  paste = {
+    ["+"] = { "pbpaste" },
+    ["*"] = { "pbpaste" },
+  },
+  cache_enabled = true,
+}
+
+-- Prevent "unknown scheme" LSP errors on non-file buffers (dashboard, oil, etc.)
+local _orig_lsp_start = vim.lsp.start
+vim.lsp.start = function(config, opts)
+  opts = opts or {}
+  local bufnr = opts.bufnr or vim.api.nvim_get_current_buf()
+  if vim.bo[bufnr].buftype ~= "" then
+    return nil
+  end
+  local uri = vim.uri_from_bufnr(bufnr)
+  if not uri:match("^file:/") then
+    return nil
+  end
+  return _orig_lsp_start(config, opts)
+end
