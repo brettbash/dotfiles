@@ -3,7 +3,7 @@ return {
   name = "power-mode",
   config = function()
     require("power-mode").setup({
-      auto_enable = false,
+      auto_enable = true,
       particles = { preset = "stars" },
       -- Cyberpunk neon color palette
       -- Each: { gui_fg, gui_bg, ctermfg, ctermbg }
