@@ -1,15 +1,15 @@
+issuesSections:
+  - title: 󱥒  Assigned
+    filters: is:open assignee:@me
+  - title: My Issues
+    filters: is:open author:@me
+  - title: Involved
+    filters: is:open involves:@me -author:@me
 prSections:
   - title: My Pull Requests
     filters: is:open author:@me
   - title: Needs My Review
     filters: is:open review-requested:@me
-  - title: Involved
-    filters: is:open involves:@me -author:@me
-issuesSections:
-  - title: My Issues
-    filters: is:open author:@me
-  - title: Assigned
-    filters: is:open assignee:@me
   - title: Involved
     filters: is:open involves:@me -author:@me
 repo:
@@ -22,7 +22,7 @@ defaults:
   prsLimit: 20
   prApproveComment: LGTM
   issuesLimit: 20
-  view: prs
+  view: issues
   layout:
     prs:
       updatedAt:
@@ -70,7 +70,7 @@ theme:
   colors:
     text:
       primary: "#a8c7fa"
-      secondary: "#6971a2"
+      secondary: "#ff00ff"
       inverted: "#191726"
       faint: "#9fb6e9"
       warning: "#f97e72"
@@ -80,7 +80,7 @@ theme:
     border:
       primary: "#03edf9"
       secondary: "#00ffff"
-      faint: "#000000"
+      faint: "#191726"
     inline:
       icons:
         newcontributor: "077"
