@@ -66,3 +66,41 @@ on = [ "b", "D" ]
 run = "plugin bookmarks delete_all"
 desc = "Delete all bookmarks"
 
+# Restore closed tab
+[[mgr.prepend_keymap]]
+on = [ "<C-t>" ]
+run = "plugin close-and-restore-tab restore"
+desc = "Restore the previously closed tab"
+
+# Copy file contents
+[[mgr.prepend_keymap]]
+on = "<A-y>"
+run = ["plugin copy-file-contents"]
+desc = "Copy contents of file"
+
+# DuckDB
+[[manager.prepend_keymap]]
+on = "H"
+run = "plugin duckdb -1"
+desc = "Scroll one column to the left"
+
+[[manager.prepend_keymap]]
+on = "L"
+run = "plugin duckdb +1"
+desc = "Scroll one column to the right"
+
+[[manager.prepend_keymap]]
+on = ["g", "o"]
+run = "plugin duckdb -open"
+desc = "open with duckdb"
+
+[[manager.prepend_keymap]]
+on = ["g", "u"]
+run = "plugin duckdb -ui"
+desc = "open with duckdb ui"
+
+# Jump (Flash)
+[[mgr.prepend_keymap]]
+on   = "f"
+run  = "plugin jump-to-char"
+desc = "Jump to char"

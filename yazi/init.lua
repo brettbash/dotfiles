@@ -198,4 +198,10 @@ require("allmytoes"):setup({
 	sizes = { "n", "l", "x", "xx", "xxx" },
 })
 
-
+require("recycle-bin"):setup()
+require("close-and-restore-tab"):setup()
+require("copy-file-contents"):setup({
+	append_char = "\n",
+	notification = true,
+})
+require("duckdb"):setup()

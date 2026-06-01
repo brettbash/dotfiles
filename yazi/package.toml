@@ -53,5 +53,40 @@ use = "boydaihungst/mediainfo"
 rev = "49f5ab7"
 hash = "6e3b5e58f985cc2d625e0030dc35b1b2"
 
+[[plugin.deps]]
+use = "walldmtd/blender-preview"
+rev = "5d824cb"
+hash = "cf3f2d8fab12595e6f09a6cca4734bf4"
+
+[[plugin.deps]]
+use = "ruudjhuu/f3d-preview"
+rev = "76d115d"
+hash = "6b2008327d65fe374d99f6b6ff007cba"
+
+[[plugin.deps]]
+use = "uhs-robert/recycle-bin"
+rev = "fa68711"
+hash = "8714306b5cac6359edbacbf545fbd691"
+
+[[plugin.deps]]
+use = "MasouShizuka/close-and-restore-tab"
+rev = "b2153bc"
+hash = "1493e40f8f4f222c9ecb24cf85ccabd2"
+
+[[plugin.deps]]
+use = "AnirudhG07/plugins-yazi:copy-file-contents"
+rev = "71545f4"
+hash = "f8530ee84fee95dbcc26bb1d8d8019c7"
+
+[[plugin.deps]]
+use = "wylie102/duckdb"
+rev = "3f8c863"
+hash = "87b9233a74325e95011670ed20bbd0d4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "598cdb6"
+hash = "7a4b4237223aaa94e589d1c01a23542a"
+
 [flavor]
 deps = []
