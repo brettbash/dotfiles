@@ -10,6 +10,35 @@ return {
     },
   },
   config = function(_, opts)
+    -- Stop snacks.image from sending the XTVERSION probe (\27[>q) at runtime.
+    -- snacks' tmux workaround only fires for `extended-keys on`, not `always`
+    -- (our setting), so it falls through to the raw query; with extended-keys
+    -- active Neovim's TermResponse never fires and Ghostty's DCS reply
+    -- (ESC P >|ghostty <ver> ESC \) leaks in as keystrokes (P=paste, o=insert),
+    -- dumping the clipboard into the buffer on markdown render. Pre-seeding
+    -- _terminal makes detect() return immediately without ever querying, while
+    -- keeping Ghostty image support enabled. See snacks.nvim#2332.
+    --
+    -- detect() also wires the tmux passthrough transform (M.transform) and
+    -- enables pane allow-passthrough; bypassing it breaks image rendering
+    -- (tmux swallows the graphics escapes), so replicate those side effects.
+    do
+      local ok_term, term = pcall(require, "snacks.image.terminal")
+      if ok_term then
+        term._terminal = {
+          terminal = "ghostty",
+          version = "unknown",
+          supported = true,
+        }
+        if vim.env.TMUX then
+          pcall(vim.fn.system, { "tmux", "set", "-p", "allow-passthrough", "all" })
+          term.transform = function(data)
+            return ("\027Ptmux;" .. data:gsub("\027", "\027\027")) .. "\027\\"
+          end
+        end
+      end
+    end
+
     -- Suppress known snacks picker race condition where input.picker is nil
     -- after picker close but a vim.schedule callback still tries to use it.
     -- The error is thrown async inside vim.schedule, so we patch vim.schedule itself.

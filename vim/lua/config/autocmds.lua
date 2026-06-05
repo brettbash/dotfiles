@@ -76,7 +76,12 @@ vim.api.nvim_create_autocmd("SessionLoadPost", {
   callback = function()
     vim.schedule(function()
       for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buflisted then
+        if
+          vim.api.nvim_buf_is_valid(buf)
+          and vim.api.nvim_buf_is_loaded(buf)
+          and vim.bo[buf].buflisted
+          and vim.bo[buf].buftype == ""
+        then
           vim.api.nvim_buf_call(buf, function()
             vim.cmd("silent! GuessIndent silent")
           end)
@@ -97,6 +102,12 @@ vim.api.nvim_create_autocmd({ "WinNew", "WinClosed" }, {
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
+    local buf = args.buf
+    local uri = vim.uri_from_bufnr(buf)
+    -- Skip non-file buffers (dashboard, oil, fugitive, etc.) to prevent "unknown scheme" errors
+    if not uri:match("^file:/") then
+      return
+    end
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client then
       client.server_capabilities.documentHighlightProvider = false
