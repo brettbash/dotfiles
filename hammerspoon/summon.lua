@@ -1,5 +1,5 @@
 local apps = {
-	f2 = "Safari",
+	f2 = "Helium",
 	a = "Ghostty",
 	r = "Zen",
 	s = "Plexamp",
