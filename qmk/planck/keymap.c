@@ -717,7 +717,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case BUFF_PICK:
             if (record->event.pressed) {
-                SEND_STRING(" bo");
+                SEND_STRING(" bj");
             }
             return false;
             break;

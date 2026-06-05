@@ -167,12 +167,13 @@ return {
     vim.keymap.set({ "n", "v" }, "<leader>bn", "<cmd>BufferLineMoveNext<cr>", { desc = "Buffer Move Next" })
     vim.keymap.set({ "n", "v" }, "<leader>bp", "<cmd>BufferLineMovePrev<cr>", { desc = "Buffer Move Prev" })
 
-    vim.keymap.set(
-      { "n", "v" },
-      "<leader>bo",
-      "<cmd>BufferLinePick<cr><cmd>lua require('beepboop').play('hollow')<cr>",
-      { desc = "Pick Buffer" }
-    )
+    vim.keymap.set({ "n", "v" }, "<leader>bj", function()
+      pcall(function()
+        require("beepboop").play("hollow")
+      end)
+      vim.cmd("BufferLinePick")
+    end, { desc = "Pick Buffer" })
+
     vim.keymap.set(
       { "n", "v" },
       "<leader>bc",
@@ -182,7 +183,10 @@ return {
 
     vim.keymap.set({ "n", "v" }, "<leader>bt", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin a Buffer" })
 
-    vim.keymap.set("n", "<leader>bO", function()
+    vim.keymap.set("n", "<leader>bo", function()
+      pcall(function()
+        require("beepboop").play("beeps")
+      end)
       Snacks.bufdelete.other()
     end, { desc = "Delete Other Buffers" })
 
