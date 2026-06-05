@@ -31,7 +31,7 @@ prepend_rules = [
 prepend_preloaders = [
     { mime = "image/vnd.adobe.photoshop", run = "sips-preview" },
     { mime = "{audio,video}/*", run = "mediainfo" },
-    { mime = "image/*", run = "allmytoes" },
+    { mime = "image/*", run = "mediainfo" },
     { url = "*.{blend,blend1}", run = "blender-preview" },
     { url = "*.{csv,tsv,json,parquet,txt,xlsx,db,duckdb}", run = "duckdb" },
     { url = "*.{ai,eps,ait}", run = "mediainfo" },
@@ -40,7 +40,7 @@ prepend_preloaders = [
 prepend_previewers = [
     { mime = "image/vnd.adobe.photoshop", run = "sips-preview" },
     { mime = "{audio,video}/*", run = "mediainfo" },
-    { mime = "image/*", run = "allmytoes" },
+    { mime = "image/*", run = "mediainfo" },
     { mime = "text/markdown", run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark '$1'" },
     { url = "*.{blend,blend1}", run = "blender-preview" },
     { url = "*.{csv,tsv,json,parquet,txt,xlsx}", run = "duckdb", multi = false },

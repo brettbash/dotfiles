@@ -20,6 +20,12 @@ function M:peek(job)
 
 	local cache_img_url_no_skip = ya.file_cache({ file = job.file, skip = 0 })
 
+	-- Bail if image cache isn't ready yet (Yazi will retry)
+	local img_cha = cache_img_url and fs.cha(cache_img_url)
+	if not img_cha or img_cha.len <= 0 then
+		return
+	end
+
 	local no_metadata = job.args.no_metadata
 	local mediainfo_job_skip = job.skip
 	local mediainfo_height = 0
