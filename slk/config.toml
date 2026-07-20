@@ -1,0 +1,8 @@
+[general]
+default_workspace = "whiteboard.is"
+use_slack_sections = true       # use real Slack sidebar sections (default).
+                                # set false to use [sections.*] globs instead.
+
+[appearance]
+theme = "cyberblade"
+timestamp_format = "3:04 PM"

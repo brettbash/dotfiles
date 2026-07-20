@@ -1,0 +1,21 @@
+name = "Cyberblade"
+
+[colors]
+primary      = "#ff00ff"
+accent       = "#03edf9"
+warning      = "#fede5d"
+error        = "#ff7edb"
+background   = "#000000"
+surface      = "#343746"
+surface_dark = "#000000"
+text         = "#a8c7fa"
+text_muted   = "#6971a2"
+border       = "#03edf9"
+
+# Optional: separate sidebar/rail palette so the sidebar can be darker
+# than the message pane (Slack's default look). Falls back to
+# background/text/text_muted/surface_dark when omitted.
+sidebar_background = "#000000"
+sidebar_text       = "#a8c7fa"
+sidebar_text_muted = "#6971a2"
+rail_background    = "#000000"

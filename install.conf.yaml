@@ -21,6 +21,7 @@
     ~/.config/marksman: marksman
     ~/.config/mc/ini: mc/ini
     ~/.config/nvim: vim
+    ~/.config/slk: slk
     ~/.config/stig: stig
     ~/.config/television: television
     ~/.config/timewarrior: timewarrior
