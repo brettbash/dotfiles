@@ -50,7 +50,7 @@ return {
           },
           {
             section = "terminal",
-            cmd = "cmatrix -ba -C cyan",
+            cmd = "cmatrix -K '' -abk -C cyan",
             padding = 1,
           },
         },
