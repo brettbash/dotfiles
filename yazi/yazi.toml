@@ -21,6 +21,10 @@ open_title  = "で開く:"
 xld = [
     { run = 'open -a XLD "$@"', desc = "XLD", for = "macos" },
 ]
+edit = [
+    { run = 'nvim "$@"', desc = "nvim", block = true, for = "unix" },
+    { run = 'nvim "$@"', desc = "nvim", block = true, for = "windows" },
+]
 
 [open]
 prepend_rules = [
