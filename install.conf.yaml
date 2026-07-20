@@ -44,6 +44,4 @@
     ~/Library/Application Support/lazysql/config.toml: lazysql/config.toml
     ~/Library/Application Support/org.christo-auer.eilmeldung/config.toml: eilmeldung/config.toml
     ~/Library/Application Support/tenere: tenere
-    ~/Library/Application Support/zen/Profiles/get7dqs1.default-release/chrome/modules: zen/modules
-    ~/Library/Application Support/zen/Profiles/get7dqs1.default-release/chrome/userChrome.css: zen/userChrome.css
     ~/Library/Preferences/aerc: aerc

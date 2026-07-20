@@ -1,22 +1,22 @@
-@import "modules/Animations(tabs).css";
-@import "modules/Essentials.css";
-@import "modules/General-UI.css";
-@import "modules/horizontal-tabs.css";
-@import "modules/Normal&pinned-tabs.css";
-@import "modules/Pinned-extensions.css";
-@import "modules/Sidebar.css";
-@import "modules/Sound-icon.css";
-@import "modules/tab-groups.css";
-@import "modules/Toolbar.css";
-@import "modules/Topbar-buttons.css";
-@import "modules/URLbar.css";
-@import "modules/Tabstyles.css";
-@import "modules/MediaPlayer.css";
-
-:root {
-  --zen-main-browser-background: rgba(0, 0, 0, 0) !important;
-  --zen-big-shadow: transparent !important;
-}
+/* @import "modules/Animations(tabs).css"; */
+/* @import "modules/Essentials.css"; */
+/* @import "modules/General-UI.css"; */
+/* @import "modules/horizontal-tabs.css"; */
+/* @import "modules/Normal&pinned-tabs.css"; */
+/* @import "modules/Pinned-extensions.css"; */
+/* @import "modules/Sidebar.css"; */
+/* @import "modules/Sound-icon.css"; */
+/* @import "modules/tab-groups.css"; */
+/* @import "modules/Toolbar.css"; */
+/* @import "modules/Topbar-buttons.css"; */
+/* @import "modules/URLbar.css"; */
+/* @import "modules/Tabstyles.css"; */
+/* @import "modules/MediaPlayer.css"; */
+/**/
+/* :root { */
+/*   --zen-main-browser-background: rgba(0, 0, 0, 0) !important; */
+/*   --zen-big-shadow: transparent !important; */
+/* } */
 
 /* === ZenLeap Styles === */
 /*
