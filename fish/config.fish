@@ -24,6 +24,7 @@ alias v vim
 alias l hledger
 alias z zoxide
 alias p "~/puffin -v3"
+alias matrix "cmatrix -K '' -abk -C cyan"
 
 alias twt taskwarrior-tui
 alias tw task
@@ -86,6 +87,23 @@ end
 # // : ----------------------------------------------------- #}
 set -U fish_prompt_pwd_dir_length 50
 set -U theme_display_user yes
+
+set -U tide_left_prompt_items vi_mode os pwd git
+set -U tide_right_prompt_items status cmd_duration context jobs node python rustc java php ruby go kubectl toolbox terraform aws nix_shell crystal time
+set -U tide_left_prompt_frame_enabled false
+set -U tide_right_prompt_frame_enabled false
+set -U tide_left_prompt_suffix \ue0b0
+set -U tide_left_prompt_separator_diff_color \ue0b0
+set -U tide_left_prompt_separator_same_color \ue0b1
+set -U tide_right_prompt_prefix \ue0b2
+set -U tide_right_prompt_separator_diff_color \ue0b2
+set -U tide_right_prompt_separator_same_color \ue0b3
+set -U tide_prompt_add_newline_before true
+set -U tide_prompt_pad_items true
+set -U tide_prompt_icon_connection ' '
+set -U tide_prompt_min_cols 34
+set -U tide_prompt_color_frame_and_connection 6C6C6C
+set -U tide_prompt_color_separator_same_color 949494
 
 set -U tide_os_bg_color fede5d
 set -U tide_os_color 000000
