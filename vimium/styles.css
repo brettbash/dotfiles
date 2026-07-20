@@ -15,10 +15,10 @@ div > .vimiumHintMarker {
 
 div > .vimiumHintMarker span {
   /* linkhint text */
-  font-family: "Operator Mono";
+  font-family: "Monocraft";
   color: #03edf9;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 11px;
   text-shadow: none;
 }
 
@@ -29,8 +29,8 @@ div > .vimiumHintMarker > .matchingCharacter {
 #vomnibar {
   border: 1px solid #03edf9;
   box-shadow: 0 0 10px 0px rgba(3, 237, 249, 0.3);
-  border-radius: 12px;
-  font-family: "Operator Mono";
+  border-radius: 11px;
+  font-family: "Monocraft";
   background: rgba(42, 33, 57, 0.8);
   backdrop-filter: blur(10px);
 }
@@ -39,8 +39,8 @@ div > .vimiumHintMarker > .matchingCharacter {
   background-color: transparent;
   border: none;
   box-shadow: none;
-  font-family: "Operator Mono";
-  font-size: 13px;
+  font-family: "Monocraft";
+  font-size: 11px;
   color: #72f1b8;
 }
 
@@ -58,7 +58,7 @@ div > .vimiumHintMarker > .matchingCharacter {
 
 #vomnibar li {
   border-bottom: 0;
-  font-size: 12px;
+  font-size: 11px;
   padding: 12px 8px;
 }
 
@@ -68,21 +68,21 @@ div > .vimiumHintMarker > .matchingCharacter {
 
 #vomnibar li .vomnibarSource {
   color: #ff7edb;
-  font-family: "Operator Mono";
-  font-size: 12px;
+  font-family: "Monocraft";
+  font-size: 11px;
 }
 
 #vomnibar li em,
 #vomnibar li .vomnibarTitle {
   color: #03edf9;
-  font-family: "Operator Mono";
+  font-family: "Monocraft";
 }
 
 #vomnibar li .vomnibarUrl {
   color: #ffefae;
-  font-family: "Operator Mono";
+  font-family: "Monocraft";
   font-style: italic;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 #vomnibar li .vomnibarMatch,
@@ -106,8 +106,8 @@ div.vimiumHUD .vimiumHUDSearchArea {
 
 div.vimiumHUD .vimiumHUDSearchAreaInner {
   color: #ff8b39;
-  font-family: "Operator Mono";
-  font-size: 12px;
+  font-family: "Monocraft";
+  font-size: 11px;
   font-style: italic;
 }
 
