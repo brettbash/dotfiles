@@ -19,7 +19,7 @@ palette = 17=#97E736
 palette = 18=#ffefae
 background = #2a2139
 foreground = #8086b7
-cursor-color = #f97e72
+cursor-color = #ff8b39
 selection-background = #2a2139
 selection-foreground = #a8c7fa
 
