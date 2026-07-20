@@ -77,7 +77,7 @@ return {
 
       vim.keymap.set("n", "<leader>j" .. letter, function()
         require("grapple").select({ name = letter })
-        require("beepboop").play("dot")
+        require("beepboop").play("knuckle")
       end, { desc = "Harpoon Jump 󰯈 " .. letter })
     end
   end,

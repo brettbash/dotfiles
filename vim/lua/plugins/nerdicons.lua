@@ -2,7 +2,7 @@ return {
   "glepnir/nerdicons.nvim",
   cmd = "NerdIcons",
   keys = {
-    { "<leader>cy", "<cmd>NerdIcons<cr>", desc = "NerdIcons" },
+    { "<leader>cy", "<cmd>NerdIcons<cr><cmd>lua require('beepboop').play('klink')<cr>", desc = "NerdIcons" },
   },
   config = function()
     require("nerdicons").setup({

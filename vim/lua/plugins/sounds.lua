@@ -11,7 +11,7 @@ return {
         { trigger = "excellent", sound = "excellent.mp3", volume = 20 },
         { trigger = "flipOpen", sound = "open_flip3.wav" },
         { trigger = "hitap", sound = "HiTap.wav" },
-        { trigger = "hollow", sound = "Hollow.wav" },
+        { trigger = "hollow", sound = "Hollow.wav", volume = 20 },
         { trigger = "klink", sound = "Klink.wav" },
         { trigger = "knuckle", sound = "Knuckle.wav" },
         { trigger = "outstanding", sound = "outstanding.mp3", volume = 20 },
