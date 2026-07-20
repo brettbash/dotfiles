@@ -4,7 +4,7 @@
 zen-folder {
   & > .tab-group-label-container {
     & > label {
-      font-family: "Operator Mono", monospace !important;
+      font-family: "Departure Mono", monospace !important;
       font-weight: 400 !important;
     }
   }
@@ -19,7 +19,7 @@ zen-folder {
 }
 
 .tabbrowser-tab {
-  font-family: "Operator Mono", monospace;
+  font-family: "Departure Mono", monospace;
 }
 
 /* Pinned tab styling */

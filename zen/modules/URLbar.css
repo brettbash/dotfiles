@@ -19,9 +19,9 @@
   display: flex !important;
   flex-direction: column !important;
   overflow: hidden !important;
-  font-family: "Operator Mono";
+  font-family: "Monocraft";
   color: #03edf9;
-  font-size: 12px !important;
+  font-size: 11px !important;
   transition: height 0.2s ease-out !important;
 }
 
@@ -112,25 +112,25 @@
 }
 
 .urlbarView-title {
-  font-size: 12px !important;
+  font-size: 11px !important;
   color: #03edf9 !important;
 }
 
 .urlbarView-url,
 .urlbarView-title-separator::before {
-  font-size: 12px !important;
+  font-size: 11px !important;
   color: #ff7edb !important;
 }
 
 #urlbar,
 #searchbar {
-  font-size: 12px !important;
+  font-size: 11px !important;
 }
 
 .urlbar-input {
   color: #72f1b8 !important;
-  font-family: "Operator Mono" !important;
-  font-size: 12px !important;
+  font-family: "Monocraft" !important;
+  font-size: 11px !important;
 }
 
 .zen-current-workspace-indicator {

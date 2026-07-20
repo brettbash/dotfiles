@@ -145,8 +145,8 @@ tab-group:not([split-view-group]) {
       background: transparent !important;
       border: unset !important;
       font-weight: 500 !important;
-      font-size: 13px !important;
-      font-family: "Operator Mono", monospace;
+      font-size: 11px !important;
+      font-family: "Monocraft", monospace;
       text-align: unset !important;
       color: var(--sidebar-text-color) !important;
       padding-left: 27px !important;
@@ -284,4 +284,12 @@ tab-group:not([split-view-group]) {
   tab-group:not([split-view-group])
   tab[style=""] {
   transition: none !important;
+}
+
+label {
+  font-size: 11px !important; 
+}
+
+.pinned-tabs-container-separator { 
+  display: none !important;
 }
