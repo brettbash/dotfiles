@@ -7,15 +7,18 @@ return {
   },
   {
     "nvim-mini/mini.animate",
-    opts = {
-      cursor = { enable = false },
-      open = {
-        enable = false,
-      },
-      close = {
-        enable = false,
-      },
-    },
+    opts = function(_, opts)
+      local animate = require("mini.animate")
+      return vim.tbl_deep_extend("force", opts, {
+        cursor = { enable = false },
+        open = { enable = false },
+        close = { enable = false },
+        resize = {
+          enable = false,
+          timing = animate.gen_timing.cubic({ easing = "out", duration = 250, unit = "total" }),
+        },
+      })
+    end,
   },
 
   {

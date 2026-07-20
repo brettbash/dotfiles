@@ -35,3 +35,8 @@ require("config.keymaps.move")
 -- ║  📂 FOLDING  //  Markdown Fold Expressions & Keymaps                       ║
 -- ╚════════════════════════════════════════════════════════════════════════════╝
 require("config.keymaps.folding")
+
+-- ╔════════════════════════════════════════════════════════════════════════════╗
+-- ║  📐 WINDOW RESIZE  //  Percentage-Based Pane Expansion                    ║
+-- ╚════════════════════════════════════════════════════════════════════════════╝
+require("config.keymaps.window")
