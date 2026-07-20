@@ -211,6 +211,12 @@ return {
           fg = blue2,
         }
 
+        -- Nerd Icon Picker
+        hl.NerdIconBorder = { bg = black, fg = cyan1 }
+        hl.NerdIconPrompt = { bg = black, fg = yellow }
+        hl.NerdIconPreviewPrompt = { bg = black, fg = magenta }
+        hl.NerdIconNormal = { bg = black, fg = pink }
+
         -- Lualine
         -- hl.normal = {
         --   a = { bg = magenta, fg = black },
