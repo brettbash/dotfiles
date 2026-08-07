@@ -12,7 +12,7 @@ return {
       separator_style = { "", "" },
       show_close_icon = false,
       show_buffer_close_icons = false,
-      modified_icon = "󰯆 ",
+      modified_icon = "☠ ",
       -- stylua: ignore
       close_command = function(n) require("mini.bufremove").delete(n, false) end,
       -- stylua: ignore
