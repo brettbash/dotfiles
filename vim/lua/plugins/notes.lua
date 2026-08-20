@@ -18,13 +18,32 @@ return {
     },
     {
       "<leader>zd",
-      "<cmd>Telekasten find_daily_notes<cr>",
+      function()
+        require("config.vault").refresh_telekasten()
+        vim.cmd("Telekasten find_daily_notes")
+      end,
       desc = "Search Daily Notes",
     },
     {
       "<leader>zt",
-      "<cmd>Telekasten goto_today<cr>",
+      function()
+        require("config.vault").open_daily()
+      end,
       desc = "Today's Log",
+    },
+    {
+      "<leader>zy",
+      function()
+        require("config.vault").open_relative(-1)
+      end,
+      desc = "Yesterday's Log",
+    },
+    {
+      "<leader>zs",
+      function()
+        require("config.vault").sync_all()
+      end,
+      desc = "Sync Log Indexes",
     },
     {
       "<leader>zg",
@@ -82,6 +101,14 @@ return {
     local os = require("os")
     local year = os.date("%Y")
     local month = os.date("%m")
+
+    vim.api.nvim_create_user_command("LogToday", function()
+      require("config.vault").open_daily()
+    end, { desc = "Open today's daily log" })
+
+    vim.api.nvim_create_user_command("LogSync", function()
+      require("config.vault").sync_all()
+    end, { desc = "Rebuild Log year/month/day indexes" })
 
     -- Call insert link automatically when we start typing a link
     vim.keymap.set("i", "[[", "<cmd>Telekasten insert_link<CR>")
