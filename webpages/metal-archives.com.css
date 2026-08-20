@@ -1,0 +1,76 @@
+a#MA_logo {
+  display: none !important;
+}
+
+#left_col,
+#left_menu_box,
+#latest,
+.tabs2lvl.ui-widget-content,
+.tabs2lvl .ui-widget-header,
+.ui-widget-header,
+.tabs.ui-widget-content,
+.tabs .ui-widget-header,
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.tabs2lvl.ui-tabs .ui-tabs-panel,
+#member_box {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+#left_menu_box,
+#member_box {
+  border: 1px solid #ff8b39 !important;
+  border-radius: 8px !important;
+}
+
+.ui-widget-content,
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.tabs .ui-widget-header {
+  border: none !important;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active {
+  border: none !important;
+  color: #f97e72 !important;
+}
+
+.ui-state-active a,
+.ui-state-active a:link {
+  color: #72f1b8 !important;
+}
+
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited,
+a,
+.contrast,
+#left_menu_box .contrast a {
+  color: #ff8b39 !important;
+}
+
+a:hover {
+  color: #f97e72 !important;
+}
+
+#latest span.header {
+  color: #fe4450 !important;
+}
+
+table.display td {
+  border: none !important;
+}
+
+tr.even,
+tr.odd,
+.ui-tabs .ui-tabs-panel-content,
+table.display tbody tr:hover,
+table.display tbody tr td.highlighted,
+table.display tbody tr.highlighted,
+tr.lyrics td {
+  background-color: none !important;
+}
