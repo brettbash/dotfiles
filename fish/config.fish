@@ -1,7 +1,5 @@
 set fish_greeting ネオンフィッシュ
 
-set -gx TERM xterm-256color
-
 # Aliases
 alias fishload "source ~/.config/fish/config.fish"
 alias tmuxinit "set TERM tmux-256color && tmux"
