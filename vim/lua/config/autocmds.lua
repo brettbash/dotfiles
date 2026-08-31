@@ -16,6 +16,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Never hard-wrap mail text while composing (aerc opens .eml in nvim)
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("mail_no_wrap"),
+  pattern = { "mail", "eml" },
+  callback = function()
+    vim.opt_local.textwidth = 0
+    vim.opt_local.formatoptions:remove({ "t", "a", "w" })
+  end,
+})
+
 -- Diagnostics float on CursorHold
 -- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 --   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
